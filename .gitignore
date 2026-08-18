@@ -1,0 +1,10 @@
+# interim artifacts are regenerable; never committed
+data/interim/
+# byte / cache junk
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+.ipynb_checkpoints/
+# processed panels committed only if small — decide per file, so ignore by default
+data/processed/*.parquet

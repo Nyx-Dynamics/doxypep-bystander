@@ -1,0 +1,6 @@
+# Python 3.11+. No proprietary dependencies (CLAUDE.md conventions).
+pandas>=2.0
+statsmodels>=0.14
+matplotlib>=3.7
+pytest>=7.4
+openpyxl>=3.1
