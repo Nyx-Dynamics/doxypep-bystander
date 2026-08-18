@@ -65,11 +65,18 @@ If any guideline codes `requires_staph_monitoring: yes`, **stop and report** —
 it is a finding about which guideline, to be reported. The German and ECDC
 statements are the most cautious and the likeliest to trip this.
 
-## Stream A — trial schema (Phase C, defined here for continuity)
+## Stream A — trial schema (Phase C)
 
-Unit = one trial. Fields (defined in Phase C, listed for reference): *S. aureus*
-measured (y/n); body site; identification method; susceptibility method and
-breakpoint standard; phenotype (tetracycline / doxycycline / methicillin); n
-colonized per timepoint; powered for the resistance endpoint (y/n); authors
-concede underpowering (y/n). Detectability (`src/analysis/detectability.py`) uses
-exact binomial / Fisher, not the normal approximation Stream C used.
+See **`CODEBOOK_streamA.md`** — it supersedes this section. In brief: unit = one
+trial, but the load-bearing object is one `ResistanceObservation` per *reported
+instance* of a result (schema in `src/coding/schema_trial.py`), because the same
+DoxyPEP *S. aureus* number is reported with different denominators (5/31, 5/111,
+28/222) and different drug labels (doxycycline measured, "tetracycline"
+described). Three fields carry the thesis to the assay level:
+`mechanism_discriminating` (can the endpoint separate tet(K) efflux from tet(M)
+ribosomal protection? — a standard breakpoint cannot, per Grossman 2016 Table 1),
+`phenotype_measured` vs `phenotype_as_labeled`, and
+`denominator_intervention_affected`. Reporting analyses live in
+`src/analysis/observations.py`; detectability
+(`src/analysis/detectability.py`, Phase C) uses exact binomial / Fisher, not the
+normal approximation Stream C used at large N.

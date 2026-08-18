@@ -1,0 +1,178 @@
+"""Stream A analyses of how results are reported.
+
+`src/analysis/observations.py` (was denominators.py). Three questions:
+
+- `discordance` — where sources disagree on the denominator for one result.
+- `mechanism_blindness` — which organisms get an endpoint that resolves tet(K)
+  from tet(M), and which get one that cannot.
+- `phenotype_relabeling` — where a source names a different drug than was tested.
+
+None of these are data-quality problems to clean away. They are the findings.
+"""
+from __future__ import annotations
+
+import pandas as pd
+
+GROUP = ["unit", "arm", "timepoint", "organism", "phenotype_measured"]
+
+
+def observations_frame(records) -> pd.DataFrame:
+    """Flatten every coded observation across trials into one tidy frame."""
+    rows = []
+    for r in records:
+        for o in r.observations:
+            rows.append({
+                "unit": r.unit, "trial_name": r.trial_name,
+                "source_type": o.source_type, "source_citation": o.source_citation,
+                "arm": o.arm, "timepoint": o.timepoint, "organism": o.organism,
+                "phenotype_measured": o.phenotype_measured,
+                "phenotype_as_labeled": o.phenotype_as_labeled,
+                "relabeled": o.relabeled,
+                "mechanism_discriminating": o.mechanism_discriminating,
+                "discrimination_method": o.discrimination_method,
+                "numerator": o.numerator, "denominator": o.denominator,
+                "proportion": o.proportion,
+                "denominator_basis": o.denominator_basis,
+                "denominator_intervention_affected":
+                    o.denominator_intervention_affected,
+                "description_denominator_mismatch":
+                    o.description_denominator_mismatch,
+                "significance_reported": o.significance_reported,
+                "p_value": o.p_value, "locator": o.locator,
+            })
+    return pd.DataFrame(rows)
+
+
+def discordance(records) -> pd.DataFrame:
+    """One row per underlying result; flags where reportings disagree.
+
+    `proportion_ratio` is how far the headline number moves purely on the choice
+    of denominator."""
+    df = observations_frame(records)
+    if df.empty:
+        return pd.DataFrame(columns=GROUP)
+
+    out = []
+    for key, g in df.groupby(GROUP, dropna=False):
+        props = g["proportion"]
+        out.append({
+            **dict(zip(GROUP, key)),
+            "n_reportings": len(g),
+            "n_bases": g["denominator_basis"].nunique(),
+            "bases": ", ".join(sorted(g["denominator_basis"].unique())),
+            "n_distinct_denominators": g["denominator"].nunique(),
+            "denominators": ", ".join(str(d) for d in sorted(g["denominator"].unique())),
+            "proportion_min": props.min(),
+            "proportion_max": props.max(),
+            "proportion_ratio": (props.max() / props.min()) if props.min() > 0 else float("nan"),
+            "discordant": g["denominator_basis"].nunique() > 1
+                          or g["denominator"].nunique() > 1,
+            "any_description_mismatch":
+                (g["description_denominator_mismatch"] == "yes").any(),
+            "any_intervention_affected_denominator":
+                (g["denominator_intervention_affected"] == "yes").any(),
+            "sources": " | ".join(g["source_citation"]),
+        })
+    return pd.DataFrame(out).sort_values(
+        ["discordant", "proportion_ratio"], ascending=[False, False])
+
+
+def mechanism_blindness(records) -> pd.DataFrame:
+    """Per organism: was the endpoint able to resolve tet(K) from tet(M)?
+
+    The expected asymmetry — mechanism-discriminating assays for the in-category
+    organism (gonococcus), mechanism-blind ones for the bystander (S. aureus) — is
+    the thesis at the level of the assay. Confirm it here rather than assume it."""
+    df = observations_frame(records)
+    if df.empty:
+        return pd.DataFrame()
+    df = df[df["source_type"] == "primary_trial"]
+    if df.empty:
+        return pd.DataFrame()
+
+    out = []
+    for (unit, organism), g in df.groupby(["unit", "organism"]):
+        n = len(g)
+        n_disc = (g["mechanism_discriminating"] == "yes").sum()
+        out.append({
+            "unit": unit, "organism": organism,
+            "n_observations": n,
+            "n_discriminating": int(n_disc),
+            "share_discriminating": n_disc / n,
+            "methods": ", ".join(sorted(g["discrimination_method"].unique())),
+            "blind": n_disc == 0,
+        })
+    return pd.DataFrame(out).sort_values(["unit", "organism"])
+
+
+def blindness_asymmetry(records) -> pd.DataFrame:
+    """Within each trial, contrast in-category vs bystander organisms.
+
+    `asymmetric` is True where a trial resolved mechanism for gonococcus/commensal
+    Neisseria but not for S. aureus — the same laboratory, the same study, two
+    standards of measurement."""
+    m = mechanism_blindness(records)
+    if m.empty:
+        return m
+    IN_CATEGORY = {"n_gonorrhoeae", "commensal_neisseria", "c_trachomatis"}
+    BYSTANDER = {"s_aureus", "mssa", "mrsa", "gas"}
+
+    out = []
+    for unit, g in m.groupby("unit"):
+        inc = g[g["organism"].isin(IN_CATEGORY)]
+        byst = g[g["organism"].isin(BYSTANDER)]
+        if inc.empty or byst.empty:
+            continue
+        out.append({
+            "unit": unit,
+            "in_category_organisms": ", ".join(inc["organism"]),
+            "in_category_any_discriminating": bool((~inc["blind"]).any()),
+            "bystander_organisms": ", ".join(byst["organism"]),
+            "bystander_any_discriminating": bool((~byst["blind"]).any()),
+            "asymmetric": bool((~inc["blind"]).any() and byst["blind"].all()),
+        })
+    return pd.DataFrame(out)
+
+
+def phenotype_relabeling(records) -> pd.DataFrame:
+    """Reportings that name a different drug than the assay tested.
+
+    Motivating case: NEJM measured doxycycline resistance in S. aureus (ETEST,
+    MIC >=16 ug/mL); CDC MMWR describes the same trial as evaluating tetracycline
+    resistance. Given tet(K), those labels are not interchangeable."""
+    df = observations_frame(records)
+    if df.empty:
+        return df
+    cols = ["unit", "source_type", "source_citation", "organism",
+            "phenotype_measured", "phenotype_as_labeled", "locator"]
+    return df[df["relabeled"]][cols].reset_index(drop=True)
+
+
+def significance_asymmetry(records) -> pd.DataFrame:
+    """Results where only one level of comparison's significance was reported.
+
+    DoxyPEP: a significant within-arm increase alongside a non-significant
+    between-arm difference. Reporting either alone changes the conclusion."""
+    df = observations_frame(records)
+    if df.empty:
+        return pd.DataFrame()
+    g = (df.groupby(GROUP)["significance_reported"]
+           .agg(lambda s: set(s) - {"none"}).reset_index())
+    g["levels_reported"] = g["significance_reported"].apply(
+        lambda s: ", ".join(sorted(s)) if s else "none")
+    g["one_sided_only"] = g["significance_reported"].apply(
+        lambda s: s in ({"within_arm"}, {"between_arm"}))
+    return g.drop(columns=["significance_reported"])
+
+
+def primary_trial_denominators(records) -> pd.DataFrame:
+    """Detectability inputs: primary-trial observations only, per basis.
+
+    Where a result carries more than one basis, detectability is computed for each
+    and reported as a range — the coder does not choose."""
+    df = observations_frame(records)
+    if df.empty:
+        return df
+    return (df[df["source_type"] == "primary_trial"]
+            .sort_values(GROUP + ["denominator_basis"])
+            .reset_index(drop=True))
