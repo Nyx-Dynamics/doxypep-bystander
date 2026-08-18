@@ -17,6 +17,7 @@ loader:
 
 feasibility:
 	$(PY) -m src.feasibility.dilution
+	$(PY) -m src.feasibility.dilution_metro
 
 clean:
 	rm -rf data/interim/* .pytest_cache

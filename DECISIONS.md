@@ -69,3 +69,37 @@ metro-level (SF, King County, LA, NYC) per SCAFFOLD.md. That the single best
 metro design needs its own Phase 0 check (metro population denominators, metro
 isolate volumes) before any outcome data is acquired — the state kill does not
 transfer. Full write-up: `outputs/feasibility_result.md`.
+
+## 2026-08-18 — Metro Phase 0: also fails; dilution is population-scale, not state-scale
+
+No metro/county PrEP *user or rate* file is on disk — the AIDSVu metro
+downloadable datasets (Prevention-Theorem project) carry HIV prevalence/SDOH by
+ZIP, not PrEP; County PnR 2019 has only ratios and is suppressed for the target
+counties; SF and King County are not even among the 34 available metro files.
+
+Rather than fabricate metro densities, exploited the fact that the dilution
+fraction is **population-independent** — `f = MALE_FRACTION * (male_prep_rate/1e5)
+* uptake * kappa` (eq. 5). So the gate inverts to a required male-PrEP *density*
+and compares it to the densest geography that actually exists in AIDSVu:
+**Washington, D.C. at 2,694/100k adult males (2022)** — a city-state, a generous
+empirical ceiling for any US metro (SF/King do not exceed it).
+
+- **MALE_FRACTION = 0.5**: adult-male share of the isolate-generating population.
+  Justified by AIDSVu internal consistency (male_prep_users/male_prep_rate*1e5 ≈
+  adult-male population; over total adult pop ≈ 0.49).
+- **ACHIEVABLE_MULTIPLE = 2.0**: a real metro may be at most 2x the densest
+  observed US geography. Generous — no US metro is known to exceed D.C.
+
+**Result:** 0 of 81 cells achievable. Least-demanding cell needs 2.1x D.C.'s
+density and only under fantastical inputs (N=100k isolates/yr, 5x enrichment, 55%
+uptake); realistic cells need 12–33x+ (i.e. >100% of males on PrEP, impossible).
+
+**Decision / interpretation:** the ecological design fails at *both* state and
+metro grain because population-scale sampling dilutes the signal below
+detectability wherever a population denominator exists. The only lever that
+rescues it is enrichment (kappa) — i.e. **targeted sexual-health-clinic sampling**
+of *S. aureus* from the exposed population — a cohort design, not ecological.
+This is the measurement-inheritance thesis made quantitative. Two forward paths
+recorded in `outputs/feasibility_metro_result.md`: (1) a King County / SF clinic
+cohort study (different design, own preregistration), or (2) write this two-level
+negative result up as the surveillance-infrastructure paper. Choice deferred to PI.

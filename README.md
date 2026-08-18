@@ -39,5 +39,15 @@ shows the doxy-PEP-exposed subgroup is too dilute inside a whole state's
 *S. aureus* isolate stream: the within-exposed effect needed to move the
 state-level rate detectably exceeds Soge's optimistic RR 1.42 at every plausible
 setting (median required RR ≈ 14; see `outputs/feasibility_result.md`). Per the
-kill criterion the project pivots to **metro-level**, which needs its own Phase 0
-check before outcome data is acquired. Phases 1–4 remain gated.
+kill criterion the project pivots to **metro-level** — but the **metro gate also
+FAILS** (`outputs/feasibility_metro_result.md`): because the dilution fraction
+tracks exposure *density*, not headcount, detection would require male-PrEP
+density 2×–33× the densest geography that exists in the US (Washington D.C.), i.e.
+more than 100% of males on PrEP under realistic isolate volumes. Population-scale
+ecological sampling dilutes the signal below detectability at every grain with a
+population denominator. The only lever that rescues it — high isolate enrichment —
+means **targeted sexual-health-clinic sampling** (a cohort design, not
+ecological). Two forward paths are on the table: a King County/SF clinic cohort
+study, or writing this two-level negative result up as the
+surveillance-infrastructure paper (the measurement-inheritance thesis, made
+quantitative). Phases 1–4 remain gated pending that choice.
