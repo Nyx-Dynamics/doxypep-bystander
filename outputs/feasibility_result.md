@@ -43,11 +43,47 @@ R0 10%, N = 1,000/state-year):
 - **RR_needed = 86** — roughly 61x
   Soge's optimistic effect.
 
-**Across all 81 grid cells** the median RR_needed is
-**14** (~10x Soge). The exposed subgroup is too
-dilute inside a state's total *S. aureus* isolate pool: at the best case detection
-narrowly fails, and under any realistic isolate volume it fails by 1–2 orders of
-magnitude.
+**Across all 81 grid cells** the single-comparison median RR_needed is
+**14** (~10x Soge). But that median is a
+single-two-proportion figure and must not be the headline — see the panel-power
+correction next, which supersedes it.
+
+## Panel-power correction (Phase A)
+
+The numbers above assume a single two-proportion comparison. The design under test
+was a controlled panel (~52 geographies x ~14 years), whose effective
+sample size is larger: `N_eff = G*T*N/DEFF`, with the design effect DEFF >= 1
+discounting within-geography autocorrelation. DEFF=1 (every geography-year isolate
+independent) is an **optimistic ceiling** on panel power. Full sweep in
+`outputs/tables/feasibility_panel_power.csv`.
+
+Panel power moves detectability up, materially:
+
+- **The grid median collapses.** At the optimistic DEFF=1, the median RR_needed
+  falls to **1.48** (from 14) and
+  **38 of 81** cells become nominally
+  detectable. The "median across the grid" framing does *not* survive a panel and
+  is retired.
+- **The best case flips to detectable** — RR_needed
+  **1.03** at DEFF=1 (was 1.93
+  single-comparison). It must be treated as fragile and disowned, never cited as
+  "close but failing."
+- **The realistic cell holds.** Proportional sampling (kappa=1), central R0, and
+  the smallest isolate volume still require RR_needed
+  **4.2** at optimistic DEFF=1, rising to
+  **16.8** at DEFF=25 — above Soge's 1.42 across
+  the entire design-effect range.
+
+**Restated Stream C claim.** Under a controlled panel, the signal is undetectable
+*under realistic surveillance conditions* (proportional sampling, realistic
+isolate volumes): RR_needed 4-17x
+the observed effect. Detection becomes possible only under a compound of generous
+assumptions (fantastical isolate volumes AND enrichment AND high uptake) that fail
+individually. The claim is now anchored on the realistic cell, not the grid median.
+Two further Phase-A refinements — modelling kappa<1 (surveillance skews
+hospitalized/older, the exposed skew young/outpatient) and the dose distribution
+(Soge's effect attaches to >3 doses/month; ~half of users sit below it) — both push
+the realistic cell further from 1.42 and are now load-bearing, not optional.
 
 ## Decision
 
@@ -66,3 +102,4 @@ and metro isolate volumes before any outcome data is acquired.
 
 - sensitivity table: `outputs/tables/feasibility_sensitivity.csv`
 - sensitivity figure: `outputs/figures/feasibility_dilution.png`
+- panel-power sweep: `outputs/tables/feasibility_panel_power.csv`

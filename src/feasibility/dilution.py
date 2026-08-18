@@ -161,6 +161,78 @@ def sensitivity_table(df, year):
     return pd.DataFrame(rows)
 
 
+# --------------------------------------------------------------------------- #
+# panel-power bound (Phase A)                                                   #
+# --------------------------------------------------------------------------- #
+# The MDE above is a single two-proportion comparison. The design under test was
+# a controlled panel (~52 geographies x ~14 years). Panel power draws on repeated
+# observation, so the effective sample size is larger:
+#
+#     N_eff = G * T * N / DEFF
+#
+# DEFF (design effect) >= 1 discounts within-geography autocorrelation and
+# clustering. DEFF=1 treats every geography-year isolate as independent -- an
+# OPTIMISTIC ceiling on panel power. We use it deliberately: if realistic cells
+# stay undetectable even at DEFF=1, the kill is robust for them. The dilution
+# fraction f is unchanged; the panel adds observations, it does not concentrate
+# exposure. See DECISIONS.md (2026-08-18, Phase A) for the pre-registered
+# expectation.
+PANEL_G = 52          # geographies in the AIDSVu panel
+PANEL_T = 14          # years, 2012-2025
+DEFF_GRID = (1.0, 5.0, 10.0, 25.0)
+
+
+def panel_effective_n(n, g=PANEL_G, t=PANEL_T, deff=1.0):
+    """Effective sample size for a controlled panel: G*T*N/DEFF."""
+    return g * t * n / deff
+
+
+def panel_mde(r0, n, g=PANEL_G, t=PANEL_T, deff=1.0):
+    """MDE under the panel (single-comparison MDE at the effective N)."""
+    return mde_proportion(r0, panel_effective_n(n, g, t, deff))
+
+
+def panel_sensitivity(df, year, deff):
+    """Like sensitivity_table but with the panel MDE at design effect ``deff``."""
+    rows = []
+    for uptake in UPTAKE_GRID:
+        for kappa in KAPPA_GRID:
+            sd = state_dilution(df, year, uptake, kappa)
+            f = sd.loc[sd["f"].idxmax(), "f"]
+            for r0 in R0_GRID:
+                dR = induced_delta(f, r0, RR_SOGE)
+                for n in N_GRID:
+                    mde = panel_mde(r0, n, deff=deff)
+                    rows.append({
+                        "deff": deff, "uptake": uptake, "kappa": kappa,
+                        "r0": r0, "N_isolates": n, "f": f,
+                        "RR_needed": rr_needed(mde, f, r0),
+                        "detectable": bool(dR >= mde),
+                    })
+    return pd.DataFrame(rows)
+
+
+def panel_summary(df, year):
+    """For each design effect: detectable-cell count and the RR_needed for the
+    realistic cell, the best cell, and the median. The realistic cell is the
+    reference un-generous scenario (proportional sampling, central uptake/R0,
+    smallest N)."""
+    out = []
+    for deff in DEFF_GRID:
+        t = panel_sensitivity(df, year, deff)
+        realistic = t[(t.uptake == 0.35) & (t.kappa == 1.0) &
+                      (t.r0 == R0_BASELINE) & (t.N_isolates == min(N_GRID))].iloc[0]
+        out.append({
+            "deff": deff,
+            "n_detectable": int(t["detectable"].sum()),
+            "n_cells": len(t),
+            "realistic_RR_needed": float(realistic["RR_needed"]),
+            "best_RR_needed": float(t["RR_needed"].min()),
+            "median_RR_needed": float(t["RR_needed"].median()),
+        })
+    return pd.DataFrame(out)
+
+
 @dataclass
 class Gate:
     passed: bool
@@ -239,10 +311,12 @@ def _realistic_cell(table):
     return table[m].iloc[0]
 
 
-def _write_report(table, gate, year, root, fig_rel, tab_rel):
+def _write_report(table, gate, panel, year, root, fig_rel, tab_rel, panel_rel):
     best = gate.best_case_row
     real = _realistic_cell(table)
     median_rr = float(table["RR_needed"].median())
+    p1 = panel[panel.deff == 1.0].iloc[0]      # optimistic panel power
+    p25 = panel[panel.deff == 25.0].iloc[0]    # heavily discounted
     md = f"""# Phase 0 feasibility result — state-level dilution
 
 **Verdict: {gate.verdict()}.**
@@ -288,11 +362,47 @@ R0 {real['r0']:.0%}, N = {int(real['N_isolates']):,}/state-year):
 - **RR_needed = {real['RR_needed']:.0f}** — roughly {real['RR_needed']/RR_SOGE:.0f}x
   Soge's optimistic effect.
 
-**Across all {gate.n_cells} grid cells** the median RR_needed is
-**{median_rr:.0f}** (~{median_rr/RR_SOGE:.0f}x Soge). The exposed subgroup is too
-dilute inside a state's total *S. aureus* isolate pool: at the best case detection
-narrowly fails, and under any realistic isolate volume it fails by 1–2 orders of
-magnitude.
+**Across all {gate.n_cells} grid cells** the single-comparison median RR_needed is
+**{median_rr:.0f}** (~{median_rr/RR_SOGE:.0f}x Soge). But that median is a
+single-two-proportion figure and must not be the headline — see the panel-power
+correction next, which supersedes it.
+
+## Panel-power correction (Phase A)
+
+The numbers above assume a single two-proportion comparison. The design under test
+was a controlled panel (~{PANEL_G} geographies x ~{PANEL_T} years), whose effective
+sample size is larger: `N_eff = G*T*N/DEFF`, with the design effect DEFF >= 1
+discounting within-geography autocorrelation. DEFF=1 (every geography-year isolate
+independent) is an **optimistic ceiling** on panel power. Full sweep in
+`{panel_rel}`.
+
+Panel power moves detectability up, materially:
+
+- **The grid median collapses.** At the optimistic DEFF=1, the median RR_needed
+  falls to **{p1['median_RR_needed']:.2f}** (from {median_rr:.0f}) and
+  **{int(p1['n_detectable'])} of {int(p1['n_cells'])}** cells become nominally
+  detectable. The "median across the grid" framing does *not* survive a panel and
+  is retired.
+- **The best case flips to detectable** — RR_needed
+  **{p1['best_RR_needed']:.2f}** at DEFF=1 (was {gate.best_case_rr_needed:.2f}
+  single-comparison). It must be treated as fragile and disowned, never cited as
+  "close but failing."
+- **The realistic cell holds.** Proportional sampling (kappa=1), central R0, and
+  the smallest isolate volume still require RR_needed
+  **{p1['realistic_RR_needed']:.1f}** at optimistic DEFF=1, rising to
+  **{p25['realistic_RR_needed']:.1f}** at DEFF=25 — above Soge's {RR_SOGE} across
+  the entire design-effect range.
+
+**Restated Stream C claim.** Under a controlled panel, the signal is undetectable
+*under realistic surveillance conditions* (proportional sampling, realistic
+isolate volumes): RR_needed {p1['realistic_RR_needed']:.0f}-{p25['realistic_RR_needed']:.0f}x
+the observed effect. Detection becomes possible only under a compound of generous
+assumptions (fantastical isolate volumes AND enrichment AND high uptake) that fail
+individually. The claim is now anchored on the realistic cell, not the grid median.
+Two further Phase-A refinements — modelling kappa<1 (surveillance skews
+hospitalized/older, the exposed skew young/outpatient) and the dose distribution
+(Soge's effect attaches to >3 doses/month; ~half of users sit below it) — both push
+the realistic cell further from {RR_SOGE} and are now load-bearing, not optional.
 
 ## Decision
 
@@ -311,6 +421,7 @@ and metro isolate volumes before any outcome data is acquired.
 
 - sensitivity table: `{tab_rel}`
 - sensitivity figure: `{fig_rel}`
+- panel-power sweep: `{panel_rel}`
 """
     (root / "outputs" / "feasibility_result.md").write_text(md)
 
@@ -320,13 +431,16 @@ def run(root: Path | str = None, year: int = 2022) -> Gate:
     df = load_aidsvu(root / "data" / "raw" / "aidsvu")
     table = sensitivity_table(df, year)
     gate = evaluate_gate(table)
+    panel = panel_summary(df, year)
 
     tab_rel = "outputs/tables/feasibility_sensitivity.csv"
+    panel_rel = "outputs/tables/feasibility_panel_power.csv"
     fig_rel = "outputs/figures/feasibility_dilution.png"
     (root / "outputs" / "tables").mkdir(parents=True, exist_ok=True)
     table.to_csv(root / tab_rel, index=False)
+    panel.to_csv(root / panel_rel, index=False)
     _plot_surface(df, year, root / fig_rel)
-    _write_report(table, gate, year, root, fig_rel, tab_rel)
+    _write_report(table, gate, panel, year, root, fig_rel, tab_rel, panel_rel)
     return gate
 
 
@@ -335,5 +449,5 @@ if __name__ == "__main__":
     print(f"Phase 0 gate: {g.verdict()}")
     print(f"best-case RR_needed = {g.best_case_rr_needed:.1f} "
           f"(Soge optimistic {RR_SOGE})")
-    print(f"detectable cells: {g.n_detectable}/{g.n_cells}")
-    print("wrote outputs/feasibility_result.md")
+    print(f"detectable cells (single-comparison): {g.n_detectable}/{g.n_cells}")
+    print("wrote outputs/feasibility_result.md (incl. panel-power correction)")

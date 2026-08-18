@@ -1,137 +1,145 @@
 # SCAFFOLD.md — build order
 
-Hand this and `CLAUDE.md` to Claude Code. Build in phase order. Do not start a
-phase before the previous one's gate passes.
+*Revised 2026-08-18. Stream C is complete; the remaining work is Streams B and A
+plus the projection. Read `CLAUDE.md` first.*
+
+## Status
+
+| Stream | What it establishes | State |
+|---|---|---|
+| C — surveillance | No population grain can detect the signal | **Complete** (needs hardening, below) |
+| B — guidelines | The risk is discussed, counselled, and unmeasured | Not started |
+| A — trials | Measured non-uniformly, underpowered | Not started |
+| Projection | Oral MRSA option set under uncertainty | Not started |
 
 ## Repo layout
 
 ```
 doxypep-bystander/
-├── CLAUDE.md                  # project context — read first
-├── SCAFFOLD.md                # this file
-├── README.md                  # public-facing; includes falsification statement
-├── DECISIONS.md               # dated analysis decisions, logged before results
-├── PREREGISTRATION.md         # OSF preregistration draft
-├── Makefile                   # make all regenerates every figure and table
-├── requirements.txt
+├── CLAUDE.md              # project context — read first
+├── SCAFFOLD.md            # this file
+├── README.md              # REWRITE — still describes the dead ecological design
+├── DECISIONS.md           # append-only, dated (existing entries are the standard)
+├── CODEBOOK.md            # variable definitions, Streams A and B
+├── PREREGISTRATION.md     # Stream A schema + detectability, pre-OSF
+├── Makefile
 ├── data/
-│   ├── raw/                   # immutable; never edited
-│   │   ├── aidsvu/            # copied from project
-│   │   └── outcomes/          # Phase 1 acquisitions
-│   ├── interim/               # generated; gitignored
-│   └── processed/             # analysis-ready panels; committed if small
+│   ├── raw/{papers,guidelines,coding,aidsvu}/
+│   └── processed/
 ├── src/
-│   ├── loaders/
-│   │   ├── aidsvu.py          # THE AIDSVu loader — one implementation
-│   │   └── outcomes.py
-│   ├── feasibility/
-│   │   └── dilution.py        # Phase 0 gate
-│   ├── panel/
-│   │   └── build.py           # state-year panel assembly
+│   ├── feasibility/       # Stream C — dilution.py, dilution_metro.py (DONE)
+│   ├── coding/            # schema.py (pydantic), build_corpus.py
 │   ├── analysis/
-│   │   ├── negative_controls.py   # written and run BEFORE primary
-│   │   ├── parallel_trends.py
-│   │   └── its.py                 # primary controlled ITS
+│   │   ├── detectability.py   # Stream A — same units as feasibility
+│   │   ├── reliability.py     # double-coding agreement
+│   │   └── projection.py
 │   └── figures/
+│       └── three_streams.py   # THE figure — one reference line at RR 1.42
 ├── tests/
-│   ├── test_aidsvu_loader.py  # -1 sentinel, header offset, newline columns
-│   └── test_panel.py
-├── notebooks/                 # exploration only; nothing load-bearing
-└── outputs/
-    ├── figures/
-    └── tables/
+├── paper/                 # manuscript.md, references.bib
+└── outputs/{figures,tables}/
 ```
 
-## Phase 0 — feasibility gate
+**Delete:** `src/analysis/negative_controls.py`, `src/analysis/parallel_trends.py`.
+They belong to the abandoned ecological ITS. A gated placeholder implies a phase
+that is still coming; these are not.
 
-**Goal:** determine whether the signal is detectable at all before spending effort
-on outcome-data acquisition.
+## Phase A — harden Stream C (do first, it is small)
 
-1. `src/loaders/aidsvu.py` — parse all state PrEP and PnR files into one tidy
-   frame: `state, year, prep_users, prep_rate, male_prep_rate, pnr, male_pnr`.
-   Handle: header at row 4, embedded newlines in column names, `-1` = suppressed
-   (must become `NaN`, never zero), stability flags.
-   Tests first. This loader is used by everything downstream.
+1. **Panel-power bound.** The MDE assumes one two-proportion comparison; the design
+   under test was a panel. Either extend the MDE, or add an explicit statement that
+   the best-case cell (RR_needed 1.93 vs 1.42) compounds four simultaneous
+   implausibilities and fails on any one alone. This is the referee's first
+   objection — answer it in the repo, not in review.
+2. **Add κ < 1 to the grid.** Surveillance *S. aureus* skews hospitalized and
+   older; the exposed skew young and outpatient. Proportional sampling is generous.
+   Justify in `DECISIONS.md` before running.
+3. **Model the dose distribution.** Soge's effect attaches to >3 doses/month;
+   median use is 3 (IQR 2–6). Replace binary "on doxy-PEP" with the share above
+   threshold — roughly halving *f*. Reproducing binary exposure coding is the
+   failure mode under description.
 
-2. `src/feasibility/dilution.py` — the gate. Inputs:
-   - state population, MSM population fraction (published estimates)
-   - PrEP users per state (from AIDSVu, observed)
-   - assumed doxy-PEP uptake among PrEP users (bound it: 20%–55%; Spinelli's clinic
-     saw 55%, which is a high-water mark from a San Francisco sexual health clinic
-     and should not be treated as national)
-   - *S. aureus* isolate volume per state and the fraction plausibly originating
-     from this population
-   - within-exposed effect size = Soge RR 1.42
+Each of these moves the result in a known direction. Log the expected direction in
+`DECISIONS.md` before running, so the check is honest.
 
-   Output: minimum detectable state-level change in tetracycline
-   non-susceptibility, with a sensitivity surface across the uptake bound.
+## Phase B — Stream B (guidelines)
 
-3. **Gate.** If the implied state-level change is below plausible surveillance
-   noise, stop. Write `outputs/feasibility_result.md` stating the negative result
-   and pivot to metro-level (SF, King County, LA, NYC) where uptake density is far
-   higher and King County has actual doxy-PEP-era isolate data.
+Load-bearing and easiest to falsify. Do it before Stream A.
 
-Do not proceed to Phase 1 on optimism.
+1. `CODEBOOK.md` — guideline schema: discusses staph risk in background;
+   requires staph monitoring; requires patient counselling re commensal resistance;
+   harms evidence formally graded; efficacy evidence formally graded. Each field
+   y/n **plus locator**.
+2. Acquire into `data/raw/guidelines/`: CDC 2024 (MMWR 73(RR-2)), San Francisco
+   citywide (Oct 2022), Australian consensus (Cornelisse, Med J Aust
+   2024;220:381–6), German DSTIG (Werner, J Dtsch Dermatol Ges 2024;22:466–78),
+   ECDC (Mårdh & Plachouras, Euro Surveill 2023;28:2300621).
+3. Hand-code to `data/raw/coding/guideline_*.yaml`. No locator, no value.
+4. `src/coding/schema.py` (pydantic) + `build_corpus.py`. A record missing a
+   locator must **raise**, not validate. Test that first.
 
-## Phase 1 — outcome data acquisition
+**Gate.** If any guideline requires staph monitoring, report and stop for review —
+the framing needs revision.
 
-Only if Phase 0 passes, and target whichever geographic level Phase 0 says is
-viable.
+The German and ECDC statements are more cautious than CDC and are the natural
+comparators. If they *do* require monitoring, that is not a failure — it is a
+finding about US guidelines specifically, and the paper reframes accordingly.
 
-1. Verify ATLAS coverage first — US *S. aureus*, tetracycline MIC, state
-   geography, years spanning 2018–2025. If ATLAS lacks state geography or
-   post-2023 years, the national design dies and the metro design is all that
-   remains. Check this before writing any ingestion code.
-2. Evaluate NHSN/AR Atlas for population mismatch (healthcare-associated vs
-   community). Document the decision in `DECISIONS.md` either way.
-3. State/county health department extraction: WA first (King County), then CA, NY.
-4. `src/loaders/outcomes.py` with tests, same discipline as the AIDSVu loader.
+## Phase C — Stream A (trials) and detectability
 
-Record, per source: which breakpoint standard (CLSI vs EUCAST), which year's
-breakpoints, and whether the reported phenotype is tetracycline or doxycycline.
-Breakpoint drift across years is a real confounder and must be in the panel as a
-covariate, not discovered later.
+1. Extend `CODEBOOK.md`: *S. aureus* measured y/n; body site; identification
+   method; susceptibility method and breakpoint standard; phenotype (tetracycline /
+   doxycycline / methicillin); n colonized per timepoint; powered for the
+   resistance endpoint; authors concede underpowering.
+2. Code from PDFs: Luetkemeyer NEJM 2023;388:1296–306 (DoxyPEP — nares done, 5%→13%
+   among colonized, MRSA null); Grennan CID 2026;82:1054–62 (DuDHS — nares done,
+   6 resistant isolates, P=.077, concedes underpowered); Molina Lancet Infect Dis
+   2024 + CID substudy (DOXYVAC — full apparatus at gonococcus, no staph); Molina
+   Lancet Infect Dis 2018;18:308–17 (IPERGAY OLE); Stewart NEJM 2023;389:2331–40
+   (dPEP-KE); Bolan Sex Transm Dis 2015;42:98–103.
+   n colonized is often in a figure legend, not a table.
+3. `src/analysis/detectability.py` — minimum detectable relative increase in
+   doxycycline-resistant *S. aureus* at 80% power, given observed n colonized and
+   baseline prevalence. **Exact binomial or Fisher, not normal approximation** —
+   these n are small and the approximation will mislead. Note this differs from the
+   Stream C MDE, which used the normal approximation at large N; document why the
+   methods differ.
 
-## Phase 2 — panel and negative controls
+## Phase D — the figure
 
-1. `src/panel/build.py` — state-year (or metro-year) panel joining exposure,
-   outcome, covariates, and the guideline-release indicator.
-2. `src/analysis/parallel_trends.py` — test pre-period slope parallelism between
-   high- and low-exposure geographies. **If pre-trends are not parallel, log it and
-   change the estimator.** Do not proceed and mention it in limitations.
-3. `src/analysis/negative_controls.py` — run and report before the primary
-   analysis is written. Methicillin resistance, cisgender women, non-tetracycline
-   phenotype.
+`src/figures/three_streams.py`. Minimum detectable RR per evidence source — one
+row per trial, one row per surveillance grain — against a single reference line at
+Soge's observed 1.42, with Stream B rendered as "not measured" rather than a
+number. If nothing clears the line, this panel is the paper.
 
-## Phase 3 — primary analysis
+## Phase E — projection
 
-`src/analysis/its.py`. Controlled ITS, calendar time, guideline release as the
-interruption, both arms on the same clock, continuous exposure intensity.
+Oral MRSA option set (doxycycline, TMP-SMX, clindamycin, linezolid) under a range
+of resistance trajectories, with co-resistance structure from Soge — options are
+correlated, not independent. Wide bounds are the finding. Label every output
+illustrative; do not fit trajectories to data that does not exist.
 
-Preregister before this runs.
+## Phase F — reliability and write-up
 
-## Phase 4 — write-up
+1. `src/analysis/reliability.py` — double-code 20%, report agreement.
+2. Rewrite `README.md`: new name/framing, and replace the falsification statement
+   (the current one describes the dead ecological design).
+3. Reconcile `paper/manuscript.md` against this scaffold — confirm which framing it
+   was drafted under before extending it.
 
-Venue undecided and downstream of what Phase 0–3 produce. If the effect is real
-and clean: an ID or AMR journal. If the finding is that the question is
-unanswerable with existing surveillance, that is a
-surveillance-infrastructure paper and arguably the more important one — it is the
-empirical demonstration of the measurement-inheritance thesis.
-
-Either way the repo ships public with code and data, and the README says so
-explicitly.
+Venue candidates: *Clinical Infectious Diseases* (perspective), *Lancet Infectious
+Diseases* (comment), *JAC*, or an AMR-policy venue. The companion QSS paper takes
+the measurement-inheritance argument; this one stays clinical and empirical.
 
 ## First commands for Claude Code
 
 ```
 1. Read CLAUDE.md in full.
-2. Scaffold the directory tree above with empty placeholder files and a Makefile.
-3. Write requirements.txt (python 3.11, pandas, statsmodels, matplotlib, pytest,
-   openpyxl).
-4. Write tests/test_aidsvu_loader.py FIRST, against the known file quirks:
-   header at row 4, embedded-newline column names, -1 sentinel for suppressed.
-5. Then implement src/loaders/aidsvu.py until the tests pass.
-6. Stop and report the parsed panel shape and year coverage before continuing.
+2. Delete src/analysis/negative_controls.py and parallel_trends.py.
+3. Phase A item 1 only: add the panel-power bound or the explicit
+   compound-implausibility statement to src/feasibility/. Log the choice in
+   DECISIONS.md BEFORE implementing.
+4. Stop and report.
 ```
 
-Do not build Phase 1 code speculatively while Phase 0 is unresolved.
+Do not start Stream B coding until Phase A is reviewed.

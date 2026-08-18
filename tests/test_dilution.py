@@ -80,6 +80,32 @@ def test_gate_passes_only_within_soge_and_detectable():
 # --------------------------------------------------------------------------- #
 # integration on the real panel                                               #
 # --------------------------------------------------------------------------- #
+def test_panel_effective_n_and_mde():
+    # effective N scales with G*T and inversely with DEFF
+    assert D.panel_effective_n(1000, g=52, t=14, deff=1.0) == 52 * 14 * 1000
+    assert D.panel_effective_n(1000, deff=10.0) == D.panel_effective_n(1000, deff=1.0) / 10
+    # panel MDE is tighter than the single-comparison MDE (more effective obs)
+    assert D.panel_mde(0.10, 1000, deff=1.0) < D.mde_proportion(0.10, 1000)
+
+
+@pytest.mark.skipif(
+    not (D.Path(__file__).resolve().parents[1] / "data/raw/aidsvu").exists(),
+    reason="raw AIDSVu data not present")
+def test_panel_power_matches_preregistered_prediction():
+    """DECISIONS.md (Phase A) predicted, before running: (a) the realistic cell
+    stays > Soge's 1.42 across every design effect; (b) the best cell falls below
+    1.42 under optimistic panel power (so it must be disowned)."""
+    root = D.Path(__file__).resolve().parents[1]
+    df = D.load_aidsvu(root / "data/raw/aidsvu")
+    ps = D.panel_summary(df, 2022)
+    # (a) realistic cell never detectable
+    assert (ps["realistic_RR_needed"] > D.RR_SOGE).all()
+    # (b) best cell flips below the anchor at the optimistic design effect
+    assert ps.loc[ps.deff == 1.0, "best_RR_needed"].iloc[0] < D.RR_SOGE
+    # panel power is monotone: more discount (higher DEFF) -> higher RR_needed
+    assert ps.sort_values("deff")["realistic_RR_needed"].is_monotonic_increasing
+
+
 @pytest.mark.skipif(
     not (D.Path(__file__).resolve().parents[1] / "data/raw/aidsvu").exists(),
     reason="raw AIDSVu data not present")

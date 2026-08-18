@@ -131,3 +131,56 @@ Track B (real county PrEP density for SF/King/LA/NYC) confirmed out of reach: no
 such file on disk (metro AIDSVu files are HIV/SDOH; County PnR 2019 suppressed for
 these counties; SF/King not in the metro set). Would need a fresh AIDSVu download
 or health-department outreach. Documented as a limitation, not silently skipped.
+
+## 2026-08-18 — Phase A: panel-power bound for Stream C (choice logged BEFORE running)
+
+The Stream C MDE assumes a single two-proportion comparison, but the design under
+test was a controlled panel (~52 geographies x ~14 years). A referee's first
+objection: panel power could lift RR_needed toward Soge's 1.42. SCAFFOLD Phase A
+offers "extend the MDE OR state the compound implausibility." **Choice: do both.**
+
+- **Extend the MDE** with a transparent effective-sample-size bound,
+  `N_eff = G * T * N / DEFF`, sweeping the design effect DEFF in {1, 5, 10, 25}.
+  DEFF=1 treats every geography-year isolate as an independent draw — an
+  *optimistic ceiling* on panel power (ignores within-geography autocorrelation),
+  chosen deliberately: if realistic cells stay undetectable even here, the kill is
+  robust. The dilution fraction f is unchanged (the panel adds observations, it
+  does not concentrate exposure); only the MDE shrinks.
+- **Retain the compound-implausibility statement** for the best-case cell.
+
+**Expected direction, logged before computing (so the check is honest):** panel
+aggregation will *lower* RR_needed (raise detectability). Prediction:
+  (a) realistic cells (single-comparison RR_needed ~14-86) remain > 1.42 across
+      the whole DEFF range, so the qualitative kill holds; and
+  (b) the best-case cell (single RR_needed 1.93, already a compound of four
+      implausibilities) will fall *below* 1.42 under optimistic DEFF — confirming
+      it must not be relied upon, only disclosed as fragile.
+If instead (a) fails — realistic cells drop below ~1.42 — the quantitative claim
+needs restating (this is one of the falsification conditions in CLAUDE.md).
+
+## 2026-08-18 — Phase A RESULT: prediction confirmed; Stream C headline retired
+
+Both pre-registered predictions held (see `outputs/tables/feasibility_panel_power.csv`):
+
+- **(a) holds.** Realistic cell (kappa=1, R0 10%, N=1000, uptake 35%) RR_needed =
+  **4.15** at optimistic DEFF=1, rising to **16.8** at DEFF=25 — above Soge's 1.42
+  across the entire design-effect range. The qualitative kill survives for
+  realistic surveillance conditions.
+- **(b) holds.** Best cell RR_needed falls to **1.03** at DEFF=1 (from 1.93
+  single-comparison) — below 1.42. The best case is disowned, not cited as "close."
+
+**Consequence — narrative correction.** Under a panel, the grid median RR_needed
+collapses from 14 to **1.48** and 38/81 cells become nominally detectable at DEFF=1.
+The old "0 of 81, median ~14" headline was a single-two-proportion artifact and is
+**retired**. The Stream C claim is re-anchored on the realistic cell: *under
+realistic surveillance conditions the signal is undetectable even by a controlled
+panel (RR_needed 4-17x the observed effect); detection requires a compound of
+generous assumptions that fail individually.* This makes Phase A items 2 (kappa<1)
+and 3 (dose distribution) **load-bearing** — both push the realistic cell further
+from 1.42 — rather than optional.
+
+Two downstream docs now contain superseded numbers, to fix when reframing to the
+three-streams paper: (i) `README.md` and `paper/manuscript.*` lead with "median
+14 / 0-of-81" — reframe to the realistic-cell claim; (ii) the revised `CLAUDE.md`
+summarises metro as "2.1x-33x" — the full-table range is 2.1x to ~480x (the 33x
+was an early figure-slice number; even the N=100k slice maxes at 48x).
