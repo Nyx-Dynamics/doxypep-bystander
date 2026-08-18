@@ -1,0 +1,61 @@
+# First-pass coding — needs PI verification + double-coding (Phase F).
+unit: australia_2024
+jurisdiction: Australia
+citation: "Cornelisse VJ, Riley B, Medland NA, et al. Med J Aust 2024;220:381-6"
+doi: "10.5694/mja2.52258"
+source_file: guideline_australia_cornelisse_mja_2024.pdf
+coder: claude-firstpass
+code_date: "2026-08-18"
+
+discusses_staph_risk:
+  value: "partial"
+  locator: "p. 1 (harms); p. 4, Recommendation 5"
+  quote: >-
+    harms to individuals taking doxy-PEP, such as disruptions to their microbiome
+    and increased antimicrobial resistance (AMR) in STIs and other organisms
+  note: >-
+    Refers to AMR in 'other organisms' and 'bystander organisms' but never names
+    S. aureus, MRSA, or staphylococci. Partial per codebook (generic, not named).
+
+requires_staph_monitoring:
+  value: "no"
+  locator: "p. 4, Recommendations 5-7"
+  quote: >-
+    Recommendation 5. Clear guidance for clinicians should be developed on
+    whether and how to monitor for the emergence of AMR, both in bacterial STIs
+    and in bystander organisms.
+  note: >-
+    Strongest bystander-AMR language of any unit, but it calls for guidance to be
+    *developed* on *whether and how* to monitor - aspirational, not a current
+    requirement, and not S. aureus-specific. Recs 6-7 concern developing molecular
+    tests and funding AMR surveillance for STI pathogens. No clinical staph
+    monitoring is required. A genuine near-miss on the gate; still 'no'.
+
+requires_counselling_commensal_resistance:
+  value: "partial"
+  locator: "p. 4, Recommendation 9"
+  quote: >-
+    Recommendation 9. It is recommended to discuss personal and population-level
+    AMR risks with doxy-PEP [users]
+  note: >-
+    Requires discussing 'personal and population-level AMR risks' generally; not
+    specifically resistance in commensal/non-target organisms. Partial.
+
+harms_evidence_graded:
+  value: "na"
+  locator: "p. 2, Methods (consensus process)"
+  quote: >-
+    The consensus process consisted of a structured national roundtable
+    (consensus conference) ... followed by a survey of participants to measure
+    consensus on ... recommendations.
+  note: >-
+    Consensus statement measured by participant agreement; no formal evidence
+    grading (GRADE/certainty) applied to either efficacy or harms.
+
+efficacy_evidence_graded:
+  value: "na"
+  locator: "p. 2, Methods (consensus process)"
+  quote: >-
+    ASHM embarked on a consensus-building process ... The consensus process was
+    not prospectively registered on a trial registry.
+  note: "Consensus statement; efficacy evidence not formally graded."

@@ -3,21 +3,25 @@
 
 PY := python3
 
-.PHONY: all test loader feasibility clean
+.PHONY: all test loader feasibility guidelines clean
 
-all: test feasibility
-	@echo "Phase 0 is the gate. Phases 1-4 wire in here only once their gate passes."
+all: test feasibility guidelines
+	@echo "Stream C (feasibility) + Stream B (guidelines) regenerated."
 
 test:
 	$(PY) -m pytest -q
 
-# Phase 0 gate
 loader:
 	$(PY) -m src.loaders.aidsvu
 
+# Stream C — surveillance dilution (state + metro, panel-power)
 feasibility:
 	$(PY) -m src.feasibility.dilution
 	$(PY) -m src.feasibility.dilution_metro
+
+# Stream B — guideline coding + gate
+guidelines:
+	$(PY) -m src.coding.build_corpus
 
 clean:
 	rm -rf data/interim/* .pytest_cache

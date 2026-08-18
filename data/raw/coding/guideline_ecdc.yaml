@@ -1,0 +1,54 @@
+# First-pass coding — needs PI verification + double-coding (Phase F).
+unit: ecdc_eu_2023
+jurisdiction: EU/EEA
+citation: "Mardh O, Plachouras D. Euro Surveill 2023;28(46):2300621"
+doi: "10.2807/1560-7917.ES.2023.28.46.2300621"
+source_file: guideline_ecdc_mardh_eurosurv_2023.pdf
+coder: claude-firstpass
+code_date: "2026-08-18"
+
+discusses_staph_risk:
+  value: "yes"
+  locator: "p. 2 (impact on AMR of other pathogens)"
+  quote: >-
+    At 12 months of follow-up, Staphylococcus aureus colonisation in the
+    doxycycline arm group was lower than in the standard of care group
+    (28% vs 47%, p = 0.03), whereas an 8% absolute increase in doxycycline-
+    resistant S. aureus was noted in the doxycycline arm.
+  note: "Names S. aureus explicitly."
+
+requires_staph_monitoring:
+  value: "no"
+  locator: "p. 3 (key messages / needs)"
+  quote: >-
+    monitoring of antimicrobial resistance in other pathogens [will be essential]
+  note: >-
+    A EU/EEA policy-considerations / meeting report, not a clinical guideline.
+    Calls for AMR monitoring in 'other pathogens' as a surveillance/research need,
+    not a per-patient clinical staph-monitoring requirement.
+
+requires_counselling_commensal_resistance:
+  value: "partial"
+  locator: "p. 3 (comprehensive package)"
+  quote: >-
+    accompanied by regular screening, treatment of infections, vaccinations, risk
+    reduction counselling, awareness on benefits and known and unknown harms
+  note: >-
+    Mentions harms-awareness within a service package; being policy considerations
+    (not a provider guideline) it issues no specific commensal-resistance
+    counselling mandate. Partial.
+
+harms_evidence_graded:
+  value: "na"
+  locator: "document type: EU/EEA considerations / meeting report (p. 1, 3)"
+  quote: >-
+    Key messages from the presentation
+  note: >-
+    Considerations document reporting a Stockholm expert meeting; cites systematic
+    reviews but does not itself grade recommendations. No GRADE for harms or efficacy.
+
+efficacy_evidence_graded:
+  value: "na"
+  locator: "document type: EU/EEA considerations / meeting report"
+  quote: "considerations for the European Union and European Economic Area"
+  note: "Not an evidence-graded recommendation document."

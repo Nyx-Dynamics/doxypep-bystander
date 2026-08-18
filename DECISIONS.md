@@ -236,3 +236,28 @@ cell at 14-64x the observed effect, robust to design effect. Grid size 81 -> 135
 (5 kappa values). All outputs regenerated; 28 tests pass. `outputs/*.md` prose that
 hard-coded "kappa=1 / proportional sampling" corrected to the kappa=0.5 realistic
 framing. Phase A complete.
+
+## 2026-08-18 — Phase B: Stream B guideline coding + gate result
+
+Built the coding harness (`src/coding/schema.py` pydantic locator-or-raise;
+`build_corpus.py`) and CODEBOOK.md. Locator is mandatory and non-empty; a record
+missing one raises at load, never nulls (tested first). Coded all six guideline
+units from the source PDFs — CDC, Australia, Germany DSTIG, ECDC, IUSTI Europe, SF
+provider guide — each field with a page/section locator and a verbatim quote, read
+from the PDFs directly (not from CLAUDE.md's summary, per CODEBOOK instruction).
+
+**Coder = `claude-firstpass`.** This is a machine first pass; it needs PI
+verification and 20% human double-coding (Phase F reliability) before it is
+citable. Recorded honestly rather than attributed to the PI.
+
+**GATE CLEAR: 0 of 6 units require S. aureus/MRSA monitoring.** The "no system
+requires measurement" framing holds. Reported near-misses (not hidden): Australia
+Rec 5 (develop guidance on whether/how to monitor bystander-organism AMR) and
+IUSTI (off-target AMR monitoring as a service-framework principle) — both
+system-level and non-staph-specific, neither a clinical staph-monitoring mandate.
+
+**CDC grading asymmetry confirmed at locators:** efficacy graded (p. 7, AI /
+high-quality / strong) vs harms "Evidence was not graded" (p. 4), same Methods
+section — the only formally graded unit; the other five are consensus/position/
+considerations documents (na/na). Coding judgement calls logged in each YAML's
+`note`. Result: `outputs/guidelines_result.md`.

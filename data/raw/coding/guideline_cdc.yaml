@@ -1,0 +1,60 @@
+# Stream B coded record. Values quoted (YAML reads bare yes/no as booleans).
+# First-pass coding — needs PI verification + double-coding (Phase F reliability).
+unit: cdc_us_2024
+jurisdiction: US
+citation: "Bachmann LH, Barbee LA, Chan P, et al. MMWR Recomm Rep 2024;73(RR-2):1-8"
+doi: "10.15585/mmwr.rr7302a1"
+source_file: guideline_cdc_mmwr_2024_rr7302a1.pdf
+coder: claude-firstpass
+code_date: "2026-08-18"
+
+discusses_staph_risk:
+  value: "yes"
+  locator: "p. 6, section 'Potential Resistance in Commensals and Co-Occurring Pathogens'"
+  quote: >-
+    Another potential concern about doxycycline PEP is facilitating antimicrobial
+    resistance both in bacterial STIs and other common bacterial pathogens
+    (e.g., Staphylococcus aureus).
+  note: >-
+    Reviews the DoxyPEP 12-month S. aureus data (tetR rose 5% [20/428] to 13%
+    [28/222] among those still colonized) and the Lesens PVL-MSSA study (ref 24).
+
+requires_staph_monitoring:
+  value: "no"
+  locator: "p. 8, Box 2 (follow-up services); baseline/follow-up on p. 3"
+  quote: >-
+    Assess for side effects from doxycycline. Provide risk reduction counseling
+    and condoms. Re-assess continued need for doxy PEP. Provide enough doses of
+    doxycycline until next [visit].
+  note: >-
+    Box 2 follow-up lists STI screening at anatomic sites, HIV screening, side-
+    effect assessment, risk-reduction counselling, reassessment of need, dose
+    provision, hepatitis/vaccination/referral. No S. aureus, MRSA, or SSTI
+    assessment anywhere.
+
+requires_counselling_commensal_resistance:
+  value: "yes"
+  locator: "p. 8, Box 2 counseling bullets"
+  quote: >-
+    Counseling should include ... the potential for the development of
+    antimicrobial resistance in other pathogens and commensal organisms and
+    changes in the microbiome and the unknown long-term effects that might cause.
+
+harms_evidence_graded:
+  value: "no"
+  locator: "p. 4, harms key question (Methods)"
+  quote: >-
+    [harms question, incl.] the development of antimicrobial resistant pathogens,
+    and dermatologic, gastrointestinal, neuropsychiatric, and metabolic side
+    effects? Evidence was not graded.
+  note: >-
+    Same Methods section GRADE-frames the efficacy question; the harms question
+    (which explicitly names AMR development) is 'not graded'. This within-document
+    asymmetry is the key Stream B artifact.
+
+efficacy_evidence_graded:
+  value: "yes"
+  locator: "p. 7, recommendation (graded AI); rating scheme Table p. 4"
+  quote: >-
+    AI. High-quality evidence supports this strong recommendation to counsel MSM
+    and TGW and offer doxy PEP.

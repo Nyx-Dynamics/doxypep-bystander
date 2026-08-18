@@ -1,0 +1,56 @@
+# First-pass coding — needs PI verification + double-coding (Phase F).
+unit: iusti_europe_2024
+jurisdiction: Europe (IUSTI)
+citation: "IUSTI Europe position statement on DoxyPEP, 26 Jun 2024 (Marks M, et al.)"
+doi: "10.1177/09564624241273801"
+source_file: guideline_iusti_europe_2024.pdf
+coder: claude-firstpass
+code_date: "2026-08-18"
+
+discusses_staph_risk:
+  value: "partial"
+  locator: "p. 1 (item 1c); p. 2 (monitoring framework)"
+  quote: >-
+    capacity of public health systems to monitor the impact of DoxyPEP on local
+    and regional antimicrobial resistance patterns, both for STI pathogens and
+    other bacterial [pathogens]
+  note: >-
+    References 'off-target' / 'other bacterial' antimicrobial resistance but does
+    not name S. aureus or MRSA. Partial per codebook.
+
+requires_staph_monitoring:
+  value: "no"
+  locator: "p. 2 (service-delivery framework, items 2 and 6)"
+  quote: >-
+    Delivering a DoxyPEP service within an appropriate monitoring framework ...
+    monitoring side-effects, adherence, and development of on- and off-target
+    antimicrobial resistance. ... Monitoring for the emergence of antimicrobial
+    resistance both in sexually transmitted [infections and other bacteria].
+  note: >-
+    With Australia, the strongest off-target-AMR monitoring language: it makes
+    'off-target AMR' monitoring a service-framework principle. But it is not
+    S. aureus-specific and does not mandate a clinical staph test per patient;
+    it is population/service-level. Gate not tripped, but a clear near-miss.
+
+requires_counselling_commensal_resistance:
+  value: "partial"
+  locator: "p. 1-2 (item 4, patient information)"
+  quote: >-
+    Patient information provided about DoxyPEP needs to: reflect current
+    limitations in evidence, and that this is changing rapidly ... [on- and
+    off-target antimicrobial resistance]
+  note: >-
+    Requires patient information covering evidence limitations and AMR, not
+    specifically commensal-organism resistance. Partial.
+
+harms_evidence_graded:
+  value: "na"
+  locator: "p. 3, 'Evidence to Date'"
+  quote: "Evidence to Date"
+  note: "Position statement; evidence reviewed narratively, no GRADE/certainty."
+
+efficacy_evidence_graded:
+  value: "na"
+  locator: "p. 3, 'Evidence to Date'"
+  quote: "Evidence to Date"
+  note: "Efficacy evidence not formally graded."

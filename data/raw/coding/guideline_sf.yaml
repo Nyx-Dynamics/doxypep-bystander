@@ -1,0 +1,52 @@
+# First-pass coding — needs PI verification + double-coding (Phase F).
+# NB: this is the May-2026 SF provider prescribing guide, NOT the Oct-2022
+# citywide guidance used elsewhere as the exogenous interruption date.
+unit: sf_us_2026
+jurisdiction: US (San Francisco)
+citation: "SFDPH. Doxy-PEP prescribing guide for San Francisco providers (May 2026)"
+doi: null
+source_file: guideline_sf_provider_guide_2026.pdf
+coder: claude-firstpass
+code_date: "2026-08-18"
+
+discusses_staph_risk:
+  value: "no"
+  locator: "whole document (3 pp)"
+  quote: >-
+    Risks of doxy-PEP related to the microbiome and antibiotic resistance are
+    being studied.
+  note: >-
+    No mention of S. aureus, MRSA, or staphylococci anywhere; AMR risk is
+    mentioned only generically as 'being studied'.
+
+requires_staph_monitoring:
+  value: "no"
+  locator: "p. 2 (follow-up screening)"
+  quote: >-
+    Every 3 months, screen for gonorrhea and chlamydia at all anatomic sites of
+    exposure, syphilis, and HIV (if not known to be living with HIV).
+  note: "Follow-up is STI/HIV screening only; no staph/MRSA/SSTI assessment."
+
+requires_counselling_commensal_resistance:
+  value: "partial"
+  locator: "p. 2 (counselling section)"
+  quote: >-
+    Risks of doxy-PEP related to the microbiome and antibiotic resistance are
+    being studied. Find detailed information in our patient-facing counseling
+    handout and dosing instructions.
+  note: >-
+    Mentions microbiome/AMR risk as 'being studied' within counselling and refers
+    to a handout; not a specific commensal-resistance counselling requirement.
+    Partial.
+
+harms_evidence_graded:
+  value: "na"
+  locator: "document type: practical prescribing guide"
+  quote: "Doxy-PEP prescribing guide for San Francisco providers"
+  note: "Operational provider guide; no evidence grading."
+
+efficacy_evidence_graded:
+  value: "na"
+  locator: "document type: practical prescribing guide"
+  quote: "Doxy-PEP prescribing guide for San Francisco providers"
+  note: "No formal evidence grading."

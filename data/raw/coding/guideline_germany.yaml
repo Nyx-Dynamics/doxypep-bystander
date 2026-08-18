@@ -1,0 +1,63 @@
+# First-pass coding — needs PI verification + double-coding (Phase F).
+unit: germany_dstig_2024
+jurisdiction: Germany
+citation: "Werner RN, Schmidt AJ, Potthoff A, et al. J Dtsch Dermatol Ges 2024;22(3):466-78 (DSTIG position statement)"
+doi: "10.1111/ddg.15282"
+source_file: guideline_germany_dstig_werner_jddg_2024.pdf
+coder: claude-firstpass
+code_date: "2026-08-18"
+
+discusses_staph_risk:
+  value: "yes"
+  locator: "p. 9-10 (resistance in non-STI pathogens)"
+  quote: >-
+    In the study by Luetkemeyer et al. varying proportions of doxycycline-
+    resistant S. aureus isolates were observed during the study, with higher
+    rates in the doxycycline group (month 6: 21.6% vs. 10.3%; month 12: 16.1% vs.
+    8.3%).
+  note: >-
+    Names MRSA (Molina throat swabs) and doxycycline-/tetracycline-resistant
+    S. aureus (Luetkemeyer, and a small daily-doxycycline study). Notes S. aureus
+    resistance 'may serve as a marker for the potential promotion' of resistance.
+
+requires_staph_monitoring:
+  value: "no"
+  locator: "p. 10-11 (monitoring considerations)"
+  quote: >-
+    Possible changes in the epidemiological dynamics of conditions like syphilis
+    should be continually monitored. On an individual patient level, possible
+    changes in the microbiome [should be considered].
+  note: >-
+    Monitoring is framed for STI epidemiology and the microbiome; no requirement
+    to monitor/test for S. aureus or MRSA. Notes doxycycline is not first-line for
+    staphylococci, so staph resistance is discussed as a marker, not an endpoint
+    to monitor clinically.
+
+requires_counselling_commensal_resistance:
+  value: "partial"
+  locator: "p. 2, p. 8 (antibiotic stewardship)"
+  quote: >-
+    potential negative effects on the microbiome ... In line with the principles
+    of rational antibiotic prescribing (Antibiotic Stewardship) [resistance in
+    various bacterial pathogens beyond STIs is a concern].
+  note: >-
+    Urges awareness of non-STI/microbiome resistance under stewardship principles
+    but issues no explicit patient-counselling mandate re commensal resistance in
+    the sections reviewed. Partial.
+
+harms_evidence_graded:
+  value: "na"
+  locator: "document type: position statement (Stellungnahme)"
+  quote: >-
+    Position statement of the German STI Society on the prophylactic use of
+    doxycycline to prevent STIs
+  note: >-
+    Expert position statement, not a formally evidence-graded (e.g. AWMF S3)
+    guideline. The 'grade 2/3/4' mentions on p. 9 are CTCAE adverse-event severity
+    grades, NOT evidence grading. No GRADE/certainty ratings for harms or efficacy.
+
+efficacy_evidence_graded:
+  value: "na"
+  locator: "document type: position statement (Stellungnahme)"
+  quote: "Position statement ... German STI Society"
+  note: "Efficacy evidence summarised narratively; not formally graded."
