@@ -1,0 +1,391 @@
+# Stream A coded trial — DoxyPEP (Luetkemeyer 2023). First-pass (claude-firstpass);
+# needs PI verification + double-coding (Phase F). Values quoted (YAML booleans).
+#
+# NEJM measured DOXYCYCLINE resistance in S. aureus (ETEST, MIC >=16 ug/mL); the
+# relabel to "tetracycline" happens downstream (Szondy's table title, CDC). NEJM
+# S. aureus counts are read from Fig 4B stacked bars (bar = % isolated of swabbed;
+# dark = % doxy-resistant) and cross-check against the text percentages exactly:
+# baseline 215/483=45%, 25/215=12%; doxy mo12 31/111=28%, 5/31=16%, 5/111=5%;
+# SC mo12 24/51=47%, 2/24=8%. See DECISIONS.md.
+unit: doxypep_us
+trial_name: DoxyPEP
+citation: "Luetkemeyer AF, et al. N Engl J Med 2023;388:1296-1306"
+doi: "10.1056/NEJMoa2211934"
+registry_id: NCT03980223
+source_file: luetkemeyer2023_nejm_doxypep.pdf
+coder: claude-firstpass
+code_date: "2026-08-18"
+
+s_aureus_measured:
+  value: "yes"
+  locator: "p. 1298 (Methods, Laboratory Methods)"
+  quote: >-
+    Swabs of the nares and oropharynx were obtained at baseline, 6 months, and 12
+    months for Staphylococcus aureus culture and doxycycline-resistance testing,
+    with resistance defined as an MIC of 16 ug per milliliter or greater by ETEST.
+
+powered_for_resistance_endpoint:
+  value: "no"
+  locator: "p. 1298 (outcomes) / p. 1303 (Antimicrobial Resistance)"
+  note: >-
+    Resistance was a secondary antimicrobial-resistance outcome; no power
+    calculation is stated for any resistance endpoint. 'no' means 'not stated'.
+
+authors_concede_underpowering:
+  value: "partial"
+  locator: "p. 1303 (Antimicrobial Resistance)"
+  quote: "Cultures were limited owing to an inability to collect culture before gonorrhea treatment in half the participants as well as a lack of culture growth"
+  note: >-
+    The concession is explicit for the gonococcal resistance endpoint (low culture
+    numbers), not for S. aureus, which had ample isolates (215 at baseline).
+
+conclusion_contested:
+  value: "no"
+  locator: "p. 1303-1304 (Discussion)"
+  note: >-
+    No published reanalysis reaches a different conclusion from DoxyPEP's own
+    S. aureus data. CDC's non-reconciliation is recorded at the observation level;
+    DOXYVAC's contest (Vanbaelen 2024c) belongs to the DOXYVAC record.
+
+selection_level_tested: individual
+selection_level_locator: "p. 1297-1298 (individually randomized RCT, 2:1)"
+
+body_site:
+  value: "yes"
+  locator: "p. 1298 (Methods)"
+  quote: "nares and oropharynx"
+identification_method:
+  value: "yes"
+  locator: "p. 1298 (Methods)"
+  quote: "Staphylococcus aureus culture"
+susceptibility_method:
+  value: "yes"
+  locator: "p. 1298 (Methods); Fig 4B caption p. 1301"
+  quote: "doxycycline resistance by ETEST (bioMerieux)"
+breakpoint_standard:
+  value: "partial"
+  locator: "p. 1298; Szondy 2024 Table 2 footnote"
+  quote: "resistance defined as an MIC of 16 ug per milliliter or greater by ETEST"
+  note: >-
+    NEJM does not cite a CLSI/EUCAST source for the S. aureus doxycycline >=16
+    cutoff (Szondy notes DoxyPEP used CLSI 2 mg/L for the GONOCOCCAL tetracycline
+    endpoint only). Partial: value recorded, standard not fully attributable.
+breakpoint_value:
+  value: "yes"
+  locator: "p. 1298; Fig 4B caption p. 1301"
+  quote: "doxycycline MIC >=16 ug/mL (ETEST)"
+
+observations:
+
+  # ---------- NEJM primary trial: S. aureus, doxycycline ETEST (Fig 4B) ----------
+  - source_type: primary_trial
+    source_citation: "Luetkemeyer 2023 (NEJM Fig 4B)"
+    arm: combined
+    timepoint: baseline
+    organism: s_aureus
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: doxycycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 25
+    denominator: 215
+    denominator_basis: colonized_participants
+    locator: "Fig 4B (p. 1301)"
+    note: "Read from Fig 4B stacked bars; 25/215 = 12% resistant among isolated (text)."
+  - source_type: primary_trial
+    source_citation: "Luetkemeyer 2023 (NEJM Fig 4B)"
+    arm: combined
+    timepoint: baseline
+    organism: s_aureus
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: doxycycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 25
+    denominator: 483
+    denominator_basis: all_participants_swabbed
+    locator: "Fig 4B (p. 1301)"
+    note: "Same 25 resistant over all swabbed; 215/483 = 45% isolated. Basis choice alone moves the rate 12% -> 5%."
+
+  - source_type: primary_trial
+    source_citation: "Luetkemeyer 2023 (NEJM Fig 4B)"
+    arm: doxy
+    timepoint: month6
+    organism: s_aureus
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: doxycycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 11
+    denominator: 51
+    denominator_basis: colonized_participants
+    locator: "Fig 4B (p. 1301)"
+  - source_type: primary_trial
+    source_citation: "Luetkemeyer 2023 (NEJM Fig 4B)"
+    arm: doxy
+    timepoint: month6
+    organism: s_aureus
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: doxycycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 11
+    denominator: 192
+    denominator_basis: all_participants_swabbed
+    locator: "Fig 4B (p. 1301)"
+
+  - source_type: primary_trial
+    source_citation: "Luetkemeyer 2023 (NEJM Fig 4B)"
+    arm: doxy
+    timepoint: month12
+    organism: s_aureus
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: doxycycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 5
+    denominator: 31
+    denominator_basis: colonized_participants
+    locator: "Fig 4B (p. 1301)"
+    note: "5/31 = 16% among isolated — the within-arm 'increase' headline."
+  - source_type: primary_trial
+    source_citation: "Luetkemeyer 2023 (NEJM Fig 4B)"
+    arm: doxy
+    timepoint: month12
+    organism: s_aureus
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: doxycycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 5
+    denominator: 111
+    denominator_basis: all_participants_swabbed
+    denominator_intervention_affected: "yes"
+    locator: "Fig 4B (p. 1301)"
+    note: >-
+      5/111 = 5% of all swabbed. Denominator is intervention-affected: S. aureus
+      carriage fell 47% -> 28% in the doxy arm (P=.03), so dividing resistant
+      isolates by all-swabbed mixes a carriage effect into a resistance rate.
+
+  - source_type: primary_trial
+    source_citation: "Luetkemeyer 2023 (NEJM Fig 4B)"
+    arm: control
+    timepoint: month6
+    organism: s_aureus
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: doxycycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 3
+    denominator: 29
+    denominator_basis: colonized_participants
+    locator: "Fig 4B (p. 1301)"
+  - source_type: primary_trial
+    source_citation: "Luetkemeyer 2023 (NEJM Fig 4B)"
+    arm: control
+    timepoint: month6
+    organism: s_aureus
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: doxycycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 3
+    denominator: 75
+    denominator_basis: all_participants_swabbed
+    locator: "Fig 4B (p. 1301)"
+
+  - source_type: primary_trial
+    source_citation: "Luetkemeyer 2023 (NEJM Fig 4B)"
+    arm: control
+    timepoint: month12
+    organism: s_aureus
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: doxycycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 2
+    denominator: 24
+    denominator_basis: colonized_participants
+    locator: "Fig 4B (p. 1301)"
+  - source_type: primary_trial
+    source_citation: "Luetkemeyer 2023 (NEJM Fig 4B)"
+    arm: control
+    timepoint: month12
+    organism: s_aureus
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: doxycycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 2
+    denominator: 51
+    denominator_basis: all_participants_swabbed
+    locator: "Fig 4B (p. 1301)"
+
+  # ---------- Szondy 2024 (meta-analysis): DERIVED from NEJM/CROI; reconciles ----------
+  - source_type: meta_analysis
+    source_citation: "Szondy 2024 Table 2 (Int J Infect Dis 147:107186)"
+    arm: doxy
+    timepoint: followup_mo6_mo12_pooled
+    organism: mssa
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 15
+    denominator: 71
+    denominator_basis: isolates_cultured
+    locator: "Szondy Table 2, p. 6 (DoxyPEP, S. aureus MSSA)"
+    note: >-
+      RECONCILES to NEJM: doxy follow-up MSSA 15/71 + MRSA 1/11 = 16/82 = NEJM
+      months 6+12 pooled (11+5 resistant / 51+31 isolated). Relabel: Szondy's table
+      is 'Tetracycline resistance' and labels this 'TCN resistance ... MIC >=16',
+      but MIC>=16 is NEJM's DOXYCYCLINE ETEST cutoff. The MSSA/MRSA split is not in
+      NEJM main text; it traces to the CROI 2023 abstract (Szondy ref 17); NEJM
+      Supplementary Appendix not checked (not in hand).
+  - source_type: meta_analysis
+    source_citation: "Szondy 2024 Table 2"
+    arm: doxy
+    timepoint: followup_mo6_mo12_pooled
+    organism: mrsa
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 1
+    denominator: 11
+    denominator_basis: isolates_cultured
+    locator: "Szondy Table 2, p. 6 (DoxyPEP, S. aureus MRSA)"
+    note: >-
+      Relabel (TCN vs doxycycline). MRSA breakdown exists ONLY here / CROI; NEJM
+      has no methicillin split, so no primary_trial denominator exists for MRSA —
+      a finding for detectability, not a gap to fill.
+  - source_type: meta_analysis
+    source_citation: "Szondy 2024 Table 2"
+    arm: control
+    timepoint: followup_mo6_mo12_pooled
+    organism: mssa
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 3
+    denominator: 47
+    denominator_basis: isolates_cultured
+    locator: "Szondy Table 2, p. 6"
+    note: "Relabel. Control follow-up MSSA 3/47 + MRSA 2/6 = 5/53 = NEJM control mo6+12 (3+2 / 29+24)."
+  - source_type: meta_analysis
+    source_citation: "Szondy 2024 Table 2"
+    arm: control
+    timepoint: followup_mo6_mo12_pooled
+    organism: mrsa
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 2
+    denominator: 6
+    denominator_basis: isolates_cultured
+    locator: "Szondy Table 2, p. 6"
+    note: >-
+      Relabel. This 2/6 (control) and 1/11 (doxy) MRSA pair is the entire basis for
+      CDC's 'MRSA colonization trends did not differ between arms'. From CROI, not NEJM.
+  - source_type: meta_analysis
+    source_citation: "Szondy 2024 Table 2"
+    arm: doxy
+    timepoint: baseline
+    organism: mssa
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 11
+    denominator: 118
+    denominator_basis: isolates_cultured
+    locator: "Szondy Table 2, p. 6"
+    note: "Relabel. Arm-split baseline (doxy) — not in NEJM figure (combined); from CROI."
+  - source_type: meta_analysis
+    source_citation: "Szondy 2024 Table 2"
+    arm: doxy
+    timepoint: baseline
+    organism: mrsa
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 1
+    denominator: 20
+    denominator_basis: isolates_cultured
+    locator: "Szondy Table 2, p. 6"
+    note: "Relabel; arm-split baseline from CROI."
+  - source_type: meta_analysis
+    source_citation: "Szondy 2024 Table 2"
+    arm: control
+    timepoint: baseline
+    organism: mssa
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 9
+    denominator: 67
+    denominator_basis: isolates_cultured
+    locator: "Szondy Table 2, p. 6"
+    note: "Relabel. Baseline all-arms MSSA+MRSA = 25/214 ~ NEJM baseline 25/215 (one-isolate rounding)."
+  - source_type: meta_analysis
+    source_citation: "Szondy 2024 Table 2"
+    arm: control
+    timepoint: baseline
+    organism: mrsa
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 4
+    denominator: 9
+    denominator_basis: isolates_cultured
+    locator: "Szondy Table 2, p. 6"
+    note: "Relabel; arm-split baseline from CROI."
+
+  # ---------- CDC MMWR (guideline): does NOT reconcile to NEJM ----------
+  - source_type: guideline
+    source_citation: "CDC MMWR 2024 (Bachmann)"
+    arm: doxy
+    timepoint: baseline
+    organism: s_aureus
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "no"
+    discrimination_method: "none"
+    numerator: 20
+    denominator: 428
+    denominator_basis: unclear
+    description_denominator_mismatch: "yes"
+    locator: "CDC MMWR p. 6 (Potential Resistance in Commensals)"
+    note: >-
+      CDC prints 'tetracycline-resistant S. aureus ... from 5% [20 of 428]';
+      relabel (NEJM assay is doxycycline ETEST). Basis unclear and does NOT
+      reconcile: NEJM baseline is 25/215 (isolated) or 25/483 (swabbed), combined
+      arms; CDC's 20/428 matches neither the numerator (25) nor any NEJM
+      denominator. Description ('those with S. aureus in their nares') implies a
+      colonized denominator, but 428 is all-swabbed magnitude. Do not assert an
+      error; record the disagreement.
+  - source_type: guideline
+    source_citation: "CDC MMWR 2024 (Bachmann)"
+    arm: doxy
+    timepoint: month12
+    organism: s_aureus
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "no"
+    discrimination_method: "none"
+    numerator: 28
+    denominator: 222
+    denominator_basis: unclear
+    description_denominator_mismatch: "yes"
+    locator: "CDC MMWR p. 6"
+    note: >-
+      CDC: 'to 13% [28 of 222]'. Relabel (tetracycline vs NEJM doxycycline). Does
+      NOT reconcile: NEJM month-12 doxy is 5 resistant / 31 isolated / 111 swabbed;
+      CDC's 28/222 matches neither numerator (28 vs 5) nor denominator (222 vs
+      31/111). The guideline driving national practice is the one source that does
+      not reconcile to the isolate; Szondy (meta-analysis) does.

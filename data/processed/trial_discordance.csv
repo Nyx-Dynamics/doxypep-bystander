@@ -1,0 +1,15 @@
+unit,arm,timepoint,organism,phenotype_measured,n_reportings,n_bases,bases,n_distinct_denominators,denominators,proportion_min,proportion_max,proportion_ratio,discordant,any_description_mismatch,any_intervention_affected_denominator,sources
+doxypep_us,doxy,month6,s_aureus,doxycycline,2,2,"all_participants_swabbed, colonized_participants",2,"51, 192",0.057291666666666664,0.21568627450980393,3.7647058823529416,True,False,False,Luetkemeyer 2023 (NEJM Fig 4B) | Luetkemeyer 2023 (NEJM Fig 4B)
+doxypep_us,doxy,month12,s_aureus,doxycycline,3,3,"all_participants_swabbed, colonized_participants, unclear",3,"31, 111, 222",0.04504504504504504,0.16129032258064516,3.5806451612903225,True,True,True,Luetkemeyer 2023 (NEJM Fig 4B) | Luetkemeyer 2023 (NEJM Fig 4B) | CDC MMWR 2024 (Bachmann)
+doxypep_us,control,month6,s_aureus,doxycycline,2,2,"all_participants_swabbed, colonized_participants",2,"29, 75",0.04,0.10344827586206896,2.586206896551724,True,False,False,Luetkemeyer 2023 (NEJM Fig 4B) | Luetkemeyer 2023 (NEJM Fig 4B)
+doxypep_us,combined,baseline,s_aureus,doxycycline,2,2,"all_participants_swabbed, colonized_participants",2,"215, 483",0.051759834368530024,0.11627906976744186,2.2465116279069766,True,False,False,Luetkemeyer 2023 (NEJM Fig 4B) | Luetkemeyer 2023 (NEJM Fig 4B)
+doxypep_us,control,month12,s_aureus,doxycycline,2,2,"all_participants_swabbed, colonized_participants",2,"24, 51",0.0392156862745098,0.08333333333333333,2.125,True,False,False,Luetkemeyer 2023 (NEJM Fig 4B) | Luetkemeyer 2023 (NEJM Fig 4B)
+doxypep_us,control,baseline,mrsa,doxycycline,1,1,isolates_cultured,1,9,0.4444444444444444,0.4444444444444444,1.0,False,False,False,Szondy 2024 Table 2
+doxypep_us,control,baseline,mssa,doxycycline,1,1,isolates_cultured,1,67,0.13432835820895522,0.13432835820895522,1.0,False,False,False,Szondy 2024 Table 2
+doxypep_us,control,followup_mo6_mo12_pooled,mrsa,doxycycline,1,1,isolates_cultured,1,6,0.3333333333333333,0.3333333333333333,1.0,False,False,False,Szondy 2024 Table 2
+doxypep_us,control,followup_mo6_mo12_pooled,mssa,doxycycline,1,1,isolates_cultured,1,47,0.06382978723404255,0.06382978723404255,1.0,False,False,False,Szondy 2024 Table 2
+doxypep_us,doxy,baseline,mrsa,doxycycline,1,1,isolates_cultured,1,20,0.05,0.05,1.0,False,False,False,Szondy 2024 Table 2
+doxypep_us,doxy,baseline,mssa,doxycycline,1,1,isolates_cultured,1,118,0.09322033898305085,0.09322033898305085,1.0,False,False,False,Szondy 2024 Table 2
+doxypep_us,doxy,baseline,s_aureus,doxycycline,1,1,unclear,1,428,0.04672897196261682,0.04672897196261682,1.0,False,True,False,CDC MMWR 2024 (Bachmann)
+doxypep_us,doxy,followup_mo6_mo12_pooled,mrsa,doxycycline,1,1,isolates_cultured,1,11,0.09090909090909091,0.09090909090909091,1.0,False,False,False,Szondy 2024 Table 2
+doxypep_us,doxy,followup_mo6_mo12_pooled,mssa,doxycycline,1,1,isolates_cultured,1,71,0.2112676056338028,0.2112676056338028,1.0,False,False,False,Szondy 2024 Table 2 (Int J Infect Dis 147:107186)

@@ -261,3 +261,37 @@ high-quality / strong) vs harms "Evidence was not graded" (p. 4), same Methods
 section — the only formally graded unit; the other five are consensus/position/
 considerations documents (na/na). Coding judgement calls logged in each YAML's
 `note`. Result: `outputs/guidelines_result.md`.
+
+## 2026-08-18 — Phase C: DoxyPEP coded (PI reconciliation seeded it)
+
+Coded `data/raw/coding/trial_doxypep.yaml` (20 resistance observations, one per
+reported instance) + `src/coding/build_trials.py`. Findings, all auto-surfaced:
+
+- **Denominator discordance** at month-12 doxy S. aureus: {31 colonized, 111
+  all-swabbed, 222 CDC-unclear}; the rate moves 3.6x on basis choice alone.
+- **The PI's sharper reframe holds in the coding.** Szondy (meta-analysis)
+  RECONCILES to NEJM exactly (doxy follow-up MSSA 15/71 + MRSA 1/11 = 16/82 =
+  NEJM mo6+12 pooled; control 5/53; baseline 25/214~25/215). CDC's 20/428 ->
+  28/222 reconciles to NEITHER numerator nor denominator of NEJM. The guideline
+  driving national practice is the non-reconciling source; recorded via
+  description_denominator_mismatch + basis 'unclear'.
+- **Relabeling (10):** NEJM measured DOXYCYCLINE (ETEST MIC>=16); both Szondy
+  ('TCN resistance') and CDC ('tetracycline') relabel it. Numbers reconcile for
+  Szondy, not CDC.
+- **MRSA has 0 primary-trial denominators** — NEJM has no methicillin split; the
+  1/11, 2/6 MRSA pair CDC leans on ('MRSA did not differ') traces to the CROI 2023
+  abstract (via Szondy), not the primary publication. A finding, not a gap.
+- Gate CLEAR: no power calculation stated for the resistance endpoint.
+
+Judgment calls flagged for PI:
+- **Assay-descriptor fields** (body_site, susceptibility_method, breakpoint_*) are
+  typed `CodedField` whose value is yes/no/partial/na; free-text descriptors have
+  no home in `.value`. Coded value='yes'/'partial' with the verbatim in `quote`.
+  If free-text descriptors were intended, the schema needs a text field type.
+- **DoxyPEP gonococcus not coded.** Its endpoint is MIC>=2 (NEJM Fig 4A labels
+  this 'high-level'; conventionally high-level gonococcal tetR = tetM plasmid at
+  >=16). Whether MIC>=2 is mechanism-discriminating is ambiguous, so DoxyPEP is
+  left S. aureus-only. Consequence: `blindness_asymmetry()` (within-trial) does not
+  fire for DoxyPEP. The real asymmetry is CROSS-trial (gonococcus trials —
+  Soge/DOXYVAC — use discriminating methods; S. aureus is measured blind), which
+  the within-trial function cannot capture. Worth a schema/analysis note.

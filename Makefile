@@ -3,10 +3,10 @@
 
 PY := python3
 
-.PHONY: all test loader feasibility guidelines clean
+.PHONY: all test loader feasibility guidelines trials clean
 
-all: test feasibility guidelines
-	@echo "Stream C (feasibility) + Stream B (guidelines) regenerated."
+all: test feasibility guidelines trials
+	@echo "Stream C (feasibility) + Stream B (guidelines) + Stream A (trials) regenerated."
 
 test:
 	$(PY) -m pytest -q
@@ -22,6 +22,10 @@ feasibility:
 # Stream B — guideline coding + gate
 guidelines:
 	$(PY) -m src.coding.build_corpus
+
+# Stream A — trial coding + reporting analyses
+trials:
+	$(PY) -m src.coding.build_trials
 
 clean:
 	rm -rf data/interim/* .pytest_cache
