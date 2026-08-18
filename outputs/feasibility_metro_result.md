@@ -22,11 +22,11 @@ and requirements are expressed as multiples of it.
 
 ## Result
 
-Of 81 grid cells, **0** are achievable (required
+Of 135 grid cells, **0** are achievable (required
 density within 2x the densest US geography).
 
-The least-demanding cell still needs male-PrEP density = **2.1x
-Washington, D.C.** (5.6% of all adult males on PrEP),
+The least-demanding cell still needs male-PrEP density = **4.2x
+Washington, D.C.** (11.2% of all adult males on PrEP),
 and only under the most generous inputs: uptake 55%, enrichment
 5x, R0 13%, N = 100,000/year. Under
 realistic surveillance volumes and proportional sampling the requirement runs to
@@ -58,11 +58,11 @@ result:
   (0.4, 0.5, 0.6) AND the achievable ceiling over
   (1.0, 2.0, 3.0, 5.0) across the full R0 x N x kappa x uptake grid. At any
   **realistic** metro density (<= 2x the densest US geography) with male fraction
-  <= 0.5, the achievable-cell count is **0** of 81 —
+  <= 0.5, the achievable-cell count is **0** of 135 —
   the verdict does not move. Cells begin to open only when one *simultaneously*
   grants a metro **3x-5x** denser than any US geography that exists AND the
   fantastical isolate volume of 100,000/year AND 3x+
-  enrichment; even then at most **11** of 81 cells. Every
+  enrichment; even then at most **2** of 135 cells. Every
   cell that ever opens is a compound of implausibilities, and its high enrichment
   is targeted clinic sampling — a cohort design, not the ecological one under test.
 
@@ -70,10 +70,10 @@ result:
   PrEP coverage that would be *required* to make the signal detectable, as a share
   of **all adult males**:
   - realistic surveillance (N=1,000/yr, proportional
-    sampling): **325% of all adult males on
+    sampling): **651% of all adult males on
     PrEP** — above the physical ceiling of 100%, i.e. impossible.
   - fantastical best case (N=100,000/yr, 5x
-    enrichment): **6.5% of all adult males** —
+    enrichment): **13.0% of all adult males** —
     still far above any real metro, where MSM are a single-digit percentage of men
     and PrEP covers only a fraction of them.
 

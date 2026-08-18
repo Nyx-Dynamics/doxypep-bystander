@@ -70,8 +70,18 @@ RR_SOGE = 1.42            # Soge et al., >3 doses/month, tetR (optimistic ceilin
 UPTAKE_BOUND = (0.20, 0.55)
 R0_BASELINE = 0.10        # central baseline S. aureus tetR; sensitivity below
 R0_GRID = (0.05, 0.10, 0.13)   # 0.13 = doxy-PEP-eligible-population tetR observed
-KAPPA_GRID = (1.0, 3.0, 5.0)   # proportional -> 5x isolate enrichment of exposed
+# Isolate enrichment kappa. kappa<1 is the REALISTIC region, not kappa=1:
+# surveillance S. aureus skews hospitalized/older while doxy-PEP-exposed MSM are
+# young and outpatient, so the exposed are UNDER-represented in a population
+# isolate stream. kappa=1 (proportional) is generous. See DECISIONS.md (Phase A).
+KAPPA_GRID = (0.2, 0.5, 1.0, 3.0, 5.0)
+REALISTIC_KAPPA = 0.5     # moderate under-sampling; the realistic-cell kappa
 UPTAKE_GRID = (0.20, 0.35, 0.55)
+# Share of doxy-PEP users taking >3 doses/month -- the subgroup carrying Soge's
+# benchmarkable RR 1.42 (any use was ~null, RR 1.14). Median use is 3 (IQR 2-6),
+# so ~half sit above the threshold. Scaling effective exposure by this un-does the
+# binary "on doxy-PEP" coding the paper criticises. See DECISIONS.md (Phase A).
+DOSE_ABOVE_THRESHOLD = 0.5
 # Isolate volume per state-year. ATLAS is not yet acquired (Phase 1). Bound it
 # GENEROUSLY high so a failed gate is robust: if detection fails even with more
 # isolates than any real surveillance stream plausibly supplies per state, the
@@ -129,7 +139,9 @@ def state_dilution(df, year, uptake, kappa=1.0):
     """Return a per-state frame of exposed count, population and f for ``year``."""
     d = df[df.year == year].copy()
     d["population"] = back_out_population(d["prep_users"], d["prep_rate"])
-    d["exposed"] = d["male_prep_users"] * uptake
+    # effective exposure = doxy-PEP users x share taking >3 doses/month (the
+    # subgroup carrying the RR 1.42 effect). See DOSE_ABOVE_THRESHOLD.
+    d["exposed"] = d["male_prep_users"] * uptake * DOSE_ABOVE_THRESHOLD
     d["f"] = dilution_fraction(d["exposed"], d["population"], kappa)
     return d[["state", "state_abbrev", "year", "male_prep_users",
               "population", "exposed", "f"]].dropna(subset=["f"])
@@ -220,7 +232,7 @@ def panel_summary(df, year):
     out = []
     for deff in DEFF_GRID:
         t = panel_sensitivity(df, year, deff)
-        realistic = t[(t.uptake == 0.35) & (t.kappa == 1.0) &
+        realistic = t[(t.uptake == 0.35) & (t.kappa == REALISTIC_KAPPA) &
                       (t.r0 == R0_BASELINE) & (t.N_isolates == min(N_GRID))].iloc[0]
         out.append({
             "deff": deff,
@@ -304,9 +316,9 @@ def _plot_surface(df, year, out_png):
 
 
 def _realistic_cell(table):
-    """A deliberately un-generous cell: proportional sampling (kappa=1), central
+    """A deliberately un-generous cell: realistic under-sampling (kappa<1), central
     uptake and baseline, and the smallest (most realistic) isolate volume."""
-    m = ((table.kappa == 1.0) & (table.uptake == 0.35) &
+    m = ((table.kappa == REALISTIC_KAPPA) & (table.uptake == 0.35) &
          (table.r0 == R0_BASELINE) & (table.N_isolates == min(N_GRID)))
     return table[m].iloc[0]
 
@@ -387,22 +399,24 @@ Panel power moves detectability up, materially:
   **{p1['best_RR_needed']:.2f}** at DEFF=1 (was {gate.best_case_rr_needed:.2f}
   single-comparison). It must be treated as fragile and disowned, never cited as
   "close but failing."
-- **The realistic cell holds.** Proportional sampling (kappa=1), central R0, and
-  the smallest isolate volume still require RR_needed
-  **{p1['realistic_RR_needed']:.1f}** at optimistic DEFF=1, rising to
-  **{p25['realistic_RR_needed']:.1f}** at DEFF=25 — above Soge's {RR_SOGE} across
-  the entire design-effect range.
+- **The realistic cell holds — with margin.** Realistic under-sampling
+  (kappa={REALISTIC_KAPPA:g}), central R0, dose-adjusted exposure, and the smallest
+  isolate volume require RR_needed **{p1['realistic_RR_needed']:.1f}** at optimistic
+  DEFF=1, rising to **{p25['realistic_RR_needed']:.1f}** at DEFF=25 — well above
+  Soge's {RR_SOGE} across the entire design-effect range.
 
 **Restated Stream C claim.** Under a controlled panel, the signal is undetectable
-*under realistic surveillance conditions* (proportional sampling, realistic
-isolate volumes): RR_needed {p1['realistic_RR_needed']:.0f}-{p25['realistic_RR_needed']:.0f}x
+*under realistic surveillance conditions* (realistic under-sampling of the
+exposed, realistic isolate volumes): RR_needed {p1['realistic_RR_needed']:.0f}-{p25['realistic_RR_needed']:.0f}x
 the observed effect. Detection becomes possible only under a compound of generous
 assumptions (fantastical isolate volumes AND enrichment AND high uptake) that fail
-individually. The claim is now anchored on the realistic cell, not the grid median.
-Two further Phase-A refinements — modelling kappa<1 (surveillance skews
-hospitalized/older, the exposed skew young/outpatient) and the dose distribution
-(Soge's effect attaches to >3 doses/month; ~half of users sit below it) — both push
-the realistic cell further from {RR_SOGE} and are now load-bearing, not optional.
+individually. The claim is anchored on the realistic cell, not the grid median.
+This model already incorporates the two Phase-A refinements that make kappa=1 and
+binary exposure untenable: **kappa<1** (the exposed are under-represented in a
+population isolate stream, so kappa={REALISTIC_KAPPA:g} not 1) and a
+**dose-distribution adjustment** (only the >3-doses/month subgroup, ~{DOSE_ABOVE_THRESHOLD:.0%}
+of users, carries Soge's RR 1.42; scaling for it un-does the binary "on doxy-PEP"
+coding the paper criticises). Both widen the margin above {RR_SOGE}.
 
 ## Decision
 

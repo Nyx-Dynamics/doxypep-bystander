@@ -17,8 +17,8 @@ RR = 1.42.
 ## Result
 
 Across the full sensitivity grid — uptake (0.2, 0.35, 0.55), isolate enrichment
-(1.0, 3.0, 5.0)x, baseline tetR (0.05, 0.1, 0.13), and **generously** high isolate volumes
-(1000, 10000, 100000) per state-year — **0 of 81 cells are
+(0.2, 0.5, 1.0, 3.0, 5.0)x, baseline tetR (0.05, 0.1, 0.13), and **generously** high isolate volumes
+(1000, 10000, 100000) per state-year — **0 of 135 cells are
 detectable**.
 
 **Most detection-favourable cell** (largest dilution `f`, smallest `RR_needed`) —
@@ -26,25 +26,25 @@ note the "best state" is **Washington, D.C.**, a city-state whose tiny
 population and high male-PrEP density make it an outlier that already points
 toward the metro pivot:
 
-- dilution fraction f = 3.47e-02
+- dilution fraction f = 1.74e-02
 - uptake 55%, enrichment 5x, R0 13%,
   N = 100,000/state-year (a fantastical volume — no US state
   surveillance stream supplies anywhere near this many S. aureus tetracycline MICs
   per year)
-- induced state-level shift dR = **0.1896 pp**,
+- induced state-level shift dR = **0.0948 pp**,
   MDE = **0.421 pp**
-- **RR_needed = 1.93** vs Soge's 1.42 — even here,
+- **RR_needed = 2.87** vs Soge's 1.42 — even here,
   above the ceiling.
 
 **Realistic cell** (proportional sampling kappa=1, uptake 35%,
 R0 10%, N = 1,000/state-year):
 
-- induced dR = **0.0186 pp**, MDE = **3.76 pp**
-- **RR_needed = 86** — roughly 61x
+- induced dR = **0.0046 pp**, MDE = **3.76 pp**
+- **RR_needed = 341** — roughly 240x
   Soge's optimistic effect.
 
-**Across all 81 grid cells** the single-comparison median RR_needed is
-**14** (~10x Soge). But that median is a
+**Across all 135 grid cells** the single-comparison median RR_needed is
+**53** (~38x Soge). But that median is a
 single-two-proportion figure and must not be the headline — see the panel-power
 correction next, which supersedes it.
 
@@ -60,30 +60,32 @@ independent) is an **optimistic ceiling** on panel power. Full sweep in
 Panel power moves detectability up, materially:
 
 - **The grid median collapses.** At the optimistic DEFF=1, the median RR_needed
-  falls to **1.48** (from 14) and
-  **38 of 81** cells become nominally
+  falls to **2.94** (from 53) and
+  **25 of 135** cells become nominally
   detectable. The "median across the grid" framing does *not* survive a panel and
   is retired.
 - **The best case flips to detectable** — RR_needed
-  **1.03** at DEFF=1 (was 1.93
+  **1.07** at DEFF=1 (was 2.87
   single-comparison). It must be treated as fragile and disowned, never cited as
   "close but failing."
-- **The realistic cell holds.** Proportional sampling (kappa=1), central R0, and
-  the smallest isolate volume still require RR_needed
-  **4.2** at optimistic DEFF=1, rising to
-  **16.8** at DEFF=25 — above Soge's 1.42 across
-  the entire design-effect range.
+- **The realistic cell holds — with margin.** Realistic under-sampling
+  (kappa=0.5), central R0, dose-adjusted exposure, and the smallest
+  isolate volume require RR_needed **13.6** at optimistic
+  DEFF=1, rising to **64.1** at DEFF=25 — well above
+  Soge's 1.42 across the entire design-effect range.
 
 **Restated Stream C claim.** Under a controlled panel, the signal is undetectable
-*under realistic surveillance conditions* (proportional sampling, realistic
-isolate volumes): RR_needed 4-17x
+*under realistic surveillance conditions* (realistic under-sampling of the
+exposed, realistic isolate volumes): RR_needed 14-64x
 the observed effect. Detection becomes possible only under a compound of generous
 assumptions (fantastical isolate volumes AND enrichment AND high uptake) that fail
-individually. The claim is now anchored on the realistic cell, not the grid median.
-Two further Phase-A refinements — modelling kappa<1 (surveillance skews
-hospitalized/older, the exposed skew young/outpatient) and the dose distribution
-(Soge's effect attaches to >3 doses/month; ~half of users sit below it) — both push
-the realistic cell further from 1.42 and are now load-bearing, not optional.
+individually. The claim is anchored on the realistic cell, not the grid median.
+This model already incorporates the two Phase-A refinements that make kappa=1 and
+binary exposure untenable: **kappa<1** (the exposed are under-represented in a
+population isolate stream, so kappa=0.5 not 1) and a
+**dose-distribution adjustment** (only the >3-doses/month subgroup, ~50%
+of users, carries Soge's RR 1.42; scaling for it un-does the binary "on doxy-PEP"
+coding the paper criticises). Both widen the margin above 1.42.
 
 ## Decision
 

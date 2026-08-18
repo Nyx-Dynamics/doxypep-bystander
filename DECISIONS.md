@@ -184,3 +184,55 @@ three-streams paper: (i) `README.md` and `paper/manuscript.*` lead with "median
 14 / 0-of-81" — reframe to the realistic-cell claim; (ii) the revised `CLAUDE.md`
 summarises metro as "2.1x-33x" — the full-table range is 2.1x to ~480x (the 33x
 was an early figure-slice number; even the N=100k slice maxes at 48x).
+
+## 2026-08-18 — Phase A items 2+3: kappa<1 and dose distribution (logged BEFORE running)
+
+Two refinements to the dilution model, both of which the current model omits in the
+generous direction. Choices:
+
+- **Item 2 — kappa < 1.** Extend KAPPA_GRID from {1,3,5} to {0.2,0.5,1,3,5}.
+  Surveillance *S. aureus* skews hospitalized/older; doxy-PEP-exposed MSM are young
+  and outpatient, so they are *under*-represented in a population isolate stream.
+  kappa=1 (proportional) is generous, not neutral. The **realistic cell** moves from
+  kappa=1 to **kappa=0.5** (moderate under-sampling; kappa=0.2 kept as a plausible
+  more-extreme point). The value is illustrative — the argument is directional, not
+  a precise kappa — so it is swept, not asserted.
+- **Item 3 — dose distribution.** Soge's RR 1.42 attaches to >3 doses/month; median
+  use is 3 (IQR 2-6), so ~half of doxy-PEP users sit below the threshold at which any
+  effect was seen (any use: RR 1.14, ~null). Introduce
+  `DOSE_ABOVE_THRESHOLD = 0.5` and scale effective exposure by it, so the isolate
+  fraction carrying the benchmarkable RR-1.42 effect is the >3-doses/month subgroup
+  only. This keeps the yardstick (RR_needed vs 1.42) internally consistent and is
+  exactly the un-doing of the binary exposure coding the paper criticises.
+
+**Expected direction, logged before computing:** both refinements *reduce* effective
+f (kappa<1 and dose<1), so RR_needed *rises* — more undetectable. Prediction:
+  (a) the realistic cell (now kappa=0.5, dose 0.5; f cut ~4x vs old kappa=1) rises
+      from 4.15 to ~13-14 at optimistic panel DEFF=1, restoring a comfortable margin
+      over 1.42 that the panel correction had thinned; and
+  (b) the best case (kappa=5, N=100k) stays below 1.42 under optimistic panel power
+      even after dose halving (1.03 -> ~1.06), so it remains disowned.
+Both refinements applied model-wide (state, panel, metro). If instead the realistic
+cell does NOT rise, a modelling error is implied — investigate before trusting.
+
+## 2026-08-18 — Phase A items 2+3 RESULT: prediction confirmed; realistic margin restored
+
+Applied kappa<1 (KAPPA_GRID {0.2,0.5,1,3,5}, realistic cell now kappa=0.5) and
+DOSE_ABOVE_THRESHOLD=0.5, model-wide. Both predictions held:
+
+- **(a) confirmed.** Realistic-cell RR_needed under the panel rose from 4.15 to
+  **13.6** at optimistic DEFF=1, and to **64** at DEFF=25 — a comfortable margin
+  over 1.42 restored across the whole design-effect range (was 4-17x, now 14-64x).
+- **(b) confirmed.** Best case stays below 1.42 under optimistic panel power (1.03
+  -> 1.07 after dose halving); still disowned.
+- Single-comparison best case 1.93 -> **2.87** (dose halving). Metro least-demanding
+  cell 2.1x -> **4.2x** D.C.; break-even realistic 325% -> **651%** of all adult
+  males, fantastical best 6.5% -> **13.0%**. All move in the predicted (more
+  undetectable) direction.
+
+Net: the panel correction (which had thinned the realistic margin to ~4x) is more
+than offset by the two refinements; the Stream C claim now rests on the realistic
+cell at 14-64x the observed effect, robust to design effect. Grid size 81 -> 135
+(5 kappa values). All outputs regenerated; 28 tests pass. `outputs/*.md` prose that
+hard-coded "kappa=1 / proportional sampling" corrected to the kappa=0.5 realistic
+framing. Phase A complete.

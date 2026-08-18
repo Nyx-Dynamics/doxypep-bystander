@@ -43,7 +43,7 @@ import pandas as pd
 from src.loaders.aidsvu import load_aidsvu
 from src.feasibility.dilution import (
     RR_SOGE, R0_GRID, R0_BASELINE, KAPPA_GRID, UPTAKE_GRID, N_GRID,
-    mde_proportion,
+    DOSE_ABOVE_THRESHOLD, mde_proportion,
 )
 
 # adult-male share of the total (both-sex) population that generates isolates.
@@ -68,15 +68,18 @@ def required_male_prep_rate(r0, n, uptake, kappa, rr=RR_SOGE,
     """Eq. (7): male PrEP density (per 100k males) needed for detection.
 
     ``male_fraction`` is exposed as a parameter so the robustness sweep can vary
-    it; it defaults to the module constant used everywhere else.
+    it; it defaults to the module constant used everywhere else. The dose-above-
+    threshold factor (Phase A item 3) enters the denominator: only the
+    >3-doses/month subgroup carries Soge's RR 1.42, so a higher density is needed.
     """
     f_req = required_f(r0, n, rr)
-    return f_req * 1e5 / (male_fraction * uptake * kappa)
+    return f_req * 1e5 / (male_fraction * uptake * kappa * DOSE_ABOVE_THRESHOLD)
 
 
 def density_from_rate(male_prep_rate, uptake, kappa):
     """Eq. (5): exposed-isolate fraction implied by a male PrEP density."""
-    return MALE_FRACTION * (male_prep_rate / 1e5) * uptake * kappa
+    return (MALE_FRACTION * (male_prep_rate / 1e5) * uptake * kappa
+            * DOSE_ABOVE_THRESHOLD)
 
 
 def observed_max_density(df, year=2022):
