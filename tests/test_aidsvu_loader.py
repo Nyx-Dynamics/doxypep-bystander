@@ -87,6 +87,9 @@ def test_header_offset_finds_real_columns(prep_2022):
     assert {"Alabama", "Alaska", "Arizona"} <= set(df["state"])
     assert "prep_rate" in df.columns
     assert "male_prep_rate" in df.columns
+    # male PrEP users is the doxy-PEP exposure proxy used by Phase 0
+    assert "male_prep_users" in df.columns
+    assert df.loc[df.state == "Alabama", "male_prep_users"].iloc[0] == 3111
 
 
 def test_newline_columns_are_normalised(prep_2022):

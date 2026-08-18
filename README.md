@@ -34,5 +34,10 @@ public with both code and data.
 
 ## Status
 
-Phase 0 (feasibility gate) in progress. The AIDSVu loader and its tests are
-complete; downstream phases are gated and not yet implemented.
+**Phase 0 complete — gate FAILED at the state level.** The dilution calculation
+shows the doxy-PEP-exposed subgroup is too dilute inside a whole state's
+*S. aureus* isolate stream: the within-exposed effect needed to move the
+state-level rate detectably exceeds Soge's optimistic RR 1.42 at every plausible
+setting (median required RR ≈ 14; see `outputs/feasibility_result.md`). Per the
+kill criterion the project pivots to **metro-level**, which needs its own Phase 0
+check before outcome data is acquired. Phases 1–4 remain gated.

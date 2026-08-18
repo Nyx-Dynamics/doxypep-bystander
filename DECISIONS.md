@@ -31,3 +31,41 @@ abbreviation) as well as headers, before joining. Regression-tested.
 Each file carries 52 geographies: 50 states + DC + Puerto Rico. Kept all 52 for
 now; whether territories enter the panel is a Phase 2 decision to be logged when
 the exposure contrast (high- vs low-PrEP-density) is defined.
+
+## 2026-08-18 — Phase 0 gate: parameter choices (logged before the result)
+
+Choices for `src/feasibility/dilution.py`, made before running:
+
+- **Exposure proxy = male PrEP users**, not overall PrEP users. doxy-PEP is
+  recommended for MSM/trans women, not cis women (CLAUDE.md constraint 5). Added
+  `male_prep_users` to the loader for this. The MSM population fraction is *not*
+  a separate input: the observed male PrEP-user count already counts the
+  reachable exposed population directly, superseding a modelled MSM share.
+- **Population denominator backed out of AIDSVu** as `prep_users / prep_rate *
+  1e5` rather than importing a Census figure. This recovers AIDSVu's own adult
+  denominator (internally consistent with the numerator) and avoids fabricating
+  50+ state populations from memory. CA back-out ≈ 33.1M (adult 13+), sensible.
+- **Baseline tetR R0 grid = {0.05, 0.10, 0.13}**, central 0.10. 0.13 is the
+  tetracycline-resistant fraction observed in a doxy-PEP-eligible population
+  (CLAUDE.md constraint 2); community S. aureus tetR is lower.
+- **Isolate volume N grid = {1k, 10k, 100k}/state-year.** ATLAS is unacquired
+  (Phase 1). N is bounded *generously high* on purpose so a failed gate does not
+  hinge on the true N — 100k/state-year exceeds any real US surveillance stream.
+- **Enrichment kappa = {1, 3, 5}.** kappa=1 is proportional sampling; up to 5x
+  allows the exposed to be over-represented among sampled isolates.
+- **Within-exposed RR = 1.42** (Soge, >3 doses/month) as the optimistic ceiling.
+- **MDE** via two-proportion normal approx, alpha 0.05 two-sided, power 0.80.
+
+## 2026-08-18 — Phase 0 RESULT: state-level design killed, pivot to metro
+
+Gate FAILED: 0 of 81 grid cells detectable. Best-case (most generous) cell is
+Washington D.C. at uptake 55%, 5x enrichment, N=100k, R0=13% → RR_needed = 1.93,
+still above Soge's 1.42. Realistic cell (kappa=1, uptake 35%, R0=10%, N=1k) →
+RR_needed ≈ 86 (~60x Soge). Median across cells ≈ 14.
+
+**Decision:** abandon the state-level ecological design as primary; pivot to
+metro-level (SF, King County, LA, NYC) per SCAFFOLD.md. That the single best
+"state" is the city-state D.C. corroborates the direction of the pivot. The
+metro design needs its own Phase 0 check (metro population denominators, metro
+isolate volumes) before any outcome data is acquired — the state kill does not
+transfer. Full write-up: `outputs/feasibility_result.md`.

@@ -8,3 +8,4 @@ __pycache__/
 .ipynb_checkpoints/
 # processed panels committed only if small — decide per file, so ignore by default
 data/processed/*.parquet
+.venv/

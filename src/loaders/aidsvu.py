@@ -4,7 +4,7 @@ Parses the AIDSVu state-level PrEP and PrEP-to-Need (PnR) workbooks into one
 tidy state-year frame:
 
     state, state_abbrev, year,
-    prep_users, prep_rate, male_prep_rate,
+    prep_users, prep_rate, male_prep_users, male_prep_rate,
     prep_rate_stability, male_prep_rate_stability,
     pnr, male_pnr
 
@@ -78,6 +78,7 @@ def load_prep_file(path: Path | str) -> pd.DataFrame:
         "year": _year_from_name(path),
         "prep_users": _suppress_negatives(raw["State PrEP Users"]),
         "prep_rate": _suppress_negatives(raw["State PrEP Rate"]),
+        "male_prep_users": _suppress_negatives(raw["Male PrEP Users"]),
         "male_prep_rate": _suppress_negatives(raw["Male PrEP Rate"]),
         "prep_rate_stability": raw.get("State PrEP Rate Stability"),
         "male_prep_rate_stability": raw.get("Male PrEP Rate Stability"),
