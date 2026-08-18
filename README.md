@@ -42,8 +42,9 @@ setting (median required RR ≈ 14; see `outputs/feasibility_result.md`). Per th
 kill criterion the project pivots to **metro-level** — but the **metro gate also
 FAILS** (`outputs/feasibility_metro_result.md`): because the dilution fraction
 tracks exposure *density*, not headcount, detection would require male-PrEP
-density 2×–33× the densest geography that exists in the US (Washington D.C.), i.e.
-more than 100% of males on PrEP under realistic isolate volumes. Population-scale
+density 2.1× to nearly 500× the densest geography that exists in the US
+(Washington D.C.), i.e. more than 100% of males on PrEP under realistic isolate
+volumes. Population-scale
 ecological sampling dilutes the signal below detectability at every grain with a
 population denominator. The only lever that rescues it — high isolate enrichment —
 means **targeted sexual-health-clinic sampling** (a cohort design, not
@@ -58,4 +59,11 @@ insensitive to the male-fraction assumption; a proxy-free break-even shows
 detection would require an implausible share of *all* adult males on PrEP (325%
 under realistic isolate volumes — impossible; 6.5% even in the fantastical best
 case, vs D.C.'s observed 2.7%). See `outputs/feasibility_metro_result.md`.
-Phases 1–4 remain gated pending the PI's choice of forward path.
+
+**Write-up in progress.** The surveillance-infrastructure / measurement-inheritance
+paper — the empirical demonstration that no existing surveillance system can
+detect the bystander signal — is drafted at `paper/manuscript.md` (with
+`paper/references.bib`). Venue-neutral; every quoted figure regenerates from
+`make all`. Convert with `pandoc paper/manuscript.md --citeproc -o out.docx`.
+Phases 1–3 (outcome-data acquisition and the ITS) remain gated — and, per the
+feasibility result, are not the path forward.
