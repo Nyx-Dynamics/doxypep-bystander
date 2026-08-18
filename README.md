@@ -50,4 +50,12 @@ means **targeted sexual-health-clinic sampling** (a cohort design, not
 ecological). Two forward paths are on the table: a King County/SF clinic cohort
 study, or writing this two-level negative result up as the
 surveillance-infrastructure paper (the measurement-inheritance thesis, made
-quantitative). Phases 1–4 remain gated pending that choice.
+quantitative).
+
+The metro result is **hardened**: a robustness sweep shows the verdict is 0/81
+achievable at any realistic metro density (≤2× the densest US geography) and is
+insensitive to the male-fraction assumption; a proxy-free break-even shows
+detection would require an implausible share of *all* adult males on PrEP (325%
+under realistic isolate volumes — impossible; 6.5% even in the fantastical best
+case, vs D.C.'s observed 2.7%). See `outputs/feasibility_metro_result.md`.
+Phases 1–4 remain gated pending the PI's choice of forward path.

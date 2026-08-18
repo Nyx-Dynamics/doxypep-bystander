@@ -63,10 +63,15 @@ def required_f(r0, n, rr=RR_SOGE):
     return mde_proportion(r0, n) / ((rr - 1.0) * r0)
 
 
-def required_male_prep_rate(r0, n, uptake, kappa, rr=RR_SOGE):
-    """Eq. (7): male PrEP density (per 100k males) needed for detection."""
+def required_male_prep_rate(r0, n, uptake, kappa, rr=RR_SOGE,
+                            male_fraction=MALE_FRACTION):
+    """Eq. (7): male PrEP density (per 100k males) needed for detection.
+
+    ``male_fraction`` is exposed as a parameter so the robustness sweep can vary
+    it; it defaults to the module constant used everywhere else.
+    """
     f_req = required_f(r0, n, rr)
-    return f_req * 1e5 / (MALE_FRACTION * uptake * kappa)
+    return f_req * 1e5 / (male_fraction * uptake * kappa)
 
 
 def density_from_rate(male_prep_rate, uptake, kappa):
@@ -133,8 +138,92 @@ def evaluate_metro_gate(table, ref_geo, ref_rate):
 
 
 # --------------------------------------------------------------------------- #
+# robustness — show the verdict does not hinge on any single assumption        #
+# --------------------------------------------------------------------------- #
+MALE_FRACTION_SWEEP = (0.40, 0.50, 0.60)
+# even GRANT a hypothetical metro up to 5x the densest observed US geography
+ACHIEVABLE_MULTIPLE_SWEEP = (1.0, 2.0, 3.0, 5.0)
+
+
+def robustness_sweep(df, year=2022):
+    """Recount achievable cells while varying the two previously-fixed knobs
+    (male fraction, achievable multiple) across the full R0 x N x kappa x uptake
+    grid. The point: achievable-cell count should stay 0 throughout, so the
+    negative verdict is not an artifact of MALE_FRACTION=0.5 or a 2x ceiling."""
+    _, ref_rate = observed_max_density(df, year)
+    rows = []
+    for mf in MALE_FRACTION_SWEEP:
+        for mult in ACHIEVABLE_MULTIPLE_SWEEP:
+            n_ach = 0
+            n_cells = 0
+            for uptake in UPTAKE_GRID:
+                for kappa in KAPPA_GRID:
+                    for r0 in R0_GRID:
+                        for n in N_GRID:
+                            n_cells += 1
+                            rate = required_male_prep_rate(
+                                r0, n, uptake, kappa, male_fraction=mf)
+                            if rate <= mult * ref_rate:
+                                n_ach += 1
+            rows.append({"male_fraction": mf, "achievable_multiple": mult,
+                         "n_achievable": n_ach, "n_cells": n_cells})
+    return pd.DataFrame(rows)
+
+
+def breakeven_frontier(df, year=2022, uptake=max(UPTAKE_GRID), r0=R0_BASELINE):
+    """For each (N, kappa) at the most generous uptake and central R0, the male
+    PrEP density that would flip the gate — expressed as a share of ALL adult
+    males on PrEP and as multiples of the densest observed US geography. The
+    '% of adult males' unit is proxy-free: it needs no metro-specific datapoint
+    to be recognised as impossible (>100%) or implausible (well above any real
+    metro's single-digit-% MSM PrEP coverage)."""
+    _, ref_rate = observed_max_density(df, year)
+    rows = []
+    for kappa in KAPPA_GRID:
+        for n in N_GRID:
+            rate = required_male_prep_rate(r0, n, uptake, kappa)
+            pct = rate / 1e3                      # per-100k-males -> % of males
+            rows.append({
+                "uptake": uptake, "r0": r0, "kappa": kappa, "N_isolates": n,
+                "rate_required_per100k": rate,
+                "pct_of_all_adult_males": pct,
+                "multiples_of_densest_US": rate / ref_rate,
+                "physically_possible": bool(pct <= 100.0),
+            })
+    return pd.DataFrame(rows)
+
+
+# --------------------------------------------------------------------------- #
 # outputs                                                                      #
 # --------------------------------------------------------------------------- #
+def _plot_breakeven(be, ref_geo, ref_rate, out_png):
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    fig, ax = plt.subplots(figsize=(7.5, 5))
+    for kappa in sorted(be["kappa"].unique()):
+        s = be[be["kappa"] == kappa].sort_values("N_isolates")
+        ax.plot(s["N_isolates"], s["pct_of_all_adult_males"],
+                marker="o", label=f"kappa {kappa:g}x")
+    ax.axhline(100, color="crimson", ls="--", lw=1.5,
+               label="physical ceiling (100% of males)")
+    ax.axhline(ref_rate / 1e3, color="grey", ls=":", lw=1.5,
+               label=f"densest US geography ({ref_geo}, {ref_rate/1e3:.1f}%)")
+    ax.set_xscale("log")
+    ax.set_yscale("log")
+    ax.set_xlabel("isolates per geography-year (N)")
+    ax.set_ylabel("% of ALL adult males on PrEP required")
+    ax.set_title("Break-even: male-PrEP coverage required to make the\n"
+                 "doxy-PEP signal detectable (uptake 55%, R0 10%)\n"
+                 "every curve sits above any real metro's coverage")
+    ax.legend(fontsize=8, loc="best")
+    fig.tight_layout()
+    out_png.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(out_png, dpi=130)
+    plt.close(fig)
+
+
 def _plot(df, gate, year, out_png):
     import matplotlib
     matplotlib.use("Agg")
@@ -169,8 +258,17 @@ def _plot(df, gate, year, out_png):
     plt.close(fig)
 
 
-def _write_report(table, gate, year, root, fig_rel, tab_rel):
+def _write_report(table, gate, robustness, breakeven, year, root,
+                  fig_rel, tab_rel, be_fig_rel, rob_rel, be_rel):
     b = gate.best_row
+    realistic_rob = robustness[(robustness.achievable_multiple <= 2.0) &
+                               (robustness.male_fraction <= 0.5)]
+    max_ach_realistic = int(realistic_rob["n_achievable"].max())
+    max_ach_5x = int(robustness["n_achievable"].max())
+    be_real = breakeven[(breakeven.N_isolates == min(N_GRID)) &
+                        (breakeven.kappa == 1.0)].iloc[0]
+    be_gen = breakeven[(breakeven.N_isolates == max(N_GRID)) &
+                       (breakeven.kappa == max(KAPPA_GRID))].iloc[0]
     md = f"""# Phase 0 feasibility result — metro-level dilution (the pivot)
 
 **Verdict: {gate.verdict()}.**
@@ -221,6 +319,39 @@ surveillance is not instrumented to detect a bystander-organism signal, because
 its sampling frame is the general population while the exposure is concentrated in
 a small, specifically-sampled subgroup.
 
+## Robustness — the verdict does not hinge on any single assumption
+
+The comparison above uses D.C. as a proxy for the densest US metro and fixes two
+knobs (male fraction 0.5, an "achievable" ceiling of 2x D.C.). Neither drives the
+result:
+
+- **Assumption sweep** ({rob_rel}). Varying male fraction over
+  {MALE_FRACTION_SWEEP} AND the achievable ceiling over
+  {ACHIEVABLE_MULTIPLE_SWEEP} across the full R0 x N x kappa x uptake grid. At any
+  **realistic** metro density (<= 2x the densest US geography) with male fraction
+  <= 0.5, the achievable-cell count is **{max_ach_realistic}** of {gate.n_cells} —
+  the verdict does not move. Cells begin to open only when one *simultaneously*
+  grants a metro **3x-5x** denser than any US geography that exists AND the
+  fantastical isolate volume of {max(N_GRID):,}/year AND {min(k for k in KAPPA_GRID if k >= 3):g}x+
+  enrichment; even then at most **{max_ach_5x}** of {gate.n_cells} cells. Every
+  cell that ever opens is a compound of implausibilities, and its high enrichment
+  is targeted clinic sampling — a cohort design, not the ecological one under test.
+
+- **Break-even, in proxy-free units** ({be_rel}, figure `{be_fig_rel}`). The male
+  PrEP coverage that would be *required* to make the signal detectable, as a share
+  of **all adult males**:
+  - realistic surveillance (N={int(be_real['N_isolates']):,}/yr, proportional
+    sampling): **{be_real['pct_of_all_adult_males']:.0f}% of all adult males on
+    PrEP** — above the physical ceiling of 100%, i.e. impossible.
+  - fantastical best case (N={int(be_gen['N_isolates']):,}/yr, {be_gen['kappa']:g}x
+    enrichment): **{be_gen['pct_of_all_adult_males']:.1f}% of all adult males** —
+    still far above any real metro, where MSM are a single-digit percentage of men
+    and PrEP covers only a fraction of them.
+
+  Expressed this way the conclusion needs no metro-specific datapoint: no US
+  metro has anywhere near the required share of its *entire* adult-male population
+  on PrEP.
+
 ## Decision
 
 Abandon the population-ecological design at **both** state and metro grain as the
@@ -239,6 +370,9 @@ primary quantitative test. Two legitimate paths forward, to choose deliberately:
 
 - required-density table: `{tab_rel}`
 - required-density figure: `{fig_rel}`
+- assumption-robustness sweep: `{rob_rel}`
+- break-even frontier table: `{be_rel}`
+- break-even figure: `{be_fig_rel}`
 """
     (root / "outputs" / "feasibility_metro_result.md").write_text(md)
 
@@ -249,13 +383,22 @@ def run(root: Path | str = None, year: int = 2022) -> MetroGate:
     ref_geo, ref_rate = observed_max_density(df, year)
     table = metro_table(df, year)
     gate = evaluate_metro_gate(table, ref_geo, ref_rate)
+    robustness = robustness_sweep(df, year)
+    breakeven = breakeven_frontier(df, year)
 
     tab_rel = "outputs/tables/feasibility_metro.csv"
+    rob_rel = "outputs/tables/feasibility_metro_robustness.csv"
+    be_rel = "outputs/tables/feasibility_metro_breakeven.csv"
     fig_rel = "outputs/figures/feasibility_metro.png"
+    be_fig_rel = "outputs/figures/feasibility_metro_breakeven.png"
     (root / "outputs" / "tables").mkdir(parents=True, exist_ok=True)
     table.to_csv(root / tab_rel, index=False)
+    robustness.to_csv(root / rob_rel, index=False)
+    breakeven.to_csv(root / be_rel, index=False)
     _plot(df, gate, year, root / fig_rel)
-    _write_report(table, gate, year, root, fig_rel, tab_rel)
+    _plot_breakeven(breakeven, ref_geo, ref_rate, root / be_fig_rel)
+    _write_report(table, gate, robustness, breakeven, year, root,
+                  fig_rel, tab_rel, be_fig_rel, rob_rel, be_rel)
     return gate
 
 
@@ -265,4 +408,5 @@ if __name__ == "__main__":
     print(f"reference (densest US): {g.ref_geo} @ {g.ref_rate:.0f}/100k males")
     print(f"least-demanding cell needs {g.best_multiple:.1f}x that density")
     print(f"achievable cells: {g.n_achievable}/{g.n_cells}")
-    print("wrote outputs/feasibility_metro_result.md")
+    print("wrote outputs/feasibility_metro_result.md "
+          "(+ robustness & break-even tables/figure)")

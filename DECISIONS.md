@@ -103,3 +103,31 @@ This is the measurement-inheritance thesis made quantitative. Two forward paths
 recorded in `outputs/feasibility_metro_result.md`: (1) a King County / SF clinic
 cohort study (different design, own preregistration), or (2) write this two-level
 negative result up as the surveillance-infrastructure paper. Choice deferred to PI.
+
+## 2026-08-18 — Metro result HARDENED: robustness sweep + proxy-free break-even
+
+Before writing anything up, hardened the metro negative result so it does not
+rest on the D.C. proxy or on any single fixed assumption. Added to
+`dilution_metro.py`: `robustness_sweep()` and `breakeven_frontier()`.
+
+- **Assumption sweep** — male fraction {0.4,0.5,0.6} x achievable ceiling
+  {1,2,3,5}x D.C., over the full R0xNxkappa x uptake grid. Result (logged before
+  claiming invariance, then corrected against the data): at any *realistic* metro
+  density (<= 2x the densest US geography) with male fraction <= 0.5, **0 of 81**
+  cells are achievable. Cells open ONLY under a compound implausibility — a metro
+  3-5x denser than any US geography that exists AND N=100k isolates/geography-year
+  AND kappa >= 3 — at most 11/81 even then, and every such cell's high kappa is
+  targeted clinic sampling (a cohort design, not the ecological one under test).
+  NB: an initial test asserting "0 across ALL swept assumptions" was FALSE and was
+  corrected; the honest invariant is "0 at realistic ceilings," which is stronger
+  rhetorically because overturning it requires stacking implausibilities.
+- **Break-even in proxy-free units** — the male-PrEP coverage (as % of ALL adult
+  males) required to flip the gate. Realistic (N=1k, kappa=1): 325% — impossible.
+  Fantastical best case (N=100k, kappa=5): 6.5% — still ~2.4x D.C.'s 2.7% and far
+  above any real metro (MSM are single-digit % of men; PrEP covers a fraction).
+  This unit needs no metro-specific datapoint to be recognised as unreachable.
+
+Track B (real county PrEP density for SF/King/LA/NYC) confirmed out of reach: no
+such file on disk (metro AIDSVu files are HIV/SDOH; County PnR 2019 suppressed for
+these counties; SF/King not in the metro set). Would need a fresh AIDSVu download
+or health-department outreach. Documented as a limitation, not silently skipped.

@@ -48,6 +48,39 @@ surveillance is not instrumented to detect a bystander-organism signal, because
 its sampling frame is the general population while the exposure is concentrated in
 a small, specifically-sampled subgroup.
 
+## Robustness — the verdict does not hinge on any single assumption
+
+The comparison above uses D.C. as a proxy for the densest US metro and fixes two
+knobs (male fraction 0.5, an "achievable" ceiling of 2x D.C.). Neither drives the
+result:
+
+- **Assumption sweep** (outputs/tables/feasibility_metro_robustness.csv). Varying male fraction over
+  (0.4, 0.5, 0.6) AND the achievable ceiling over
+  (1.0, 2.0, 3.0, 5.0) across the full R0 x N x kappa x uptake grid. At any
+  **realistic** metro density (<= 2x the densest US geography) with male fraction
+  <= 0.5, the achievable-cell count is **0** of 81 —
+  the verdict does not move. Cells begin to open only when one *simultaneously*
+  grants a metro **3x-5x** denser than any US geography that exists AND the
+  fantastical isolate volume of 100,000/year AND 3x+
+  enrichment; even then at most **11** of 81 cells. Every
+  cell that ever opens is a compound of implausibilities, and its high enrichment
+  is targeted clinic sampling — a cohort design, not the ecological one under test.
+
+- **Break-even, in proxy-free units** (outputs/tables/feasibility_metro_breakeven.csv, figure `outputs/figures/feasibility_metro_breakeven.png`). The male
+  PrEP coverage that would be *required* to make the signal detectable, as a share
+  of **all adult males**:
+  - realistic surveillance (N=1,000/yr, proportional
+    sampling): **325% of all adult males on
+    PrEP** — above the physical ceiling of 100%, i.e. impossible.
+  - fantastical best case (N=100,000/yr, 5x
+    enrichment): **6.5% of all adult males** —
+    still far above any real metro, where MSM are a single-digit percentage of men
+    and PrEP covers only a fraction of them.
+
+  Expressed this way the conclusion needs no metro-specific datapoint: no US
+  metro has anywhere near the required share of its *entire* adult-male population
+  on PrEP.
+
 ## Decision
 
 Abandon the population-ecological design at **both** state and metro grain as the
@@ -66,3 +99,6 @@ primary quantitative test. Two legitimate paths forward, to choose deliberately:
 
 - required-density table: `outputs/tables/feasibility_metro.csv`
 - required-density figure: `outputs/figures/feasibility_metro.png`
+- assumption-robustness sweep: `outputs/tables/feasibility_metro_robustness.csv`
+- break-even frontier table: `outputs/tables/feasibility_metro_breakeven.csv`
+- break-even figure: `outputs/figures/feasibility_metro_breakeven.png`

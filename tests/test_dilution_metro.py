@@ -41,3 +41,59 @@ def test_real_metro_gate_fails_and_dc_is_densest():
     assert gate.n_achievable == 0
     # even the least-demanding cell needs > the densest US geography
     assert gate.best_multiple > 1.0
+
+
+def test_male_fraction_is_a_real_parameter():
+    """required rate scales inversely with male fraction (sweep uses this)."""
+    base = M.required_male_prep_rate(0.10, 1_000, 0.55, 1.0, male_fraction=0.5)
+    lo = M.required_male_prep_rate(0.10, 1_000, 0.55, 1.0, male_fraction=0.4)
+    assert lo > base  # smaller male fraction -> higher required density
+
+
+@pytest.mark.skipif(
+    not (M.Path(__file__).resolve().parents[1] / "data/raw/aidsvu").exists(),
+    reason="raw AIDSVu data not present")
+def test_robustness_verdict_holds_at_realistic_ceilings():
+    """At any realistic metro density (<= 2x the densest US geography) and male
+    fraction <= 0.5, achievable-cell count stays 0 — the negative verdict is not
+    an artifact of MALE_FRACTION=0.5 or the 2x ceiling. Cells only open under a
+    COMPOUND implausibility (metro >=3x D.C. AND fantastical isolate volume AND
+    high enrichment), which is verified separately below."""
+    root = M.Path(__file__).resolve().parents[1]
+    df = M.load_aidsvu(root / "data/raw/aidsvu")
+    rob = M.robustness_sweep(df, 2022)
+    realistic = rob[(rob.achievable_multiple <= 2.0) & (rob.male_fraction <= 0.5)]
+    assert (realistic["n_achievable"] == 0).all()
+    # the sweep actually exercised the widened ranges
+    assert set(rob["achievable_multiple"]) >= {1.0, 5.0}
+    assert set(rob["male_fraction"]) >= {0.4, 0.6}
+
+
+@pytest.mark.skipif(
+    not (M.Path(__file__).resolve().parents[1] / "data/raw/aidsvu").exists(),
+    reason="raw AIDSVu data not present")
+def test_any_openable_cell_requires_fantastical_isolate_volume():
+    """Every cell that becomes 'achievable' even when granted 5x D.C. density
+    sits at the maximum (fantastical) isolate volume and elevated enrichment —
+    i.e. targeted clinic sampling, not population surveillance."""
+    root = M.Path(__file__).resolve().parents[1]
+    df = M.load_aidsvu(root / "data/raw/aidsvu")
+    table = M.metro_table(df, 2022)
+    openable = table[table["multiples_of_densest_US"] <= 5.0]
+    assert len(openable) > 0
+    assert (openable["N_isolates"] == max(M.N_GRID)).all()   # fantastical N only
+    assert (openable["kappa"] >= 3.0).all()                  # high enrichment only
+
+
+@pytest.mark.skipif(
+    not (M.Path(__file__).resolve().parents[1] / "data/raw/aidsvu").exists(),
+    reason="raw AIDSVu data not present")
+def test_breakeven_impossible_under_realistic_isolate_volume():
+    """Under realistic N and proportional sampling, detection would need >100%
+    of adult males on PrEP — physically impossible, proxy-free."""
+    root = M.Path(__file__).resolve().parents[1]
+    df = M.load_aidsvu(root / "data/raw/aidsvu")
+    be = M.breakeven_frontier(df, 2022)
+    realistic = be[(be.N_isolates == min(M.N_GRID)) & (be.kappa == 1.0)].iloc[0]
+    assert realistic["pct_of_all_adult_males"] > 100.0
+    assert not realistic["physically_possible"]
