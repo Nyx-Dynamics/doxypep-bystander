@@ -332,3 +332,25 @@ CodedField is shared and unchanged.
 DOHMH dear-colleague, Chicago CDPH protocol -> guidelines/. Yeung 2019 JAAD
 (institutional-memory anchor) -> papers/. NB: Chicago PDF in hand is 7 pp, not the
 15 pp the handoff exemplar cites — will code the PDF and flag the discrepancy.
+
+## 2026-08-19 — Stream B: thin-pointer state pages + a recurring governance split
+
+Ingested but NOT coded: `guideline_ri_doh_page_2026.pdf` (Rhode Island Dept of
+Health). In scope (state governmental authority) but the doxy-PEP page is a
+one-line pointer ("Learn more about Doxy-PEP…") with no codeable guidance —
+no monitoring, counselling, or bystander content. Coding an empty stub would pad
+the corpus and misrepresent; flagged for retrieval of the substantive page it
+links to instead.
+
+**Recurring governance split (worth a paper line):** the substantive doxy-PEP
+clinical guidance in several jurisdictions sits at a level/institution *outside*
+the coded governmental corpus, while the governmental page is thin:
+- Baltimore → Maryland: MD state factsheet (silent on staph); the S. aureus
+  reservoir was documented at the Baltimore CITY health dept clinic (Miko 2012).
+- Rhode Island: RI DOH page is a pointer; the substantive clinical guidance /
+  authorship (Mishriky & Chan CID viewpoint) lives at Open Door Health / RI PHI —
+  a nonprofit clinic, excluded from the governmental corpus by scope.
+The bystander falls between governance layers. Not a coding decision — an
+institutional-memory observation to develop in the write-up.
+
+Excluded this batch: ASHA (national nonprofit education org).
