@@ -1,0 +1,42 @@
+# Stream B v2 — governmental. First-pass (claude-firstpass); needs PI verification.
+unit: nyc_dohmh_2023
+jurisdiction_level: city
+issuing_body: "New York City Department of Health and Mental Hygiene (DOHMH)"
+document_title: "Doxycycline Post-Exposure Prophylaxis (Doxy-PEP) to Prevent Bacterial STIs — Dear Colleague"
+document_type: dear_colleague
+version: "2023-11-09"
+effective_date: "2023-11-09"
+source_file: guideline_nyc_dohmh_dearcolleague_2023.pdf
+coder: claude-firstpass
+code_date: "2026-08-19"
+
+bystander_treatment: organism_named
+bystander_treatment_locator: "p. 4 (Counseling Messages, Antibiotic resistance)"
+
+s_aureus_named: true
+s_aureus_location: patient_counselling_script
+s_aureus_location_locator: "p. 4 (Counseling Messages — 'staph infections')"
+
+in_category_monitoring: "Obtain NAAT for gonorrhea and chlamydia and screen/treat for STIs at follow-up; HIV screening every 3-6 months per CDC PrEP guidelines"
+in_category_monitoring_locator: "p. 3 (bulleted clinical guidance)"
+
+s_aureus_monitoring: explicitly_none
+s_aureus_monitoring_locator: "p. 3"
+s_aureus_monitoring_quote: "No laboratory monitoring is needed with doxy-PEP."
+
+host_toxicity_labs: silent
+host_toxicity_labs_locator: "p. 3 ('No laboratory monitoring is needed with doxy-PEP' — no host labs either)"
+
+counselling_language_verbatim: "Antibiotic resistance: Doxy-PEP could lead to increased antibiotic resistance in the future, both at the individual and population levels. This includes risk of increased resistance to the bacteria that cause gonorrhea, staph infections, pneumonia, Mycoplasma genitalium (responsible for persistent urethritis), as well as microorganisms in intestinal flora."
+counselling_language_locator: "p. 4 (Counseling Messages)"
+
+derived_from: null
+local_mrsa_msm_literature: "Galindo GR et al. 2012, J Community Health, 10.1007/s10900-011-9463-6 (DOHMH co-authors Weiss, Marx)"
+same_institution_authored_both: "yes"
+
+note: >-
+  Only 'explicitly_none' in the corpus so far. NYC also states the burden of any
+  population-level resistance/microbiome change 'will have the first and [greatest
+  effect on] the population [in which] doxy-PEP will be most used', then defers to
+  evaluations 'either being planned or are underway' (p. 2) — acknowledges the
+  bystander burden and defers the measurement.

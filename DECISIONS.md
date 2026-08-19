@@ -295,3 +295,40 @@ Judgment calls flagged for PI:
   fire for DoxyPEP. The real asymmetry is CROSS-trial (gonococcus trials —
   Soge/DOXYVAC — use discriminating methods; S. aureus is measured blind), which
   the within-trial function cannot capture. Worth a schema/analysis note.
+
+## 2026-08-19 — Stream B SCOPE DECISION + schema v2 (logged before coding)
+
+Per STREAM_B_HANDOFF.md (PI), Stream B is re-scoped and re-schema'd. This
+SUPERSEDES the v1 5-field guideline coding.
+
+**Scope: governmental public-health authorities only** (city/county/state/
+national). These bodies both set doxy-PEP policy AND hold the local surveillance/
+outbreak record — the pairing that makes the institutional-memory comparison
+meaningful. **Excluded:** FQHCs / community health centers / clinic patient-
+education (Howard Brown), and professional societies (German DSTIG, IUSTI). This
+is a scope decision, not a finding; excluded docs retained in
+`data/raw/guidelines/excluded/` with reasons. ECDC left pending a PI call
+(EU agency but a considerations doc, not a jurisdictional policy).
+
+**Thesis (refined):** the asymmetry is WITHIN a single artifact — S. aureus
+discussed/counselled/unmeasured while in-category organisms (GC/CT/syphilis) are
+resolved with lab precision in the same document.
+
+**Schema v2** (`src/coding/schema_guideline.py`): richer field set (jurisdiction,
+issuing_body, document_type, bystander_treatment, s_aureus_location,
+in_category_monitoring, s_aureus_monitoring, host_toxicity_labs, derived_from,
+local_mrsa_msm_literature + literature_search_provenance,
+same_institution_authored_both, counselling_language_verbatim), same
+locator-or-raise contract, with guards encoding the thesis (explicitly_none needs
+a verbatim quote; a null local-literature cell needs search provenance; silent
+needs a full-document-reviewed note).
+
+**v1 retirement:** the v1 records (`guideline_*.yaml`, 5-field), `build_corpus.py`,
+and the GuidelineRecord in `schema.py` are superseded. v1 coded Germany/ECDC/IUSTI,
+now out of scope. v2 records use the `gl_*.yaml` pattern and `build_guidelines.py`.
+CodedField is shared and unchanged.
+
+**Uploaded/ingested (2026-08-19):** LA County factsheet, San Diego CAHAN, NYC
+DOHMH dear-colleague, Chicago CDPH protocol -> guidelines/. Yeung 2019 JAAD
+(institutional-memory anchor) -> papers/. NB: Chicago PDF in hand is 7 pp, not the
+15 pp the handoff exemplar cites — will code the PDF and flag the discrepancy.

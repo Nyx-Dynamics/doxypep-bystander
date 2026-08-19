@@ -1,0 +1,43 @@
+# Stream B v2 — governmental. First-pass (claude-firstpass); needs PI verification.
+unit: san_diego_county_2023
+jurisdiction_level: county
+issuing_body: "County of San Diego HHSA, Public Health Services (CAHAN San Diego)"
+document_title: "Health Advisory: Doxycycline Post-Exposure Prophylaxis for Prevention of Bacterial STIs"
+document_type: health_advisory
+version: "2023-05-09"
+effective_date: "2023-05-09"
+source_file: guideline_san_diego_cahan_2023.pdf
+coder: claude-firstpass
+code_date: "2026-08-19"
+
+bystander_treatment: organism_named
+bystander_treatment_locator: "p. 2 (background on AMR)"
+
+s_aureus_named: true
+s_aureus_location: body_text
+s_aureus_location_locator: "p. 2"
+
+in_category_monitoring: "Actions Requested #5: GC/CT NAAT at all anatomic sites of exposure, syphilis, and HIV at initiation and every 3 months, per 2021 CDC STI Treatment Guidelines"
+in_category_monitoring_locator: "p. 2 (Actions Requested #5)"
+
+s_aureus_monitoring: silent
+s_aureus_monitoring_locator: "p. 2 (named as a reservoir; no monitoring called for)"
+
+host_toxicity_labs: suggested
+host_toxicity_labs_locator: "p. 2 ('Consider hematopoietic, renal, and hepatic laboratory monitoring as clinically indicated')"
+
+counselling_language_verbatim: "Effects of long-term doxycycline use on antimicrobial resistance among STIs (e.g., GC, Mycoplasma genitalium), other pathogens (e.g., Staphylococcus aureus), and commensal Neisseria species (a potential reservoir for tetracycline-resistant plasmids) and on the gut microbiome are currently unknown and under investigation."
+counselling_language_locator: "p. 2"
+
+derived_from: null
+local_mrsa_msm_literature: null
+literature_search_provenance: "Not independently searched by coder as of 2026-08-19; the STREAM_B_HANDOFF verified institutional-memory pairings do not list San Diego. Flagged for AC to search/confirm. A null cell means 'none found under stated (here, un-run) terms', not 'none exists'."
+same_institution_authored_both: "no"
+
+note: >-
+  Names S. aureus AND commensal Neisseria explicitly as a tetracycline-plasmid
+  reservoir — the sharpest microbiological framing in the corpus — yet Actions
+  Requested mandates STI/HIV screening and suggests host organ-toxicity labs while
+  calling for no microbiological monitoring of the reservoir it names.
+  same_institution_authored_both coded 'no' provisionally (undetermined pending the
+  literature search above).

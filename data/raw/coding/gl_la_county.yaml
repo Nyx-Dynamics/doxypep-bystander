@@ -1,0 +1,40 @@
+# Stream B v2 — governmental. First-pass (claude-firstpass); needs PI verification.
+unit: la_county_2023
+jurisdiction_level: county
+issuing_body: "Los Angeles County Department of Public Health, Division of HIV and STD Programs"
+document_title: "DoxyPEP for STI Prevention (patient factsheet)"
+document_type: patient_factsheet
+version: "Revised May 2023"
+effective_date: "2023-05-01"
+source_file: guideline_la_county_factsheet_2023.pdf
+coder: claude-firstpass
+code_date: "2026-08-19"
+
+bystander_treatment: organism_named
+bystander_treatment_locator: "p. 1 (What are we still learning about DoxyPEP?)"
+
+s_aureus_named: true
+s_aureus_location: still_learning_list
+s_aureus_location_locator: "p. 1 (What are we still learning?, item 2)"
+
+in_category_monitoring: "Please continue to get tested for STIs every 3 months and whenever you have symptoms."
+in_category_monitoring_locator: "p. 1"
+
+s_aureus_monitoring: silent
+s_aureus_monitoring_locator: "p. 1 (staph in a 'still learning' question; no monitoring)"
+
+host_toxicity_labs: silent
+host_toxicity_labs_locator: "p. 1 (patient factsheet; no lab monitoring described)"
+
+counselling_language_verbatim: "Could it increase or decrease the bacteria that live on our skin, or cause bacterial resistance to doxycycline (for example staph)?"
+counselling_language_locator: "p. 1 (What are we still learning?, item 2)"
+
+derived_from: "San Francisco City Clinic, 2022 — stated verbatim on the document face: 'Adapted from San Francisco City Clinic, 2022'"
+local_mrsa_msm_literature: "MMWR 2003;52:88 (LA County USA300 MRSA); Lee NE et al. CID 2005;40:1529-34 (DOI unverified)"
+same_institution_authored_both: "yes"
+
+note: >-
+  Bystander risk is framed as an open question to the patient ('for example
+  staph') rather than a clinician action. The document declares its lineage:
+  'Adapted from San Francisco City Clinic, 2022' — direct evidence for the
+  template-propagation analysis (SF 2022 as the seed of the counselling posture).

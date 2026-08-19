@@ -21,7 +21,7 @@ feasibility:
 
 # Stream B — guideline coding + gate
 guidelines:
-	$(PY) -m src.coding.build_corpus
+	$(PY) -m src.coding.build_guidelines
 
 # Stream A — trial coding + reporting analyses
 trials:

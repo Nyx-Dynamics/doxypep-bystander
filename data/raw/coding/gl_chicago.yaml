@@ -1,0 +1,47 @@
+# Stream B v2 — governmental. First-pass (claude-firstpass); needs PI verification.
+unit: chicago_cdph_2023
+jurisdiction_level: city
+issuing_body: "Chicago Department of Public Health, Bureau of Syndemic Infectious Disease, STI Specialty Clinics"
+document_title: "Clinical Protocol for Providing Doxycycline as STI Postexposure Prophylaxis at CDPH STI Specialty Clinics"
+document_type: clinical_protocol
+version: "eff. 2023-10-15 (7-page PDF in hand; handoff cites a 15-page/4-signature version)"
+effective_date: "2023-10-15"
+source_file: guideline_chicago_cdph_protocol_2023.pdf
+coder: claude-firstpass
+code_date: "2026-08-19"
+
+bystander_treatment: silent
+bystander_treatment_locator: "whole document (7 pp)"
+bystander_treatment_note: >-
+  All 7 pages reviewed: no mention of antimicrobial resistance, S. aureus, or MRSA
+  anywhere — not in patient counselling (§V), not as a knowledge gap, not even for
+  gonorrhea. NB: the handoff exemplar cites a 15-page version with four approver
+  signatures; this PDF is 7 pp — likely a different/earlier version. Flag for AC.
+
+s_aureus_named: false
+s_aureus_location: absent
+s_aureus_location_locator: "whole document (7 pp) — absent"
+
+in_category_monitoring: "Comprehensive STI screening plus safety monitoring at routine 3-month intervals: serologic syphilis screening, 4th-generation HIV Ag/Ab screen (HIV-negative subjects), and site-specific GC and CT nucleic acid amplification testing"
+in_category_monitoring_locator: "p. 4-5 (§IV, Patient Monitoring)"
+
+s_aureus_monitoring: silent
+s_aureus_monitoring_locator: "p. 4-5 (§IV/V) — no microbiological monitoring beyond in-category STIs"
+
+host_toxicity_labs: required
+host_toxicity_labs_locator: "p. 5 (§V.ii Lab Monitoring)"
+
+counselling_language_verbatim: "Per the doxycycline package insert, liver function tests (LFTs), complete metabolic panel (CMP) for renal function, and a complete blood count (CBC) should be checked ... [annually] in individuals with a history of liver disease."
+counselling_language_locator: "p. 5 (§V.ii Lab Monitoring)"
+
+derived_from: null
+local_mrsa_msm_literature: "Popovich KJ et al. 2010, CID 50:979-87 (Cook County / Rush; HIV-framed, NOT a CDPH MSM cluster study)"
+same_institution_authored_both: same_city_different_institution
+
+note: >-
+  The purest within-artifact case: labs are ordered (LFT/CMP/CBC per package
+  insert) and in-category organisms screened q3mo, but no organism is measured for
+  the bystander and AMR is never mentioned. Ineligibility criteria (p. 4) exclude
+  'Anticipated or ongoing use of tetracyclines for non-STI prevention (e.g., acne
+  treatment)' — cumulative tetracycline exposure is tracked well enough to exclude
+  on, yet the resistance inference is never drawn.

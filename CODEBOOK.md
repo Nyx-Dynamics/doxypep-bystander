@@ -27,6 +27,15 @@ document). `partial` requires a `note` explaining the boundary.
 
 ## Stream B — guideline schema
 
+**Superseded by `STREAM_B_HANDOFF.md` + `src/coding/schema_guideline.py` (v2).**
+Scope is now governmental public-health authorities only; the schema is the richer
+field set in the handoff (bystander_treatment, s_aureus_location,
+in_category_monitoring vs s_aureus_monitoring vs host_toxicity_labs, derived_from
+lineage, institutional-memory pairing). The v1 5-field schema below is retained
+for history; v1 coded records live in `data/raw/coding/superseded_streamb_v1/`.
+
+### v1 (retired)
+
 Unit = one guideline document. Metadata: `unit`, `jurisdiction`, `citation`,
 `doi`, `source_file`, `coder`, `code_date`.
 
