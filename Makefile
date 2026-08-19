@@ -3,10 +3,10 @@
 
 PY := python3
 
-.PHONY: all test loader feasibility guidelines trials reliability clean
+.PHONY: all test loader feasibility guidelines trials reliability literature clean
 
-all: test feasibility guidelines trials
-	@echo "Stream C (feasibility) + Stream B (guidelines) + Stream A (trials) regenerated."
+all: test feasibility guidelines trials literature
+	@echo "Stream C (feasibility) + Stream B (guidelines) + Stream A (trials) + literature-gap regenerated."
 
 test:
 	$(PY) -m pytest -q
@@ -31,6 +31,11 @@ reliability:
 trials:
 	$(PY) -m src.coding.build_trials
 	$(PY) -m src.analysis.detectability
+
+# Cross-stream — the measurement gap in the doxy-PEP literature itself.
+# Reads the frozen snapshot; pass ARGS=--refresh to re-query PubMed E-utilities.
+literature:
+	$(PY) -m src.analysis.literature_search $(ARGS)
 
 clean:
 	rm -rf data/interim/* .pytest_cache

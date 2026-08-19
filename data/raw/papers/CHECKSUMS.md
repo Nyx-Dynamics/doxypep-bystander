@@ -28,6 +28,7 @@ files flagged **[coded-source]** below — re-hash before trusting a re-download
 | `kenyon2024_ijid.pdf` | 311174 | `95282ce4a8026ba13b0a2754645d0eafe49b48f286d0a1fc2fdb76abf3622024` |  |
 | `kong2023_jac_harms_taxonomy.pdf` | 213532 | `c78487fb7525f93fce060c60bb2a9b6bde882b643fb045667734080abb67d54a` |  |
 | `luetkemeyer2023_nejm_doxypep.pdf` | 769778 | `08d458a2c1a06ee3971fe9d057b845fb4b20ac78070826122748951bc017ccce` | **[coded-source]** |
+| `mende2016_dmid_malaria_doxy_saureus_null.pdf` | 406328 | `cbd198661cb9a1d96cd893c4cb8cc6a426e2af64a1dc9bcf247f92a38f227d21` | comparator (null; tetM P=.031) |
 | `miko2012_microbesinfect_usa300_std_reservoir.pdf` | 35350 | `c53e98ba667b9c1007f584246645afb1449ed7a788b731ec19099e7eb455afc8` |  |
 | `mishriky_chan2026_cid_amr_should_not_limit.pdf` | 351968 | `6099a404d26e33349e25a5fb83461a88a45ce57daaa602ddb524ae8091e53d68` |  |
 | `mittelstaedt2025_jid.pdf` | 344968 | `21a383bae2d05a2286065e2e44aad0f79960cb0886b99cb338f1242c1dbbdbfd` |  |

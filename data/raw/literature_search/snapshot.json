@@ -1,0 +1,26 @@
+{
+  "run_date": "2026-08-19",
+  "date_bounds": [
+    "\"2015\"[dp]",
+    "\"2026\"[dp]"
+  ],
+  "denominator_query": "(\"doxy-PEP\"[tiab] OR \"doxyPEP\"[tiab] OR \"doxycycline postexposure prophylaxis\"[tiab] OR \"doxycycline post-exposure prophylaxis\"[tiab] OR (\"doxycycline\"[tiab] AND \"prophylaxis\"[tiab] AND (\"sexually transmitted\"[tiab] OR STI[tiab] OR STIs[tiab] OR gonorrhea[tiab] OR gonorrhoea[tiab] OR chlamydia[tiab] OR syphilis[tiab]))) AND (\"2015\"[dp] : \"2026\"[dp])",
+  "numerator_query": "(\"doxy-PEP\"[tiab] OR \"doxyPEP\"[tiab] OR \"doxycycline postexposure prophylaxis\"[tiab] OR \"doxycycline post-exposure prophylaxis\"[tiab] OR (\"doxycycline\"[tiab] AND \"prophylaxis\"[tiab] AND (\"sexually transmitted\"[tiab] OR STI[tiab] OR STIs[tiab] OR gonorrhea[tiab] OR gonorrhoea[tiab] OR chlamydia[tiab] OR syphilis[tiab]))) AND (\"2015\"[dp] : \"2026\"[dp]) AND (\"Staphylococcus aureus\"[tiab] OR \"S. aureus\"[tiab] OR MRSA[tiab] OR MSSA[tiab] OR staphylococc*[tiab])",
+  "denominator_count": 361,
+  "numerator_count": 13,
+  "numerator_pmids": [
+    "42342442",
+    "41974008",
+    "41891836",
+    "41366180",
+    "40036749",
+    "39882974",
+    "39766573",
+    "39718967",
+    "39657948",
+    "39228717",
+    "38575877",
+    "38517444",
+    "37466467"
+  ]
+}

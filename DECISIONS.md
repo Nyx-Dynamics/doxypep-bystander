@@ -434,3 +434,46 @@ secondary_synthesis, so the trial count is 3.
   3.8-5.1x, power 2-6%. Exact test used because per-arm counts are single- to
   low-double-digit (normal approximation invalid). MRSA: 0 primary denominators.
   outputs/detectability_result.md.
+
+## 2026-08-19 — Two statistical cautions on detectability (pre-commit, PI-directed)
+
+Applied before the finding leaves the repo, both from the PI:
+
+- **Caution 1 — name the method.** What detectability.py computes is NOT post-hoc /
+  observed power (effect fixed at the trial's own estimate — rejected on sight by
+  statistical reviewers). The effect is fixed A PRIORI from a source EXTERNAL to the
+  trials (Soge). Renamed and documented throughout as a **design-based sensitivity
+  analysis**; verbatim methods language carried into the report.
+- **Caution 2 — check the benchmark.** Soge's RR 1.42 is the GONOCOCCAL >3-doses/mo
+  figure — cross-organism. Soge's own *S. aureus* result was tetR colonization
+  **18% vs 8% (P<.0001)**, RR approximately **2.25** — the same-organism, matched
+  benchmark. Added RR_SAUREUS=2.25 as primary, kept RR_GC=1.42 as flagged secondary.
+  Result holds either way: **0/4** comparisons powered for EITHER; min detectable RR
+  3.8-5.1 exceeds both.
+
+## 2026-08-19 — Mende 2016 ingested and verified (the "null" that confirms mechanism)
+
+Verified before citing (`nihms-805541.pdf` -> data/raw/papers/), per PI "treat it as
+a lead." Mende K, et al. Diagn Microbiol Infect Dis 2016 (10.1016/j.diagmicrobio.
+2016.07.014). US military, 168 injured deployers, 55% on antimalarial doxycycline:
+**no difference in overall tetracycline-class resistance** (the mechanism-BLIND
+endpoint) BUT **tet(M) genes significantly MORE common in the doxycycline-exposed
+group, P=0.031** (the mechanism-DISCRIMINATING endpoint). This is constraint 2 /
+Grossman shown INSIDE one study: total prevalence flat while tet(M) composition
+shifts. Surface honestly as a null; engaged, it supports the assay-level thesis.
+Caveats logged in SOURCES.md: military (not MSM), antimalarial dosing (not doxy-PEP),
+n=168. Not coded as a trial — catalogued as a comparator.
+
+## 2026-08-19 — Defined literature search: the measurement gap in the literature itself
+
+Query defined a priori (PI-directed: stated bounds, denominator = doxy-PEP papers,
+numerator = those naming a bystander organism). Two NCBI E-utilities esearch queries,
+2015-2026, verbatim in outputs/literature_search_result.md. **361** doxy-PEP papers;
+**13 (3.6%)** name a bystander staphylococcal organism; hand classification of the 13
+(each by PMID, checked against an authoritative PMID<->title pairing, not position):
+only **5 (1.4%)** MEASURE tetR *S. aureus* at all, only **2** against a doxy-PEP
+EXPOSURE contrast (Soge; DuDHS at pilot n). The gap the three streams document inside
+trials/guidelines/surveillance is reproduced in the surrounding literature. Counts
+frozen to data/raw/literature_search/snapshot.json (PubMed grows); `make literature
+ARGS=--refresh` re-queries. New module src/analysis/literature_search.py + 4 tests.
+esearch runs via curl (sandbox TLS proxy uses a self-signed cert urllib rejects).
