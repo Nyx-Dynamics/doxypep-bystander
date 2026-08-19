@@ -13,9 +13,10 @@ code_date: "2026-08-19"
 bystander_treatment: generic_microbiome_resistance
 bystander_treatment_locator: "Antimicrobial resistance section; Monitoring and evaluation"
 
-s_aureus_named: false
-s_aureus_location: absent
-s_aureus_location_locator: "whole document — S. aureus / staph / MRSA not named"
+s_aureus_named: true
+s_aureus_location: reference_title_only
+s_aureus_location_locator: "p. 17 (reference list — the Soge et al. citation)"
+s_aureus_location_citation: "Soge OO, Thibault CS, Cannon CA, McLaughlin SE, Menza TW, Dombrowski JC, et al. Potential impact of doxycycline postexposure prophylaxis on tetracycline resistance in Neisseria gonorrhoeae and colonization with tetracycline-resistant Staphylococcus aureus and Group A Streptococcus. Clin Infect Dis. 2025;80(6):1188-1195. doi:10.1093/cid/ciaf089"
 
 in_category_monitoring: "Ideally, trends in both antimicrobial resistance and antibiotic use should be monitored; monitoring aligned with national antimicrobial resistance strategies and surveillance platforms (esp. N. gonorrhoeae tetracycline resistance)"
 in_category_monitoring_locator: "Monitoring and evaluation section"
@@ -51,3 +52,10 @@ note: >-
   graded-efficacy / graded-harms fields to v2 to capture the CDC-vs-WHO contrast.
   WHO reference list also supplies DOIs for missing trials: Luetkemeyer 2025 Lancet
   ID final (10.1016/S1473-3099(25)00085-4); DOXYVAC main (10.1016/S1473-3099(24)00236-6).
+  VERIFICATION (2026-08-19): exhaustive staph keyword search of source
+  (SHA-256 b4154b68f43e4521d349be04d9362847bbceb7a1469bb06baf3a549c12056e02)
+  found S. aureus exactly ONCE — in the reference list (the Soge citation, p. 17) —
+  and ZERO MRSA/methicillin/MSSA/tetK/tetM/SSTI. So WHO, like Philadelphia, cites
+  the paper that documented tetracycline-resistant S. aureus colonization yet never
+  carries it into the recommendation or monitoring. Corrected from an initial
+  'absent' miscoding that a plain grep missed. See guidelines/CHECKSUMS.md.

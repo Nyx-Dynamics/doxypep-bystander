@@ -13,8 +13,8 @@ STREAM_B_HANDOFF.md); FQHCs and professional societies excluded, retained in
 
 **8 of 9** documents monitor in-category organisms (GC/CT/syphilis)
 while leaving *S. aureus* silent or explicitly unmeasured — in the same document.
-**4 of 9** name *S. aureus*; where it appears:
-absent (5), still_learning_list (1), patient_counselling_script (1), reference_title_only (1), body_text (1).
+**5 of 9** name *S. aureus*; where it appears:
+absent (4), reference_title_only (2), still_learning_list (1), patient_counselling_script (1), body_text (1).
 **3 of 9** order host-toxicity labs (LFT/CMP/CBC) — the lab apparatus
 plainly exists; it is pointed at the host, not the organism.
 
