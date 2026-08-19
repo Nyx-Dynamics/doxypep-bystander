@@ -1,489 +1,795 @@
-%==============================================================================
-%  doxypep-bystander — surveillance-infrastructure / measurement-inheritance
-%  paper.  Venue-neutral draft (SCAFFOLD.md Phase 4).
-%
-%  House style follows the companion CID correspondence (Times via mathptmx,
-%  1in margins, line numbers).  Self-contained bibliography (thebibliography):
-%      pdflatex manuscript.tex   (run twice for references + cross-refs)
-%  No bibtex step required.  references.bib is kept alongside for later reuse.
-%
-%  Every quoted number regenerates from `make all`; figures are pulled from
-%  ../outputs/figures/ so a rerun of the analysis updates the paper.
-%==============================================================================
-\documentclass[12pt,letterpaper]{article}
-
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{textcomp}
-\usepackage{mathptmx}                       % Times text + math
-\usepackage[margin=1in]{geometry}
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  12pt,
+  letterpaper,
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
 \usepackage{setspace}
-\usepackage{amsmath}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
 \usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{mathptmx}
+\usepackage[margin=1in]{geometry}
 \usepackage[left]{lineno}
-\usepackage[hidelinks]{hyperref}
-
-\setlength{\parindent}{0.5in}
-\setlength{\parskip}{0pt}
-\pagestyle{plain}
+\linenumbers
+\usepackage{textcomp}
+\usepackage{newunicodechar}
+\newunicodechar{≥}{\ensuremath{\geq}}
+\newunicodechar{≤}{\ensuremath{\leq}}
+\newunicodechar{≈}{\ensuremath{\approx}}
+\newunicodechar{×}{\ensuremath{\times}}
+\newunicodechar{→}{\ensuremath{\rightarrow}}
+\newunicodechar{←}{\ensuremath{\leftarrow}}
+\newunicodechar{−}{\ensuremath{-}}
+\newunicodechar{·}{\ensuremath{\cdot}}
+\newunicodechar{κ}{\ensuremath{\kappa}}
+\newunicodechar{α}{\ensuremath{\alpha}}
+\newunicodechar{β}{\ensuremath{\beta}}
+\newunicodechar{φ}{\ensuremath{\phi}}
+\newunicodechar{Δ}{\ensuremath{\Delta}}
+\newunicodechar{μ}{\ensuremath{\mu}}
+\newunicodechar{µ}{\textmu}
+\newunicodechar{₀}{\textsubscript{0}}
+\newunicodechar{₁}{\textsubscript{1}}
+\newunicodechar{₂}{\textsubscript{2}}
 \graphicspath{{../outputs/figures/}}
+\setlength{\parindent}{0.5in}
+\newunicodechar{∈}{\ensuremath{\in}}
+\newunicodechar{…}{\dots}
+\newunicodechar{§}{\S}
+\newunicodechar{–}{--}
+\newunicodechar{—}{---}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Monitoring That the Instrument Cannot Provide: Measurement Inheritance and Tetracycline-Resistant Staphylococcus aureus in Doxycycline Post-Exposure Prophylaxis},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Monitoring That the Instrument Cannot Provide: Measurement
+Inheritance and Tetracycline-Resistant \emph{Staphylococcus aureus} in
+Doxycycline Post-Exposure Prophylaxis}
+\author{true}
+\date{2026-08-19}
 
 \begin{document}
-\doublespacing
+\maketitle
 
-%------------------------------------------------------------------ TITLE PAGE
-\thispagestyle{empty}
+\setstretch{2}
+\subsection{Abstract}\label{abstract}
 
-\begin{center}
-{\large\textbf{The Undetectable Bystander: Why No Existing Surveillance System
-Can Measure Doxycycline Post-Exposure Prophylaxis's Effect on
-Tetracycline-Resistant \textit{Staphylococcus aureus}}}
-\end{center}
+\textbf{Background.} Doxycycline post-exposure prophylaxis (doxy-PEP)
+has been scaled across sexual-health systems since citywide (San
+Francisco, 2022) and national (CDC, 2024) guidance. Doxycycline selects
+for tetracycline resistance beyond its target organism;
+\emph{Staphylococcus aureus} --- a commensal and pathogen carrying
+mobile tetracycline-resistance determinants but sitting outside the STI
+surveillance frame --- is the natural \textbf{bystander}. We ask not
+whether doxy-PEP causes resistant \emph{S. aureus}, but whether the
+existing evidence base is \emph{instrumented to answer the question at
+all}.
 
-\vspace{1.5\baselineskip}
+\textbf{Methods.} We read the pivotal trial's own
+antimicrobial-resistance report --- the DoxyPEP CROI 2023 abstract and
+data table (Luetkemeyer and DoxyPEP Study Team 2023) --- as a single
+exhibit, and then test whether its findings generalise across the
+evidence base through three streams: primary trials (are they powered
+and mechanism-resolving?), guidelines (do they measure the bystander, or
+only counsel about it?), and surveillance (could any population system
+detect the signal?). All coding carries page/table locators; all sources
+are SHA-256--pinned; the surveillance stream is a quantitative
+feasibility model; every figure and table regenerates from one command.
 
-\noindent Adrian C. Demidont, DO
+\textbf{Results.} Several features of the trial's own report bear on the
+question. (i) Its data \textbf{table caption} describes ``phenotypic
+resistance to the \emph{tetracycline} antibiotic class,'' while the
+methods define the \emph{S. aureus} and commensal-\emph{Neisseria}
+assays as \textbf{doxycycline} (E-test) and only the gonococcal assay as
+tetracycline; two drugs and three organisms are grouped under one
+heading. (ii) \emph{S. aureus} doxycycline resistance is reported over
+all swabbed participants, a denominator that falls as the intervention
+reduces colonization (by 16\%): 3.6\% (12/334) → 11.7\% (16/137),
+summarized as ``without a significant increase \ldots{} modest \ldots{}
+unlikely clinical significance'' (p=0.19); computed per carrier, the
+same counts give 8.5\% (12/141) → 40.0\% (16/40), a figure the report
+does not present or test. (iii) The same month-12 endpoint appears as
+\textbf{5, 16, or 28} resistant isolates across the trial's NEJM
+appendix, its CROI table, and its slides as cited by CDC, and the
+individual-level data are not shared. A footnote records that gonococcal
+resistance testing was unavailable for \textbf{83\% (212/256)} of
+diagnoses. Three streams find the same pattern more widely: 0 of 4
+primary \emph{S. aureus} comparisons are powered for even an external
+benchmark; every governmental guideline we coded counsels about the harm
+while requiring no measurement of it; and no population surveillance
+system could detect the signal, the exposed subgroup being too dilute by
+a factor of roughly 14 (state) to 480 (metro). Of 361 doxy-PEP papers
+(2015--2026), 13 (3.6\%) name a bystander staphylococcal organism and 2
+measure it against an exposure contrast.
 
-\noindent Nyx Institute for Computational Medicine, Nyx Dynamics LLC,
-Philadelphia, PA 19107, USA
+\textbf{Conclusions.} As instrumented, the doxy-PEP → bystander-\emph{S.
+aureus} question cannot be answered: the reported phenotype is named for
+one drug and measured with another, the rate is expressed over a
+denominator the intervention moves, the counts do not reconcile across
+the trial's own venues, the data are not released, and no surveillance
+system samples the exposed. The trial's authors close by noting that
+longer-term monitoring is needed --- monitoring the evidence base they
+helped launch is not built to provide. We offer this as a quantified
+instance of \emph{measurement inheritance}, and \textbf{make no causal
+claim}.
 
-\noindent ORCID: \href{https://orcid.org/0000-0002-9216-8569}{0000-0002-9216-8569}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\vspace{\baselineskip}
+\subsection{1. Introduction}\label{introduction}
 
-\noindent\textbf{Corresponding author.} Adrian C. Demidont, DO, Nyx Institute for
-Computational Medicine, Philadelphia, PA 19107, USA
-(\href{mailto:acdemidont@nyxdynamics.org}{acdemidont@nyxdynamics.org}).
+Doxy-PEP --- a single 200 mg dose of doxycycline after condomless sex
+--- reduces bacterial STIs in men who have sex with men and transgender
+women and has been adopted rapidly since the DoxyPEP trial ({Luetkemeyer
+et al.} 2023). Because doxycycline is a tetracycline, its
+population-scale use exerts selection pressure not confined to
+\emph{Neisseria gonorrhoeae}, where tetracycline resistance is already
+near-saturating in exposed populations ({Schröder et al.} 2025).
 
-\vspace{\baselineskip}
+\emph{S. aureus} is the natural bystander: it colonizes the same
+individuals, carries mobile tetracycline-resistance determinants, and
+--- unlike \emph{N. gonorrhoeae} --- is tracked by no STI-oriented
+surveillance apparatus. The concern is \textbf{not} that the field
+ignored it (the DoxyPEP trial, DuDHS, and Soge all assayed it
+(Luetkemeyer and DoxyPEP Study Team 2023; {Soge et al.} 2025)), and
+\textbf{not} that doxy-PEP ``causes MRSA'' (methicillin resistance in
+this population is too rare to power anything). The claim we examine is
+structural and prior to any effect estimate: \textbf{the evidence base
+is not instrumented to answer whether population doxycycline exposure is
+associated with tetracycline-resistant \emph{S. aureus}.} We call this
+\emph{measurement inheritance} --- an analysis inherits the sampling
+frame, cadence, coding, and denominator of the apparatus it is built on,
+and those were chosen for a different organism and a different question.
 
-\noindent\textbf{Keywords.} doxycycline post-exposure prophylaxis; tetracycline
-resistance; \textit{Staphylococcus aureus}; antimicrobial-resistance
-surveillance; measurement inheritance; ecological study.
+Our argument rests first on a single document: the pivotal trial's own
+antimicrobial-resistance report, presented at CROI 2023 (Luetkemeyer and
+DoxyPEP Study Team 2023). Read closely, it shows the difficulty in
+miniature --- a phenotype named for one drug and measured with another,
+a rate expressed over a denominator the intervention moves, counts that
+differ across the trial's own venues, data that are not released, and a
+closing call for monitoring. We then ask, across three streams, whether
+the pattern is peculiar to one presentation or general to the evidence
+base, and find it general. Throughout, the claim is about
+\textbf{adequacy, not effect}: the trial's own between-arm test is
+non-significant (p=0.19), and we do not dispute it. What the record
+shows is that the study was instrumented and summarized so that a
+4.7-fold rise in per-carrier resistance appears as a modest,
+non-significant change --- an observation about the instrument, not
+about the biology.
 
-\vspace{\baselineskip}
+Stated plainly, the through-line is this: the trial called for
+monitoring that the evidence base it helped launch is not built to
+provide. That sentence is not a charge; it is a description, and the
+sections below simply make it precise. The inquiry is, in the end,
+epistemological --- what the available instruments permit us to know
+about a bystander organism --- approached with the ordinary tools of
+data science: public data, coded sources with locators, and analysis
+that regenerates from a single command.
 
-\noindent\textbf{Data and code.} Public; every figure and table regenerates from
-\texttt{make all} in the project repository.
+\subsection{2. The keystone: the trial's own
+report}\label{the-keystone-the-trials-own-report}
 
-\newpage
+The DoxyPEP antimicrobial-resistance substudy was presented as CROI 2023
+Oral Abstract OA-3 (Luetkemeyer and DoxyPEP Study Team 2023) and
+published, in part, as the \emph{S. aureus} appendix of the main trial
+({Luetkemeyer et al.} 2023). Box 1 reproduces the relevant text
+verbatim. Four features, each in the trial's own words, bear on whether
+the bystander question can be answered from this report.
 
-%---------------------------------------------------------------------- ABSTRACT
-\setcounter{page}{1}
-\linenumbers
+\begin{quote}
+\textbf{Box 1 --- The DoxyPEP CROI 2023 report (verbatim).}
 
-\begin{center}\textbf{Abstract}\end{center}
+\emph{Table caption:} ``S. aureus, Neisseria spp, and N. gonorrhoeae:
+Bacterial isolation and phenotypic resistance to the
+\textbf{tetracycline antibiotic class} at enrollment and during DoxyPEP
+study.''
 
-\noindent\textbf{Background.} Doxycycline post-exposure prophylaxis (doxy-PEP)
-has been scaled across sexual-health systems since citywide (San Francisco,
-October 2022) and national (CDC, 2024) guidance~\cite{cdc2024,sfdph2022}.
-Doxycycline selects for tetracycline resistance beyond its target organism,
-\textit{Neisseria gonorrhoeae}; \textit{Staphylococcus aureus} is a plausible
-\textbf{bystander}---a commensal and pathogen that carries tetracycline-resistance
-determinants yet sits outside the sexually-transmitted-infection surveillance
-frame. We asked whether the association between population doxy-PEP uptake and
-tetracycline-resistant \textit{S.\ aureus} is detectable with existing public
-surveillance, before acquiring any outcome data.
+\emph{Methods:} \emph{S. aureus} ``doxycycline resistance (doxy-R)
+defined as MIC ≥16 µg/ml by E-test''; commensal \emph{Neisseria}
+``doxy-R: MIC ≥2 µg/ml by E-test''; \emph{N. gonorrhoeae} ``TCN-R: MIC
+≥2.0 µg/ml by agar dilution.''
 
-\noindent\textbf{Methods.} We specify the intended design---a controlled
-interrupted time series (ITS) on calendar time, guideline release as the
-exogenous interruption, high- versus low-PrEP-density geographies as the
-contrast---and subject it to a feasibility gate. Using AIDSVu state PrEP data
-(2012--2025, public)~\cite{aidsvu} as a proxy for doxy-PEP exposure density, we
-model the state- and metro-level tetracycline non-susceptibility rate as a
-two-component mixture of exposed and unexposed \textit{S.\ aureus} isolates and
-compute the within-exposed effect required to move the observed population rate
-detectably. All code and data are public and every figure regenerates from a
-single command.
+\emph{S. aureus, doxy-PEP arm (Doxy-resistance / all swabbed):} month 0,
+3.6\% (12/334); month 12, 11.7\% (16/137). Standard of care: 11.8\%
+(19/161) → 4.8\% (3/62). Between-arm month-12 p=0.19.
 
-\noindent\textbf{Results.} The exposed subgroup is too dilute to detect at any
-geographic grain that has a population denominator. At the state level, the
-within-exposed relative risk (RR) required for a detectable shift is a median of
-${\sim}14$ across a generous sensitivity grid (best case 1.9), versus the
-optimistic RR of 1.42 observed by Soge et al.~\cite{soge2025}; 0 of 81 scenarios
-are detectable. At the metro level---where uptake is densest---detection would
-require male-PrEP density from 2.1$\times$ (single most favourable cell) to nearly
-500$\times$ that of the densest geography that exists in the United States
-(Washington, D.C.), and in proxy-free units would require an implausible-to-
-impossible share of \emph{all} adult males on PrEP (325\% under realistic isolate
-volumes; 6.5\% even in a fantastical best case, versus D.C.'s observed 2.7\%). The
-verdict is robust to the modeling assumptions.
+\emph{Conclusion:} ``Doxy-PEP reduced S. aureus colonization by 16\%
+without a significant increase in doxy-R SA. \ldots{} These modest
+changes \ldots{} are unlikely to have clinical significance. \ldots{}
+surveillance for the impact of TCN-R GC on doxy-PEP efficacy and
+doxy-PEP on GC resistance is needed.''
 
-\noindent\textbf{Conclusions.} The association, if real, is undetectable by
-population-scale ecological surveillance because no such system samples the
-concentrated exposed population; only targeted clinic sampling---a cohort design,
-not surveillance---could recover it. This is a quantitative demonstration of
-\emph{measurement inheritance}: surveillance instrumented for an in-category
-organism cannot detect a bystander signal it was never built to see.
-\textbf{This link is ecological and rests on two proxy layers---geographic PrEP
-density proxies doxy-PEP uptake, which proxies cumulative population
-doxycycline-days---and no claim here is causal.}
+\emph{Presentation, final slide:} ``Longer term monitoring during
+doxy-PEP implementation is needed to understand the trajectory and
+clinical importance of microbial susceptibility patterns associated with
+doxycycline as STI PEP.''
+\end{quote}
 
-%------------------------------------------------------------------ INTRODUCTION
-\section{Introduction}
+\subsubsection{2.1 The assay and its label name different
+drugs}\label{the-assay-and-its-label-name-different-drugs}
 
-Doxy-PEP---a single 200~mg dose of doxycycline taken after condomless sex---reduces
-bacterial STIs in men who have sex with men (MSM) and transgender women and has
-been adopted rapidly since the DoxyPEP trial~\cite{luetkemeyer2023} and subsequent
-guidance. Because doxycycline is a tetracycline, its population-scale use exerts
-selection pressure that is not confined to \textit{N.\ gonorrhoeae}. Tetracycline
-resistance in gonococci is already near-saturating in exposed
-populations~\cite{schroder2025}, which bounds the drug's antigonococcal benefit
-and sharpens attention on what else the exposure selects.
+The table caption describes ``phenotypic resistance to the
+\textbf{tetracycline antibiotic class}.'' The methods define the
+\emph{S. aureus} and commensal-\emph{Neisseria} assays as
+\textbf{doxycycline} (E-test) and only the gonococcal assay as
+tetracycline (agar dilution); three organisms and two drugs sit under
+one ``tetracycline class'' heading. The distinction is not cosmetic.
+tetK (efflux) confers tetracycline resistance while leaving doxycycline
+active, whereas tetM (ribosomal protection) does not (Grossman 2016), so
+tetracycline and doxycycline resistance are distinct phenotypes marking
+different mechanisms; in a doxy-PEP-eligible population, 13.2\% of
+\emph{S. aureus} isolates were tetracycline-resistant but only 2.0\%
+doxycycline-resistant. The same wording travels downstream --- the CDC
+guideline describes this doxycycline result as ``tetracycline resistance
+in \emph{S. aureus}'' (Centers for Disease Control and Prevention 2024)
+--- and it begins here, in the trial's own table caption. (Coded:
+\texttt{saureus\_endpoint\_label\_mismatch}, with locators. We read this
+as a labeling convention, not concealment: tetracycline is the broader
+phenotype, so the doxycycline figure is the more conservative of the
+two.)
 
-\textit{S.\ aureus} is the natural bystander. It colonizes the same individuals,
-carries mobile tetracycline-resistance determinants, and---unlike
-\textit{N.\ gonorrhoeae}---is not tracked by any STI-oriented surveillance
-apparatus. Soge et al.\ measured it directly, finding tetracycline-resistant
-\textit{S.\ aureus} colonization associated with higher-intensity doxy-PEP
-use~\cite{soge2025}. The concern here is therefore \textbf{not} that the field
-ignored \textit{S.\ aureus} (it did not: DuDHS, DoxyPEP, and Soge all assayed it),
-and \textbf{not} that doxy-PEP ``causes MRSA'' (methicillin resistance in this
-population is too rare to power anything---Soge found 12/838 isolates, 1\%).
+\subsubsection{2.2 The denominator moves with the
+intervention}\label{the-denominator-moves-with-the-intervention}
 
-The claim we examine is narrower and structural: \textbf{cumulative doxycycline
-exposure at population scale is associated with tetracycline-resistant
-\textit{S.\ aureus}, and no existing surveillance system is instrumented to detect
-that association.} Two features of the measurement apparatus produce the blind
-spot. First, exposure is recorded as a binary prescription rather than as
-cumulative drug-days, so the dose--response Soge observed---\emph{any} use was not
-associated with resistance (RR 1.14), but $>$3 doses/month was (RR
-1.42)---is invisible to prescription-anchored designs~\cite{soge2025}. This is the
-same misspecification our companion correspondence identifies in a published
-doxy-PEP interrupted time series, where the interruption is a prescription date
-rather than an exogenous event~\cite{demidontcid,spinelli2026}. Second, the
-bystander organism is monitored with far less apparatus than the in-category
-organism: gonococcal resistance has dedicated sentinel programs; tetracycline
-non-susceptibility in \textit{S.\ aureus} from this population has none.
+The abstract's summary for \emph{S. aureus} is reassuring: doxycycline
+resistance ``6.3\% \ldots{} without a significant increase,''
+``modest,'' ``unlikely to have clinical significance.'' The reported
+rates are computed over \textbf{all swabbed participants}, and doxy-PEP
+reduced \emph{S. aureus} colonization by 16\%, so that denominator falls
+under the intervention. Dividing the trial's own resistant counts by its
+own \emph{carrier} counts (Table 1) gives a different figure.
 
-We call this \emph{measurement inheritance}: an analysis inherits the sampling
-frame, cadence, and coding of the surveillance it is built on, and those were
-chosen for a different organism and a different question. Rather than assert the
-blind spot, we quantify it. Before acquiring a single outcome datum, we ask
-whether the signal \emph{could} be detected with the surveillance that exists---and
-show it cannot.
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\caption{\textbf{Table 1.} \emph{S. aureus} doxycycline resistance in
+the doxy-PEP arm, from the trial's own fractions (Luetkemeyer and
+DoxyPEP Study Team 2023). Per-carrier resistance rose 4.7-fold (8.5\% →
+40.0\%); in the standard-of-care arm it fell (24.4\% → 10.7\%). The
+relationship is arithmetic: reported rate = per-carrier rate ×
+colonization, and colonization is falling, so the reported rate
+understates the per-carrier change.}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Doxy-PEP arm
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+resistant / all-swabbed (reported)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+resistant / carriers (per-carrier)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Doxy-PEP arm
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+resistant / all-swabbed (reported)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+resistant / carriers (per-carrier)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Month 0 & 12/334 = \textbf{3.6\%} & 12/141 = \textbf{8.5\%} \\
+Month 12 & 16/137 = \textbf{11.7\%} & 16/40 = \textbf{40.0\%} \\
+\end{longtable}
 
-%----------------------------------------------------------------------- METHODS
-\section{Methods}
+The trial ran the between-arm, all-swabbed comparison (11.7\% vs 4.8\%,
+p=0.19) and described ``no significant increase.'' The within-arm
+per-carrier change (8.5\% → 40.0\%) and the per-carrier between-arm
+contrast (40.0\% vs 10.7\%) are not reported or tested. We do
+\textbf{not} claim the per-carrier rise is statistically significant;
+the counts are small and the data to test it are not public (§2.3). The
+narrower point is the durable one: the choice of denominator, which
+follows from the intervention's own effect on colonization, is what
+leads a 4.7-fold per-carrier change to appear as a modest one. That is
+measurement inheritance at the scale of a single 2×2 table.
 
-\subsection{Intended design}
+\subsubsection{2.3 The counts do not reconcile, and the data are not
+released}\label{the-counts-do-not-reconcile-and-the-data-are-not-released}
 
-The design we set out to run is a controlled ITS on calendar time, with an
-\textbf{exogenous} interruption---the citywide (October 2022) or national (2024)
-guideline release, which applies to everyone in a geography at once---never
-individual initiation, which conflates a prescription with an
-event~\cite{demidontcid,lopezbernal2018}. The contrast is high- versus
-low-PrEP-density geographies, both arms on one clock, with a continuous exposure
-intensity proxy rather than a binary contrast (a binary contrast is expected to be
-null, per Soge). Pre-period slopes would be tested for parallelism, and three
-negative controls (methicillin resistance; cisgender women, for whom doxy-PEP is
-not recommended; a non-tetracycline phenotype) would be required.
+The same endpoint --- month-12 doxycycline-resistant \emph{S. aureus} in
+the doxy-PEP arm --- appears three times in the trial's own outputs with
+three different values (Table 2). The resistant count ranges from 5 to
+28 for one measurement.
 
-The \textbf{outcome} is tetracycline non-susceptibility among \textit{S.\ aureus}
-isolates---not MRSA. A caveat travels with it: \textit{tetK} (efflux) confers
-tetracycline resistance while leaving doxycycline active, whereas \textit{tetM}
-(ribosomal protection) does not. In a doxy-PEP-eligible population, 13.2\% of
-isolates were tetracycline-resistant but only 2.0\% doxycycline-resistant.
-Surveillance that reports ``tetracycline'' susceptibility is therefore loosely
-coupled to the drug actually taken, and any outcome variable must carry that
-caveat.
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\caption{\textbf{Table 2.} One endpoint, three venues, irreconcilable
+counts. Month-0 figures largely agree (appendix 12/139 ≈ abstract
+12/141); month-12 diverges. The CDC guideline's ``20 of 428 \ldots{} 28
+of 222'' matches the \emph{slides}, not the published abstract table
+(12/334, 16/137).}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Source
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+resistant
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+denominator
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+rate
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Source
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+resistant
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+denominator
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+rate
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+NEJM Supplementary Appendix, Table 2 ({Luetkemeyer et al.} 2023) & 5 &
+31 carriers & 16.1\% \\
+CROI abstract table (Luetkemeyer and DoxyPEP Study Team 2023) & 16 & 137
+swabbed / 40 carriers & 11.7\% / 40.0\% \\
+CROI slides, as cited by CDC (Centers for Disease Control and Prevention
+2024) & 28 & 222 swabbed / 69 carriers & 12.6\% / 40.6\% \\
+\end{longtable}
 
-\subsection{Exposure data}
+Choosing among these figures would require the individual-level data.
+The trial's data-sharing statement answers the question ``Will the data
+collected for your study be made available to others?'' with a single
+word --- ``No'' --- and leaves every subsequent field blank
+({Luetkemeyer et al.} 2023). The data that would settle the discordance
+are not available. (Coded: \texttt{data\_availability\ =\ no}.)
 
-We use AIDSVu state-level PrEP data, annual 2012--2025
-(public)~\cite{aidsvu}: PrEP users and rate, male PrEP users and rate, and the
-PrEP-to-Need ratio, for 52 geographies (50 states, DC, Puerto Rico). Male PrEP
-density is the better proxy, as doxy-PEP is recommended for MSM and transgender
-women and explicitly not for cisgender women. Population denominators are
-recovered internally from AIDSVu (users $\div$ rate $\times 10^5$) rather than
-imported, keeping numerator and denominator consistent. Metro-level PrEP exposure
-is not available as a public isolate-linked stream; we address the metro case
-analytically (Section~\ref{sec:metro}).
+\subsubsection{2.4 The in-category organism, and the authors' own
+conclusion}\label{the-in-category-organism-and-the-authors-own-conclusion}
 
-\subsection{The feasibility gate}
+The bystander is not the only organism affected. The abstract's
+gonococcal footnote records that phenotypic tetracycline-resistance
+testing was \textbf{unavailable for 83\% (212/256)} of gonorrhea
+diagnoses --- cultures not collected (57\%), failed to grow (39\%), or
+unusable (5\%). Even the intensively surveilled in-category organism, in
+a funded randomized trial, was phenotyped in fewer than one diagnosis in
+five. The authors' closing words name the need directly: ``surveillance
+\ldots{} is needed,'' ``longer term monitoring \ldots{} is needed to
+understand the trajectory and clinical importance of microbial
+susceptibility patterns.'' This is not our inference; the trial team
+states it. The sections that follow ask what such monitoring would
+require, and whether the evidence base as it stands can supply it.
 
-The observed population-level tetracycline non-susceptibility rate is a mixture of
-exposed and unexposed isolates. If doxy-PEP multiplies the exposed subgroup's
-resistance rate by RR, the induced shift in the observed rate is
-%
-\begin{equation}\label{eq:induced}
-  \Delta R = f \cdot R_0 \cdot (RR - 1)
-\end{equation}
-%
-where $R_0$ is baseline tetracycline non-susceptibility, RR is the within-exposed
-relative risk, and $f$ is the fraction of the geography's \textit{S.\ aureus}
-isolates originating from the exposed. The dilution fraction is
-%
-\begin{equation}\label{eq:dilution}
-  f = \frac{(\text{male PrEP users}) \times \text{uptake} \times \kappa}{\text{population}}
-\end{equation}
-%
-with uptake the doxy-PEP uptake among PrEP users (bounded 20--55\%; 55\% is a San
-Francisco sexual-health-clinic high-water mark, not a national value) and $\kappa$
-an isolate-enrichment factor ($\kappa = 1$ is proportional sampling). With $N$
-isolates per geography-year, the minimum detectable absolute change in a
-proportion near $R_0$ (two-sided $\alpha = 0.05$, 80\% power) is
-%
-\begin{equation}\label{eq:mde}
-  \mathrm{MDE} = (z_{\alpha/2} + z_{\text{power}})\sqrt{2 R_0 (1-R_0)/N}
-\end{equation}
-%
-and the within-exposed RR that would be \emph{needed} for detection follows by
-inverting \eqref{eq:induced}:
-%
-\begin{equation}\label{eq:rrneeded}
-  RR_{\text{needed}} = 1 + \frac{\mathrm{MDE}}{f \cdot R_0}.
-\end{equation}
-%
-The gate fails if $RR_{\text{needed}}$ exceeds the optimistic observed effect
-(RR $= 1.42$) across a sensitivity grid. Parameters are chosen to \emph{favour}
-detection so that a failed gate is robust: uptake $\in \{20, 35, 55\}\%$,
-$\kappa \in \{1, 3, 5\}$, $R_0 \in \{5, 10, 13\}\%$, and---deliberately---isolate
-volumes $N \in \{1\,000, 10\,000, 100\,000\}$ per geography-year, where
-$100\,000$ exceeds any real US surveillance stream. Soge's RR 1.42
-($>$3 doses/month) is the optimistic ceiling~\cite{soge2025}.
+\subsection{3. The pattern is general: three
+streams}\label{the-pattern-is-general-three-streams}
 
-\subsection{The metro pivot, analytically}\label{sec:metro}
+If the pattern were confined to one presentation, it would be a
+curiosity. To see whether it is more general, we coded the evidence base
+against a single yardstick --- \emph{what would it take for this source
+to detect the bystander signal?} --- across three streams. Coding
+schemas, double-coding reliability, and locators are in the repository
+(\texttt{CODEBOOK*.md}, \texttt{METHODS\_streamB.md}); every source is
+SHA-256--pinned.
 
-The dilution fraction is population-\emph{independent}---it depends on exposure
-\emph{density}, not headcount:
-%
-\begin{equation}\label{eq:density}
-  f = \phi \cdot \frac{\text{male PrEP rate}}{10^5} \cdot \text{uptake} \cdot \kappa
-\end{equation}
-%
-with $\phi$ the adult-male share of the isolate-generating population
-($\approx 0.5$). The metro question is therefore whether any real metro's
-male-PrEP density is high enough. We invert \eqref{eq:rrneeded} to the required
-density and compare it against the densest geography that exists in
-AIDSVu---Washington, D.C.\ (2\,694 per 100\,000 adult males, 2022)---a city-state
-and a generous empirical ceiling for any US metro (San Francisco and King County
-do not exceed it). No metro-specific PrEP file exists as a public isolate-linked
-resource; D.C.\ therefore serves as the observed high-water mark, and requirements
-are expressed as multiples of it and, more transparently, as a share of \emph{all}
-adult males.
+\subsubsection{3.1 Stream A --- trials are underpowered and
+mechanism-blind}\label{stream-a-trials-are-underpowered-and-mechanism-blind}
 
-\subsection{Reproducibility}
+Across the three primary doxy-PEP trials that assayed \emph{S. aureus}
+(DoxyPEP, DuDHS, DOXYVAC), \textbf{0 of 4} doxy-versus-control \emph{S.
+aureus} comparisons are powered to detect even an externally specified
+effect. Treating the benchmark as fixed \emph{a priori} from an
+independent source (a design-based sensitivity analysis, not observed
+power), the minimum detectable relative risk is 3.8--5.1, above both the
+\emph{S. aureus}-matched benchmark (Soge's tetracycline-resistant
+colonization, 18\% vs 8\%, RR ≈ 2.25) and the cross-organism gonococcal
+figure (RR 1.42) ({Soge et al.} 2025). The mechanism asymmetry is
+systematic and cross-trial: the in-category organisms are assayed with
+mechanism-\emph{discriminating} methods (tetM PCR, whole-genome
+sequencing, high-level breakpoints), the bystander with
+mechanism-\emph{blind} standard breakpoints that cannot separate tetK
+from tetM (Grossman 2016). A military cohort study of antimalarial
+doxycycline shows why this matters: overall tetracycline resistance in
+\emph{S. aureus} did not differ by exposure, yet tetM genes were
+significantly \emph{more} common in the doxycycline-exposed (p=0.031)
+--- the blind endpoint null, the discriminating endpoint positive,
+within one dataset. (\texttt{outputs/detectability\_result.md}.)
 
-All analysis is Python 3.11 (pandas, statsmodels, matplotlib); there are no
-proprietary dependencies. Raw data are immutable; all cleaning is in code; every
-figure and table regenerates from \texttt{make all} with no manual steps. Analysis
-decisions that could go either way are logged with dates in the repository before
-results are known. The repository is public with code and data---a standard the
-companion 150-journal audit found essentially no journal
-requires~\cite{demidontmetaarxiv}.
+\subsubsection{3.2 Stream B --- guidelines counsel about the harm they
+do not
+measure}\label{stream-b-guidelines-counsel-about-the-harm-they-do-not-measure}
 
-%----------------------------------------------------------------------- RESULTS
-\section{Results}
+Every governmental doxy-PEP guideline we coded (n = 9; national, state,
+county, city; CDC, WHO, and seven US jurisdictions) shows the same
+within-document asymmetry. The efficacy question receives a graded,
+systematic evidence review; the antimicrobial-resistance harm ---
+explicitly including resistant-pathogen development --- receives an
+ungraded literature review in the same document. Providers are
+\emph{required to counsel} patients about resistance in commensal
+organisms, and \emph{no} guideline requires any \emph{S. aureus}
+measurement, follow-up culture, or bystander panel. Where a monitoring
+recommendation does appear, it concerns a different organism. The corpus
+is uniform: 0 of 9 instrument the bystander. Inter-coder agreement was
+92\%; the one field with meaningful disagreement (κ = 0.58) is reported
+as such and not rounded up. (\texttt{outputs/streamB\_result.md},
+\texttt{METHODS\_streamB.md}.)
 
-\subsection{State level}
+\subsubsection{3.3 Stream C --- no surveillance system could detect
+it}\label{stream-c-no-surveillance-system-could-detect-it}
 
-Across the full sensitivity grid, \textbf{0 of 81 scenarios are detectable}. The
-within-exposed RR required to move the state-level rate is a median of ${\sim}14$
----roughly ten times Soge's optimistic 1.42. Even the single most detection-
-favourable cell needs RR $= 1.9$, above the ceiling; under a realistic cell
-(proportional sampling, 1\,000 isolates/year, uptake 35\%) it needs
-RR $\approx 86$, ${\sim}60\times$ the observed effect. Notably, the most
-favourable ``state'' is the city-state D.C., which itself points toward the metro
-pivot (Figure~\ref{fig:state}).
+Suppose one wished to build the surveillance the trial's authors say is
+needed, on the population data that exist. It cannot detect the signal,
+and the reason is arithmetic. The observed population
+tetracycline-non-susceptibility rate is a mixture of exposed and
+unexposed isolates; if doxy-PEP multiplies the exposed subgroup's rate
+by RR, the induced shift is \(\Delta R = f\,R_0\,(RR-1)\), where \(f\)
+is the fraction of a geography's \emph{S. aureus} isolates that come
+from the exposed. Because the exposed are a small, concentrated
+subgroup, \(f\) is tiny, and the within-exposed RR \emph{required} to
+move a detectable population rate is enormous. Using public AIDSVu PrEP
+density as an exposure proxy (AIDSVu 2026) and a generous sensitivity
+grid (§4.3), \textbf{0 of 81 state-level scenarios are detectable}: the
+required RR is a median of \textasciitilde14, versus Soge's optimistic
+1.42. The metro pivot does not rescue it --- detection would require
+male-PrEP density 2.1× to \textasciitilde480× that of the densest US
+geography (Washington, D.C.), or an impossible 325\% of all adult males
+on PrEP under realistic isolate volumes. The single lever that recovers
+detectability is isolate enrichment κ --- i.e.~sampling \emph{S. aureus}
+directly from the exposed --- which is a cohort or sentinel-clinic
+design, not surveillance. The monitoring the authors request cannot be
+assembled from population data; it must be built as targeted sampling
+that does not yet exist at scale. (Figures 1--3;
+\texttt{outputs/feasibility\_result.md},
+\texttt{outputs/feasibility\_metro\_result.md}.)
 
-\subsection{Metro level}
+\subsubsection{3.4 The gap extends into the literature
+itself}\label{the-gap-extends-into-the-literature-itself}
 
-The pivot does not rescue the design. Detection would require male-PrEP density
-from 2.1$\times$ (most favourable cell) to ${\sim}480\times$ (realistic cells)
-that of D.C.---the densest US geography---and 0 of 81 scenarios are achievable
-within a generous 2$\times$ ceiling. In proxy-free units, the male-PrEP coverage
-required is \textbf{325\% of all adult males} under realistic isolate volumes
-(impossible) and \textbf{6.5\% even in the fantastical best case} (100\,000
-isolates/year, 5$\times$ enrichment, 55\% uptake), versus D.C.'s observed 2.7\%
-and the single-digit-percent MSM share of any real male population
-(Figures~\ref{fig:metro}--\ref{fig:breakeven}).
+A defined PubMed search (2015--2026; queries and a frozen result
+snapshot in the repository) finds \textbf{361} doxy-PEP papers, of which
+\textbf{13 (3.6\%)} so much as name a bystander staphylococcal organism,
+and only \textbf{2} measure tetracycline-resistant \emph{S. aureus}
+against a doxy-PEP exposure contrast. The bystander is almost never
+named, and when named, almost never measured.
+(\texttt{outputs/literature\_search\_result.md}.)
 
-\subsection{Robustness}
+\subsection{4. Methods}\label{methods}
 
-The verdict is not an artifact of the modeling knobs. Sweeping the adult-male
-share (0.4--0.6) and the ``achievable'' density ceiling (1--5$\times$ D.C.) across
-the full grid, the achievable-cell count stays 0 at any realistic ceiling
-($\le 2\times$ D.C.). Cells begin to open only under a \emph{compound} of
-implausibilities---a metro 3--5$\times$ denser than any US geography that exists,
-\textbf{and} the fantastical isolate volume of 100\,000/year, \textbf{and}
-$\kappa \ge 3$---and even then at most 11 of 81. Every such cell's high $\kappa$ is
-targeted clinic sampling, i.e.\ a cohort design, not the ecological one under test.
+\subsubsection{4.1 Sources and coding}\label{sources-and-coding}
 
-%-------------------------------------------------------------------- DISCUSSION
-\section{Discussion}
+Primary trials, guidelines, and comparator papers were coded one
+document per YAML record, every value carrying a page/section/table
+locator; the builder fails on a missing locator rather than emitting a
+null. Resistance observations are coded one per \emph{reported instance}
+(not per underlying result), recording the phenotype measured versus the
+phenotype as labeled, the mechanism-discrimination method, the
+numerator/denominator, and the denominator basis (all-swabbed, carriers,
+isolates). Guidelines were double-coded (blind second coder; 92\%
+agreement) with Cohen's κ per field. All 40+ source files are
+SHA-256--pinned (\texttt{data/raw/**/CHECKSUMS.md}); the CROI keystone
+is transcribed and hashed at \texttt{croi2023\_luetkemeyer\_OA3.md}.
 
-The association between doxy-PEP and tetracycline-resistant \textit{S.\ aureus}, if
-it exists, cannot be detected by population-scale ecological surveillance at any
-geographic grain that carries a population denominator. The reason is not a weak
-effect but a sampling mismatch: the exposed are a small, geographically
-concentrated subgroup, and surveillance samples the whole population. The only
-lever in \eqref{eq:dilution} that recovers detectability is enrichment,
-$\kappa$---and high $\kappa$ is exactly targeted sampling of \textit{S.\ aureus}
-from the exposed population, which is a cohort or sentinel-clinic design, not
-surveillance. King County's doxy-PEP-era sexual-health-clinic isolate collection
-is that design; it is where the signal lives, and it is not what population
-surveillance provides.
+\subsubsection{4.2 Detectability (Stream
+A)}\label{detectability-stream-a}
 
-This is measurement inheritance made quantitative. A surveillance system encodes,
-in its sampling frame and its variables, the organism and question it was built
-for. Gonococcal resistance is tracked intensively because it is \emph{in
-category}; the bystander \textit{S.\ aureus} signal is diluted below detectability
-precisely because it is not. The exposure, too, is inherited in the wrong
-units---a binary prescription where the biology responds to cumulative
-drug-days~\cite{soge2025}---the same misspecification that undermines
-prescription-anchored ITS designs in this literature~\cite{demidontcid}. The blind
-spot is not an oversight to be corrected by better analysis of existing data; it is
-a property of the instrument.
+For each primary-trial \emph{S. aureus} arm comparison we compute, from
+the arm sizes and observed control rate alone, the exact-Fisher power to
+detect an effect fixed \emph{a priori} from a source external to the
+trials, and the minimum detectable relative risk at 80\% power --- a
+\textbf{design-based sensitivity analysis}, explicitly not observed
+power. Per-arm counts are single- to low-double-digit, so the exact test
+is used throughout.
 
-What would it take to see the signal? The calculation names the instrumentation:
-sentinel sampling of \textit{S.\ aureus} from doxy-PEP-exposed individuals
-(raising $\kappa$ by construction), capture of dosing frequency rather than
-prescription status, and a bystander-organism panel run on the same specimens as
-gonococcal surveillance. None of these is exotic; none exists at scale. That
-absence---not any single estimate---is the finding.
+\subsubsection{4.3 The surveillance feasibility gate (Stream
+C)}\label{the-surveillance-feasibility-gate-stream-c}
 
-%------------------------------------------------------------------- LIMITATIONS
-\section{Limitations}
+The dilution fraction is
+\(f = \phi\,(\text{male-PrEP rate}/10^5)\,\text{uptake}\,\kappa\),
+population-independent because it tracks exposure \emph{density}, not
+headcount. The minimum detectable change in a proportion near \(R_0\)
+(two-sided α = 0.05, 80\% power) inverts to
+\(RR_\text{needed} = 1 + \text{MDE}/(f R_0)\). Parameters are bounded to
+\emph{favour} detection so a failed gate is robust: uptake ∈ \{20, 35,
+55\}\%, κ ∈ \{1, 3, 5\}, \(R_0\) ∈ \{5, 10, 13\}\%, isolate volume \(N\)
+∈ \{1 000, 10 000, 100 000\} per geography-year (100 000 exceeds any
+real US stream). A panel-power bound and a break-even frontier in
+proxy-free units (share of all adult males on PrEP) are computed
+identically; the metro case uses Washington, D.C. (2 694 per 100 000
+adult males) as the observed density ceiling because no metro/county
+PrEP density exists as a public isolate-linked resource.
 
-The link is ecological and rests on two proxy layers: geographic PrEP density
-proxies doxy-PEP uptake, which proxies cumulative population doxycycline-days.
-\textit{S.\ aureus} isolates carry no sexual-behaviour tag. No outcome data were
-acquired---by design: the feasibility gate failed first, and acquiring
-surveillance data to estimate an undetectable signal would be effort spent to
-confirm a foregone null. Metro exposure uses D.C.\ as an empirical ceiling because
-no metro/county PrEP density is available as a public isolate-linked resource;
-obtaining real San Francisco / King County / Los Angeles / New York county
-densities would sharpen, but cannot overturn, a conclusion that already holds by
-orders of magnitude. The ``tetracycline'' outcome is loosely coupled to
-doxycycline via the \textit{tetK}/\textit{tetM} distinction, which would attenuate
-any real effect further. Modeling assumptions were bounded generously toward
-detection; the negative verdict is robust to them (Section~3.3).
+\subsubsection{4.4 Reproducibility}\label{reproducibility}
 
-%------------------------------------------------------- FALSIFICATION
-\section{What would change this conclusion}
+All analysis is Python 3.11 (pandas, statsmodels, scipy, matplotlib); no
+proprietary dependencies. Raw data are immutable; all cleaning is in
+code; every figure and table regenerates from \texttt{make\ all}.
+Analysis decisions that could go either way are logged with dates in
+\texttt{DECISIONS.md} before results are known. The repository is public
+with code and data --- a standard the companion 150-journal audit found
+essentially no journal requires ({Demidont and Farina} 2026).
 
-Consistent with a falsification standard: the conclusion would change if a
-surveillance stream emerged that samples the exposed population directly (high
-$\kappa$), or if isolate volumes with exposure linkage rose by orders of
-magnitude, or if the true within-exposed RR were far above the observed 1.42. And
-should such data ever permit the intended ITS, the hypothesis itself is
-falsifiable: if tetracycline resistance in \textit{S.\ aureus} is flat or
-declining in high-PrEP-density geographies after the guideline interruption while
-the negative controls behave, the hypothesis is wrong, and that is a publishable
-result. The present paper's claim is prior to and independent of that test: with
-the surveillance that exists, the test cannot be run.
+\subsection{5. Discussion}\label{discussion}
 
-\nolinenumbers
+The DoxyPEP resistance substudy reads, on its face, as reassurance:
+colonization down, resistance ``modest,'' changes ``unlikely to have
+clinical significance.'' Taken together with its own numbers, it reads
+instead as an account of a question the instrument in hand cannot
+answer. The reported phenotype is named for one drug and measured with
+another; the rate is expressed over a denominator the intervention
+moves; the same endpoint is reported as 5, 16, or 28 across three
+venues; the data that would settle the difference are not released; the
+in-category organism was phenotyped in fewer than one case in five. None
+of this is peculiar to one presentation. Each recurs across the streams:
+trials underpowered and mechanism-blind for the bystander, guidelines
+that counsel about a harm they do not measure, and surveillance that
+cannot detect a signal it was not built to sample.
 
-%----------------------------------------------------------------------- FIGURES
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.85\linewidth]{feasibility_dilution.png}
-  \caption{\textbf{State level.} Within-exposed relative risk required for a
-  detectable state-level shift in tetracycline non-susceptibility, over doxy-PEP
-  uptake $\times$ isolate enrichment (best state, $R_0 = 10\%$, $N =
-  100\,000$/state-year). Every cell exceeds Soge's optimistic RR $= 1.42$.}
-  \label{fig:state}
+One sentence carries the argument, and it belongs to the trial team, not
+to us: the monitoring they call for is monitoring the evidence base they
+helped launch is not built to provide. It is a quiet observation rather
+than a charge. The trial measured the bystander, named the assay for a
+different drug, reported it over a denominator its own effect moved,
+could not reconcile the result across its own venues, did not release
+the data that would settle it, and asked for longer-term monitoring. The
+three streams show why that monitoring cannot simply be assembled from
+what exists.
+
+This is \emph{measurement inheritance}, made concrete. An analysis ---
+or a guideline, or a surveillance system --- carries in its sampling
+frame, its cadence, its coding, and its \textbf{denominator} the
+organism and question it was built for. The doxy-PEP apparatus was built
+to measure gonococcal efficacy; applied to a bystander commensal, it
+inherits a denominator the intervention itself moves, a label that spans
+two mechanisms, and a reporting frame in which a 4.7-fold per-carrier
+change appears modest. The gap is not an oversight to be closed by
+better analysis of the existing data; it is a property of the
+instrument. Put another way, the paper is an epistemological exercise
+conducted with data science: it uses public data and regenerable code to
+locate the boundary of what the current instruments can know about the
+bystander, and finds that boundary short of the question.
+
+What would it take to see the signal? The streams name the
+instrumentation: sentinel sampling of \emph{S. aureus} from
+doxy-PEP-exposed individuals (which raises κ by construction and fixes
+the denominator), resistance reported per carrier and by mechanism (tetM
+versus tetK) rather than as a pooled ``tetracycline class'' rate over
+all swabbed, dosing frequency rather than prescription status, and ---
+at a minimum --- release of the individual-level data the trials already
+hold. None of these is exotic; none is yet in place at scale. That
+absence, rather than any single estimate, is the finding.
+
+\textbf{A note on what we are and are not claiming.} We do not claim
+doxy-PEP causes tetracycline- or doxycycline-resistant \emph{S. aureus};
+the trial's own between-arm test is non-significant and we do not
+dispute it. We do not claim the per-carrier rise is statistically
+significant; the data to test it are not public. We claim that the
+evidence base --- the pivotal trial's own report first, and the
+surrounding streams after --- is not instrumented to answer the
+question, and that its reassuring framing is an artifact of that
+instrumentation. Colonization is not infection, and the
+colonization--infection link for \emph{S. aureus} is itself unmeasured
+here; that is one more thing the apparatus does not see.
+
+\subsection{6. What would change this
+conclusion}\label{what-would-change-this-conclusion}
+
+Consistent with a falsification standard: the argument fails if a
+doxy-PEP guideline requires \emph{S. aureus} monitoring (Stream B
+falsified), if any primary trial proves adequately powered and
+mechanism-resolving for the bystander endpoint (Stream A weakened), if a
+surveillance stream emerges that samples the exposed directly (Stream C
+falsified), or if the trials' individual-level data are released and the
+5/16/28 discordance resolves cleanly to a single correct value with a
+per-carrier rate that is flat. Should such data ever permit a controlled
+test, the underlying hypothesis is itself falsifiable: if tetracycline
+resistance in \emph{S. aureus} is flat or declining in high-exposure
+populations while negative controls behave, the hypothesis is wrong, and
+that is a publishable result. The present claim is prior to and
+independent of that test: with the evidence base that exists, the test
+cannot be run.
+
+\subsection{Figures}\label{figures}
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figure 1. State level. Within-exposed relative risk required for a detectable state-level shift in tetracycline non-susceptibility, over doxy-PEP uptake × isolate enrichment (best state, R₀ = 10\%, N = 100 000/state-year). Every cell exceeds Soge's optimistic RR = 1.42.}]{../outputs/figures/feasibility_dilution.png}}
+\caption{\textbf{Figure 1.} State level. Within-exposed relative risk
+required for a detectable state-level shift in tetracycline
+non-susceptibility, over doxy-PEP uptake × isolate enrichment (best
+state, R₀ = 10\%, N = 100 000/state-year). Every cell exceeds Soge's
+optimistic RR = 1.42.}
 \end{figure}
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.85\linewidth]{feasibility_metro.png}
-  \caption{\textbf{Metro level.} Male-PrEP density required for a detectable
-  shift, as multiples of the densest US geography (Washington, D.C.).
-  1$\times$ is already the national maximum.}
-  \label{fig:metro}
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figure 2. Metro level. Male-PrEP density required for a detectable shift, as multiples of the densest US geography (Washington, D.C.). 1× is already the national maximum.}]{../outputs/figures/feasibility_metro.png}}
+\caption{\textbf{Figure 2.} Metro level. Male-PrEP density required for
+a detectable shift, as multiples of the densest US geography
+(Washington, D.C.). 1× is already the national maximum.}
 \end{figure}
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.85\linewidth]{feasibility_metro_breakeven.png}
-  \caption{\textbf{Break-even in proxy-free units.} Share of \emph{all} adult
-  males on PrEP required for detection versus isolates per geography-year, by
-  enrichment $\kappa$. Every curve sits above D.C.'s observed 2.7\% and, under
-  realistic isolate volumes, above the 100\%-of-males physical ceiling.}
-  \label{fig:breakeven}
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figure 3. Break-even in proxy-free units. Share of all adult males on PrEP required for detection versus isolates per geography-year, by enrichment κ. Every curve sits above D.C.'s observed 2.7\% and, under realistic isolate volumes, above the 100\%-of-males physical ceiling.}]{../outputs/figures/feasibility_metro_breakeven.png}}
+\caption{\textbf{Figure 3.} Break-even in proxy-free units. Share of
+\emph{all} adult males on PrEP required for detection versus isolates
+per geography-year, by enrichment κ. Every curve sits above D.C.'s
+observed 2.7\% and, under realistic isolate volumes, above the
+100\%-of-males physical ceiling.}
 \end{figure}
 
-\clearpage
+\subsection{Declarations}\label{declarations}
 
-%------------------------------------------------------------------ DECLARATIONS
-\section*{Declarations}
+\textbf{Data and code availability.} All data are public (AIDSVu;
+published trials, guidelines, and the CROI abstract) and all analysis
+code is in the project repository, which regenerates every figure and
+table via \texttt{make\ all}. Every coded source is SHA-256--pinned. No
+restricted-access data were used.
 
-\noindent\textbf{Data and code availability.} All data are public (AIDSVu) and all
-analysis code is available in the project repository, which regenerates every
-figure and table via \texttt{make all}. No restricted-access data were used.
+\textbf{Conflicts of interest.} A.C.D. reports former employment at
+Gilead Sciences (01/2020--11/2024) with prior ownership of corporate
+stock, all divested by 12/2024; Gilead played no role in this work.
+A.C.D. is sole owner of Nyx Dynamics LLC. This work was completed
+independently of any funding.
 
-\vspace{0.5\baselineskip}
-\noindent\textbf{Conflicts of interest.} A.C.D.\ reports former employment at
-Gilead Sciences (01/2020--11/2024) with prior ownership of corporate stock, all
-divested by 12/2024; Gilead played no role in this work. A.C.D.\ is sole owner of
-Nyx Dynamics LLC. This work was completed independently of any funding.
+\textbf{Use of artificial intelligence.} A large language model was used
+for writing and analysis-engineering assistance beyond copyediting. The
+scientific argument, the close reading of the primary sources, the model
+specification, and all conclusions are the author's own; the author
+reviewed all generated content, independently verified every numerical
+value and quotation against primary sources and the regenerable analysis
+outputs, and takes full responsibility. No AI tool is credited as an
+author.
 
-\vspace{0.5\baselineskip}
-\noindent\textbf{Use of artificial intelligence.} A large language model was used
-for writing and analysis-engineering assistance beyond copyediting. The scientific
-argument, the model specification, the identification and interpretation of the
-cited literature, and all conclusions are the author's own; the author reviewed
-all generated content, independently verified every numerical value and reference
-against primary sources and the regenerable analysis outputs, and takes full
-responsibility. No AI tool is credited as an author.
+\textbf{Funding.} None.
 
-\vspace{0.5\baselineskip}
-\noindent\textbf{Funding.} None.
+\subsection*{References}\label{references}
+\addcontentsline{toc}{subsection}{References}
 
-%------------------------------------------------------------------- REFERENCES
-\newpage
-\singlespacing
-% Ordered by first appearance in the text (Vancouver). At submission, switch to
-% bibtex + the venue's .bst and this ordering is produced automatically.
-\begin{thebibliography}{99}
+\protect\phantomsection\label{refs}
+\begin{CSLReferences}{1}{1}
+\bibitem[\citeproctext]{ref-aidsvu}
+AIDSVu. 2026. \emph{State and County {PrEP} Use and {PrEP}-to-Need
+Ratio, 2012--2025}. Emory University, Rollins School of Public Health.
+\url{https://aidsvu.org}.
 
-\bibitem{cdc2024} Centers for Disease Control and Prevention. Guidelines for the
-use of doxycycline postexposure prophylaxis for bacterial sexually transmitted
-infection prevention. \textit{MMWR Recomm Rep} 2024 [volume/pages to verify].
+\bibitem[\citeproctext]{ref-cdc2024doxypep}
+Centers for Disease Control and Prevention. 2024. \emph{Guidelines for
+the Use of Doxycycline Postexposure Prophylaxis for Bacterial Sexually
+Transmitted Infection Prevention}. MMWR Recomm Rep.
 
-\bibitem{sfdph2022} San Francisco Department of Public Health. Health update:
-doxycycline post-exposure prophylaxis (doxy-PEP) for prevention of bacterial STIs.
-October 2022 [to verify].
+\bibitem[\citeproctext]{ref-demidont2026metaarxiv}
+{Demidont, Adrian C., and {[}coauthor{]} Farina}. 2026. \emph{A
+150-Journal Audit of Computational-Reproducibility Policy: Fifty Policy
+Units, Zero Code or Runnable-Artifact Mandates}. MetaArXiv preprint.
 
-\bibitem{aidsvu} AIDSVu. State and county PrEP use and PrEP-to-Need ratio,
-2012--2025. Emory University, Rollins School of Public Health.
-\url{https://aidsvu.org} (accessed 2026).
+\bibitem[\citeproctext]{ref-grossman2016}
+Grossman, Trudy H. 2016. {``Tetracycline Antibiotics and Resistance.''}
+\emph{Cold Spring Harb Perspect Med} 6 (4): a025387.
 
-\bibitem{soge2025} Soge OO, Thibault CS, Cannon CA, et~al. Potential impact of
-doxycycline post-exposure prophylaxis on tetracycline resistance in
-\textit{Neisseria gonorrhoeae} and colonization with tetracycline-resistant
-\textit{Staphylococcus aureus} and Group A \textit{Streptococcus}.
-\textit{Clin Infect Dis} 2025;80:1188--96.
+\bibitem[\citeproctext]{ref-luetkemeyer2023}
+{Luetkemeyer, Anne F., Deborah Donnell, Julia C. Dombrowski, et al.}
+2023. {``Postexposure Doxycycline to Prevent Bacterial Sexually
+Transmitted Infections.''} \emph{N Engl J Med} 388: 1296--306.
 
-\bibitem{luetkemeyer2023} Luetkemeyer AF, Donnell D, Dombrowski JC, et~al.
-Postexposure doxycycline to prevent bacterial sexually transmitted infections.
-\textit{N Engl J Med} 2023;388:1296--306.
+\bibitem[\citeproctext]{ref-luetkemeyer2023croi}
+Luetkemeyer, Anne F., and DoxyPEP Study Team. 2023. \emph{{DoxyPEP} and
+Antimicrobial Resistance in {N. gonorrhoeae}, Commensal {Neisseria} and
+{S. aureus}}. Conference on Retroviruses and Opportunistic Infections
+(CROI), Oral Abstract OA-3.
 
-\bibitem{schroder2025} Schr\"{o}der D, Cherdtrakulkiat T, Doanh LH, et~al.
-Exceedingly high levels of tetracycline resistance in \textit{Neisseria
-gonorrhoeae} in eight WHO Enhanced Gonococcal Antimicrobial Surveillance
-Programme countries. \textit{J Antimicrob Chemother} 2025;80:1291--5.
+\bibitem[\citeproctext]{ref-schroder2025}
+{Schröder, D., T. Cherdtrakulkiat, L. H. Doanh, et al.} 2025.
+{``Exceedingly High Levels of Tetracycline Resistance in {Neisseria
+gonorrhoeae} in Eight {WHO} Enhanced Gonococcal Antimicrobial
+Surveillance Programme Countries.''} \emph{J Antimicrob Chemother} 80:
+1291--95.
 
-\bibitem{demidontcid} Demidont AC. Time zero is not common to both arms in an
-interrupted time series analysis of doxycycline post-exposure prophylaxis.
-\textit{Clin Infect Dis} 2026 (correspondence; submitted, CID-S-26-03420).
+\bibitem[\citeproctext]{ref-soge2025}
+{Soge, Olusegun O., Christina S. Thibault, Chase A. Cannon, et al.}
+2025. {``Potential Impact of Doxycycline Post-Exposure Prophylaxis on
+Tetracycline Resistance in {Neisseria gonorrhoeae} and Colonization with
+Tetracycline-Resistant {Staphylococcus aureus} and {Group A
+Streptococcus}.''} \emph{Clin Infect Dis} 80: 1188--96.
 
-\bibitem{spinelli2026} Spinelli MA, Heise MJ, Roman J, et~al. Sustained
-effectiveness of doxycycline post-exposure-prophylaxis in a large sexual health
-clinic over 96 weeks: an interrupted time series analysis. \textit{Clin Infect
-Dis} 2026;82:1075--8.
-
-\bibitem{lopezbernal2018} Lopez Bernal J, Cummins S, Gasparrini A. The use of
-controls in interrupted time series studies of public health interventions.
-\textit{Int J Epidemiol} 2018;47:2082--93.
-
-\bibitem{demidontmetaarxiv} Demidont AC, Farina [initials]. A 150-journal audit of
-computational-reproducibility policy: fifty policy units, zero code or
-runnable-artifact mandates. MetaArXiv preprint 2026.
-
-\end{thebibliography}
+\end{CSLReferences}
 
 \end{document}
