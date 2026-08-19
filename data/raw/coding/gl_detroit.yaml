@@ -1,0 +1,43 @@
+# Stream B v2 — governmental. First-pass (claude-firstpass); needs PI verification.
+unit: detroit_pubhealth_2022
+jurisdiction_level: city
+issuing_body: "Detroit Public Health STD Clinic (Detroit Health Department)"
+document_title: "Doxycycline Post-Exposure Prophylaxis Protocol"
+document_type: clinical_protocol
+version: "2022-01-04"
+effective_date: "2022-01-04"
+source_file: guideline_detroit_pubhealth_std_2022.pdf
+coder: claude-firstpass
+code_date: "2026-08-19"
+
+bystander_treatment: generic_microbiome_resistance
+bystander_treatment_locator: "IV Counseling Messages (AMR + gut microbiome 'being collected and reviewed')"
+
+s_aureus_named: false
+s_aureus_location: absent
+s_aureus_location_locator: "whole document — S. aureus / staph / MRSA not named"
+
+in_category_monitoring: "Persons taking doxy-PEP should be screened every three months for [STIs]; screen for other STIs every 3 months, regardless of HIV serostatus"
+in_category_monitoring_locator: "III Monitoring While Taking Doxycycline (b)"
+
+s_aureus_monitoring: silent
+s_aureus_monitoring_locator: "III Monitoring — no organism monitored beyond in-category STIs"
+
+host_toxicity_labs: required
+host_toxicity_labs_locator: "III Monitoring (a) — 'Per the doxycycline package insert, LFTs, renal function and a CBC [should be checked]'"
+
+counselling_language_verbatim: "Study data on the impact of doxy-PEP on antibiotic resistance and the gut microbiome are being collected and reviewed."
+counselling_language_locator: "IV Counseling Messages"
+
+derived_from: "San Francisco City Clinic — 'The protocol proposed here has been adapted from the San Francisco [City Clinic]'"
+local_mrsa_msm_literature: null
+literature_search_provenance: "Not independently searched as of 2026-08-19; Detroit not in the STREAM_B_HANDOFF verified-pairings table. Flagged for AC."
+same_institution_authored_both: "no"
+
+note: >-
+  Among the EARLIEST US governmental doxy-PEP protocols (4 Jan 2022) — 2.5 years
+  before CDC's June 2024 guidance. Host-toxicity labs required (LFT/renal/CBC per
+  package insert) but no organism monitored for the bystander; AMR mentioned only
+  generically ('being collected and reviewed'). FOURTH template-lineage node and
+  the SECOND pointing to San Francisco City Clinic (with LA County) — SF 2022 is a
+  repeated seed.

@@ -1,0 +1,39 @@
+# Stream B v2 — governmental. First-pass (claude-firstpass); needs PI verification.
+unit: philadelphia_pdph_2024
+jurisdiction_level: city
+issuing_body: "Philadelphia Department of Public Health, Division of Disease Control"
+document_title: "Updated Guidance from CDC on the Use of Doxycycline for Chemoprophylaxis of Bacterial STIs (PDPH-HAN-00446V)"
+document_type: health_advisory
+version: "PDPH-HAN-00446V, 2024-07-02"
+effective_date: "2024-07-02"
+source_file: guideline_philadelphia_pdph_han_2024.pdf
+coder: claude-firstpass
+code_date: "2026-08-19"
+
+bystander_treatment: generic_microbiome_resistance
+bystander_treatment_locator: "Risk of Antimicrobial Resistance section (body names Neisseria; 'other common bacterial pathogens' generically)"
+
+s_aureus_named: true
+s_aureus_location: reference_title_only
+s_aureus_location_locator: "reference list (cited CROI 2023 abstract title)"
+s_aureus_location_citation: "Luetkemeyer AF, Dombrowski J, Cohen S, et al. Doxy PEP and antimicrobial resistance in N. gonorrhoeae, commensal Neisseria and S. aureus. CROI 2023 (conference abstract)"
+
+in_category_monitoring: "undergo bacterial STI testing at anatomic sites of exposure at baseline and every 3-6 months thereafter; HIV screening for HIV-negative MSM/TGW per current recommendations"
+in_category_monitoring_locator: "body (STI screening / follow-up)"
+
+s_aureus_monitoring: silent
+s_aureus_monitoring_locator: "body — no S. aureus monitoring (AMR section discusses Neisseria only)"
+
+host_toxicity_labs: silent
+host_toxicity_labs_locator: "body — no host-toxicity labs specified (relays CDC, whose Box 2 requires none)"
+
+derived_from: "CDC (6 Jun 2024 guidance) — the document is titled 'Updated Guidance from CDC'; every substantive claim is CDC's, no local epidemiology added"
+local_mrsa_msm_literature: null
+literature_search_provenance: "Per STREAM_B_HANDOFF verified pairings: none found for Philadelphia (two searches). Flagged; a null cell means 'none found under stated terms', not 'none exists'."
+same_institution_authored_both: "no"
+
+note: >-
+  The sharpest 'read then dropped' case: S. aureus appears ONLY inside the title
+  of a cited CROI 2023 abstract (whose subject IS the staph findings) — read
+  closely enough to cite, then omitted from every substantive statement, which
+  cover Neisseria alone. Document adds no local Philadelphia epidemiology.
