@@ -2,6 +2,41 @@
 
 Dated analysis decisions, logged before results are known. Append-only.
 
+## 2026-08-19 (late) — CROI abstract BODY + TABLE obtained: the keystone exhibit
+
+PI supplied the verbatim CROI 2023 abstract body and its data table (croiconference.org)
+and proposes the whole paper can rest on this one abstract. Agreed — it instantiates
+all three streams. Exact fractions added to `croi2023_luetkemeyer_OA3.md` (re-hashed).
+
+- **Relabel origin located.** The abstract TABLE CAPTION reads *"phenotypic resistance
+  to the tetracycline antibiotic class"* over columns whose S. aureus and commensal
+  Neisseria assays are DOXYCYCLINE (E-test) and only GC is tetracycline. The tet(K)/
+  tet(M) conflation the project is about is printed in the trial's OWN table title;
+  NEJM End Points sentence, CDC, and Szondy inherit it. `saureus_endpoint_label_mismatch`
+  note updated to name this origin.
+- **Deflation now EXACT (arm-split fractions).** Doxy-PEP doxy-R S. aureus over all-
+  swabbed 3.6% (12/334) -> 11.7% (16/137), concluded "without a significant increase
+  ... modest ... unlikely clinical significance" (p=0.19). Per CARRIER (÷ Staph+):
+  **12/141 = 8.5% -> 16/40 = 40.0%** (4.7x), while SOC falls 24.4% -> 10.7%. The
+  colonization reduction (16%) the abstract headlines deflates the denominator its
+  conclusion rests on.
+- **Multi-venue count discordance sharpened.** M12 doxy-arm doxy-R S. aureus resistant
+  count = 5 (NEJM appendix) / 16 (CROI abstract table) / 28 (CROI slides -> CDC). A
+  5-to-28 range for one endpoint. CDC's 20/428, 28/222 match the SLIDES, not the
+  published abstract table (12/334, 16/137) — the slides and abstract table disagree.
+  With data withheld (data_availability=no), none can be adjudicated.
+- **GC footnote = Stream C inside the trial.** Abstract footnote: TCN-R testing
+  unavailable in **83% (212/256)** of GC diagnoses (culture not collected 57%, failed
+  to grow 39%, contamination 5%). Even a funded RCT could not phenotype the in-category
+  organism in most cases.
+- **Authors concede the gap.** Abstract's last sentence ("surveillance ... is needed")
+  and the presentation's final bullet ("longer term monitoring ... to understand the
+  trajectory and clinical importance of microbial susceptibility patterns") are the
+  trial team stating the instrumentation does not yet exist — the project's thesis.
+- MRSA note refined: a primary denominator DOES exist in the CROI abstract table
+  (doxy M0 20/334, M12 2/137) though events are ~nil; NEJM has none. Detectability
+  unchanged (uses NEJM primary rows only).
+
 ## 2026-08-19 (evening) — CROI 2023 OA-3 slides obtained: CDC discrepancy RESOLVED + two corrections
 
 The PI supplied the CROI 2023 oral-abstract slides (Luetkemeyer, OA-3, Feb 20 2023;

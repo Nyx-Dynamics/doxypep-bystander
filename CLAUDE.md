@@ -61,17 +61,25 @@ Data-Sharing Statement — all hashed, all coded-source). Two are load-bearing:
   others?" — **No**, every downstream field an em-dash. Coded `data_availability =
   no`. This is the evidentiary-adequacy floor: the S. aureus discrepancies below
   cannot be settled by re-analysis because the individual-level data is withheld.
-- **S. aureus phenotype LABEL mismatch (not a switch, not concealment).** The
-  S. aureus assay was **doxycycline** throughout — E-test MIC ≥16 in the CROI 2023
-  methods table, NEJM Trial Procedures (p.1298), and NEJM Appendix Table 2. There was
-  never a tetracycline-*S. aureus* measurement. "Tetracycline" is only a **label**:
-  NEJM's End Points sentence (p.1298) groups S. aureus with gonococcus under
-  "tetracycline resistance," the protocol aims use it loosely, and CDC/Szondy carry
-  it downstream onto the doxycycline numbers. Coded `saureus_endpoint_label_mismatch
-  = yes`. (Direction still matters: tetracycline is the broader surrogate,
-  doxycycline the more conservative measure — so no hidden signal.) *An earlier
-  session over-read this as a "pre-specified tetracycline endpoint that was switched";
-  corrected 2026-08-19 — the assay was always doxycycline.*
+- **The keystone: the CROI 2023 abstract (OA-3) instantiates all three streams.**
+  `data/raw/papers/croi2023_luetkemeyer_OA3.md` holds the verbatim abstract body +
+  data table. Three exhibits in one abstract: (i) the **table caption** relabels the
+  pooled result "phenotypic resistance to the **tetracycline antibiotic class**" while
+  the S. aureus/Neisseria assays are doxycycline and only GC is tetracycline — the
+  tet(K)/tet(M) conflation printed in the trial's own title; (ii) the **conclusion**
+  calls a 4.7× per-carrier resistance rise "modest / no significant increase"; (iii)
+  the **last sentence** ("surveillance ... is needed"; presentation: "longer term
+  monitoring ... is needed") concedes the measurement gap. The GC footnote (TCN-R
+  testing unavailable in **83%, 212/256** of GC diagnoses) is Stream C inside the RCT.
+- **S. aureus phenotype LABEL mismatch (not a switch, not concealment).** The assay
+  was **doxycycline** throughout (E-test MIC ≥16: CROI table, NEJM Trial Procedures,
+  Appendix Table 2). "Tetracycline" is only a **label**, and it ORIGINATES in the CROI
+  abstract table caption ("tetracycline antibiotic class"); NEJM's End Points sentence,
+  CDC, and Szondy inherit it. Coded `saureus_endpoint_label_mismatch = yes`. (Direction
+  matters: tetracycline is the broader surrogate, doxycycline the more conservative
+  measure — no hidden signal.) *An earlier session over-read this as a "pre-specified
+  tetracycline endpoint that was switched"; corrected 2026-08-19 — assay was always
+  doxycycline.*
 - **CDC/NEJM discrepancy RESOLVED via CROI 2023 OA-3** (Luetkemeyer oral abstract,
   slides in hand: `data/raw/papers/croi2023_luetkemeyer_OA3.md`). CDC's 20/428 and
   28/222 are the CROI S. aureus doxy-R panel (doxy-PEP arm) over the **all-swabbed**

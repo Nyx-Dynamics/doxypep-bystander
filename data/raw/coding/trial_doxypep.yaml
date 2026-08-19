@@ -123,15 +123,18 @@ saureus_endpoint_label_mismatch:
     Only N. gonorrhoeae is tested for tetracycline (CROI: 'TCN-R MIC >= 2.0 by agar
     dilution').
   note: >-
-    The End Points sentence groups S. aureus with N. gonorrhoeae under 'tetracycline
-    resistance', but the S. aureus assay is DOXYCYCLINE (E-test MIC>=16) in every
-    methods source (NEJM Trial Procedures, CROI 2023 table, NEJM Appendix Table 2).
-    The label is accurate for gonococcus, a mislabel for S. aureus. This is a labeling
-    inconsistency, NOT a measurement switch (no tetracycline-S.-aureus assay exists)
-    and NOT concealment (tetracycline is the broader surrogate: tet(K)=tetracycline-R
-    but doxycycline-S, Grossman 2016; doxycycline is the more conservative measure).
-    CDC (and Szondy) carry the same 'tetracycline' mislabel downstream onto the
-    doxycycline numbers — see the CDC observation rows and croi2023_luetkemeyer_OA3.md.
+    The relabel ORIGINATES in the trial's own CROI 2023 abstract TABLE CAPTION:
+    'Bacterial isolation and phenotypic resistance to the TETRACYCLINE ANTIBIOTIC
+    CLASS' — printed over columns whose S. aureus and commensal Neisseria assays are
+    DOXYCYCLINE (E-test MIC>=16 and >=2) and only GC is tetracycline (agar dilution).
+    The trial pools three organisms and two drugs under one 'tetracycline class'
+    heading. NEJM's End Points sentence carries the same loose label; CDC and Szondy
+    inherit it downstream onto the doxycycline numbers. The S. aureus assay is
+    doxycycline in EVERY methods source (CROI table, NEJM Trial Procedures, Appendix
+    Table 2). Labeling inconsistency, NOT a measurement switch (no tetracycline-S.-
+    aureus assay exists) and NOT concealment (tetracycline is the broader surrogate:
+    tet(K)=tetracycline-R but doxycycline-S, Grossman 2016; doxycycline is the more
+    conservative measure). See CDC observation rows + croi2023_luetkemeyer_OA3.md.
 
 observations:
 
@@ -419,8 +422,11 @@ observations:
   #      (44%->31%), inflating the all-swabbed denominator and deflating the rate over
   #      it. This is the PI's point, sitting in the guideline's own numbers.
   # Not a CDC error against NEJM (different venue); it IS a relabel + a self-
-  # contradictory denominator. CROI vs NEJM-appendix counts do not reconcile
-  # (187/20/69/28 vs 139/12/31/5) — a separate discordance, see the CROI artifact.
+  # contradictory denominator. NB the CDC counts (20/428, 28/222) match the CROI
+  # SLIDES, not the published CROI abstract TABLE (12/334, 16/137) — even within CROI
+  # 2023 the slides and abstract table disagree. M12 doxy-R S. aureus resistant count
+  # is reported as 5 (NEJM appendix), 16 (abstract table), or 28 (slides/CDC) — a
+  # 5-to-28 range for one endpoint. Full discordance table in the CROI artifact.
   - source_type: guideline
     source_citation: "CDC MMWR 2024 (Bachmann)"
     arm: doxy
