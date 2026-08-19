@@ -51,6 +51,28 @@ signal?** — benchmarked against the one empirical anchor the literature suppli
 If Stream A's minimum detectable effects also exceed 1.42, one figure carries the
 paper: three streams, one reference line, nothing clears it.
 
+## Verified DoxyPEP primary-source findings (19 Aug 2026)
+
+From the NEJM package obtained 19 Aug (main text, Supplementary Appendix, Protocol,
+Data-Sharing Statement — all hashed, all coded-source). Two are load-bearing:
+
+- **The pivotal trial shares no data.** The Data-Sharing Statement (posted 6 Apr
+  2023) answers "Will the data collected for your study be made available to
+  others?" — **No**, every downstream field an em-dash. Coded `data_availability =
+  no`. This is the evidentiary-adequacy floor: the S. aureus discrepancies below
+  cannot be settled by re-analysis because the individual-level data is withheld.
+- **The bystander endpoint was switched between protocol and publication.** The
+  Protocol pre-specified **tetracycline** resistance in S. aureus (5 places:
+  L253/258/280/498/527), as did NEJM Methods (p.1297). The trial **reported
+  doxycycline** resistance (Results p.1299; Appendix Table 2). No tetracycline-S.-
+  aureus number is published anywhere in NEJM. The in-category organism (gonococcus)
+  KEPT its tetracycline endpoint (Appendix Table 1) — only the bystander switched.
+  Coded `resistance_endpoint_switched = yes`. This is constraint 2 (tetK/tetM) made
+  concrete in the trial's own design, and it **resolves the CDC/NEJM discrepancy**:
+  CDC's "tetracycline-resistant S. aureus" is faithful to the pre-specified (CROI)
+  endpoint and cannot map onto NEJM's doxycycline tables — not a CDC error. Only the
+  exact 428/222 denominator remains open (lives in the CROI 2023 abstract).
+
 ## Verified guideline findings (18 Aug 2026)
 
 From Bachmann LH, Barbee LA, Chan P, et al. MMWR Recomm Rep 2024;73(RR-2):1–8,

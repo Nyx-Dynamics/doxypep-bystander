@@ -2,6 +2,34 @@
 
 Dated analysis decisions, logged before results are known. Append-only.
 
+## 2026-08-19 — NEJM Appendix + Protocol + Data-Sharing obtained: two findings, one resolution
+
+Four DoxyPEP source files ingested and hashed (appendix, protocol, data-sharing,
+main text; papers/CHECKSUMS.md, all coded-source). Schema extended with two OPTIONAL
+CodedFields on TrialRecord (`data_availability`, `resistance_endpoint_switched`);
+optional so DuDHS/DOXYVAC are unaffected; +3 tests (26 pass).
+
+- **Finding 1 — data withheld.** The Data Sharing Statement (posted 2023-04-06)
+  answers "Will the data collected for your study be made available to others?" with
+  **No**, every downstream field an em-dash. Coded `data_availability = no`. This is
+  the evidentiary-adequacy floor: the S. aureus discrepancies cannot be adjudicated
+  by re-analysis because the individual-level data is not shared.
+- **Finding 2 — the bystander endpoint was switched.** The PROTOCOL pre-specified
+  **tetracycline** resistance in S. aureus (L253/258/280/498/527), as did NEJM
+  Methods (p.1297). The trial REPORTED **doxycycline** resistance (Results p.1299;
+  Appendix Table 2). No tetracycline-S.-aureus number is published anywhere in NEJM.
+  The in-category organism (N. gonorrhoeae) kept its tetracycline endpoint (Appendix
+  Table 1) — only the bystander was switched. Coded `resistance_endpoint_switched =
+  yes`. Appendix Table 2 Total column CONFIRMS the earlier Fig-4B reading exactly
+  (mo6 11/51 & 3/29; mo12 5/31 & 2/24).
+- **Resolution — the CDC/NEJM discrepancy.** Prior status was UNRESOLVED ("do not
+  assert CDC error"). Now resolved on phenotype: CDC's "tetracycline-resistant
+  S. aureus" is faithful to the PRE-SPECIFIED endpoint (CROI-reported), and cannot
+  map onto any NEJM table because NEJM published only doxycycline for S. aureus. Not
+  a CDC error — the divergence is the trial's own endpoint switch. STILL OPEN: only
+  the exact 428/222 denominator, which lives in the CROI 2023 abstract (not in hand).
+  CDC observation notes updated accordingly; do NOT assert an error.
+
 ## 2026-08-18 — AIDSVu suppression sentinels are multi-valued, not just `-1`
 
 CLAUDE.md/SCAFFOLD.md documented `-1` as the suppressed code. Inspection of all

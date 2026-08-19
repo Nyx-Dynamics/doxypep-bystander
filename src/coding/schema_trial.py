@@ -167,6 +167,16 @@ class TrialRecord(BaseModel):
     breakpoint_standard: Optional[CodedField] = None
     breakpoint_value: Optional[CodedField] = None
 
+    #: Whether the trial's individual-level data is shared ('no' = not available).
+    #: The evidentiary-adequacy floor: if the data is withheld, the bystander
+    #: discrepancies below cannot be adjudicated by anyone's re-analysis.
+    data_availability: Optional[CodedField] = None
+    #: 'yes' when the S. aureus resistance endpoint reported differs in DRUG from the
+    #: one pre-specified in the protocol (tetracycline pre-specified -> doxycycline
+    #: reported). tet(K) makes those two non-interchangeable (Grossman 2016 Table 1),
+    #: so a switch changes what is visible. Note must quote protocol and publication.
+    resistance_endpoint_switched: Optional[CodedField] = None
+
     observations: list[ResistanceObservation] = []
 
     CODED_FIELDS: ClassVar[tuple] = (
@@ -188,6 +198,13 @@ class TrialRecord(BaseModel):
             raise ValueError(
                 f"{self.unit}: s_aureus_measured is 'yes' but no observations "
                 "were coded — the denominators are the Stream A input")
+        if (self.resistance_endpoint_switched is not None
+                and self.resistance_endpoint_switched.value == "yes"
+                and not (self.resistance_endpoint_switched.note or "").strip()):
+            raise ValueError(
+                "resistance_endpoint_switched 'yes' requires a note quoting the "
+                "PROTOCOL's pre-specified phenotype and the PUBLICATION's reported "
+                "phenotype — a switch is a finding, not a typo")
         return self
 
 

@@ -28,6 +28,9 @@ files flagged **[coded-source]** below — re-hash before trusting a re-download
 | `kenyon2024_ijid.pdf` | 311174 | `95282ce4a8026ba13b0a2754645d0eafe49b48f286d0a1fc2fdb76abf3622024` |  |
 | `kong2023_jac_harms_taxonomy.pdf` | 213532 | `c78487fb7525f93fce060c60bb2a9b6bde882b643fb045667734080abb67d54a` |  |
 | `luetkemeyer2023_nejm_doxypep.pdf` | 769778 | `08d458a2c1a06ee3971fe9d057b845fb4b20ac78070826122748951bc017ccce` | **[coded-source]** |
+| `luetkemeyer2023_nejm_appendix.pdf` | 280195 | `c4188cc6d3903f5febb45de120470b213d8a5cb1755472d7285200f72896fd1b` | **[coded-source]** (Tables 1-2; endpoint switch) |
+| `luetkemeyer2023_nejm_data_sharing.pdf` | 70506 | `036ba172de9a853d4e394d0137791efa4bf18ff0c30831db0af9401402f7188a` | **[coded-source]** (data_availability = No) |
+| `luetkemeyer2023_nejm_protocol.pdf` | 2452331 | `aef0a15510cde734ab77d0e98fd521eac0bc12d60ed2f689265e130d571cc0b7` | **[coded-source]** (pre-specified tetracycline endpoint) |
 | `mende2016_dmid_malaria_doxy_saureus_null.pdf` | 406328 | `cbd198661cb9a1d96cd893c4cb8cc6a426e2af64a1dc9bcf247f92a38f227d21` | comparator (null; tetM P=.031) |
 | `miko2012_microbesinfect_usa300_std_reservoir.pdf` | 35350 | `c53e98ba667b9c1007f584246645afb1449ed7a788b731ec19099e7eb455afc8` |  |
 | `mishriky_chan2026_cid_amr_should_not_limit.pdf` | 351968 | `6099a404d26e33349e25a5fb83461a88a45ce57daaa602ddb524ae8091e53d68` |  |
