@@ -1,0 +1,44 @@
+# Stream B v2 — governmental. First-pass (claude-firstpass); needs PI verification.
+unit: maryland_doh_2024
+jurisdiction_level: state
+issuing_body: "Maryland Department of Health, Center for STI Prevention"
+document_title: "Doxy-PEP (patient factsheet)"
+document_type: patient_factsheet
+version: "rev 04/17/24"
+effective_date: "2024-04-17"
+source_file: guideline_maryland_doh_factsheet_2024.pdf
+coder: claude-firstpass
+code_date: "2026-08-19"
+
+bystander_treatment: silent
+bystander_treatment_locator: "whole document (1 p)"
+bystander_treatment_note: >-
+  Entire 1-page patient factsheet reviewed: no mention of antimicrobial
+  resistance, S. aureus, MRSA, or the microbiome anywhere — dosing/how-to only.
+
+s_aureus_named: false
+s_aureus_location: absent
+s_aureus_location_locator: "whole document (1 p) — absent"
+
+in_category_monitoring: ""
+in_category_monitoring_locator: "p. 1 — no screening/monitoring schedule; symptom-driven referral only ('If you're having side effects, or think you may have an STI, stop the medicine and contact the health care provider')"
+
+s_aureus_monitoring: silent
+s_aureus_monitoring_locator: "whole document (1 p) — no monitoring of any organism"
+
+host_toxicity_labs: silent
+host_toxicity_labs_locator: "whole document (1 p) — no labs"
+
+derived_from: "DC Department of Health — stated verbatim: 'Adapted with permission from materials produced by DC Department of Health'"
+local_mrsa_msm_literature: "Miko BA et al. 2012, Microbes Infect, 10.1016/j.micinf.2012.06.004 — Baltimore City Health Dept Druid STD clinic"
+same_institution_authored_both: "no"
+
+note: >-
+  A patient factsheet monitors nothing, so it does not exhibit the within-artifact
+  asymmetry (in_category_monitoring empty by design). Value is as a TEMPLATE-LINEAGE
+  node (Maryland <- DC Dept of Health) and an INSTITUTIONAL-MEMORY governance split:
+  the doxy-PEP policy is set at the STATE level (MD DOH) while the local S. aureus
+  reservoir was documented at the CITY level (Miko 2012, Baltimore City Health Dept
+  Druid STD clinic) a decade earlier — the state factsheet is silent on the
+  bystander its own city's STD clinic characterized. same_institution 'no' (state
+  DOH != city health dept / Johns Hopkins).

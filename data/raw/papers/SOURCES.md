@@ -33,6 +33,8 @@ review (Vanbaelen 2024a) first, then the DOXYVAC reanalysis (2024c).
 | `truong2022_jacamr.pdf` | Truong et al. JAC Antimicrob Resist 2022;4:dlac009 | SR of oral tetracyclines on normal-flora resistance (already cited by CDC ref 42 / German ref). Comparator. | 10.1093/jacamr/dlac009 |
 | `bhate2021_bjgpo_acne_comparator.pdf` | Bhate et al. BJGP Open 2021 | **Comparator-guideline gap** — long-term tetracycline for acne, SR of resistance risk; for "does any guideline require bystander monitoring." | 10.3399/BJGPO.2020.0181 |
 | `mittelstaedt2025_jid.pdf` | Mittelstaedt et al. J Infect Dis 2025;231:e708–12 | Adjacent. | 10.1093/infdis/jiae634 |
+| `jarolimova2025_std_clinic_burden_doxypep.pdf` | Jarolimova J, ... Ard KL. Sex Transm Dis 2025 | Clinic-level STI-burden change after doxy-PEP implementation (Boston MGH urban sexual-health clinic). | 10.1097/OLQ.0000000000002206 |
+| `doxypep_ethics_2024_std.pdf` | Sugarman J, Taylor HA, **Bachmann LH**, et al. Sex Transm Dis 2024;51(3):135–8 | Ethics of doxy-PEP implementation. NB co-authored by the **CDC MMWR guideline lead** (Bachmann) — relevant to who framed the harm. | 10.1097/OLQ.0000000000001907 |
 | `kenyon2024_ijid.pdf` | Kenyon. Int J Infect Dis 2024;142:106974 | Critical-camp framing. | 10.1016/j.ijid.2024.02.017 |
 | `vanbaelen2025a_lancetid_ceftriaxone.pdf` | Vanbaelen et al. Lancet ID 2025;25:e316 | Ceftriaxone co-selection. | 10.1016/S1473-3099(25)00234-8 |
 | `reichert2024_lancetmicrobe_model.pdf` | Reichert & Grad. Lancet Microbe 2024;5:100926 | Modeling. | 10.1016/S2666-5247(24)00168-X |
