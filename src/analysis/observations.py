@@ -134,6 +134,33 @@ def blindness_asymmetry(records) -> pd.DataFrame:
     return pd.DataFrame(out)
 
 
+def cross_trial_blindness(records) -> pd.DataFrame:
+    """The mechanism asymmetry is CROSS-trial. In-category organisms get
+    mechanism-discriminating assays (tetM PCR / WGS / high-level breakpoint), the
+    bystander S. aureus gets mechanism-blind ones (standard breakpoint / disc
+    diffusion) — but largely in DIFFERENT trials, so the within-trial
+    `blindness_asymmetry()` is empty. This contrasts across the whole corpus."""
+    m = mechanism_blindness(records)
+    if m.empty:
+        return pd.DataFrame()
+    IN_CATEGORY = {"n_gonorrhoeae", "commensal_neisseria", "c_trachomatis"}
+    BYSTANDER = {"s_aureus", "mssa", "mrsa", "gas"}
+    out = []
+    for cat, members in [("in_category", IN_CATEGORY), ("bystander", BYSTANDER)]:
+        g = m[m["organism"].isin(members)]
+        if g.empty:
+            continue
+        methods = sorted({x for row in g["methods"] for x in row.split(", ")})
+        out.append({
+            "category": cat,
+            "units_organisms": ", ".join(f"{u}:{o}" for u, o in zip(g["unit"], g["organism"])),
+            "any_discriminating": bool((~g["blind"]).any()),
+            "all_blind": bool(g["blind"].all()),
+            "methods": ", ".join(methods),
+        })
+    return pd.DataFrame(out)
+
+
 def phenotype_relabeling(records) -> pd.DataFrame:
     """Reportings that name a different drug than the assay tested.
 

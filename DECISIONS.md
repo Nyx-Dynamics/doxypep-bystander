@@ -411,3 +411,26 @@ codebook edge-cases (not errors), resolved with binding rules in CODEBOOK.md:
 (1) blanket 'no monitoring needed' -> explicitly_none [NYC flagged for PI];
 (2) reference-title-only naming does not make bystander_treatment organism_named
 [Philadelphia/WHO]. Schema is now tested, not assumed, before Stream A.
+
+## 2026-08-19 — Stream A written: DuDHS + DOXYVAC coded, detectability computed
+
+Three primaries now coded (DoxyPEP, DuDHS, DOXYVAC) — Szondy reclassified as
+secondary_synthesis, so the trial count is 3.
+
+- **DuDHS** (Grennan, doxy-PrEP feasibility RCT, n=52): S. aureus by DISK DIFFUSION
+  (mechanism-blind); only 9 carriers; 6 emergent doxycycline-resistant (5 immediate
+  vs 1 deferred, P=.077) — a real-looking split the trial cannot resolve.
+- **DOXYVAC** (Molina/ANRS 174): the AMR substudy (ciaf591) measured GONOCOCCUS
+  with the full apparatus — WGS + tetM PCR (mechanism-DISCRIMINATING): high-level
+  tetR 11/31 (doxy) vs 5/40 (no-PEP), P=.043. S. aureus measured only as MRSA
+  throat carriage in the main trial; conclusion_contested=yes (Vanbaelen 2024c
+  population-selection reanalysis, MRSA 2%->12% doxy vs 2%->10% control).
+- **Mechanism asymmetry is CROSS-trial** (confirmed): in-category gonococcus gets
+  tetM PCR/WGS; bystander S. aureus gets standard breakpoint / disc diffusion — in
+  different trials, so within-trial blindness_asymmetry() is empty. Added
+  cross_trial_blindness().
+- **detectability.py** (exact Fisher power, per basis): 0 of 4 primary S. aureus
+  arm comparisons are powered to detect Soge's RR 1.42; minimum detectable RR
+  3.8-5.1x, power 2-6%. Exact test used because per-arm counts are single- to
+  low-double-digit (normal approximation invalid). MRSA: 0 primary denominators.
+  outputs/detectability_result.md.

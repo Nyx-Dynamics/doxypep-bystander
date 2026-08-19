@@ -1,6 +1,6 @@
 # Stream A result — the same result, reported many ways
 
-1 trial(s) coded; 20 resistance observations (one per *reported
+3 trial(s) coded; 25 resistance observations (one per *reported
 instance*). First-pass coding (`claude-firstpass`); needs PI verification +
 double-coding (Phase F). See `data/processed/trial_observations.csv`.
 
@@ -17,7 +17,7 @@ alone moves the headline. Discordant result-groups: **5**.
 
 ## Phenotype relabeling
 
-Reportings that name a different drug than the assay tested: **10**.
+Reportings that name a different drug than the assay tested: **12**.
 NEJM measured *doxycycline* resistance in *S. aureus* (ETEST, MIC >=16); sources
 that relabel it "tetracycline" are, per Grossman 2016, not interchangeable —
 tet(K) efflux raises tetracycline MIC 64x but doxycycline only 2x.
@@ -32,12 +32,16 @@ tet(K) efflux raises tetracycline MIC 64x but doxycycline only 2x.
 - Szondy 2024 Table 2 (mrsa): measured `doxycycline`, labeled `tetracycline` [Szondy Table 2, p. 6]
 - CDC MMWR 2024 (Bachmann) (s_aureus): measured `not_stated`, labeled `tetracycline` [CDC MMWR p. 6 (Potential Resistance in Commensals)]
 - CDC MMWR 2024 (Bachmann) (s_aureus): measured `not_stated`, labeled `tetracycline` [CDC MMWR p. 6]
+- Szondy 2024 Table 2 (DuDHS row) (s_aureus): measured `doxycycline`, labeled `tetracycline` [Szondy Table 2, p. 6 (DuDHS)]
+- Szondy 2024 Table 2 (DuDHS row) (s_aureus): measured `doxycycline`, labeled `tetracycline` [Szondy Table 2, p. 6 (DuDHS)]
 
 ## Mechanism blindness
 
 Can the endpoint separate tet(K) efflux from tet(M) ribosomal protection?
 Per-organism (primary-trial observations):
 
+- s_aureus: BLIND (standard_breakpoint)
+- n_gonorrhoeae: discriminating (tetM_pcr)
 - s_aureus: BLIND (standard_breakpoint)
 
 ## Detectability input — and a structural gap

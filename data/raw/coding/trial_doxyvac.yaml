@@ -1,0 +1,101 @@
+# Stream A coded trial — DOXYVAC (Molina/ANRS 174). First-pass (claude-firstpass); PI to verify.
+# The IN-CATEGORY organism (gonococcus) with the full apparatus (tetM PCR + WGS);
+# S. aureus (MRSA) measured only crudely in the main trial and its conclusion contested.
+unit: doxyvac
+trial_name: DOXYVAC (ANRS 174)
+citation: "Molina J-M, et al. Lancet Infect Dis 2024 (main); AMR substudy: Clin Infect Dis 2026 (ciaf591)"
+doi: "10.1093/cid/ciaf591"
+registry_id: NCT04597424
+source_file: ciaf591.pdf
+coder: claude-firstpass
+code_date: "2026-08-19"
+
+s_aureus_measured:
+  value: "partial"
+  locator: "main trial (Molina Lancet ID 2024, not in hand); reanalysis Vanbaelen 2024c"
+  note: >-
+    The AMR SUBSTUDY in hand (ciaf591) measured GONOCOCCUS only — no staph. The
+    main DOXYVAC trial assessed MRSA throat-swab carriage (Molina, Lancet ID 2024,
+    not in hand); those MRSA data + a population-selection reanalysis are in
+    Vanbaelen 2024c. So S. aureus was measured crudely (carriage) and off the
+    substudy's mechanistic apparatus.
+
+powered_for_resistance_endpoint:
+  value: "no"
+  locator: "ciaf591 (78 GC isolates); Vanbaelen 2024c (MRSA p=0.12)"
+  note: >-
+    GC AMR substudy: 78 isolates. For the S. aureus/MRSA endpoint the main-trial
+    comparison was non-significant (2%->12% doxy vs 2%->10% control, p=0.12) — the
+    reanalysis attributes the null to individual-level testing, not to power alone.
+
+authors_concede_underpowering:
+  value: "no"
+  locator: "main trial concluded no MRSA/ESBL difference between arms"
+  note: "The main trial reported no significant MRSA difference and did not frame it as underpowered; Vanbaelen contests the interpretation, not the power."
+
+conclusion_contested:
+  value: "yes"
+  locator: "Vanbaelen 2024c, Lancet Infect Dis 2024;24:e606-e607"
+  note: >-
+    Vanbaelen 2024c (10.1016/S1473-3099(24)00502-4) reanalyses DOXYVAC under
+    POPULATION-level selection: MRSA throat carriage rose in BOTH arms (2%->12%
+    doxy-PEP, 2%->10% no-PEP), which they read as population-level selection across
+    shared sexual networks — against the trial's own individual-level conclusion
+    that doxy-PEP 'does not select for MRSA'. Same data, opposite conclusion,
+    because the trial tested only individual-level selection.
+
+selection_level_tested: individual
+selection_level_locator: "AMR analyses compare randomized arms at the individual level (the basis of the Vanbaelen critique)"
+
+susceptibility_method:
+  value: "yes"
+  locator: "Methods (ciaf591)"
+  quote: "Etest (bioMerieux) ... whole-genome sequencing and/or polymerase chain reaction sequencing"
+breakpoint_standard:
+  value: "yes"
+  locator: "Methods (ciaf591)"
+  quote: "EUCAST break point (MIC >0.5 mg/L); high-level per tetM; CLSI break point (MIC >1 mg/L)"
+breakpoint_value:
+  value: "yes"
+  locator: "Methods / Table"
+  quote: "tetracycline resistance MIC >0.5 mg/L (EUCAST); high-level tetracycline resistance mediated by tetM"
+
+observations:
+  # In-category gonococcus with the mechanism-discriminating apparatus (tetM PCR + WGS)
+  - source_type: primary_trial
+    source_citation: "DOXYVAC AMR substudy (ciaf591)"
+    arm: doxy
+    timepoint: over_study
+    organism: n_gonorrhoeae
+    phenotype_measured: tetracycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "yes"
+    discrimination_method: tetM_pcr
+    numerator: 11
+    denominator: 31
+    denominator_basis: isolates_cultured
+    significance_reported: between_arm
+    p_value: "0.043"
+    locator: "ciaf591 Results / Table (high-level tetracycline resistance)"
+    note: >-
+      High-level tetR mediated by the tetM gene: 35.5% (11/31) doxy vs 12.5% (5/40)
+      no-PEP (P=.043). Mechanism-discriminating by construction: WGS + tetM PCR
+      resolve the plasmid-borne tetM mechanism — the full apparatus, applied to the
+      IN-CATEGORY organism. Contrast the mechanism-BLIND disk diffusion / standard
+      breakpoint used for S. aureus in DoxyPEP and DuDHS.
+  - source_type: primary_trial
+    source_citation: "DOXYVAC AMR substudy (ciaf591)"
+    arm: control
+    timepoint: over_study
+    organism: n_gonorrhoeae
+    phenotype_measured: tetracycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "yes"
+    discrimination_method: tetM_pcr
+    numerator: 5
+    denominator: 40
+    denominator_basis: isolates_cultured
+    significance_reported: between_arm
+    p_value: "0.043"
+    locator: "ciaf591 Table (high-level tetracycline resistance, no-PEP arm)"
+    note: "No-PEP arm HL-tetR 12.5% (5/40). Same discriminating apparatus (tetM PCR + WGS)."

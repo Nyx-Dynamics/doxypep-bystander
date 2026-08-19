@@ -1,0 +1,114 @@
+# Stream A coded trial — DuDHS (Grennan 2026). First-pass (claude-firstpass); PI to verify.
+# doxy-PrEP (daily), not PEP — but tetracycline exposure. Feasibility RCT, n=52.
+unit: dudhs
+trial_name: DuDHS
+citation: "Grennan T, Mohammed S, Edward J, et al. Clin Infect Dis 2026;82:1054-1062"
+doi: "10.1093/cid/ciaf043"
+registry_id: NCT02844634
+source_file: ciaf043.pdf
+coder: claude-firstpass
+code_date: "2026-08-19"
+
+s_aureus_measured:
+  value: "yes"
+  locator: "Abstract / Methods (secondary outcome); Results, Figure 3"
+  quote: "Nasal carriage of Staphylococcus aureus was assessed serially for doxycycline resistance."
+
+powered_for_resistance_endpoint:
+  value: "no"
+  locator: "Abstract (feasibility RCT, n=52); Results (S. aureus)"
+  note: >-
+    Feasibility RCT (n=52). S. aureus was a secondary outcome; only 9 participants
+    carried S. aureus. No power calculation for the resistance endpoint.
+
+authors_concede_underpowering:
+  value: "yes"
+  locator: "Abstract / Discussion"
+  quote: "Further evaluation of dosing strategies, efficacy and impact on antimicrobial resistance is warranted."
+  note: "Explicit feasibility framing; calls for further AMR evaluation."
+
+conclusion_contested:
+  value: "no"
+  locator: "Discussion"
+
+selection_level_tested: individual
+selection_level_locator: "individually randomized 1:1 RCT (immediate vs deferred doxyPrEP)"
+
+body_site:
+  value: "yes"
+  locator: "Methods (Laboratory)"
+  quote: "nasal swabs using Copan transport media swabs"
+identification_method:
+  value: "yes"
+  locator: "Methods (Laboratory)"
+  quote: "MALDI-TOF (VITEK MS Plus, bioMerieux)"
+susceptibility_method:
+  value: "yes"
+  locator: "Methods (Laboratory)"
+  quote: "S. aureus isolates were tested against doxycycline by disk diffusion"
+breakpoint_standard:
+  value: "partial"
+  locator: "Methods (Laboratory)"
+  note: "Disk diffusion against doxycycline; a CLSI/EUCAST source/zone breakpoint is not clearly stated in the text reviewed."
+breakpoint_value:
+  value: "partial"
+  locator: "Methods"
+  quote: "doxycycline disk diffusion"
+  note: "Zone-diameter cutoff not extracted."
+
+observations:
+  # Primary (ciaf043): emergent doxycycline-resistant S. aureus among carriers.
+  - source_type: primary_trial
+    source_citation: "Grennan 2026 (DuDHS)"
+    arm: combined
+    timepoint: over_48wk_followup
+    organism: s_aureus
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: doxycycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 6
+    denominator: 9
+    denominator_basis: colonized_participants
+    significance_reported: between_arm
+    p_value: "0.077"
+    locator: "Abstract; Results (S. aureus), Figure 3"
+    note: >-
+      Emergent doxycycline-resistant S. aureus in 6 of the 9 participants who
+      carried S. aureus; 5 in the immediate (doxy) arm vs 1 in the deferred arm
+      (P=.077). Disk diffusion (mechanism-blind). The resistance signal rests on
+      single-digit counts (n=9 carriers), which is why a 5-vs-1 split is not
+      significant — the trial cannot resolve this.
+  # Secondary synthesis (Szondy Table 2): re-tabulation of DuDHS follow-up isolates.
+  - source_type: secondary_synthesis
+    source_citation: "Szondy 2024 Table 2 (DuDHS row)"
+    arm: doxy
+    timepoint: followup
+    organism: s_aureus
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 4
+    denominator: 9
+    denominator_basis: isolates_cultured
+    locator: "Szondy Table 2, p. 6 (DuDHS)"
+    note: >-
+      Re-tabulation (SR/MA extraction), not independent. Szondy labels this
+      'Tetracycline resistance' (relabel; DuDHS measured DOXYCYCLINE by disk
+      diffusion). Footnote: nine isolates from eight participants — the same tiny
+      dataset re-cut at isolate level.
+  - source_type: secondary_synthesis
+    source_citation: "Szondy 2024 Table 2 (DuDHS row)"
+    arm: control
+    timepoint: followup
+    organism: s_aureus
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 1
+    denominator: 2
+    denominator_basis: isolates_cultured
+    locator: "Szondy Table 2, p. 6 (DuDHS)"
+    note: "Re-tabulation; relabel (see doxy row)."

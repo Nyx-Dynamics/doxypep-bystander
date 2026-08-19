@@ -30,6 +30,7 @@ reliability:
 # Stream A — trial coding + reporting analyses
 trials:
 	$(PY) -m src.coding.build_trials
+	$(PY) -m src.analysis.detectability
 
 clean:
 	rm -rf data/interim/* .pytest_cache
