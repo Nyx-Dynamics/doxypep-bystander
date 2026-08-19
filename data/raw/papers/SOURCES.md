@@ -41,13 +41,18 @@ review (Vanbaelen 2024a) first, then the DOXYVAC reanalysis (2024c).
 | `chu2025_natmed.pdf` | Chu et al. Nat Med 2025;31:207–17 | Modeling / adjacent. | 10.1038/s41591-024-03274-2 |
 | `szondy2024_ijid.pdf` | Szondy et al. Int J Infect Dis 2024;147:107186 | Adjacent. | 10.1016/j.ijid.2024.107186 |
 
-**Positive control (NOT YET ON DISK — acquire; high value):** Van Dijck et al.
-Sex Transm Infect 2020;96:537–40 (`10.1136/sextrans-2019-054313`). A 21-state
-ecological analysis of screening intensity vs gonococcal susceptibility that
-*found* an association — the exact grain Stream C says fails — because GISP samples
-MSM isolates, so no dilution. This is Stream C's argument proven in the
-affirmative (design succeeds when the surveillance frame matches the exposed
-population). Not found in Downloads.
+**Positive controls (ecological screening-intensity vs gonococcal AMR — the design
+Stream C says fails, succeeding where the surveillance frame matches the exposed
+population because GISP samples MSM isolates):**
+
+| File | Paper | Note | DOI |
+|---|---|---|---|
+| `kenyon2018_f1000_ecological_12cities.pdf` | Kenyon CR. F1000Research 2018;7:1237 | **Positive control (city-level, 12 US cities, 2007-2013)** — the precursor to Van Dijck 2020. Found positive associations between MSM STI-screening intensity and gonococcal AMR; not all statistically significant (weaker than the 21-state version). | 10.12688/f1000research.15569.1 |
+| — (still to acquire) | Van Dijck et al. Sex Transm Infect 2020;96:537-40 | 21-state ecological version; a clearer association. Not on disk. | 10.1136/sextrans-2019-054313 |
+
+**Exposure quantification:**
+
+| `consumption_doxypep_lancetmicrobe_2023.pdf` | Correspondence, Lancet Microbe 2023 (authors not extracted — confirm) | Estimates the rise in US antibiotic *consumption* from doxy-PEP (~4 doses/person-month) — supports the cumulative-drug-days framing over binary prescription. | 10.1016/S2666-5247(23)00314-2 |
 
 ## Excluded / still to acquire
 

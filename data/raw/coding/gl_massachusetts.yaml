@@ -1,0 +1,38 @@
+# Stream B v2 — governmental. First-pass (claude-firstpass); needs PI verification.
+unit: massachusetts_dph_2024
+jurisdiction_level: state
+issuing_body: "Massachusetts Department of Public Health, Bureau of Infectious Disease and Laboratory Sciences"
+document_title: "Doxycycline Post-Exposure Prophylaxis (Doxy PEP) for bacterial STI prevention"
+document_type: patient_factsheet
+version: "Mass.gov public page (accessed 2026-08-19)"
+effective_date: "unknown; accessed 2026-08-19"
+source_file: guideline_massachusetts_dph_2024.pdf
+coder: claude-firstpass
+code_date: "2026-08-19"
+
+bystander_treatment: generic_microbiome_resistance
+bystander_treatment_locator: "Risks section ('Antibiotic resistance'; 'Microbiome changes')"
+
+s_aureus_named: false
+s_aureus_location: absent
+s_aureus_location_locator: "whole page — S. aureus/staph not named (AMR and microbiome only in the generic)"
+
+in_category_monitoring: "regular testing and treatment for STI/HIV if you test positive"
+in_category_monitoring_locator: "'health care providers usually recommend' section"
+
+s_aureus_monitoring: silent
+s_aureus_monitoring_locator: "whole page — no S. aureus monitoring"
+
+host_toxicity_labs: silent
+host_toxicity_labs_locator: "whole page — patient-facing; no host labs described"
+
+derived_from: "stated 'Adapted from: DoxyPEP Doxycycline Post-exposure Prophylaxis Fact Sheet' — source jurisdiction not named on the page"
+local_mrsa_msm_literature: null
+literature_search_provenance: "Not independently searched as of 2026-08-19; Massachusetts not in the STREAM_B_HANDOFF verified-pairings table. (Szumowski JD et al. 2009, CID, 10.1086/599608 — Boston, nares+perianal swabs in 795 outpatients, 36.7% of colonized developed SSTI — is a related S. aureus-colonization-feasibility citation but not confirmed as a Boston MSM cluster study.) Flagged for AC."
+same_institution_authored_both: "no"
+
+note: >-
+  Generic-only bystander framing (names 'antibiotic resistance' and 'microbiome
+  changes' but not S. aureus). Third template-lineage node ('Adapted from: DoxyPEP
+  ... Fact Sheet'), though the source jurisdiction is not identified on the page —
+  worth tracing (candidate seeds so far: SF City Clinic 2022, DC Dept of Health).
