@@ -1,7 +1,7 @@
 # Stream B result — discussed, counselled, unmeasured (governmental corpus)
 
 **Gate: CLEAR — no
-governmental guideline REQUIRES *S. aureus* monitoring.** (8 units;
+governmental guideline REQUIRES *S. aureus* monitoring.** (9 units;
 `data/processed/guidelines_coded.csv`.) First-pass coding (`claude-firstpass`);
 needs PI verification + 20% double-coding (Phase F).
 
@@ -11,11 +11,11 @@ STREAM_B_HANDOFF.md); FQHCs and professional societies excluded, retained in
 
 ## The within-artifact asymmetry
 
-**7 of 8** documents monitor in-category organisms (GC/CT/syphilis)
+**8 of 9** documents monitor in-category organisms (GC/CT/syphilis)
 while leaving *S. aureus* silent or explicitly unmeasured — in the same document.
-**4 of 8** name *S. aureus*; where it appears:
-absent (4), still_learning_list (1), patient_counselling_script (1), reference_title_only (1), body_text (1).
-**3 of 8** order host-toxicity labs (LFT/CMP/CBC) — the lab apparatus
+**4 of 9** name *S. aureus*; where it appears:
+absent (5), still_learning_list (1), patient_counselling_script (1), reference_title_only (1), body_text (1).
+**3 of 9** order host-toxicity labs (LFT/CMP/CBC) — the lab apparatus
 plainly exists; it is pointed at the host, not the organism.
 
 So the bystander is discussed and, in several documents, written into the patient

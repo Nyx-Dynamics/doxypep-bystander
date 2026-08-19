@@ -23,8 +23,8 @@ from typing import ClassVar, Literal, Optional
 import yaml
 from pydantic import BaseModel, ConfigDict, model_validator
 
-JurisdictionLevel = Literal["city", "county", "state", "national"]
-DocumentType = Literal["clinical_protocol", "health_advisory",
+JurisdictionLevel = Literal["city", "county", "state", "national", "global"]
+DocumentType = Literal["clinical_protocol", "health_advisory", "guideline",
                        "dear_colleague", "patient_factsheet"]
 BystanderTreatment = Literal["silent", "generic_microbiome_resistance",
                              "organism_named"]

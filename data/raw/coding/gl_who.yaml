@@ -1,0 +1,53 @@
+# Stream B v2 — governmental (global/apex). First-pass (claude-firstpass); PI to verify.
+unit: who_2026
+jurisdiction_level: global
+issuing_body: "World Health Organization"
+document_title: "Guideline on doxycycline post-exposure prophylaxis for sexually transmitted infections among men who have sex with men and transgender women"
+document_type: guideline
+version: "WHO first recommendation, 2026 (conditional recommendation, GRADE)"
+effective_date: "2026"
+source_file: guideline_who_2026.pdf
+coder: claude-firstpass
+code_date: "2026-08-19"
+
+bystander_treatment: generic_microbiome_resistance
+bystander_treatment_locator: "Antimicrobial resistance section; Monitoring and evaluation"
+
+s_aureus_named: false
+s_aureus_location: absent
+s_aureus_location_locator: "whole document — S. aureus / staph / MRSA not named"
+
+in_category_monitoring: "Ideally, trends in both antimicrobial resistance and antibiotic use should be monitored; monitoring aligned with national antimicrobial resistance strategies and surveillance platforms (esp. N. gonorrhoeae tetracycline resistance)"
+in_category_monitoring_locator: "Monitoring and evaluation section"
+
+s_aureus_monitoring: silent
+s_aureus_monitoring_locator: "Monitoring and evaluation — generic AMR monitoring 'strongly encouraged' but not S. aureus-specific"
+
+host_toxicity_labs: silent
+host_toxicity_labs_locator: "Monitoring and evaluation — adverse-event monitoring only; no host-toxicity labs (LFT/CMP/CBC) specified at policy level"
+
+counselling_language_verbatim: "Context-appropriate monitoring of antimicrobial resistance is strongly encouraged as part of doxycycline PEP policy. Ideally, trends in both antimicrobial resistance and antibiotic use should be monitored."
+counselling_language_locator: "Monitoring and evaluation section"
+
+derived_from: null
+local_mrsa_msm_literature: null
+literature_search_provenance: "N/A — WHO is a global body; no single local MRSA-in-MSM jurisdiction pairing applies (the institutional-memory comparison is for sub-national authorities)."
+same_institution_authored_both: "no"
+
+note: >-
+  APEX (global) unit and the NEAR-EXCEPTION to the asymmetry. WHO comes closest to
+  bystander AMR monitoring: it 'strongly encourages context-appropriate monitoring
+  of antimicrobial resistance' including in 'other pathogens and the microbiome' —
+  the broadest such language in the corpus — but it is generic (S. aureus never
+  named) and 'encouraged', not required. Coded s_aureus_monitoring=silent because
+  it is not S. aureus-specific; the note records that the narrowing to
+  in-category-only (or nothing) happens DOWNSTREAM (CDC -> US cities), i.e. the
+  apex guideline is the most expansive and each level below it contracts the
+  bystander frame — a propagation-of-narrowing finding.
+  GRADING CONTRAST (v2 schema does not capture; flag to PI): WHO GRADE'd the AMR
+  evidence — 'no effect on tetracycline resistance to N. gonorrhoeae (RR 1.00;
+  low certainty)', AMR effects 'uncertain' — i.e. it graded the harms/AMR question
+  (as low certainty), UNLIKE CDC which left harms 'not graded'. Consider re-adding
+  graded-efficacy / graded-harms fields to v2 to capture the CDC-vs-WHO contrast.
+  WHO reference list also supplies DOIs for missing trials: Luetkemeyer 2025 Lancet
+  ID final (10.1016/S1473-3099(25)00085-4); DOXYVAC main (10.1016/S1473-3099(24)00236-6).
