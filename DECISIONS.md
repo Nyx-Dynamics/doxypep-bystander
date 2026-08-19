@@ -354,3 +354,12 @@ The bystander falls between governance layers. Not a coding decision — an
 institutional-memory observation to develop in the write-up.
 
 Excluded this batch: ASHA (national nonprofit education org).
+
+## 2026-08-19 — Correction (PI): RI DPH <-> Open Door is a COLLABORATION, not a split
+
+Amends the prior "governance split" note for Rhode Island. RI DOH and Open Door
+Health are collaborators (co-produce the doxy-PEP guidance), so they cannot be
+cleanly untangled — Open Door effectively co-constitutes RI's substantive
+guidance rather than merely relaying it. Decision confirmed: NO clinic-relay tier.
+The Baltimore->Maryland case remains a genuine level split (city surveillance vs
+state policy); RI is a collaboration and is treated as a single entangled unit.
