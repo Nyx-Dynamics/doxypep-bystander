@@ -2,6 +2,44 @@
 
 Dated analysis decisions, logged before results are known. Append-only.
 
+## 2026-08-19 (evening) — CROI 2023 OA-3 slides obtained: CDC discrepancy RESOLVED + two corrections
+
+The PI supplied the CROI 2023 oral-abstract slides (Luetkemeyer, OA-3, Feb 20 2023;
+PI attended live) and made three points. Transcribed to
+`data/raw/papers/croi2023_luetkemeyer_OA3.md` (hashed). This supersedes the framing
+in the prior (afternoon) entry on two points.
+
+- **CDC 20/428, 28/222 provenance RESOLVED (no longer "pending").** These are the
+  CROI S. aureus DOXY-R panel (doxy-PEP arm, baseline & M12) over the **all-swabbed**
+  denominator: 5%x428=20, 13%x222=28. CDC observation rows updated:
+  phenotype_measured now **doxycycline** (was not_stated), denominator_basis now
+  **all_participants_swabbed** (was unclear), with the verbatim CDC quote.
+- **CORRECTION 1 — no tetracycline "endpoint switch."** The S. aureus assay was
+  DOXYCYCLINE throughout (E-test MIC>=16): CROI methods table, NEJM Trial Procedures,
+  NEJM Appendix Table 2. There was never a tetracycline-S.-aureus measurement.
+  "Tetracycline" is only a LABEL (NEJM End Points sentence, protocol aims, CDC/Szondy
+  downstream). The afternoon entry's "pre-specified tetracycline endpoint that got
+  switched to doxycycline" over-read it. Field renamed
+  `resistance_endpoint_switched` -> `saureus_endpoint_label_mismatch` (schema + YAML +
+  tests); it now records a labeling inconsistency, not a measurement switch, and not
+  concealment (tetracycline is the broader surrogate; doxycycline the more
+  conservative measure — direction unchanged from the earlier correction).
+- **CORRECTION 2 / NEW FINDING — denominator deflation (the PI's point #3), and it
+  sits in CDC's own sentence.** CDC attributes the resistance rise to "those with
+  S. aureus in their nares" (colonized) but divides by all-swabbed 428/222. CDC
+  itself prints the colonized counts (187, 69), so per-carrier doxy-R is 20/187=11%
+  -> 28/69=**41%**, ~3x the reported 5%->13%. Doxy-PEP cuts colonization (44%->31%),
+  inflating the all-swabbed denominator and deflating the rate computed over it
+  (`all-swabbed = per-carrier x colonization`). description_denominator_mismatch=yes
+  on both CDC rows now carries this.
+- **Residual discordance (do not smooth):** CROI counts (colonized 187/69, resistant
+  20/28) do NOT reconcile with NEJM Appendix Table 2 (colonized 139/31, resistant
+  12/5). Same trial, same endpoint, different venue — CROI denominators run ~1.3-2.2x
+  larger. Logged in the CROI artifact as its own finding; magnitude of the deflation
+  is source-dependent, direction is robust.
+- **Detectability unaffected:** it still uses only NEJM primary_trial colonized
+  denominators; the CROI/CDC all-swabbed numbers are guideline-source rows (excluded).
+
 ## 2026-08-19 — NEJM Appendix + Protocol + Data-Sharing obtained
 
 Four DoxyPEP source files ingested and hashed (appendix, protocol, data-sharing,

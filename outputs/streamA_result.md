@@ -10,7 +10,7 @@ The same underlying result is reported with different denominators, and the choi
 alone moves the headline. Discordant result-groups: **5**.
 
 - **s_aureus / doxy / month6** — denominators {51, 192} across bases (all_participants_swabbed, colonized_participants); the rate moves 3.8x on basis choice alone.
-- **s_aureus / doxy / month12** — denominators {31, 111} across bases (all_participants_swabbed, colonized_participants); the rate moves 3.6x on basis choice alone; an intervention-affected denominator is in the mix.
+- **s_aureus / doxy / month12** — denominators {31, 111, 222} across bases (all_participants_swabbed, colonized_participants); the rate moves 3.6x on basis choice alone; a source description disagrees with its printed denominator; an intervention-affected denominator is in the mix.
 - **s_aureus / control / month6** — denominators {29, 75} across bases (all_participants_swabbed, colonized_participants); the rate moves 2.6x on basis choice alone.
 - **s_aureus / combined / baseline** — denominators {215, 483} across bases (all_participants_swabbed, colonized_participants); the rate moves 2.2x on basis choice alone.
 - **s_aureus / control / month12** — denominators {24, 51} across bases (all_participants_swabbed, colonized_participants); the rate moves 2.1x on basis choice alone.
@@ -30,8 +30,8 @@ tet(K) efflux raises tetracycline MIC 64x but doxycycline only 2x.
 - Szondy 2024 Table 2 (mrsa): measured `doxycycline`, labeled `tetracycline` [Szondy Table 2, p. 6]
 - Szondy 2024 Table 2 (mssa): measured `doxycycline`, labeled `tetracycline` [Szondy Table 2, p. 6]
 - Szondy 2024 Table 2 (mrsa): measured `doxycycline`, labeled `tetracycline` [Szondy Table 2, p. 6]
-- CDC MMWR 2024 (Bachmann) (s_aureus): measured `not_stated`, labeled `tetracycline` [CDC MMWR p. 6 (Potential Resistance in Commensals)]
-- CDC MMWR 2024 (Bachmann) (s_aureus): measured `not_stated`, labeled `tetracycline` [CDC MMWR p. 6]
+- CDC MMWR 2024 (Bachmann) (s_aureus): measured `doxycycline`, labeled `tetracycline` [CDC MMWR p. 5 (lines 447-452)]
+- CDC MMWR 2024 (Bachmann) (s_aureus): measured `doxycycline`, labeled `tetracycline` [CDC MMWR p. 5 (lines 447-452)]
 - Szondy 2024 Table 2 (DuDHS row) (s_aureus): measured `doxycycline`, labeled `tetracycline` [Szondy Table 2, p. 6 (DuDHS)]
 - Szondy 2024 Table 2 (DuDHS row) (s_aureus): measured `doxycycline`, labeled `tetracycline` [Szondy Table 2, p. 6 (DuDHS)]
 

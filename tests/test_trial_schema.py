@@ -110,25 +110,25 @@ def test_contested_conclusion_requires_citing_the_contester():
         "yes", note="Vanbaelen 2024c: MRSA carriage 2%->12% in doxy-PEP arm"))
 
 
-def test_endpoint_switch_requires_a_note():
-    """A pre-specified->reported phenotype switch is a finding; asserting it with no
-    note (quoting protocol + publication) is rejected."""
+def test_label_mismatch_requires_a_note():
+    """A phenotype label/assay mismatch is a finding; asserting it with no note
+    (quoting the conflicting labels) is rejected."""
     with pytest.raises((ValidationError, ValueError)):
-        _trial(resistance_endpoint_switched=field("yes"))  # field() has no note
+        _trial(saureus_endpoint_label_mismatch=field("yes"))  # field() has no note
     # with a note it is accepted
-    _trial(resistance_endpoint_switched=CodedField(
-        value="yes", locator="Protocol L253; NEJM Methods p.1297",
-        note="protocol: tetracycline; reported: doxycycline"))
+    _trial(saureus_endpoint_label_mismatch=CodedField(
+        value="yes", locator="NEJM End Points p.1298; Trial Procedures p.1298",
+        note="assay: doxycycline E-test; End Points sentence label: tetracycline"))
 
 
 def test_new_optional_fields_default_absent():
     """DuDHS/DOXYVAC carry neither field; they must remain optional."""
     r = _trial()
     assert r.data_availability is None
-    assert r.resistance_endpoint_switched is None
+    assert r.saureus_endpoint_label_mismatch is None
 
 
-def test_real_doxypep_records_data_withheld_and_endpoint_switched():
+def test_real_doxypep_records_data_withheld_and_label_mismatch():
     from pathlib import Path
 
     from src.coding.schema_trial import load_trial
@@ -137,8 +137,8 @@ def test_real_doxypep_records_data_withheld_and_endpoint_switched():
         pytest.skip("coded trial not present")
     rec = load_trial(p)
     assert rec.data_availability.value == "no"
-    assert rec.resistance_endpoint_switched.value == "yes"
-    assert rec.resistance_endpoint_switched.note  # required, non-empty
+    assert rec.saureus_endpoint_label_mismatch.value == "yes"
+    assert rec.saureus_endpoint_label_mismatch.note  # required, non-empty
 
 
 def test_selection_level_needs_locator():

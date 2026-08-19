@@ -171,11 +171,15 @@ class TrialRecord(BaseModel):
     #: The evidentiary-adequacy floor: if the data is withheld, the bystander
     #: discrepancies below cannot be adjudicated by anyone's re-analysis.
     data_availability: Optional[CodedField] = None
-    #: 'yes' when the S. aureus resistance endpoint reported differs in DRUG from the
-    #: one pre-specified in the protocol (tetracycline pre-specified -> doxycycline
-    #: reported). tet(K) makes those two non-interchangeable (Grossman 2016 Table 1),
-    #: so a switch changes what is visible. Note must quote protocol and publication.
-    resistance_endpoint_switched: Optional[CodedField] = None
+    #: 'yes' when a source's LABEL for the S. aureus resistance phenotype does not
+    #: match the assay actually run. The DoxyPEP S. aureus assay was doxycycline
+    #: throughout (E-test MIC>=16; CROI methods table, NEJM Trial Procedures, Appendix
+    #: Table 2), yet NEJM's End Points sentence and the protocol aims call it
+    #: "tetracycline" and CDC/Szondy relabel it downstream. This is a labeling
+    #: inconsistency, NOT a measurement switch (no tetracycline-S.-aureus assay ever
+    #: existed) and NOT concealment (tetracycline is the broader surrogate; doxycycline
+    #: is the more conservative measure). Note must quote the conflicting labels.
+    saureus_endpoint_label_mismatch: Optional[CodedField] = None
 
     observations: list[ResistanceObservation] = []
 
@@ -198,13 +202,13 @@ class TrialRecord(BaseModel):
             raise ValueError(
                 f"{self.unit}: s_aureus_measured is 'yes' but no observations "
                 "were coded — the denominators are the Stream A input")
-        if (self.resistance_endpoint_switched is not None
-                and self.resistance_endpoint_switched.value == "yes"
-                and not (self.resistance_endpoint_switched.note or "").strip()):
+        if (self.saureus_endpoint_label_mismatch is not None
+                and self.saureus_endpoint_label_mismatch.value == "yes"
+                and not (self.saureus_endpoint_label_mismatch.note or "").strip()):
             raise ValueError(
-                "resistance_endpoint_switched 'yes' requires a note quoting the "
-                "PROTOCOL's pre-specified phenotype and the PUBLICATION's reported "
-                "phenotype — a switch is a finding, not a typo")
+                "saureus_endpoint_label_mismatch 'yes' requires a note quoting the "
+                "conflicting labels (the assay's drug vs the label a source applies) "
+                "— a mislabel is a finding, not a typo")
         return self
 
 
