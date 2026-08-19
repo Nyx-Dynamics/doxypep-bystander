@@ -2,33 +2,44 @@
 
 Dated analysis decisions, logged before results are known. Append-only.
 
-## 2026-08-19 — NEJM Appendix + Protocol + Data-Sharing obtained: two findings, one resolution
+## 2026-08-19 — NEJM Appendix + Protocol + Data-Sharing obtained
 
 Four DoxyPEP source files ingested and hashed (appendix, protocol, data-sharing,
 main text; papers/CHECKSUMS.md, all coded-source). Schema extended with two OPTIONAL
 CodedFields on TrialRecord (`data_availability`, `resistance_endpoint_switched`);
-optional so DuDHS/DOXYVAC are unaffected; +3 tests (26 pass).
+optional so DuDHS/DOXYVAC are unaffected; +3 tests (26 pass). PI review 2026-08-19
+tightened the framing below — kept only what the documents support verbatim.
 
-- **Finding 1 — data withheld.** The Data Sharing Statement (posted 2023-04-06)
-  answers "Will the data collected for your study be made available to others?" with
-  **No**, every downstream field an em-dash. Coded `data_availability = no`. This is
-  the evidentiary-adequacy floor: the S. aureus discrepancies cannot be adjudicated
-  by re-analysis because the individual-level data is not shared.
-- **Finding 2 — the bystander endpoint was switched.** The PROTOCOL pre-specified
-  **tetracycline** resistance in S. aureus (L253/258/280/498/527), as did NEJM
-  Methods (p.1297). The trial REPORTED **doxycycline** resistance (Results p.1299;
-  Appendix Table 2). No tetracycline-S.-aureus number is published anywhere in NEJM.
-  The in-category organism (N. gonorrhoeae) kept its tetracycline endpoint (Appendix
-  Table 1) — only the bystander was switched. Coded `resistance_endpoint_switched =
-  yes`. Appendix Table 2 Total column CONFIRMS the earlier Fig-4B reading exactly
-  (mo6 11/51 & 3/29; mo12 5/31 & 2/24).
-- **Resolution — the CDC/NEJM discrepancy.** Prior status was UNRESOLVED ("do not
-  assert CDC error"). Now resolved on phenotype: CDC's "tetracycline-resistant
-  S. aureus" is faithful to the PRE-SPECIFIED endpoint (CROI-reported), and cannot
-  map onto any NEJM table because NEJM published only doxycycline for S. aureus. Not
-  a CDC error — the divergence is the trial's own endpoint switch. STILL OPEN: only
-  the exact 428/222 denominator, which lives in the CROI 2023 abstract (not in hand).
-  CDC observation notes updated accordingly; do NOT assert an error.
+- **Finding 1 — data withheld (the unassailable spine).** The Data Sharing Statement
+  (posted 2023-04-06) answers "Will the data collected for your study be made
+  available to others?" with **No**, every downstream field an em-dash. Coded
+  `data_availability = no`. The evidentiary-adequacy floor: the S. aureus
+  discrepancies cannot be adjudicated by re-analysis because the data is withheld.
+  This finding stands alone and does not depend on Finding 2.
+- **Finding 2 — internal inconsistency + pre-specification deviation (NOT
+  concealment).** Two adjacent NEJM sentences on **p.1298** disagree: End Points
+  names the PRIMARY AMR outcome for S. aureus as **tetracycline** resistance; Trial
+  Procedures describes a **doxycycline** assay. Protocol pre-specified tetracycline
+  (L253/258/280/498/527); results + Appendix Table 2 report doxycycline; no
+  tetracycline-S.-aureus number is published anywhere in NEJM. Coded
+  `resistance_endpoint_switched = yes`. **Direction correction (PI):** tetracycline is
+  the BROADER surrogate (tet(K) = tetracycline-R but doxycycline-S; Grossman 2016), so
+  doxycycline is the MORE CONSERVATIVE, more specific measure — it reports LESS
+  resistance and is arguably the better assay. So this is a transparency problem (a
+  declared primary endpoint replaced, unreconciled, data withheld), NOT evidence of
+  hiding a tet(K) signal; the pharmacology runs the other way. The gonococcal endpoint
+  was NOT switched (Appendix Table 1 keeps tetracycline). Appendix Table 2 Total
+  column CONFIRMS the earlier Fig-4B reading exactly (mo6 11/51 & 3/29; mo12 5/31 &
+  2/24). Earlier "NEJM Methods agree (tetracycline)" was wrong and is retracted — the
+  methods assay sentence says doxycycline; the two NEJM sentences are quoted adjacent
+  in the YAML, not smoothed into agreement.
+- **CDC/NEJM discrepancy — narrowed, not resolved.** Prior status UNRESOLVED. Now:
+  NEJM publishes no tetracycline-S.-aureus number, so CDC's "tetracycline-resistant
+  S. aureus" REFLECTS the pre-specified tetracycline phenotype NEJM left unpublished
+  and cannot map onto any NEJM table — hence not a CDC error against NEJM. It is NOT
+  yet "resolved": to say the 20/428 figure IS the CROI number, we must see it in the
+  CROI 2023 abstract (not in hand). Exact source + the 428/222 denominator remain
+  PENDING that abstract. CDC observation notes say exactly this; do NOT assert error.
 
 ## 2026-08-18 — AIDSVu suppression sentinels are multi-valued, not just `-1`
 
