@@ -30,11 +30,13 @@ def test_real_trials_underpowered_for_soge():
     root = D.Path(__file__).resolve().parents[1]
     _, tab = D.run(root)
     assert len(tab) >= 4
-    # not one primary S. aureus comparison can detect Soge's 1.42
-    assert tab["can_detect_soge"].sum() == 0
-    # and every minimum detectable RR is well above 1.42
+    # not one primary S. aureus comparison can detect either external benchmark
+    assert tab["detect_matched_2.25"].sum() == 0
+    assert tab["detect_crossorg_1.42"].sum() == 0
+    # every minimum detectable RR is above BOTH benchmarks
     finite = tab[tab["min_detectable_RR"] != float("inf")]
-    assert (finite["min_detectable_RR"] > D.RR_SOGE).all()
+    assert (finite["min_detectable_RR"] > D.RR_SAUREUS).all()
+    assert (finite["min_detectable_RR"] > D.RR_GC).all()
 
 
 @pytest.mark.skipif(
