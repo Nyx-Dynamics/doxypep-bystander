@@ -20,12 +20,12 @@ s_aureus_location_locator: "p. 4 (Counseling Messages — 'staph infections')"
 in_category_monitoring: "Obtain NAAT for gonorrhea and chlamydia and screen/treat for STIs at follow-up; HIV screening every 3-6 months per CDC PrEP guidelines"
 in_category_monitoring_locator: "p. 3 (bulleted clinical guidance)"
 
-s_aureus_monitoring: explicitly_none
-s_aureus_monitoring_locator: "p. 3"
-s_aureus_monitoring_quote: "No laboratory monitoring is needed with doxy-PEP."
+s_aureus_monitoring: silent
+s_aureus_monitoring_locator: "p. 3-4 — no S. aureus monitoring is specified anywhere (the 'no laboratory monitoring' sentence is a host-toxicity statement; see host_toxicity_labs)"
 
-host_toxicity_labs: silent
-host_toxicity_labs_locator: "p. 3 ('No laboratory monitoring is needed with doxy-PEP' — no host labs either)"
+host_toxicity_labs: explicitly_none
+host_toxicity_labs_locator: "p. 3 (Dosing and Prescribing, immediately after the NAAT/serology screening instructions)"
+host_toxicity_labs_quote: "No laboratory monitoring is needed with doxy-PEP."
 
 counselling_language_verbatim: "Antibiotic resistance: Doxy-PEP could lead to increased antibiotic resistance in the future, both at the individual and population levels. This includes risk of increased resistance to the bacteria that cause gonorrhea, staph infections, pneumonia, Mycoplasma genitalium (responsible for persistent urethritis), as well as microorganisms in intestinal flora."
 counselling_language_locator: "p. 4 (Counseling Messages)"
@@ -35,8 +35,15 @@ local_mrsa_msm_literature: "Galindo GR et al. 2012, J Community Health, 10.1007/
 same_institution_authored_both: "yes"
 
 note: >-
-  Only 'explicitly_none' in the corpus so far. NYC also states the burden of any
-  population-level resistance/microbiome change 'will have the first and [greatest
-  effect on] the population [in which] doxy-PEP will be most used', then defers to
-  evaluations 'either being planned or are underway' (p. 2) — acknowledges the
-  bystander burden and defers the measurement.
+  The exact MIRROR of Chicago. The 'No laboratory monitoring is needed' sentence
+  sits in Dosing and Prescribing, right after the instruction to obtain NAAT at
+  exposure sites and syphilis serology at baseline and 3-6 months — it answers the
+  safety-bloodwork question (the LFT/CMP/CBC Chicago mandates from the package
+  insert), so it is host_toxicity_labs=explicitly_none, NOT a decision about
+  microbiological surveillance. Reading it as a refusal to monitor staph would
+  attribute a consideration the sentence does not show (PI adjudication 2026-08-19,
+  stricter reading). So: Chicago orders host labs and never mentions resistance;
+  NYC names staph in the counselling script and waives host labs. Both fail to
+  touch the organism, from opposite directions. NYC also states the population
+  bearing any resistance/microbiome burden is the one 'doxy-PEP will be most used'
+  in, then defers to evaluations 'planned or underway' (p. 2).

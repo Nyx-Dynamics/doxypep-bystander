@@ -31,7 +31,7 @@ BystanderTreatment = Literal["silent", "generic_microbiome_resistance",
 SAureusLocation = Literal["body_text", "patient_counselling_script",
                           "still_learning_list", "reference_title_only", "absent"]
 SAureusMonitoring = Literal["required", "suggested", "silent", "explicitly_none"]
-HostToxicityLabs = Literal["required", "suggested", "silent"]
+HostToxicityLabs = Literal["required", "suggested", "silent", "explicitly_none"]
 SameInstitution = Literal["yes", "no", "same_city_different_institution"]
 
 
@@ -74,6 +74,7 @@ class GuidelineRecord(BaseModel):
     s_aureus_monitoring_quote: Optional[str] = None      # required if explicitly_none
     host_toxicity_labs: HostToxicityLabs                 # labs exist, for the host
     host_toxicity_labs_locator: str
+    host_toxicity_labs_quote: Optional[str] = None       # required if explicitly_none
 
     counselling_language_verbatim: Optional[str] = None
     counselling_language_locator: Optional[str] = None
@@ -103,6 +104,10 @@ class GuidelineRecord(BaseModel):
         _need(self.s_aureus_monitoring != "explicitly_none"
               or bool((self.s_aureus_monitoring_quote or "").strip()),
               "s_aureus_monitoring 'explicitly_none' requires a verbatim quote")
+
+        _need(self.host_toxicity_labs != "explicitly_none"
+              or bool((self.host_toxicity_labs_quote or "").strip()),
+              "host_toxicity_labs 'explicitly_none' requires a verbatim quote")
 
         _need(self.local_mrsa_msm_literature is not None
               or bool((self.literature_search_provenance or "").strip()),

@@ -17,25 +17,39 @@ Per field:
 | s_aureus_monitoring | 5 | 80% | 0.00 |
 | s_aureus_named | 5 | 100% | 1.00 |
 
-## Disagreements (the codebook-refinement points)
+## Disagreements and adjudication (2026-08-19)
+
+The two initial disagreements were both codebook edge-cases, not careless errors, and were adjudicated by the PI into binding rules (now in CODEBOOK.md):
 
 - **nyc_dohmh_2023 / s_aureus_monitoring** — first pass `explicitly_none` vs second `silent`
 - **philadelphia_pdph_2024 / bystander_treatment** — first pass `generic_microbiome_resistance` vs second `organism_named`
 
-### Adjudication needed (proposed codebook rules)
+1. **NYC `s_aureus_monitoring`** (`explicitly_none` vs `silent`) → adjudicated to
+   **`silent`** (the second coder's stricter reading). The "No laboratory
+   monitoring is needed" sentence sits in Dosing and Prescribing, right after the
+   NAAT/serology instructions — it answers the safety-bloodwork question, so it is
+   `host_toxicity_labs = explicitly_none`, not a decision about microbiological
+   surveillance. NYC is now the exact mirror of Chicago (Chicago orders host labs,
+   silent on resistance; NYC waives host labs, names staph in counselling) — both
+   fail to touch the organism, from opposite directions.
+2. **Philadelphia `bystander_treatment`** (`generic_microbiome_resistance` vs
+   `organism_named`) → binding rule: a mention only inside a reference title does
+   NOT make `organism_named`; the mention is carried by
+   `s_aureus_location = reference_title_only`.
 
-- **`s_aureus_monitoring` when a document says 'no laboratory monitoring is
-  needed' generally.** Does a blanket no-monitoring statement code as
-  `explicitly_none` (it affirmatively denies monitoring, which includes the
-  bystander) or `silent` (it is not S. aureus-specific)? Proposed: `explicitly_none`
-  — the strongest 'we do not measure it' signal — but this needs a codebook rule.
-- **`bystander_treatment` when S. aureus is named ONLY in a reference title.** Does
-  a citation-title mention make `bystander_treatment = organism_named`, or does it
-  stay at the body-level treatment (`generic_...`) with the mention captured by
-  `s_aureus_location = reference_title_only`? Proposed: the latter (organism_named
-  requires naming in substantive text), so `s_aureus_location` carries the
-  reference mention. Needs a codebook rule.
+## Reporting notes
 
-Kappa is small-N and unstable here; read it with the percent agreement and the
-disagreement list. The two disagreements are edge-case rule ambiguities, not
-careless errors — resolving them in the codebook and re-coding is the next step.
+- **`s_aureus_monitoring` is a descriptive CONSTANT, not a kappa.** After
+  adjudication no document in the corpus specifies *S. aureus* monitoring — the
+  field collapses to a single value, so chance agreement is 100% and kappa is
+  undefined. Report it as: **0 of the coded governmental documents specify
+  S. aureus monitoring** (hash-verified staph keyword search, guidelines/CHECKSUMS.md).
+  The gate is unanimous, not a gradient with one contested cell.
+- **`bystander_treatment` kappa = 0.58 (moderate)** on a five-document sample —
+  stated plainly, not rounded up. Both disagreements were resolved into binding
+  rules afterward; re-coding under those rules is the follow-through. This belongs
+  in the limitations.
+- The other fields with variance (`s_aureus_named`, `s_aureus_location`,
+  `host_toxicity_labs`) agreed perfectly (kappa 1.0), including the key
+  `s_aureus_location` (where the bystander appears), which is the load-bearing
+  field for the paper.

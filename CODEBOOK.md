@@ -39,12 +39,17 @@ for history; v1 coded records live in `data/raw/coding/superseded_streamb_v1/`.
 Double-coding (`outputs/reliability_result.md`; 92% agreement, 5 docs) surfaced two
 edge cases. Rules, now binding so Stream A inherits a tested schema:
 
-1. **`s_aureus_monitoring = explicitly_none`** applies when a document explicitly
-   states no monitoring is needed, **including a blanket statement** (e.g. NYC "No
-   laboratory monitoring is needed with doxy-PEP") — it affirmatively denies
-   measurement, which encompasses the bystander. Quote it. (Flagged for PI: the
-   stricter reading would code a non-S.-aureus-specific blanket as `silent`; NYC is
-   the one genuinely contestable cell — default kept as `explicitly_none`.)
+1. **A blanket "no laboratory monitoring is needed" statement is a HOST-toxicity
+   decision, not a microbiological-surveillance one** (PI adjudication, stricter
+   reading). Where such a sentence sits in a dosing/prescribing context (next to
+   the safety-bloodwork question — the LFT/CMP/CBC from the package insert), code
+   `host_toxicity_labs = explicitly_none` (with the verbatim quote) and
+   `s_aureus_monitoring = silent`. Reading it as a refusal to monitor staph would
+   attribute a consideration the sentence does not show. `s_aureus_monitoring =
+   explicitly_none` is reserved for a statement that specifically addresses
+   monitoring FOR S. aureus / a bystander organism. (Consequence: the corpus is
+   UNANIMOUS — 0 documents specify S. aureus monitoring — rather than a gradient
+   with one contested cell.)
 2. **`bystander_treatment = organism_named` requires naming in substantive/body
    text.** A mention **only** inside a cited reference title does NOT make it
    `organism_named`; the document keeps its body-level treatment

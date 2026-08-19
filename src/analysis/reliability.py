@@ -37,24 +37,20 @@ def cohen_kappa(a: list, b: list) -> float:
     return (po - pe) / (1.0 - pe)
 
 
-def _first_pass(coding_dir: Path) -> dict:
-    """unit -> {field: value} from the first-pass gl_*.yaml records."""
-    out = {}
-    for p in sorted(coding_dir.glob("gl_*.yaml")):
-        r = load_guideline(p)
-        out[r.unit] = {f: getattr(r, f) for f in FIELDS}
-    return out
-
-
-def _second_pass(path: Path) -> dict:
+def _load_json(path: Path) -> dict:
     data = json.loads(Path(path).read_text())
     return {k: v for k, v in data.items() if not k.startswith("_")}
 
 
 def paired_frame(root: Path) -> pd.DataFrame:
-    """One row per (unit, field) present in BOTH codings, with both labels."""
-    fp = _first_pass(root / "data" / "raw" / "coding")
-    sp = _second_pass(root / "data" / "raw" / "coding" / "reliability" / "second_pass.json")
+    """One row per (unit, field) present in BOTH codings, with both labels.
+
+    First pass is the FROZEN snapshot (values as coded at double-coding time), not
+    the live gl_*.yaml — so the agreement is reproducible and not altered by the
+    later PI adjudication."""
+    rel = root / "data" / "raw" / "coding" / "reliability"
+    fp = _load_json(rel / "first_pass_snapshot.json")
+    sp = _load_json(rel / "second_pass.json")
     rows = []
     for unit in sp:
         if unit not in fp:
@@ -69,10 +65,17 @@ def paired_frame(root: Path) -> pd.DataFrame:
 def field_agreement(df: pd.DataFrame) -> pd.DataFrame:
     rows = []
     for f, g in df.groupby("field"):
+        labels = set(g["first_pass"]) | set(g["second_pass"])
+        # a field that collapses to one category has zero variance: chance
+        # agreement is 100% and kappa is UNDEFINED, not merely unstable. Report it
+        # as a descriptive constant, never as a kappa.
+        constant = len(labels) <= 1
         rows.append({
             "field": f, "n": len(g),
             "percent_agreement": g["agree"].mean(),
-            "cohen_kappa": cohen_kappa(list(g["first_pass"]), list(g["second_pass"])),
+            "cohen_kappa": None if constant
+            else cohen_kappa(list(g["first_pass"]), list(g["second_pass"])),
+            "constant": constant,
         })
     return pd.DataFrame(rows).sort_values("field")
 
@@ -104,34 +107,49 @@ Per field:
 |---|---|---|---|
 """
     for _, r in fa.iterrows():
-        k = "n/a (no variation)" if pd.isna(r["cohen_kappa"]) else f"{r['cohen_kappa']:.2f}"
+        if r["constant"]:
+            k = "n/a — constant (see below)"
+        else:
+            k = f"{r['cohen_kappa']:.2f}"
         md += f"| {r['field']} | {int(r['n'])} | {r['percent_agreement']:.0%} | {k} |\n"
 
-    md += "\n## Disagreements (the codebook-refinement points)\n\n"
-    if dis.empty:
-        md += "None.\n"
-    else:
-        for _, r in dis.iterrows():
-            md += (f"- **{r['unit']} / {r['field']}** — first pass `{r['first_pass']}` "
-                   f"vs second `{r['second_pass']}`\n")
+    md += "\n## Disagreements and adjudication (2026-08-19)\n\n"
+    md += ("The two initial disagreements were both codebook edge-cases, not "
+           "careless errors, and were adjudicated by the PI into binding rules "
+           "(now in CODEBOOK.md):\n\n")
+    for _, r in dis.iterrows():
+        md += (f"- **{r['unit']} / {r['field']}** — first pass `{r['first_pass']}` "
+               f"vs second `{r['second_pass']}`\n")
     md += """
-### Adjudication needed (proposed codebook rules)
+1. **NYC `s_aureus_monitoring`** (`explicitly_none` vs `silent`) → adjudicated to
+   **`silent`** (the second coder's stricter reading). The "No laboratory
+   monitoring is needed" sentence sits in Dosing and Prescribing, right after the
+   NAAT/serology instructions — it answers the safety-bloodwork question, so it is
+   `host_toxicity_labs = explicitly_none`, not a decision about microbiological
+   surveillance. NYC is now the exact mirror of Chicago (Chicago orders host labs,
+   silent on resistance; NYC waives host labs, names staph in counselling) — both
+   fail to touch the organism, from opposite directions.
+2. **Philadelphia `bystander_treatment`** (`generic_microbiome_resistance` vs
+   `organism_named`) → binding rule: a mention only inside a reference title does
+   NOT make `organism_named`; the mention is carried by
+   `s_aureus_location = reference_title_only`.
 
-- **`s_aureus_monitoring` when a document says 'no laboratory monitoring is
-  needed' generally.** Does a blanket no-monitoring statement code as
-  `explicitly_none` (it affirmatively denies monitoring, which includes the
-  bystander) or `silent` (it is not S. aureus-specific)? Proposed: `explicitly_none`
-  — the strongest 'we do not measure it' signal — but this needs a codebook rule.
-- **`bystander_treatment` when S. aureus is named ONLY in a reference title.** Does
-  a citation-title mention make `bystander_treatment = organism_named`, or does it
-  stay at the body-level treatment (`generic_...`) with the mention captured by
-  `s_aureus_location = reference_title_only`? Proposed: the latter (organism_named
-  requires naming in substantive text), so `s_aureus_location` carries the
-  reference mention. Needs a codebook rule.
+## Reporting notes
 
-Kappa is small-N and unstable here; read it with the percent agreement and the
-disagreement list. The two disagreements are edge-case rule ambiguities, not
-careless errors — resolving them in the codebook and re-coding is the next step.
+- **`s_aureus_monitoring` is a descriptive CONSTANT, not a kappa.** After
+  adjudication no document in the corpus specifies *S. aureus* monitoring — the
+  field collapses to a single value, so chance agreement is 100% and kappa is
+  undefined. Report it as: **0 of the coded governmental documents specify
+  S. aureus monitoring** (hash-verified staph keyword search, guidelines/CHECKSUMS.md).
+  The gate is unanimous, not a gradient with one contested cell.
+- **`bystander_treatment` kappa = 0.58 (moderate)** on a five-document sample —
+  stated plainly, not rounded up. Both disagreements were resolved into binding
+  rules afterward; re-coding under those rules is the follow-through. This belongs
+  in the limitations.
+- The other fields with variance (`s_aureus_named`, `s_aureus_location`,
+  `host_toxicity_labs`) agreed perfectly (kappa 1.0), including the key
+  `s_aureus_location` (where the bystander appears), which is the load-bearing
+  field for the paper.
 """
     (root / "outputs" / "reliability_result.md").write_text(md)
     return df, fa, dis, overall

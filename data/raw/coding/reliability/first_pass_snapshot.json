@@ -1,0 +1,12 @@
+{
+  "_meta": {
+    "coder": "claude-firstpass",
+    "snapshot_date": "2026-08-19",
+    "purpose": "Frozen first-pass values for the 5 double-coded documents, AS CODED at the time of the blind second coding — so the inter-coder agreement is reproducible and is NOT altered by the subsequent PI adjudication (NYC s_aureus_monitoring explicitly_none->silent; host_toxicity_labs silent->explicitly_none). The live gl_*.yaml carries the adjudicated values."
+  },
+  "chicago_cdph_2023": {"bystander_treatment": "silent", "s_aureus_named": false, "s_aureus_location": "absent", "s_aureus_monitoring": "silent", "host_toxicity_labs": "required"},
+  "nyc_dohmh_2023": {"bystander_treatment": "organism_named", "s_aureus_named": true, "s_aureus_location": "patient_counselling_script", "s_aureus_monitoring": "explicitly_none", "host_toxicity_labs": "silent"},
+  "san_diego_county_2023": {"bystander_treatment": "organism_named", "s_aureus_named": true, "s_aureus_location": "body_text", "s_aureus_monitoring": "silent", "host_toxicity_labs": "suggested"},
+  "philadelphia_pdph_2024": {"bystander_treatment": "generic_microbiome_resistance", "s_aureus_named": true, "s_aureus_location": "reference_title_only", "s_aureus_monitoring": "silent", "host_toxicity_labs": "silent"},
+  "la_county_2023": {"bystander_treatment": "organism_named", "s_aureus_named": true, "s_aureus_location": "still_learning_list", "s_aureus_monitoring": "silent", "host_toxicity_labs": "silent"}
+}
