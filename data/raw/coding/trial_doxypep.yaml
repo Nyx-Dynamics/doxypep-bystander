@@ -222,7 +222,7 @@ observations:
     locator: "Fig 4B (p. 1301)"
 
   # ---------- Szondy 2024 (meta-analysis): DERIVED from NEJM/CROI; reconciles ----------
-  - source_type: meta_analysis
+  - source_type: secondary_synthesis
     source_citation: "Szondy 2024 Table 2 (Int J Infect Dis 147:107186)"
     arm: doxy
     timepoint: followup_mo6_mo12_pooled
@@ -236,13 +236,13 @@ observations:
     denominator_basis: isolates_cultured
     locator: "Szondy Table 2, p. 6 (DoxyPEP, S. aureus MSSA)"
     note: >-
-      RECONCILES to NEJM: doxy follow-up MSSA 15/71 + MRSA 1/11 = 16/82 = NEJM
+      Szondy is a SYSTEMATIC REVIEW & META-ANALYSIS (Semmelweis; IJID 2024) — Table 2 is pooled EXTRACTION of the underlying trials, not an independent observation. Tagged secondary_synthesis: it reconciles to NEJM by construction (a second reading of the same data), so it is a reconciliation CHECK, not corroboration. RECONCILES to NEJM: doxy follow-up MSSA 15/71 + MRSA 1/11 = 16/82 = NEJM
       months 6+12 pooled (11+5 resistant / 51+31 isolated). Relabel: Szondy's table
       is 'Tetracycline resistance' and labels this 'TCN resistance ... MIC >=16',
       but MIC>=16 is NEJM's DOXYCYCLINE ETEST cutoff. The MSSA/MRSA split is not in
       NEJM main text; it traces to the CROI 2023 abstract (Szondy ref 17); NEJM
       Supplementary Appendix not checked (not in hand).
-  - source_type: meta_analysis
+  - source_type: secondary_synthesis
     source_citation: "Szondy 2024 Table 2"
     arm: doxy
     timepoint: followup_mo6_mo12_pooled
@@ -259,7 +259,7 @@ observations:
       Relabel (TCN vs doxycycline). MRSA breakdown exists ONLY here / CROI; NEJM
       has no methicillin split, so no primary_trial denominator exists for MRSA —
       a finding for detectability, not a gap to fill.
-  - source_type: meta_analysis
+  - source_type: secondary_synthesis
     source_citation: "Szondy 2024 Table 2"
     arm: control
     timepoint: followup_mo6_mo12_pooled
@@ -273,7 +273,7 @@ observations:
     denominator_basis: isolates_cultured
     locator: "Szondy Table 2, p. 6"
     note: "Relabel. Control follow-up MSSA 3/47 + MRSA 2/6 = 5/53 = NEJM control mo6+12 (3+2 / 29+24)."
-  - source_type: meta_analysis
+  - source_type: secondary_synthesis
     source_citation: "Szondy 2024 Table 2"
     arm: control
     timepoint: followup_mo6_mo12_pooled
@@ -289,7 +289,7 @@ observations:
     note: >-
       Relabel. This 2/6 (control) and 1/11 (doxy) MRSA pair is the entire basis for
       CDC's 'MRSA colonization trends did not differ between arms'. From CROI, not NEJM.
-  - source_type: meta_analysis
+  - source_type: secondary_synthesis
     source_citation: "Szondy 2024 Table 2"
     arm: doxy
     timepoint: baseline
@@ -303,7 +303,7 @@ observations:
     denominator_basis: isolates_cultured
     locator: "Szondy Table 2, p. 6"
     note: "Relabel. Arm-split baseline (doxy) — not in NEJM figure (combined); from CROI."
-  - source_type: meta_analysis
+  - source_type: secondary_synthesis
     source_citation: "Szondy 2024 Table 2"
     arm: doxy
     timepoint: baseline
@@ -317,7 +317,7 @@ observations:
     denominator_basis: isolates_cultured
     locator: "Szondy Table 2, p. 6"
     note: "Relabel; arm-split baseline from CROI."
-  - source_type: meta_analysis
+  - source_type: secondary_synthesis
     source_citation: "Szondy 2024 Table 2"
     arm: control
     timepoint: baseline
@@ -331,7 +331,7 @@ observations:
     denominator_basis: isolates_cultured
     locator: "Szondy Table 2, p. 6"
     note: "Relabel. Baseline all-arms MSSA+MRSA = 25/214 ~ NEJM baseline 25/215 (one-isolate rounding)."
-  - source_type: meta_analysis
+  - source_type: secondary_synthesis
     source_citation: "Szondy 2024 Table 2"
     arm: control
     timepoint: baseline
@@ -346,13 +346,17 @@ observations:
     locator: "Szondy Table 2, p. 6"
     note: "Relabel; arm-split baseline from CROI."
 
-  # ---------- CDC MMWR (guideline): does NOT reconcile to NEJM ----------
+  # ---------- CDC MMWR (guideline): numbers NOT YET reconciled to NEJM ----------
+  # HIGH-SCRUTINY / UNRESOLVED. Do NOT advance any "CDC's numbers don't reconcile"
+  # claim to a manuscript until (a) the analysis population behind 428/222 is
+  # established and (b) CROI-2023-abstract vs NEJM provenance is checked. The
+  # discrepancy may be entirely benign (different follow-up population / source).
   - source_type: guideline
     source_citation: "CDC MMWR 2024 (Bachmann)"
     arm: doxy
     timepoint: baseline
     organism: s_aureus
-    phenotype_measured: doxycycline
+    phenotype_measured: not_stated
     phenotype_as_labeled: tetracycline
     mechanism_discriminating: "no"
     discrimination_method: "none"
@@ -362,19 +366,24 @@ observations:
     description_denominator_mismatch: "yes"
     locator: "CDC MMWR p. 6 (Potential Resistance in Commensals)"
     note: >-
-      CDC prints 'tetracycline-resistant S. aureus ... from 5% [20 of 428]';
-      relabel (NEJM assay is doxycycline ETEST). Basis unclear and does NOT
-      reconcile: NEJM baseline is 25/215 (isolated) or 25/483 (swabbed), combined
-      arms; CDC's 20/428 matches neither the numerator (25) nor any NEJM
-      denominator. Description ('those with S. aureus in their nares') implies a
-      colonized denominator, but 428 is all-swabbed magnitude. Do not assert an
-      error; record the disagreement.
+      CDC prints 'tetracycline-resistant S. aureus ... from 5% [20 of 428]'.
+      phenotype_measured = not_stated: CDC cites BOTH the NEJM paper (doxycycline
+      ETEST) AND a CROI 2023 abstract, and does not state which assay yields
+      20/428, so the drug tested is genuinely unknown. The numbers do not obviously
+      map onto the NEJM figure (baseline 25/215 isolated or 25/483 swabbed, combined
+      arms), but this is UNRESOLVED, not an error: candidate benign explanations
+      include (i) a different analysis population (CDC frames the doxy arm and a
+      12-month follow-up window), (ii) provenance from the CROI abstract rather than
+      NEJM, (iii) swab-count vs participant-count. The prose ('those with S. aureus
+      in their nares') suggests a colonized denominator while 428 is all-swabbed
+      magnitude. Establish the exact population + CROI-vs-NEJM provenance before any
+      use. Do NOT assert an error.
   - source_type: guideline
     source_citation: "CDC MMWR 2024 (Bachmann)"
     arm: doxy
     timepoint: month12
     organism: s_aureus
-    phenotype_measured: doxycycline
+    phenotype_measured: not_stated
     phenotype_as_labeled: tetracycline
     mechanism_discriminating: "no"
     discrimination_method: "none"
@@ -384,8 +393,13 @@ observations:
     description_denominator_mismatch: "yes"
     locator: "CDC MMWR p. 6"
     note: >-
-      CDC: 'to 13% [28 of 222]'. Relabel (tetracycline vs NEJM doxycycline). Does
-      NOT reconcile: NEJM month-12 doxy is 5 resistant / 31 isolated / 111 swabbed;
-      CDC's 28/222 matches neither numerator (28 vs 5) nor denominator (222 vs
-      31/111). The guideline driving national practice is the one source that does
-      not reconcile to the isolate; Szondy (meta-analysis) does.
+      CDC: 'to 13% [28 of 222]'. Same UNRESOLVED status as the baseline row.
+      phenotype_measured = not_stated (assay/provenance unknown; NEJM vs CROI). The
+      count does not obviously map onto the NEJM month-12 doxy figure (5 resistant /
+      31 isolated / 111 swabbed), but the likeliest benign explanation is a
+      different analysis population — CDC describes a 12-month follow-up window whose
+      denominator need not equal the NEJM figure's. Contrast with Szondy, which
+      reconciles because it re-tabulates the same trial data. Whether CDC's number
+      is a benign population difference or a genuine provenance gap is the single
+      most scrutiny-attracting question in Stream A; resolve it (CROI abstract +
+      NEJM Supplementary Appendix) before it goes near the paper.

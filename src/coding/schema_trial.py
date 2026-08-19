@@ -27,7 +27,11 @@ from pydantic import BaseModel, ConfigDict, model_validator
 from src.coding.schema import CodedField  # noqa: F401
 
 SourceType = Literal["primary_trial", "guideline", "meta_analysis",
-                     "reanalysis", "registry"]
+                     "secondary_synthesis", "reanalysis", "registry"]
+# secondary_synthesis: an extraction/re-tabulation of ANOTHER study's data (e.g. a
+# systematic review's table re-printing one trial's numbers). A second reading of
+# the same underlying data — reconciles to the primary by construction, NOT an
+# independent observation; excluded from detectability inputs like every non-primary.
 Arm = Literal["doxy", "control", "combined"]
 Organism = Literal["s_aureus", "mssa", "mrsa", "n_gonorrhoeae",
                    "commensal_neisseria", "c_trachomatis", "gas", "other"]

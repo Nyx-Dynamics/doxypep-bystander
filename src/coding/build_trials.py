@@ -88,10 +88,15 @@ Per-organism (primary-trial observations):
 
 Primary-trial denominators feed `detectability.py`. **MRSA has no primary-trial
 denominator**: NEJM reports no methicillin breakdown, so the only MRSA numbers
-(1/11 doxy, 2/6 control) come from a meta-analysis/CROI restatement. That is a
-finding — the endpoint CDC leans on to say "MRSA did not differ between arms" is
-not in the primary publication — not a gap to be filled. MRSA rows in the
-primary-trial detectability set: **{len(mrsa_primary)}**.
+(1/11 doxy, 2/6 control) come from a secondary synthesis (Szondy SR/MA, a
+re-tabulation of the same data) / the CROI 2023 abstract — not the primary
+publication. MRSA rows in the primary-trial detectability set: **{len(mrsa_primary)}**.
+
+Note (high-scrutiny): the CDC MMWR S. aureus figures (20/428 -> 28/222) are coded
+as UNRESOLVED, not as a reconciliation failure — the assay/provenance
+(NEJM doxycycline ETEST vs CROI) and the analysis population behind those
+denominators are not yet established. See the CDC observations' notes; resolve
+before any manuscript use.
 
 ## Gate
 

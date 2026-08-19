@@ -363,3 +363,29 @@ cleanly untangled — Open Door effectively co-constitutes RI's substantive
 guidance rather than merely relaying it. Decision confirmed: NO clinic-relay tier.
 The Baltimore->Maryland case remains a genuine level split (city surveillance vs
 state policy); RI is a collaboration and is treated as a single entangled unit.
+
+## 2026-08-19 — Stream A rigor: CDC discrepancy (high-scrutiny) + Szondy relabelled
+
+**CDC S. aureus figures = UNRESOLVED, not a finding.** CDC MMWR prints tetR
+S. aureus 20/428 -> 28/222 (doxy arm). These do not obviously map onto the NEJM
+Fig 4B figure, but that is NOT coded as a reconciliation failure: benign
+explanations are live — (i) CDC frames a 12-month follow-up window whose
+denominator need not equal the NEJM figure's; (ii) CDC cites BOTH the NEJM paper
+and a CROI 2023 abstract, so the numbers may be CROI-sourced; (iii) swab-count vs
+participant-count. Actions before ANY manuscript use: establish the exact analysis
+population behind 428/222; check CROI-vs-NEJM provenance (NEJM Supplementary
+Appendix + the CROI abstract). CDC `phenotype_measured` set to `not_stated` (assay
+unknown), which also de-couples CDC from the NEJM discordance grouping — so the
+analysis no longer *asserts* a CDC reconciliation failure. The robust finding is
+narrower and stands: NEJM's OWN basis choice (colonized 31 vs all-swabbed 111)
+moves the month-12 headline 3.6x. An unreconciled-numbers claim against CDC would
+draw the sharpest review scrutiny; being wrong there costs the rest of the paper.
+
+**Szondy re-tagged `secondary_synthesis` (was `meta_analysis`).** Verified: Szondy
+2024 (IJID; Semmelweis) is "a systematic review and meta-analysis of randomized
+[trials]". Its Table 2 S. aureus rows are pooled EXTRACTION of the DoxyPEP/CROI
+data — a second reading of the same underlying data, not an independent
+observation. It reconciles to NEJM by construction, so it is a reconciliation
+CHECK, not corroboration, and (like every non-primary source) is excluded from
+detectability inputs. Added `secondary_synthesis` to the SourceType enum. Trial
+count stays 1 (Szondy was never a separate TrialRecord).

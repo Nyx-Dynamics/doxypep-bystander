@@ -10,7 +10,7 @@ The same underlying result is reported with different denominators, and the choi
 alone moves the headline. Discordant result-groups: **5**.
 
 - **s_aureus / doxy / month6** — denominators {51, 192} across bases (all_participants_swabbed, colonized_participants); the rate moves 3.8x on basis choice alone.
-- **s_aureus / doxy / month12** — denominators {31, 111, 222} across bases (all_participants_swabbed, colonized_participants, unclear); the rate moves 3.6x on basis choice alone; a source description disagrees with its printed denominator; an intervention-affected denominator is in the mix.
+- **s_aureus / doxy / month12** — denominators {31, 111} across bases (all_participants_swabbed, colonized_participants); the rate moves 3.6x on basis choice alone; an intervention-affected denominator is in the mix.
 - **s_aureus / control / month6** — denominators {29, 75} across bases (all_participants_swabbed, colonized_participants); the rate moves 2.6x on basis choice alone.
 - **s_aureus / combined / baseline** — denominators {215, 483} across bases (all_participants_swabbed, colonized_participants); the rate moves 2.2x on basis choice alone.
 - **s_aureus / control / month12** — denominators {24, 51} across bases (all_participants_swabbed, colonized_participants); the rate moves 2.1x on basis choice alone.
@@ -30,8 +30,8 @@ tet(K) efflux raises tetracycline MIC 64x but doxycycline only 2x.
 - Szondy 2024 Table 2 (mrsa): measured `doxycycline`, labeled `tetracycline` [Szondy Table 2, p. 6]
 - Szondy 2024 Table 2 (mssa): measured `doxycycline`, labeled `tetracycline` [Szondy Table 2, p. 6]
 - Szondy 2024 Table 2 (mrsa): measured `doxycycline`, labeled `tetracycline` [Szondy Table 2, p. 6]
-- CDC MMWR 2024 (Bachmann) (s_aureus): measured `doxycycline`, labeled `tetracycline` [CDC MMWR p. 6 (Potential Resistance in Commensals)]
-- CDC MMWR 2024 (Bachmann) (s_aureus): measured `doxycycline`, labeled `tetracycline` [CDC MMWR p. 6]
+- CDC MMWR 2024 (Bachmann) (s_aureus): measured `not_stated`, labeled `tetracycline` [CDC MMWR p. 6 (Potential Resistance in Commensals)]
+- CDC MMWR 2024 (Bachmann) (s_aureus): measured `not_stated`, labeled `tetracycline` [CDC MMWR p. 6]
 
 ## Mechanism blindness
 
@@ -44,10 +44,15 @@ Per-organism (primary-trial observations):
 
 Primary-trial denominators feed `detectability.py`. **MRSA has no primary-trial
 denominator**: NEJM reports no methicillin breakdown, so the only MRSA numbers
-(1/11 doxy, 2/6 control) come from a meta-analysis/CROI restatement. That is a
-finding — the endpoint CDC leans on to say "MRSA did not differ between arms" is
-not in the primary publication — not a gap to be filled. MRSA rows in the
-primary-trial detectability set: **0**.
+(1/11 doxy, 2/6 control) come from a secondary synthesis (Szondy SR/MA, a
+re-tabulation of the same data) / the CROI 2023 abstract — not the primary
+publication. MRSA rows in the primary-trial detectability set: **0**.
+
+Note (high-scrutiny): the CDC MMWR S. aureus figures (20/428 -> 28/222) are coded
+as UNRESOLVED, not as a reconciliation failure — the assay/provenance
+(NEJM doxycycline ETEST vs CROI) and the analysis population behind those
+denominators are not yet established. See the CDC observations' notes; resolve
+before any manuscript use.
 
 ## Gate
 
