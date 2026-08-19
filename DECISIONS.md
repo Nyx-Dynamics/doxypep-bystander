@@ -2,6 +2,34 @@
 
 Dated analysis decisions, logged before results are known. Append-only.
 
+## 2026-08-19 (night) — IDSA guidelines ingested; clinical-lens Introduction funnel
+
+Two IDSA clinical guidelines ingested + hashed (papers/CHECKSUMS.md, coded-source):
+`liu2011_idsa_mrsa_guideline.pdf` (ciq146) and `stevens2014_idsa_ssti_guideline.pdf`
+(ciu296). They ground the clinical reframe and resolve the one TODO-verify citation.
+
+- **liu2011 resolved (was TODO-verify).** The IDSA MRSA guideline lists "a tetracycline
+  (doxycycline or minocycline) (A-II)" among oral CA-MRSA options, and states the
+  tet(K)/tet(M) distinction WITH clinical consequence verbatim: "tet(K) confers
+  resistance to tetracycline and inducible resistance to doxycycline … [while] tet(M)
+  … resistance to all agents in the class." This puts the project's constraint-2
+  measurement point inside a treatment guideline: a mechanism-blind "tetracycline
+  class" endpoint cannot tell a clinician whether doxycycline still works. Wired into
+  manuscript §2.1.
+- **Author overlap verified.** Henry F. Chambers is an author of liu2011 and senior
+  author of Diep 2008 (USA300 in MSM) — supports Introduction beat 4. Added diep2008
+  to references.bib (canonical; not hashed).
+- **Introduction rewritten to a 9-beat clinical funnel (PI-specified).** Doxy-PEP works
+  and scales; every dose is bystander selective pressure; why S. aureus matters
+  clinically (doxycycline an IDSA oral MRSA option; constrained alternatives); the MSM
+  USA300 history; the TGW-underpowering / generalization limit; the trials' own call
+  for monitoring; the 3-part research question; the distributive-justice stakes (named
+  constituencies: diabetes, dialysis, post-surgical, oncology patients on oral
+  anti-staph therapy); and the three streams. Externality paragraph in the Discussion
+  aligned to the named constituencies + the IDSA armamentarium-erosion framing
+  (stevens2014). Guardrails held: no causal claim; MRSA baseline steel-manned; register
+  measured. manuscript.tex regenerated; compiles clean to 24pp; all citations resolve.
+
 ## 2026-08-19 (late) — CROI abstract BODY + TABLE obtained: the keystone exhibit
 
 PI supplied the verbatim CROI 2023 abstract body and its data table (croiconference.org)
