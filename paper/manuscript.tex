@@ -153,14 +153,18 @@ Doxycycline Post-Exposure Prophylaxis}
 \subsection{Abstract}\label{abstract}
 
 \textbf{Background.} Doxycycline post-exposure prophylaxis (doxy-PEP)
-has been scaled across sexual-health systems since citywide (San
-Francisco, 2022) and national (CDC, 2024) guidance. Doxycycline selects
-for tetracycline resistance beyond its target organism;
-\emph{Staphylococcus aureus} --- a commensal and pathogen carrying
-mobile tetracycline-resistance determinants but sitting outside the STI
-surveillance frame --- is the natural \textbf{bystander}. We ask not
-whether doxy-PEP causes resistant \emph{S. aureus}, but whether the
-existing evidence base is \emph{instrumented to answer the question at
+reduces bacterial STIs and has been scaled across sexual-health systems
+since citywide (San Francisco, 2022) and national (CDC, 2024) guidance.
+Doxycycline selects for tetracycline resistance beyond its target
+organism; \emph{Staphylococcus aureus} --- a commensal and pathogen that
+carries mobile tetracycline-resistance determinants, that once spread
+community MRSA through the same sexual networks, and for which
+doxycycline is one of few \emph{oral} treatment options --- is the
+natural \textbf{bystander}, and one with a clinical stake. The trials
+that established doxy-PEP called for longer-term monitoring of exactly
+this. We ask not whether doxy-PEP causes resistant \emph{S. aureus}, but
+whether that monitoring exists --- whether the evidence base and
+guidance now in place are \emph{instrumented to answer the question at
 all}.
 
 \textbf{Methods.} We read the pivotal trial's own
@@ -215,53 +219,95 @@ claim}.
 
 \subsection{1. Introduction}\label{introduction}
 
-Doxy-PEP --- a single 200 mg dose of doxycycline after condomless sex
---- reduces bacterial STIs in men who have sex with men and transgender
-women and has been adopted rapidly since the DoxyPEP trial ({Luetkemeyer
-et al.} 2023). Because doxycycline is a tetracycline, its
-population-scale use exerts selection pressure not confined to
-\emph{Neisseria gonorrhoeae}, where tetracycline resistance is already
-near-saturating in exposed populations ({Schröder et al.} 2025).
+Doxycycline post-exposure prophylaxis (doxy-PEP) --- a single 200 mg
+dose of doxycycline taken within 72 hours of condomless sex --- reduces
+gonorrhea, chlamydia, and early syphilis by roughly two-thirds in men
+who have sex with men (MSM) and transgender women with a recent
+bacterial sexually transmitted infection (STI) ({Luetkemeyer et al.}
+2023). On that evidence it has been adopted quickly, through citywide
+(San Francisco, 2022) and national (CDC, 2024) guidance (San Francisco
+Department of Public Health 2022; Centers for Disease Control and
+Prevention 2024). Doxycycline is a tetracycline, and at population
+scale, taken repeatedly after sex, it is a sustained antibiotic exposure
+that reaches more than its target organism.
 
-\emph{S. aureus} is the natural bystander: it colonizes the same
-individuals, carries mobile tetracycline-resistance determinants, and
---- unlike \emph{N. gonorrhoeae} --- is tracked by no STI-oriented
-surveillance apparatus. The concern is \textbf{not} that the field
-ignored it (the DoxyPEP trial, DuDHS, and Soge all assayed it
-(Luetkemeyer and DoxyPEP Study Team 2023; {Soge et al.} 2025)), and
-\textbf{not} that doxy-PEP ``causes MRSA'' (methicillin resistance in
-this population is too rare to power anything). The claim we examine is
-structural and prior to any effect estimate: \textbf{the evidence base
-is not instrumented to answer whether population doxycycline exposure is
-associated with tetracycline-resistant \emph{S. aureus}.} We call this
-\emph{measurement inheritance} --- an analysis inherits the sampling
-frame, cadence, coding, and denominator of the apparatus it is built on,
-and those were chosen for a different organism and a different question.
+\emph{Staphylococcus aureus} is the natural bystander. It colonizes the
+nose and oropharynx --- the same sites swabbed in these trials --- is a
+leading cause of skin, soft-tissue, and invasive infection, and carries
+mobile tetracycline-resistance determinants. It matters here for a
+concrete clinical reason: doxycycline is itself one of a small number of
+\emph{oral} agents used to treat community-associated
+methicillin-resistant \emph{S. aureus} (MRSA) skin and soft-tissue
+infection in the outpatient setting ({Liu et al.} 2011). Selection for
+tetracycline- or doxycycline-resistant \emph{S. aureus} in this
+population therefore bears on the continued usefulness of one of the few
+oral options for treating MRSA.
 
-Our argument rests first on a single document: the pivotal trial's own
-antimicrobial-resistance report, presented at CROI 2023 (Luetkemeyer and
-DoxyPEP Study Team 2023). Read closely, it shows the difficulty in
-miniature --- a phenotype named for one drug and measured with another,
-a rate expressed over a denominator the intervention moves, counts that
-differ across the trial's own venues, data that are not released, and a
-closing call for monitoring. We then ask, across three streams, whether
-the pattern is peculiar to one presentation or general to the evidence
-base, and find it general. Throughout, the claim is about
-\textbf{adequacy, not effect}: the trial's own between-arm test is
-non-significant (p=0.19), and we do not dispute it. What the record
-shows is that the study was instrumented and summarized so that a
-4.7-fold rise in per-carrier resistance appears as a modest,
-non-significant change --- an observation about the instrument, not
-about the biology.
+The concern is not abstract. Community-associated MRSA --- the USA300
+lineage in particular --- disseminated through MSM sexual networks in
+the 2000s and has been described as behaving, in part, as a sexually
+transmissible reservoir, colonizing multiple body sites among
+sexual-health-clinic attendees ({Miko et al.} 2012; {Jong et al.} 2025).
+That history is why \emph{S. aureus}, and MRSA specifically, is the
+organism one would watch when a tetracycline is given continuously to
+this population.
 
-Stated plainly, the through-line is this: the trial called for
-monitoring that the evidence base it helped launch is not built to
-provide. That sentence is not a charge; it is a description, and the
-sections below simply make it precise. The inquiry is, in the end,
-epistemological --- what the available instruments permit us to know
-about a bystander organism --- approached with the ordinary tools of
-data science: public data, coded sources with locators, and analysis
-that regenerates from a single command.
+Two cautions keep the clinical stake honest. First, contemporary MRSA
+colonization in doxy-PEP populations is low, and MSM identity is not
+itself a risk factor; prevalence is near zero in several cohorts and
+elevated only in behaviorally defined subgroups ({Jong et al.} 2025).
+The stake is mechanistic plausibility --- the right drug, the right
+organism, the right population --- not a present-day signal. Second, the
+trials enrolled overwhelmingly MSM; transgender women were included but
+in numbers too small to support inference and were, in effect, analyzed
+together with MSM. ``MSM and transgender women'' describes the
+enrollment label, not an evidentiary basis for conclusions specific to
+transgender women.
+
+The pivotal trials did assay \emph{S. aureus}. As reported, doxy-PEP
+reduced \emph{S. aureus} colonization while doxycycline resistance among
+those still colonized rose, and MRSA remained rare (Luetkemeyer and
+DoxyPEP Study Team 2023; {Luetkemeyer et al.} 2023; {Soge et al.} 2025).
+Having presented these data, the investigators called for longer-term
+monitoring ``to understand the trajectory and clinical importance of
+microbial susceptibility patterns associated with doxycycline as STI
+PEP'' (Luetkemeyer and DoxyPEP Study Team 2023), and the guidance that
+scaled doxy-PEP likewise names antimicrobial resistance as a concern
+warranting attention (Centers for Disease Control and Prevention 2024).
+
+This paper takes those recommendations as its subject. Rather than offer
+a new effect estimate, we ask a clinical-epidemiological question about
+the monitoring that was called for: \textbf{has it been implemented, and
+can the surveillance and guidance now in place --- WHO, CDC, state, and
+city --- actually measure what was recommended?} The answer bears
+directly on patient care, because the consequence of not measuring is
+not neutral. Doxy-PEP's benefit --- fewer STIs --- accrues to the person
+who takes it and their partners, now. A potential cost --- erosion of an
+oral treatment option for community MRSA --- would fall diffusely, on a
+broader population that includes people who never take doxy-PEP
+(hospitalized patients, household and community contacts) and on the
+future. This is the structure of a \textbf{negative externality}: a
+private, immediate benefit set against a socialized, deferred cost. What
+is distinctive here is that the externality is \emph{unpriced because it
+is unmeasured} --- the systems that counsel patients about the harm
+collect no data that would let anyone weigh it.
+
+We therefore ask whether the doxy-PEP → bystander-\emph{S. aureus}
+question is answerable with the evidence base and surveillance that
+exist. We approach it in three streams, assembled sequentially --- the
+clinical trials (Stream A), the guidelines (Stream B), and population
+surveillance (Stream C) --- reading the pivotal trial's own report,
+coding the governmental guideline corpus against whether it measures the
+bystander, and then testing quasi-computationally whether any population
+surveillance system could detect the signal at all. The claim throughout
+is about \textbf{adequacy, not effect}, and none of it is causal: we do
+not argue that doxy-PEP causes resistant \emph{S. aureus}, only that the
+apparatus built around it cannot presently tell. Stated plainly, the
+trials asked for monitoring the evidence base they helped launch is not
+built to provide --- a question in clinical epidemiology that is, in the
+end, also one in epistemology: what the available instruments permit us
+to know about a bystander organism, approached with public data and
+analysis that regenerates from a single command.
 
 \subsection{2. The keystone: the trial's own
 report}\label{the-keystone-the-trials-own-report}
@@ -646,6 +692,25 @@ conducted with data science: it uses public data and regenerable code to
 locate the boundary of what the current instruments can know about the
 bystander, and finds that boundary short of the question.
 
+For a clinician the stake is specific and the framing is an externality
+one. Among the few oral agents available for community MRSA, doxycycline
+is one; the population in which doxy-PEP concentrates tetracycline
+exposure is the same population through which community MRSA once spread
+({Miko et al.} 2012; {Jong et al.} 2025). If continuous doxycycline
+were, over time, to enrich doxycycline resistance in community \emph{S.
+aureus}, the cost would land as a slow erosion of an outpatient
+treatment option --- and it would land diffusely, on people who never
+took doxy-PEP and on care delivered years later, while the benefit was
+individual and immediate. We are careful not to assert that this is
+happening; contemporary MRSA carriage in these cohorts is low and the
+trials' own between-arm tests are non-significant. The point is
+narrower: an externality of this shape --- deferred, diffuse, and
+falling partly on non-users --- is exactly the kind that requires
+deliberate measurement to be weighed at all, and it is precisely what
+none of the guidelines that counsel patients about resistance are
+instrumented to record. An unmeasured externality is not a small one; it
+is an unpriced one.
+
 What would it take to see the signal? The streams name the
 instrumentation: sentinel sampling of \emph{S. aureus} from
 doxy-PEP-exposed individuals (which raises κ by construction and fixes
@@ -765,6 +830,19 @@ Units, Zero Code or Runnable-Artifact Mandates}. MetaArXiv preprint.
 Grossman, Trudy H. 2016. {``Tetracycline Antibiotics and Resistance.''}
 \emph{Cold Spring Harb Perspect Med} 6 (4): a025387.
 
+\bibitem[\citeproctext]{ref-dejong2025}
+{Jong, N. de et al.} 2025. {``Community-Acquired Methicillin-Resistant
+{Staphylococcus aureus} ({CA-MRSA}) in Men Having Sex with Men ({MSM}):
+A Systematic Review of Risk Factors, Prevalence, and Transmission.''}
+\emph{BMC Infect Dis} 25: 299.
+
+\bibitem[\citeproctext]{ref-liu2011}
+{Liu, Catherine, Arnold Bayer, Sara E. Cosgrove, et al.} 2011.
+{``Clinical Practice Guidelines by the {Infectious Diseases Society of
+America} for the Treatment of Methicillin-Resistant {Staphylococcus
+aureus} Infections in Adults and Children.''} \emph{Clin Infect Dis} 52
+(3): e18--55.
+
 \bibitem[\citeproctext]{ref-luetkemeyer2023}
 {Luetkemeyer, Anne F., Deborah Donnell, Julia C. Dombrowski, et al.}
 2023. {``Postexposure Doxycycline to Prevent Bacterial Sexually
@@ -776,12 +854,16 @@ Antimicrobial Resistance in {N. gonorrhoeae}, Commensal {Neisseria} and
 {S. aureus}}. Conference on Retroviruses and Opportunistic Infections
 (CROI), Oral Abstract OA-3.
 
-\bibitem[\citeproctext]{ref-schroder2025}
-{Schröder, D., T. Cherdtrakulkiat, L. H. Doanh, et al.} 2025.
-{``Exceedingly High Levels of Tetracycline Resistance in {Neisseria
-gonorrhoeae} in Eight {WHO} Enhanced Gonococcal Antimicrobial
-Surveillance Programme Countries.''} \emph{J Antimicrob Chemother} 80:
-1291--95.
+\bibitem[\citeproctext]{ref-miko2012}
+{Miko, Benjamin A. et al.} 2012. {``High Prevalence of Colonization with
+{Staphylococcus aureus} Clone {USA300} at Multiple Body Sites Among
+Sexually Transmitted Disease Clinic Patients: An Unrecognized
+Reservoir.''} \emph{Microbes Infect} 14 (12): 1040--43.
+
+\bibitem[\citeproctext]{ref-sfdph2022}
+San Francisco Department of Public Health. 2022. \emph{Health Update:
+Doxycycline Post-Exposure Prophylaxis (Doxy-PEP) for Prevention of
+Bacterial {STIs}}.
 
 \bibitem[\citeproctext]{ref-soge2025}
 {Soge, Olusegun O., Christina S. Thibault, Chase A. Cannon, et al.}
