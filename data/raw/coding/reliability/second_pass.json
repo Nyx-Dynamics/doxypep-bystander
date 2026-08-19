@@ -1,0 +1,13 @@
+{
+  "_meta": {
+    "coder": "claude-independent-2nd-pass",
+    "code_date": "2026-08-19",
+    "method": "blind second coding by an independent subagent, from the source PDFs + codebook field definitions only; not shown the first-pass gl_*.yaml or any derived file",
+    "sample": "20%-plus purposive sample spanning all s_aureus_location categories"
+  },
+  "chicago_cdph_2023": {"bystander_treatment": "silent", "s_aureus_named": false, "s_aureus_location": "absent", "s_aureus_monitoring": "silent", "host_toxicity_labs": "required"},
+  "nyc_dohmh_2023": {"bystander_treatment": "organism_named", "s_aureus_named": true, "s_aureus_location": "patient_counselling_script", "s_aureus_monitoring": "silent", "host_toxicity_labs": "silent"},
+  "san_diego_county_2023": {"bystander_treatment": "organism_named", "s_aureus_named": true, "s_aureus_location": "body_text", "s_aureus_monitoring": "silent", "host_toxicity_labs": "suggested"},
+  "philadelphia_pdph_2024": {"bystander_treatment": "organism_named", "s_aureus_named": true, "s_aureus_location": "reference_title_only", "s_aureus_monitoring": "silent", "host_toxicity_labs": "silent"},
+  "la_county_2023": {"bystander_treatment": "organism_named", "s_aureus_named": true, "s_aureus_location": "still_learning_list", "s_aureus_monitoring": "silent", "host_toxicity_labs": "silent"}
+}

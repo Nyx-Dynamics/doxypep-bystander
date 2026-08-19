@@ -3,7 +3,7 @@
 
 PY := python3
 
-.PHONY: all test loader feasibility guidelines trials clean
+.PHONY: all test loader feasibility guidelines trials reliability clean
 
 all: test feasibility guidelines trials
 	@echo "Stream C (feasibility) + Stream B (guidelines) + Stream A (trials) regenerated."
@@ -22,6 +22,10 @@ feasibility:
 # Stream B — guideline coding + gate
 guidelines:
 	$(PY) -m src.coding.build_guidelines
+
+# Stream B — inter-coder reliability
+reliability:
+	$(PY) -m src.analysis.reliability
 
 # Stream A — trial coding + reporting analyses
 trials:

@@ -389,3 +389,25 @@ observation. It reconciles to NEJM by construction, so it is a reconciliation
 CHECK, not corroboration, and (like every non-primary source) is excluded from
 detectability inputs. Added `secondary_synthesis` to the SourceType enum. Trial
 count stays 1 (Szondy was never a separate TrialRecord).
+
+## 2026-08-19 — Stream B reliability (double-coding) + sampling frame
+
+**Sampling frame** written to `METHODS_streamB.md`: NCSD "Doxy and STI PEP Sample
+Policies" compilation + WHO/CDC/Australia/BASHH, filtered to governmental
+authorities; exclusions (FQHCs, patient-navigation, nonprofit/advocacy,
+professional societies, advocacy comments) with reasons; dated retrieval log
+including Seattle-King County's broken landing page and the not-yet-retrieved
+jurisdictions.
+
+**Inter-coder reliability** (`outputs/reliability_result.md`,
+`src/analysis/reliability.py`): an INDEPENDENT blind second coding
+(`claude-independent-2nd-pass`, coded from the PDFs + codebook only, not shown the
+first pass) of a 5-document sample spanning all s_aureus_location categories.
+**Overall agreement 92% (23/25).** Per field: s_aureus_named, s_aureus_location,
+host_toxicity_labs all 100% (kappa 1.0 — the key 'where does the bystander appear'
+field is perfectly reliable, incl. reference_title_only); bystander_treatment 80%;
+s_aureus_monitoring 80% (kappa unstable at small N). Two disagreements, both
+codebook edge-cases (not errors), resolved with binding rules in CODEBOOK.md:
+(1) blanket 'no monitoring needed' -> explicitly_none [NYC flagged for PI];
+(2) reference-title-only naming does not make bystander_treatment organism_named
+[Philadelphia/WHO]. Schema is now tested, not assumed, before Stream A.

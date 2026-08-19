@@ -34,6 +34,24 @@ in_category_monitoring vs s_aureus_monitoring vs host_toxicity_labs, derived_fro
 lineage, institutional-memory pairing). The v1 5-field schema below is retained
 for history; v1 coded records live in `data/raw/coding/superseded_streamb_v1/`.
 
+### Coding rules from the reliability adjudication (2026-08-19)
+
+Double-coding (`outputs/reliability_result.md`; 92% agreement, 5 docs) surfaced two
+edge cases. Rules, now binding so Stream A inherits a tested schema:
+
+1. **`s_aureus_monitoring = explicitly_none`** applies when a document explicitly
+   states no monitoring is needed, **including a blanket statement** (e.g. NYC "No
+   laboratory monitoring is needed with doxy-PEP") — it affirmatively denies
+   measurement, which encompasses the bystander. Quote it. (Flagged for PI: the
+   stricter reading would code a non-S.-aureus-specific blanket as `silent`; NYC is
+   the one genuinely contestable cell — default kept as `explicitly_none`.)
+2. **`bystander_treatment = organism_named` requires naming in substantive/body
+   text.** A mention **only** inside a cited reference title does NOT make it
+   `organism_named`; the document keeps its body-level treatment
+   (`generic_microbiome_resistance` or `silent`) and the reference mention is
+   carried by `s_aureus_location = reference_title_only`. (Applies to Philadelphia
+   and WHO.)
+
 ### v1 (retired)
 
 Unit = one guideline document. Metadata: `unit`, `jurisdiction`, `citation`,
