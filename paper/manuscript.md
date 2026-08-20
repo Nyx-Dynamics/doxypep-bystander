@@ -88,77 +88,62 @@ inheritance*, and **make no causal claim**.
 
 ## 1. Introduction
 
-Doxycycline post-exposure prophylaxis (doxy-PEP) — a single 200 mg dose of
-doxycycline taken within 72 hours of condomless sex — substantially reduces
-chlamydia, gonorrhea, and early syphilis among men who have sex with men (MSM) and
-transgender women with a recent bacterial sexually transmitted infection (STI)
-[@luetkemeyer2023]. On that evidence it has moved rapidly from trial to guidance —
-World Health Organization, US Centers for Disease Control and Prevention, and state
-and municipal health departments [@cdc2024doxypep; @sfdph2022].
+Doxycycline post-exposure prophylaxis reduces bacterial sexually transmitted
+infections substantially [@luetkemeyer2023], and has moved quickly from trial result
+into guidance at every level, from the World Health Organization through national and
+municipal health departments [@cdc2024doxypep; @sfdph2022].
 
-Every dose is also selective pressure on bystanders. Doxycycline is a broad-spectrum
-tetracycline, and taken intermittently but indefinitely after sex it exerts pressure
-on organisms well beyond the STI targets. The most consequential of these is
-*Staphylococcus aureus* — a skin, soft-tissue, and invasive pathogen rather than an
-STI, which colonizes the nose and oropharynx (the sites these trials swab) and
-carries mobile tetracycline-resistance determinants.
+Every dose is selective pressure, and not only on the organisms it targets.
+*Staphylococcus aureus* is the consequential bystander: it colonises the anatomical
+sites these trials swabbed, and it carries mobile tetracycline determinants
+[@grossman2016].
 
-*S. aureus* is the bystander that matters clinically for a specific reason. Across two
-still-current guidelines of the Infectious Diseases Society of America, doxycycline is
-a recommended oral agent for outpatient community-associated methicillin-resistant
-*S. aureus* (MRSA) skin and soft-tissue infection [@liu2011; @stevens2014].
-Tetracycline resistance selected in one population therefore degrades a drug the
-broader outpatient system depends on, and the small set of oral alternatives — most
-prominently trimethoprim-sulfamethoxazole and clindamycin — each carry their own
-resistance and efficacy constraints [@liu2011].
+Doxycycline's relevance here is not incidental. The Infectious Diseases Society of
+America's practice guidelines for skin and soft tissue infections place it among a
+small number of oral agents for outpatient infection caused by *S. aureus*
+[@stevens2014; @liu2011]. Management begins with incision and drainage; antibiotics
+follow. Where an oral agent is indicated, the practical choice is between
+trimethoprim-sulfamethoxazole and doxycycline. Both are twice daily. Cephalexin and
+dicloxacillin require four doses a day, and neither covers methicillin-resistant
+isolates. Clindamycin is limited by *Clostridioides difficile* risk, inducible
+resistance, and four-times-daily dosing. Trimethoprim-sulfamethoxazole is often
+preferred first, but sulfonamide allergy is common enough that doxycycline is not
+merely an alternative — for a substantial minority of patients it is the only
+remaining oral option. Critically, this choice is made empirically, before any
+methicillin result returns. We therefore treat *S. aureus* as the clinical target
+throughout, rather than methicillin-resistant *S. aureus* specifically; methicillin
+status is downstream of the decision doxycycline is used to make.
 
-The population the trials studied carries a documented MRSA history. MSM were the
-setting in which the multidrug-resistant USA300 clone emerged and clustered, described
-two decades ago — with tetracycline resistance already among its features — by
-investigators including an author of the IDSA MRSA guideline [@diep2008; @liu2011],
-and reviewed since as a community-transmissible reservoir [@dejong2025; @miko2012].
-Two cautions keep this honest: contemporary MRSA colonization in doxy-PEP populations
-is low and MSM identity is not itself a risk factor, elevated prevalence appearing
-only in behaviorally defined subgroups [@dejong2025]; the stake is mechanistic
-plausibility — the right drug, the right organism, the right population — not a
-present-day signal.
+Clinicians who prescribe within this constraint have registered the concern directly:
+in a survey of thirty-six Italian STI-clinic dermatologists, 91.7% named MRSA
+selection as a worry, tied with gonococcal resistance as the highest-rated in the
+study [@dona2026]. The concern as voiced, and as documented in the outbreak
+literature, is specifically methicillin-resistant; we report it in those terms while
+retaining *S. aureus* as this paper's unit. The primary trial literature has not so
+much echoed that concern as answered it. Luetkemeyer's CROI presentation addresses
+*S. aureus* colonisation directly, and the emphasis falls on the reassuring MRSA
+figures; the NEJM publication reads the same way [@luetkemeyer2023croi;
+@luetkemeyer2023]. But a small MRSA proportion, measured as colonisation at fixed
+follow-up points, does not answer the question being asked. Community MRSA in this
+population has never behaved as a steady-state prevalence. USA300 was documented
+moving through sexual networks in men who have sex with men two decades ago, in
+clusters and outbreaks — the same networks doxy-PEP now targets [@diep2008;
+@dejong2025]. A cross-sectional colonisation endpoint is structurally blind to
+clustered transmission, and a low proportion is precisely what one would expect
+shortly before an outbreak rather than evidence against one.
 
-The trials also generalized beyond whom they were powered to study. Transgender women
-were enrolled in numbers too small to support inference and were analyzed, in effect,
-as MSM; no other population was studied. It is a limitation the downstream guidelines
-carried forward without remark.
-
-The trials measured the bystander, and asked that we keep watching. Having assessed
-*S. aureus* resistance, the DoxyPEP investigators concluded that longer-term
-monitoring during implementation "is needed to understand the trajectory and clinical
-importance of microbial susceptibility patterns associated with doxycycline as STI
-PEP" [@luetkemeyer2023croi]; the guidance that scaled doxy-PEP likewise names
-antimicrobial resistance as a concern warranting attention [@cdc2024doxypep].
-
-We take that recommendation as our subject. Rather than offer a new effect estimate —
-and we make no causal claim, disputing none of the trials' own findings — we ask a
-single clinical-epidemiological question in three parts: **has the recommended
-monitoring been implemented; can the guidelines and surveillance systems now in place
-actually detect the signal the trials flagged; and if not, who bears the
-consequence?**
-
-The stakes turn on that last part. If the answer is no, the harm falls on a population
-that never consented to doxy-PEP and was never represented in its trials or its
-guidelines — the patients with diabetes, on dialysis, recovering from surgery, or
-receiving cancer therapy who depend on oral anti-staphylococcal treatment. Framed that
-way, the question is one of antimicrobial stewardship, surveillance adequacy, and
-distributive justice — not of whether doxy-PEP should be used. Its benefit, fewer
-STIs, is private and immediate; a cost of eroded outpatient MRSA treatment would be
-diffuse, deferred, and borne by others, and it is precisely the kind of cost that
-must be measured to be weighed at all.
-
-To answer the question, we assembled and analyzed three linked bodies of evidence —
-the pivotal trials (Stream A), the governmental guidance built on them (Stream B), and
-the surveillance systems meant to monitor them (Stream C) — through sequential,
-document-led data collection, reading the trials' own reports, coding the guideline
-corpus against whether it measures the bystander, and testing quasi-computationally
-whether any population surveillance system could detect the signal at all. The
-findings are reported below.
+The question is therefore not whether doxy-PEP increases *S. aureus* tetracycline
+resistance, but whether the existing evidence base could detect it if it did. We
+address that question in three parts. First, the trials: *S. aureus* was measured
+non-uniformly across them, with endpoints and denominators that differ in ways that
+resist pooling, and with power too low to detect an effect of the size independently
+reported in doxy-PEP-eligible populations [@soge2025]. Second, the guidance: across
+national and municipal documents recommending doxy-PEP, none requires *S. aureus*
+monitoring, and those that mention it do so in counselling language rather than as a
+measurement obligation. Third, surveillance: no existing system links doxycycline
+exposure to staphylococcal phenotype at any geographic resolution with a population
+denominator. Taken together, these are not three separate gaps but one — a question
+rendered unanswerable by the design of the instruments meant to answer it.
 
 ## 2. The keystone: the trial's own report
 
