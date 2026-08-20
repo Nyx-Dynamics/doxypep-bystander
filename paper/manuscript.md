@@ -121,24 +121,39 @@ selection as a worry, tied with gonococcal resistance as the highest-rated in th
 study [@dona2026]. The concern as voiced, and as documented in the outbreak
 literature, is specifically methicillin-resistant; we report it in those terms while
 retaining *S. aureus* as this paper's unit. The primary trial literature has not so
-much echoed that concern as answered it. Luetkemeyer's CROI presentation addresses
-*S. aureus* colonisation directly, and the emphasis falls on the reassuring MRSA
-figures; the NEJM publication reads the same way [@luetkemeyer2023croi;
-@luetkemeyer2023]. But a small MRSA proportion, measured as colonisation at fixed
-follow-up points, does not answer the question being asked. Community MRSA in this
-population has never behaved as a steady-state prevalence: the USA300 lineage was
-documented two decades ago moving through the sexual networks of men who have sex
-with men in clusters and outbreaks [@diep2008; @dejong2025], and doxy-PEP is deployed
-into those same networks. That continuity is not an analogy but an identity of
-transmission substrate — it is the same network, observed with a different instrument —
-which is what licenses reading the outbreak history onto these trials. And the
-instrument measures the wrong property. An organism whose natural history is clustered,
-wave-like spread is not characterised by its steady-state fraction; to read a low
-cross-sectional proportion as reassurance is to report the mean of a process whose
-risk was never in the mean. A cross-sectional colonisation endpoint is structurally
-blind to clustered transmission, and a low proportion is exactly what such an organism
-shows between waves — not evidence of safety, but an artefact of asking the wrong
-question of the right population.
+much echoed that concern as answered it — the DoxyPEP presentation and its NEJM
+publication address *S. aureus* colonisation directly, with the emphasis on the
+reassuring MRSA figures [@luetkemeyer2023croi; @luetkemeyer2023] — but a low
+colonisation proportion, measured at fixed follow-up visits, cannot answer the question
+MRSA's natural history poses. For two decades, community MRSA in men who have sex with
+men has been documented not as steady-state carriage but as clustered, outbreak-pattern
+transmission: the USA300 lineage moving through sexual networks in San Francisco,
+Tokyo, and Chicago [@diep2008; @dejong2025]. De Jong and colleagues' systematic review
+makes the pattern explicit — outside those clusters, colonisation in MSM is low, often
+at or near zero (0–1.6% across cohorts), while the cluster settings it catalogues sit
+an order of magnitude higher, and identifying as MSM is not itself a risk factor. The
+proportion does not sit at a stable value; it swings with whether a sample happens to
+catch a cluster. Low background punctuated by network-linked spikes is not scatter
+around a mean — it is the organism's signature in this population, and it is inherently
+non-monotone.
+
+This bears directly on what the trials are, structurally, doing. *S. aureus* is
+transmitted by contact, and it moves through the same sexual networks, in the same
+high-contact populations, that the trials enrolled to study STIs — the DoxyPEP and
+DOXYVAC cohorts report medians of nine and ten partners in the prior three months
+[@luetkemeyer2023]. The trials therefore measure a contact-transmitted organism within
+precisely the network structure that governs its spread, in cohorts whose contact
+patterns match those in which USA300 has clustered for twenty years. Yet *S. aureus*
+sits outside the STI framing the trials were built around: never in the case
+definition, never a screening endpoint, never what the swab schedule was designed to
+capture. The apparatus is an STI-surveillance apparatus — cross-sectional prevalence at
+quarterly visits, compared between arms — pointed at an organism that transmits like
+the infections it was built for but was never counted as one; the instrument and the
+target are mismatched by construction, not by accident. And an organism whose natural
+history is clustered is not characterised by its steady-state fraction: to read a low
+cross-sectional proportion as reassurance is to report the mean of a process whose risk
+was never in the mean — an artefact of asking the wrong question of the right
+population.
 
 The question is therefore not whether doxy-PEP increases *S. aureus* tetracycline
 resistance, but whether the existing evidence base could detect it if it did. We
@@ -333,6 +348,28 @@ most grounded, rather than reassuring about it. (We use these mid-study timepoin
 as illustration; their per-visit denominators are read off the same slides as the
 percentages and are not asserted to carry statistical weight, which would require the
 trials' supplementary tables.)
+
+The carriage endpoints oscillate; the resistance endpoint does not, and the contrast is
+diagnostic. Three DoxyPEP *S. aureus* endpoints have to be held apart. Colonisation
+fell in the doxy-PEP arm (roughly 44% to 30%) — unsurprising for an active
+antistaphylococcal drug. Doxycycline resistance among cultured *S. aureus* rose steeply
+— per carrier, from 8.5% to 40% (§2.2) — while the standard-of-care arm fell, a
+between-arms divergence in the direction of selection; the reassuring all-swabbed
+figure (§2.2: 3.6% to 11.7%) understates it because doxy-PEP shrinks the colonised
+denominator the rate is divided over. Doxycycline resistance within the MRSA subset
+(~6% of isolates) stayed low and, if anything, declined. The trial's summary
+foregrounded the third — *"MRSA prevalence was low … and doxy-R MRSA was unchanged"* —
+both clauses true, but the reassurance is assembled by narrowing from *S. aureus*,
+where per-carrier resistance rose nearly fivefold, to the small MRSA subset, where it
+did not: reporting the endpoint that reassures rather than the one the exposure moves.
+And unlike the carriage measures, the resistance fraction does not swing — it ratchets.
+Once a stable, mobile determinant such as tet(M) is selected into a population it does
+not wash back out the way a colonisation proportion does [@grossman2016]: the carriage
+endpoints oscillate as clustering dictates, the resistance endpoint accumulates as
+selection dictates. DOXYVAC keeps the same signal out of the headline by the other
+route — a within-arm rise (1.8% to 9.9%) reported as a between-arms null — so that
+across both flagship trials the exposure-relevant signal is real and, by one mechanism
+or another, demoted.
 
 Power is no kinder. Of the four doxy-versus-control comparisons DoxyPEP's own
 *S. aureus* counts can support, **0 of 4** are powered to detect even an externally
