@@ -107,9 +107,10 @@ trimethoprim-sulfamethoxazole and doxycycline. Both are twice daily. Cephalexin 
 dicloxacillin require four doses a day, and neither covers methicillin-resistant
 isolates. Clindamycin is limited by *Clostridioides difficile* risk, inducible
 resistance, and four-times-daily dosing. Trimethoprim-sulfamethoxazole is often
-preferred first, but sulfonamide allergy is common enough that doxycycline is not
-merely an alternative — for a substantial minority of patients it is the only
-remaining oral option. Critically, this choice is made empirically, before any
+preferred first, but sulfonamide skin reactions are common enough — more frequent in
+general practice than reactions to the tetracyclines [@vanderlinden1998] — that
+doxycycline is not merely an alternative: for a substantial minority of patients it is
+the only remaining oral option. Critically, this choice is made empirically, before any
 methicillin result returns. We therefore treat *S. aureus* as the clinical target
 throughout, rather than methicillin-resistant *S. aureus* specifically; methicillin
 status is downstream of the decision doxycycline is used to make.
