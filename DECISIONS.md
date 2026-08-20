@@ -2,6 +2,34 @@
 
 Dated analysis decisions, logged before results are known. Append-only.
 
+## 2026-08-19 (overnight) — S. aureus broadening of Stream A
+
+The clinical reframe fixes the unit as *S. aureus* (MRSA a subset). Checked whether
+this needs recoding: Stream B (s_aureus_* fields) and Stream C (R0 = S. aureus tetR)
+are already S. aureus-level — verified, no change. The work is concentrated in Stream A.
+
+- **D1** — added `conference_abstract` source_type for the trial's own pre-publication
+  data (CROI abstract table). First-party but not peer-reviewed; kept distinct from
+  `primary_trial` and EXCLUDED from detectability so the power analysis uses published
+  denominators. The CROI-vs-NEJM figure discordance is thereby preserved as data.
+- **D2** — detectability stays on all-*S. aureus* primary-trial rows (the clinical
+  unit); MSSA/MRSA coded as documented subsets, not fed into the power calc. Confirmed
+  detectability UNCHANGED after broadening: 0/4 for both benchmarks.
+- **D3** — DOXYVAC measured MRSA *carriage prevalence* (a different axis; Vanbaelen
+  trend doxy p<0.0001 / no-PEP p=0.0139), but the per-timepoint denominators live in
+  Molina's main paper, which is not in the corpus. Per the no-fabrication rule, NO
+  observations coded for DOXYVAC S. aureus; documented at the trial level and flagged
+  as an acquisition gap (get Molina, Lancet ID 2024). The different-axis measurement is
+  itself part of the heterogeneity finding.
+- Coded the CROI abstract-table S. aureus rows for DoxyPEP (8 obs: all-S.aureus + MRSA
+  subset, exact fractions) as `conference_abstract`, with the table-caption
+  'tetracycline class' relabel captured.
+- New analysis `saureus_measurement_heterogeneity()` -> `outputs/saureus_heterogeneity.md`:
+  the three trials share no measurement axis, no denominator basis, no assay, and none
+  is mechanism-discriminating — the evidence for the manuscript's 'resist pooling' claim.
+  Manuscript S3.1 leads with this; Methods S4.1-4.2 updated.
+- Tests +3; full suite green. Nothing in Stream B/C changed.
+
 ## 2026-08-19 (night) — IDSA guidelines ingested; clinical-lens Introduction funnel
 
 Two IDSA clinical guidelines ingested + hashed (papers/CHECKSUMS.md, coded-source):

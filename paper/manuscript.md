@@ -289,23 +289,36 @@ whether it is more general, we coded the evidence base against a single yardstic
 streams. Coding schemas, double-coding reliability, and locators are in the
 repository (`CODEBOOK*.md`, `METHODS_streamB.md`); every source is SHA-256–pinned.
 
-### 3.1 Stream A — trials are underpowered and mechanism-blind
+### 3.1 Stream A — non-uniform, underpowered, and mechanism-blind
 
-Across the three primary doxy-PEP trials that assayed *S. aureus* (DoxyPEP, DuDHS,
-DOXYVAC), **0 of 4** doxy-versus-control *S. aureus* comparisons are powered to
-detect even an externally specified effect. Treating the benchmark as fixed *a
-priori* from an independent source (a design-based sensitivity analysis, not
-observed power), the minimum detectable relative risk is 3.8–5.1, above both the
-*S. aureus*-matched benchmark (Soge's tetracycline-resistant colonization, 18% vs
-8%, RR ≈ 2.25) and the cross-organism gonococcal figure (RR 1.42) [@soge2025]. The
-mechanism asymmetry is systematic and cross-trial: the in-category organisms are
+Before power, uniformity. The three trials that assayed *S. aureus* did so on
+incompatible terms (`outputs/saureus_heterogeneity.md`): DoxyPEP measured doxycycline
+resistance *within* *S. aureus* by E-test, reported over two denominators — all
+swabbed and colonized — that do not agree; DuDHS measured the same phenotype by disc
+diffusion in a single-digit number of carriers; DOXYVAC measured MRSA *carriage
+prevalence*, a methicillin-phenotype axis rather than a resistance-within-*S. aureus*
+one, and its per-timepoint denominators are not in the public record. No two share a
+measurement axis, a denominator basis, or an assay, and none resolves mechanism. A
+pooled estimate across them is not defensible; the heterogeneity is itself the
+finding.
+
+Power is no kinder. Of the four doxy-versus-control comparisons DoxyPEP's own
+*S. aureus* counts can support, **0 of 4** are powered to detect even an externally
+specified effect. Treating the benchmark as fixed *a priori* from an independent
+source (a design-based sensitivity analysis, not observed power), the minimum
+detectable relative risk is 3.8–5.1, above both the *S. aureus*-matched benchmark
+(Soge's tetracycline-resistant colonization, 18% vs 8%, RR ≈ 2.25) and the
+cross-organism gonococcal figure (RR 1.42) [@soge2025].
+
+The mechanism asymmetry is systematic and cross-trial: the in-category organisms are
 assayed with mechanism-*discriminating* methods (tetM PCR, whole-genome sequencing,
 high-level breakpoints), the bystander with mechanism-*blind* standard breakpoints
 that cannot separate tetK from tetM [@grossman2016]. A military cohort study of
 antimalarial doxycycline shows why this matters: overall tetracycline resistance in
 *S. aureus* did not differ by exposure, yet tetM genes were significantly *more*
 common in the doxycycline-exposed (p=0.031) — the blind endpoint null, the
-discriminating endpoint positive, within one dataset. (`outputs/detectability_result.md`.)
+discriminating endpoint positive, within one dataset.
+(`outputs/detectability_result.md`.)
 
 ### 3.2 Stream B — guidelines counsel about the harm they do not measure
 
@@ -357,22 +370,33 @@ named, and when named, almost never measured. (`outputs/literature_search_result
 
 Primary trials, guidelines, and comparator papers were coded one document per YAML
 record, every value carrying a page/section/table locator; the builder fails on a
-missing locator rather than emitting a null. Resistance observations are coded one
-per *reported instance* (not per underlying result), recording the phenotype
-measured versus the phenotype as labeled, the mechanism-discrimination method, the
-numerator/denominator, and the denominator basis (all-swabbed, carriers, isolates).
-Guidelines were double-coded (blind second coder; 92% agreement) with Cohen's κ per
-field. All 40+ source files are SHA-256–pinned (`data/raw/**/CHECKSUMS.md`); the
-CROI keystone is transcribed and hashed at `croi2023_luetkemeyer_OA3.md`.
+missing locator rather than emitting a null. The unit of analysis is *S. aureus*;
+MSSA and MRSA are coded as subsets, not as the endpoint (methicillin status is
+downstream of the empirical prescribing decision, §1). Resistance observations are
+coded one per *reported instance* (not per underlying result), recording the
+phenotype measured versus the phenotype as labeled, the mechanism-discrimination
+method, the numerator/denominator, the denominator basis (all-swabbed, carriers,
+isolates), and the source's evidentiary status — `primary_trial`, `conference_abstract`
+(the trial's own pre-publication data, e.g. a CROI table, kept distinct so its figures
+can be compared against the later publication rather than merged with it), `guideline`,
+or `secondary_synthesis`. Where a trial's per-timepoint denominators are absent from
+the public record (DOXYVAC's MRSA carriage; the main-trial paper is not in the corpus),
+no observation is fabricated — the gap is recorded and the source flagged for
+acquisition. A cross-trial heterogeneity summary (`outputs/saureus_heterogeneity.md`)
+tabulates the axis, assay, and denominator each trial used. Guidelines were
+double-coded (blind second coder; 92% agreement) with Cohen's κ per field. All 40+
+source files are SHA-256–pinned (`data/raw/**/CHECKSUMS.md`); the CROI keystone is
+transcribed and hashed at `croi2023_luetkemeyer_OA3.md`.
 
 ### 4.2 Detectability (Stream A)
 
-For each primary-trial *S. aureus* arm comparison we compute, from the arm sizes
-and observed control rate alone, the exact-Fisher power to detect an effect fixed
-*a priori* from a source external to the trials, and the minimum detectable relative
-risk at 80% power — a **design-based sensitivity analysis**, explicitly not observed
-power. Per-arm counts are single- to low-double-digit, so the exact test is used
-throughout.
+For each *primary-trial* *S. aureus* arm comparison — first-party published data only;
+`conference_abstract`, guideline, and secondary sources are excluded so the power
+analysis rests on peer-reviewed denominators — we compute, from the arm sizes and
+observed control rate alone, the exact-Fisher power to detect an effect fixed *a
+priori* from a source external to the trials, and the minimum detectable relative risk
+at 80% power — a **design-based sensitivity analysis**, explicitly not observed power.
+Per-arm counts are single- to low-double-digit, so the exact test is used throughout.
 
 ### 4.3 The surveillance feasibility gate (Stream C)
 
