@@ -19,7 +19,10 @@ The three trials do not share a measurement axis, a denominator, or an assay. Do
 measures doxycycline resistance *within* S. aureus by E-test (MIC ≥16), reported over
 two different denominators (all-swabbed and colonized) that do not agree; DuDHS
 measures the same phenotype by disc diffusion in a single-digit number of carriers;
-DOXYVAC measures MRSA *carriage prevalence* over time — a methicillin-phenotype axis,
-not a resistance-within-S.-aureus one — and its denominators are not in the corpus
-(Molina's main paper; an acquisition gap, decision D3). None resolves mechanism. A
-pooled estimate across these is not defensible; the heterogeneity is the finding.
+DOXYVAC did **not** measure S. aureus resistance at all — only MRSA *carriage
+prevalence* (a methicillin-phenotype endpoint), and even those denominators are not in
+the corpus (Molina's main paper; acquisition gap, decision D3). So of three trials
+that "assayed S. aureus," only two measured the resistance phenotype this question
+turns on, by two different methods over three different denominators, and none
+resolves mechanism (tet(K) vs tet(M)). A pooled estimate is not defensible; the
+heterogeneity is the finding.

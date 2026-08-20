@@ -12,21 +12,26 @@ code_date: "2026-08-19"
 
 s_aureus_measured:
   value: "partial"
-  locator: "main trial (Molina Lancet ID 2024, not in hand); reanalysis Vanbaelen 2024c"
+  locator: "CROI 2023 presentation (Molina, croiwebcasts); main trial Molina Lancet ID 2024 (not in hand); Vanbaelen 2024c"
   note: >-
-    The AMR SUBSTUDY in hand (ciaf591) measured GONOCOCCUS only — no staph. The main
-    DOXYVAC trial assessed S. aureus on a DIFFERENT AXIS from the other trials: MRSA
-    throat-swab CARRIAGE PREVALENCE over time (a methicillin-phenotype endpoint), not
-    doxycycline/tetracycline resistance WITHIN S. aureus. Molina (Lancet ID 2024, not
-    in hand) concluded no between-arm MRSA difference; Vanbaelen 2024c reanalysed the
-    same figure and found a statistically significant within-arm INCREASE in MRSA
-    carriage over time in BOTH arms (chi-square trend: doxy-PEP p<0.0001, no-PEP
-    p=0.0139) — consistent with population-level selection. 2026-08-19 (S. aureus
-    broadening, decision D3): NO ResistanceObservations coded for DOXYVAC S. aureus —
-    the carriage denominators live in Molina's main paper, which is not in the corpus,
-    and per the no-fabrication rule we do not invent them. This is an ACQUISITION GAP
-    (get Molina Lancet ID 2024), and the different-axis measurement is itself part of
-    the cross-trial heterogeneity finding (see outputs/saureus_heterogeneity.md).
+    KEY (PI, 2026-08-20): DOXYVAC did NOT measure S. aureus resistance at all — it
+    measured ONLY MRSA carriage prevalence (presence/absence of a methicillin-resistant
+    isolate in throat swabs over time). The project's unit — doxycycline/tetracycline
+    resistance WITHIN S. aureus — was never assessed. 'partial' reflects that a
+    methicillin-carriage subset was captured, not the S. aureus resistance phenotype.
+    The AMR substudy in hand (ciaf591) measured GONOCOCCUS only. The CROI 2023
+    presentation (reviewed 2026-08-20) confirms the timeline: its Summary slide states
+    'Evaluation of full impact on antibiotic resistance is underway (STIs, microbiome)'
+    — no S. aureus/MRSA data was public at CROI 2023 (analyzed N=502: Doxy-PEP 332 /
+    No-PEP 170). The MRSA carriage figure first appeared in Molina Lancet ID 2024;
+    Vanbaelen 2024c reanalysed it and found a within-arm INCREASE in MRSA carriage in
+    BOTH arms (chi-square trend: doxy-PEP p<0.0001, no-PEP p=0.0139). Decision D3: NO
+    ResistanceObservations coded — the carriage denominators are in Molina's paywalled
+    paper (not in corpus) and we do not fabricate. ACQUISITION GAP for the raw MRSA
+    counts; but note that even with them, DOXYVAC still would not contribute an
+    S.-aureus-resistance observation — it measured the wrong thing for this question.
+    This is the sharpest instance of the cross-trial heterogeneity finding
+    (outputs/saureus_heterogeneity.md).
 
 powered_for_resistance_endpoint:
   value: "no"

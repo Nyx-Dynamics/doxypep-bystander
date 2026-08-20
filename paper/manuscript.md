@@ -291,16 +291,17 @@ repository (`CODEBOOK*.md`, `METHODS_streamB.md`); every source is SHA-256–pin
 
 ### 3.1 Stream A — non-uniform, underpowered, and mechanism-blind
 
-Before power, uniformity. The three trials that assayed *S. aureus* did so on
-incompatible terms (`outputs/saureus_heterogeneity.md`): DoxyPEP measured doxycycline
-resistance *within* *S. aureus* by E-test, reported over two denominators — all
-swabbed and colonized — that do not agree; DuDHS measured the same phenotype by disc
-diffusion in a single-digit number of carriers; DOXYVAC measured MRSA *carriage
-prevalence*, a methicillin-phenotype axis rather than a resistance-within-*S. aureus*
-one, and its per-timepoint denominators are not in the public record. No two share a
-measurement axis, a denominator basis, or an assay, and none resolves mechanism. A
-pooled estimate across them is not defensible; the heterogeneity is itself the
-finding.
+Before power, uniformity. The three trials usually said to have "assayed *S. aureus*"
+did so on incompatible terms (`outputs/saureus_heterogeneity.md`), and one did not
+assay the resistance phenotype at all. DoxyPEP measured doxycycline resistance
+*within* *S. aureus* by E-test, reported over two denominators — all swabbed and
+colonized — that do not agree; DuDHS measured the same phenotype by disc diffusion in
+a single-digit number of carriers; DOXYVAC measured only MRSA *carriage prevalence* —
+whether a participant carried a methicillin-resistant isolate — not doxycycline or
+tetracycline resistance within *S. aureus*, and even those counts are not in the
+public record. So of three trials, only two measured the phenotype this question turns
+on, by two methods over three denominators, and none resolves mechanism. A pooled
+estimate is not defensible; the heterogeneity is itself the finding.
 
 Power is no kinder. Of the four doxy-versus-control comparisons DoxyPEP's own
 *S. aureus* counts can support, **0 of 4** are powered to detect even an externally
