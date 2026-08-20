@@ -26,12 +26,16 @@ from pydantic import BaseModel, ConfigDict, model_validator
 
 from src.coding.schema import CodedField  # noqa: F401
 
-SourceType = Literal["primary_trial", "guideline", "meta_analysis",
-                     "secondary_synthesis", "reanalysis", "registry"]
+SourceType = Literal["primary_trial", "conference_abstract", "guideline",
+                     "meta_analysis", "secondary_synthesis", "reanalysis", "registry"]
 # secondary_synthesis: an extraction/re-tabulation of ANOTHER study's data (e.g. a
 # systematic review's table re-printing one trial's numbers). A second reading of
 # the same underlying data — reconciles to the primary by construction, NOT an
 # independent observation; excluded from detectability inputs like every non-primary.
+# conference_abstract: the trial's OWN data as presented pre-publication (e.g. a CROI
+# abstract/table). First-party but not peer-reviewed, and — as this corpus documents —
+# its figures need not match the later publication. Kept distinct from primary_trial so
+# detectability uses the peer-reviewed denominators; the venue discordance is a finding.
 Arm = Literal["doxy", "control", "combined"]
 Organism = Literal["s_aureus", "mssa", "mrsa", "n_gonorrhoeae",
                    "commensal_neisseria", "c_trachomatis", "gas", "other"]

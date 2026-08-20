@@ -407,6 +407,147 @@ observations:
     locator: "Szondy Table 2, p. 6"
     note: "Relabel; arm-split baseline from CROI."
 
+  # ---------- CROI 2023 abstract TABLE (conference_abstract): the trial's own ---------
+  # pre-publication figures, over the ALL-SWABBED denominator. Distinct from the NEJM
+  # Fig 4B / Appendix numbers above (which do not reconcile — venue discordance; see
+  # croi2023_luetkemeyer_OA3.md). Table caption labels the whole thing 'tetracycline
+  # antibiotic class' while the S. aureus assay is doxycycline E-test MIC>=16 — the
+  # relabel ORIGIN. Excluded from detectability (not primary_trial).
+  - source_type: conference_abstract
+    source_citation: "Luetkemeyer 2023 (CROI OA-3 abstract table)"
+    arm: doxy
+    timepoint: baseline
+    organism: s_aureus
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 12
+    denominator: 334
+    denominator_basis: all_participants_swabbed
+    significance_reported: none
+    locator: "croi2023_luetkemeyer_OA3.md (S. aureus table, Doxy-PEP M0)"
+    note: >-
+      Table caption labels this 'phenotypic resistance to the tetracycline antibiotic
+      class'; the assay is DOXYCYCLINE (E-test MIC>=16). Relabel at the source. 3.6%.
+  - source_type: conference_abstract
+    source_citation: "Luetkemeyer 2023 (CROI OA-3 abstract table)"
+    arm: doxy
+    timepoint: month12
+    organism: s_aureus
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 16
+    denominator: 137
+    denominator_basis: all_participants_swabbed
+    denominator_intervention_affected: "yes"
+    significance_reported: between_arm
+    p_value: "0.19"
+    locator: "croi2023_luetkemeyer_OA3.md (S. aureus table, Doxy-PEP M12)"
+    note: >-
+      11.7% over all-swabbed; per carrier 16/40 = 40.0% (colonization fell 44%->31%,
+      so the all-swabbed denominator is intervention-affected and deflates the rate).
+      Caption relabels doxycycline as 'tetracycline class'.
+  - source_type: conference_abstract
+    source_citation: "Luetkemeyer 2023 (CROI OA-3 abstract table)"
+    arm: control
+    timepoint: baseline
+    organism: s_aureus
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 19
+    denominator: 161
+    denominator_basis: all_participants_swabbed
+    significance_reported: none
+    locator: "croi2023_luetkemeyer_OA3.md (S. aureus table, SOC M0)"
+    note: "11.8% over all-swabbed. Caption relabels doxycycline as 'tetracycline class'."
+  - source_type: conference_abstract
+    source_citation: "Luetkemeyer 2023 (CROI OA-3 abstract table)"
+    arm: control
+    timepoint: month12
+    organism: s_aureus
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 3
+    denominator: 62
+    denominator_basis: all_participants_swabbed
+    significance_reported: between_arm
+    p_value: "0.19"
+    locator: "croi2023_luetkemeyer_OA3.md (S. aureus table, SOC M12)"
+    note: "4.8% over all-swabbed; per carrier 3/28 = 10.7%. Relabel (doxycycline as 'tetracycline class')."
+  - source_type: conference_abstract
+    source_citation: "Luetkemeyer 2023 (CROI OA-3 abstract table)"
+    arm: doxy
+    timepoint: baseline
+    organism: mrsa
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 1
+    denominator: 334
+    denominator_basis: all_participants_swabbed
+    significance_reported: none
+    locator: "croi2023_luetkemeyer_OA3.md (MRSA table, Doxy-PEP M0)"
+    note: >-
+      MRSA a coded SUBSET of S. aureus (not the unit). Doxy-R MRSA 1/334 (0.3%); MRSA
+      growth 20/334 (6.0%). Relabel (doxycycline as 'tetracycline class').
+  - source_type: conference_abstract
+    source_citation: "Luetkemeyer 2023 (CROI OA-3 abstract table)"
+    arm: doxy
+    timepoint: month12
+    organism: mrsa
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 0
+    denominator: 137
+    denominator_basis: all_participants_swabbed
+    significance_reported: between_arm
+    p_value: "0.31"
+    locator: "croi2023_luetkemeyer_OA3.md (MRSA table, Doxy-PEP M12)"
+    note: >-
+      Doxy-R MRSA 0/137; MRSA growth 2/137 (1.5%). The 'reassuring MRSA' figure the
+      trial emphasises — but MRSA is a subset, and the S. aureus-unit signal is above.
+      Relabel (doxycycline as 'tetracycline class').
+  - source_type: conference_abstract
+    source_citation: "Luetkemeyer 2023 (CROI OA-3 abstract table)"
+    arm: control
+    timepoint: baseline
+    organism: mrsa
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 4
+    denominator: 161
+    denominator_basis: all_participants_swabbed
+    significance_reported: none
+    locator: "croi2023_luetkemeyer_OA3.md (MRSA table, SOC M0)"
+    note: "Doxy-R MRSA 4/161 (2.5%); MRSA growth 9/161. Relabel (doxycycline as 'tetracycline class')."
+  - source_type: conference_abstract
+    source_citation: "Luetkemeyer 2023 (CROI OA-3 abstract table)"
+    arm: control
+    timepoint: month12
+    organism: mrsa
+    phenotype_measured: doxycycline
+    phenotype_as_labeled: tetracycline
+    mechanism_discriminating: "no"
+    discrimination_method: standard_breakpoint
+    numerator: 1
+    denominator: 62
+    denominator_basis: all_participants_swabbed
+    significance_reported: none
+    locator: "croi2023_luetkemeyer_OA3.md (MRSA table, SOC M12)"
+    note: "Doxy-R MRSA 1/62 (1.6%); MRSA growth 4/62. Relabel (doxycycline as 'tetracycline class')."
+
   # ---------- CDC MMWR (guideline): provenance RESOLVED via CROI 2023 OA-3 ----------
   # 2026-08-19 update, CROI slides now in hand (croi2023_luetkemeyer_OA3.md; PI
   # attended the oral presentation). The CDC 20/428, 28/222 = the CROI S. aureus

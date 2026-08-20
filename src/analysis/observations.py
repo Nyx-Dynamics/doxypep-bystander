@@ -192,6 +192,56 @@ def significance_asymmetry(records) -> pd.DataFrame:
     return g.drop(columns=["significance_reported"])
 
 
+def saureus_measurement_heterogeneity(records) -> pd.DataFrame:
+    """Per trial: how was *S. aureus* measured? The columns are the axes on which the
+    trials differ — assay, body site, denominator basis, phenotype axis, mechanism
+    discrimination. The claim it evidences (manuscript S3.1) is that they differ
+    enough to resist pooling: one trial measures doxycycline resistance *within*
+    S. aureus by E-test over an all-swabbed denominator, another by disc diffusion in
+    a handful of carriers, a third measures MRSA *carriage prevalence* — a different
+    axis entirely. None resolves mechanism (tet(K) vs tet(M))."""
+    RESISTANCE_PHENO = {"doxycycline", "tetracycline", "minocycline"}
+    SA_ORGS = {"s_aureus", "mssa", "mrsa"}
+    rows = []
+    for r in records:
+        sa = [o for o in r.observations if o.organism in SA_ORGS]
+        # first-party observations only (primary trial or the trial's own abstract)
+        prim = [o for o in sa
+                if o.source_type in {"primary_trial", "conference_abstract"}]
+        measures_resistance = any(o.phenotype_measured in RESISTANCE_PHENO
+                                  for o in prim)
+        if measures_resistance:
+            axis = "resistance-within-S.aureus"
+        elif sa:
+            axis = "carriage/other"
+        else:
+            axis = "not coded (see trial note)"
+        methods = sorted({o.discrimination_method for o in prim} - {"none"})
+        rows.append({
+            "trial": r.trial_name,
+            "s_aureus_measured": r.s_aureus_measured.value,
+            "assay": (r.susceptibility_method.quote
+                      if r.susceptibility_method else None),
+            "body_site": r.body_site.quote if r.body_site else None,
+            "phenotype_axis": axis,
+            "organisms_coded": ", ".join(sorted({o.organism for o in sa})) or "(none)",
+            "phenotypes": ", ".join(sorted({o.phenotype_measured for o in prim})) or "-",
+            "denominator_bases": ", ".join(sorted({o.denominator_basis for o in prim})) or "-",
+            "discriminating_method": ", ".join(methods) or "none",
+            "any_mechanism_discriminating": any(o.mechanism_discriminating == "yes"
+                                                for o in prim),
+            "n_firstparty_obs": len(prim),
+        })
+    df = pd.DataFrame(rows)
+    # a crude poolability flag: pooling needs a shared axis AND a shared denominator
+    if not df.empty:
+        df["shared_axis"] = df["phenotype_axis"].nunique() == 1
+        df["shared_denominator_basis"] = (
+            df["denominator_bases"].nunique() == 1
+            and "-" not in set(df["denominator_bases"]))
+    return df.sort_values("trial").reset_index(drop=True)
+
+
 def primary_trial_denominators(records) -> pd.DataFrame:
     """Detectability inputs: primary-trial observations only, per basis.
 

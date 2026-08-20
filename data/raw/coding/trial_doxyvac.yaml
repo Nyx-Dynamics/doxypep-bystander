@@ -14,11 +14,19 @@ s_aureus_measured:
   value: "partial"
   locator: "main trial (Molina Lancet ID 2024, not in hand); reanalysis Vanbaelen 2024c"
   note: >-
-    The AMR SUBSTUDY in hand (ciaf591) measured GONOCOCCUS only — no staph. The
-    main DOXYVAC trial assessed MRSA throat-swab carriage (Molina, Lancet ID 2024,
-    not in hand); those MRSA data + a population-selection reanalysis are in
-    Vanbaelen 2024c. So S. aureus was measured crudely (carriage) and off the
-    substudy's mechanistic apparatus.
+    The AMR SUBSTUDY in hand (ciaf591) measured GONOCOCCUS only — no staph. The main
+    DOXYVAC trial assessed S. aureus on a DIFFERENT AXIS from the other trials: MRSA
+    throat-swab CARRIAGE PREVALENCE over time (a methicillin-phenotype endpoint), not
+    doxycycline/tetracycline resistance WITHIN S. aureus. Molina (Lancet ID 2024, not
+    in hand) concluded no between-arm MRSA difference; Vanbaelen 2024c reanalysed the
+    same figure and found a statistically significant within-arm INCREASE in MRSA
+    carriage over time in BOTH arms (chi-square trend: doxy-PEP p<0.0001, no-PEP
+    p=0.0139) — consistent with population-level selection. 2026-08-19 (S. aureus
+    broadening, decision D3): NO ResistanceObservations coded for DOXYVAC S. aureus —
+    the carriage denominators live in Molina's main paper, which is not in the corpus,
+    and per the no-fabrication rule we do not invent them. This is an ACQUISITION GAP
+    (get Molina Lancet ID 2024), and the different-axis measurement is itself part of
+    the cross-trial heterogeneity finding (see outputs/saureus_heterogeneity.md).
 
 powered_for_resistance_endpoint:
   value: "no"

@@ -105,6 +105,43 @@ before any manuscript use.
     (root / "outputs" / "streamA_result.md").write_text(md)
 
 
+def _write_heterogeneity(het, root):
+    """Cross-trial S. aureus measurement-heterogeneity report — the evidence that the
+    trials measured S. aureus in ways that resist pooling (manuscript S3.1)."""
+    shared_axis = bool(het["shared_axis"].iloc[0]) if not het.empty else False
+    shared_den = bool(het["shared_denominator_basis"].iloc[0]) if not het.empty else False
+    cols = ["trial", "s_aureus_measured", "phenotype_axis", "assay", "body_site",
+            "denominator_bases", "discriminating_method",
+            "any_mechanism_discriminating", "n_firstparty_obs"]
+    md = f"""# Stream A — S. aureus measurement heterogeneity (why the trials resist pooling)
+
+One row per trial; the columns are the axes on which the trials differ. First-party
+observations only (primary trial or the trial's own CROI abstract). This is the
+evidence for the manuscript's claim that *S. aureus* "was measured non-uniformly …
+with endpoints and denominators that differ in ways that resist pooling."
+
+| {' | '.join(c.replace('_', ' ') for c in cols)} |
+|{'|'.join(['---'] * len(cols))}|
+"""
+    for _, r in het.iterrows():
+        md += "| " + " | ".join(str(r.get(c, "")) for c in cols) + " |\n"
+    md += f"""
+**Poolability.** shared measurement axis across trials: **{shared_axis}**; shared
+denominator basis: **{shared_den}**; any trial mechanism-discriminating for the
+bystander (tet(K) vs tet(M)): **{bool(het['any_mechanism_discriminating'].any()) if not het.empty else False}**.
+
+The three trials do not share a measurement axis, a denominator, or an assay. DoxyPEP
+measures doxycycline resistance *within* S. aureus by E-test (MIC ≥16), reported over
+two different denominators (all-swabbed and colonized) that do not agree; DuDHS
+measures the same phenotype by disc diffusion in a single-digit number of carriers;
+DOXYVAC measures MRSA *carriage prevalence* over time — a methicillin-phenotype axis,
+not a resistance-within-S.-aureus one — and its denominators are not in the corpus
+(Molina's main paper; an acquisition gap, decision D3). None resolves mechanism. A
+pooled estimate across these is not defensible; the heterogeneity is the finding.
+"""
+    (root / "outputs" / "saureus_heterogeneity.md").write_text(md)
+
+
 def run(root: Path | str = None):
     root = Path(root) if root else Path(__file__).resolve().parents[2]
     records = build_trial_corpus(root / "data" / "raw" / "coding")
@@ -113,12 +150,15 @@ def run(root: Path | str = None):
     relab = O.phenotype_relabeling(records)
     mech = O.mechanism_blindness(records)
     prim = O.primary_trial_denominators(records)
+    het = O.saureus_measurement_heterogeneity(records)
 
     proc = root / "data" / "processed"
     proc.mkdir(parents=True, exist_ok=True)
     obs.to_csv(proc / "trial_observations.csv", index=False)
     disc.to_csv(proc / "trial_discordance.csv", index=False)
+    het.to_csv(proc / "trial_saureus_heterogeneity.csv", index=False)
     _write_report(records, obs, disc, relab, mech, prim, root)
+    _write_heterogeneity(het, root)
     return records, obs, disc, relab, mech, prim
 
 

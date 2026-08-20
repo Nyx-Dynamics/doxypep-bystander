@@ -1,0 +1,4 @@
+trial,s_aureus_measured,assay,body_site,phenotype_axis,organisms_coded,phenotypes,denominator_bases,discriminating_method,any_mechanism_discriminating,n_firstparty_obs,shared_axis,shared_denominator_basis
+DOXYVAC (ANRS 174),partial,Etest (bioMerieux) ... whole-genome sequencing and/or polymerase chain reaction sequencing,,not coded (see trial note),(none),-,-,none,False,0,False,False
+DoxyPEP,yes,doxycycline resistance by ETEST (bioMerieux),nares and oropharynx,resistance-within-S.aureus,"mrsa, mssa, s_aureus",doxycycline,"all_participants_swabbed, colonized_participants",standard_breakpoint,False,18,False,False
+DuDHS,yes,S. aureus isolates were tested against doxycycline by disk diffusion,nasal swabs using Copan transport media swabs,resistance-within-S.aureus,s_aureus,doxycycline,colonized_participants,standard_breakpoint,False,1,False,False

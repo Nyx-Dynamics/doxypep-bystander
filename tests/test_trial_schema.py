@@ -231,3 +231,57 @@ def test_significance_asymmetry_detects_one_sided_reporting():
             significance_reported="within_arm"),
     ])]
     assert O.significance_asymmetry(recs)["one_sided_only"].all()
+
+
+# --------------------------------------------------------------------------- #
+# S. aureus broadening: conference_abstract source + measurement heterogeneity #
+# --------------------------------------------------------------------------- #
+def test_conference_abstract_excluded_from_detectability_inputs():
+    """The trial's own CROI abstract table is first-party but not peer-reviewed;
+    detectability must run on the primary (published) denominators only."""
+    recs = [_trial(observations=[
+        obs(),  # primary_trial s_aureus
+        obs(source_type="conference_abstract",
+            source_citation="CROI abstract table",
+            numerator=16, denominator=137,
+            denominator_basis="all_participants_swabbed"),
+    ])]
+    p = O.primary_trial_denominators(recs)
+    assert (p["source_type"] == "primary_trial").all()
+    assert "CROI abstract table" not in set(p["source_citation"])
+
+
+def test_heterogeneity_flags_non_poolability():
+    """A resistance-axis trial and a carriage-axis (no-obs) trial do not share a
+    measurement axis; nothing standard-breakpoint is mechanism-discriminating."""
+    resistance_trial = _trial(unit="doxypep_us", trial_name="DoxyPEP",
+                              observations=[obs(denominator_basis="all_participants_swabbed"),
+                                            obs(denominator_basis="colonized_participants")])
+    carriage_trial = _trial(unit="doxyvac", trial_name="DOXYVAC",
+                            s_aureus_measured=field("partial", note="MRSA carriage only"),
+                            observations=[obs(organism="n_gonorrhoeae",
+                                              phenotype_measured="tetracycline",
+                                              phenotype_as_labeled="tetracycline")])
+    h = O.saureus_measurement_heterogeneity([resistance_trial, carriage_trial]).set_index("trial")
+    assert not bool(h["shared_axis"].iloc[0])            # axes differ
+    assert not bool(h["shared_denominator_basis"].iloc[0])
+    assert not h["any_mechanism_discriminating"].any()   # all standard breakpoint
+    assert h.loc["DOXYVAC", "phenotype_axis"] == "not coded (see trial note)"
+    assert h.loc["DoxyPEP", "phenotype_axis"] == "resistance-within-S.aureus"
+
+
+@pytest.mark.skipif(
+    not (__import__("pathlib").Path(__file__).resolve().parents[1]
+         / "data/raw/coding/trial_doxypep.yaml").exists(),
+    reason="coded trials not present")
+def test_real_corpus_saureus_resists_pooling():
+    from pathlib import Path
+
+    from src.coding.schema_trial import load_trial
+    root = Path(__file__).resolve().parents[1]
+    recs = [load_trial(p) for p in sorted((root / "data/raw/coding").glob("trial_*.yaml"))]
+    h = O.saureus_measurement_heterogeneity(recs)
+    assert len(h) >= 3
+    assert not bool(h["shared_axis"].iloc[0])              # DOXYVAC is a different axis
+    assert not bool(h["shared_denominator_basis"].iloc[0])  # all-swabbed vs colonized
+    assert not h["any_mechanism_discriminating"].any()      # none resolves tetK/tetM
