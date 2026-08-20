@@ -25,13 +25,19 @@ s_aureus_measured:
     — no S. aureus/MRSA data was public at CROI 2023 (analyzed N=502: Doxy-PEP 332 /
     No-PEP 170). The MRSA carriage figure first appeared in Molina Lancet ID 2024;
     Vanbaelen 2024c reanalysed it and found a within-arm INCREASE in MRSA carriage in
-    BOTH arms (chi-square trend: doxy-PEP p<0.0001, no-PEP p=0.0139). Decision D3: NO
-    ResistanceObservations coded — the carriage denominators are in Molina's paywalled
-    paper (not in corpus) and we do not fabricate. ACQUISITION GAP for the raw MRSA
-    counts; but note that even with them, DOXYVAC still would not contribute an
-    S.-aureus-resistance observation — it measured the wrong thing for this question.
-    This is the sharpest instance of the cross-trial heterogeneity finding
-    (outputs/saureus_heterogeneity.md).
+    BOTH arms (chi-square trend: doxy-PEP p<0.0001, no-PEP p=0.0139). 2026-08-20 UPDATE
+    (D3 resolved for MRSA carriage): the CROI 2023 'Microbiome Analysis' slide DOES
+    carry the data — MRSA throat carriage % + per-visit denominators — so 10 carriage
+    observations are now coded (organism=mrsa, phenotype_measured=methicillin), with
+    counts back-computed EXACTLY from the slide's % x N (all clean integers; not
+    fabrication). Doxy-PEP arm climbs 1.8->3.6->6.4->5.7->9.9% (M0->M12); no-PEP
+    1.2->2.7->7.1->2.1->5.1%. NB these CROI numbers differ from Vanbaelen's reading of
+    the LATER Lancet 2024 figure (~2->12% doxy, ~2->10% no-PEP) — a likely CROI-vs-
+    Lancet venue discordance, flagged. CRUCIALLY this is MRSA CARRIAGE (methicillin),
+    still NOT S. aureus resistance: DOXYVAC contributes zero S.-aureus-resistance
+    observations, so it remains the sharpest instance of the heterogeneity finding
+    (outputs/saureus_heterogeneity.md). The MRSA carriage rows are excluded from the
+    S. aureus detectability analysis (organism=mrsa, not s_aureus).
 
 powered_for_resistance_endpoint:
   value: "no"
@@ -51,11 +57,13 @@ conclusion_contested:
   locator: "Vanbaelen 2024c, Lancet Infect Dis 2024;24:e606-e607"
   note: >-
     Vanbaelen 2024c (10.1016/S1473-3099(24)00502-4) reanalyses DOXYVAC under
-    POPULATION-level selection: MRSA throat carriage rose in BOTH arms (2%->12%
-    doxy-PEP, 2%->10% no-PEP), which they read as population-level selection across
-    shared sexual networks — against the trial's own individual-level conclusion
-    that doxy-PEP 'does not select for MRSA'. Same data, opposite conclusion,
-    because the trial tested only individual-level selection.
+    POPULATION-level selection: MRSA throat carriage rose in BOTH arms (Vanbaelen's
+    reading of the Lancet 2024 figure ~2%->12% doxy-PEP, ~2%->10% no-PEP; the CROI
+    2023 slide now coded here shows 1.8%->9.9% doxy-PEP and 1.2%->5.1% no-PEP), which
+    they read as population-level selection across shared sexual networks — against the
+    trial's own individual-level conclusion that doxy-PEP 'does not select for MRSA'.
+    Same data, opposite conclusion, because the trial tested only individual-level
+    selection. (Carriage, not resistance-within-S.aureus.)
 
 selection_level_tested: individual
 selection_level_locator: "AMR analyses compare randomized arms at the individual level (the basis of the Vanbaelen critique)"
@@ -112,3 +120,142 @@ observations:
     p_value: "0.043"
     locator: "ciaf591 Table (high-level tetracycline resistance, no-PEP arm)"
     note: "No-PEP arm HL-tetR 12.5% (5/40). Same discriminating apparatus (tetM PCR + WGS)."
+
+  # ---------- MRSA THROAT CARRIAGE (conference_abstract): DOXYVAC 'Microbiome ----
+  # Analysis' slide, CROI 2023 (Molina). phenotype = METHICILLIN carriage prevalence,
+  # NOT doxy/tet resistance within S. aureus (PI: 'S. aureus not measured, only MRSA').
+  # Counts back-computed EXACTLY from the slide's % x per-visit N (all clean integers;
+  # not fabrication). Excluded from S. aureus detectability (organism=mrsa, not s_aureus).
+  - source_type: conference_abstract
+    source_citation: "Molina 2023 (CROI DOXYVAC, Microbiome Analysis slide)"
+    arm: doxy
+    timepoint: baseline
+    organism: mrsa
+    phenotype_measured: methicillin
+    phenotype_as_labeled: methicillin
+    mechanism_discriminating: "no"
+    discrimination_method: "none"
+    numerator: 6
+    denominator: 331
+    denominator_basis: all_participants_swabbed
+    note: "MRSA carriage baseline 1.8%. Doxy-PEP arm then climbs 1.8->3.6->6.4->5.7->9.9% (M0->M12)."
+    locator: "croi2023_molina_doxyvac_slides.md (MRSA throat carriage, doxy baseline)"
+  - source_type: conference_abstract
+    source_citation: "Molina 2023 (CROI DOXYVAC, Microbiome Analysis slide)"
+    arm: doxy
+    timepoint: month3
+    organism: mrsa
+    phenotype_measured: methicillin
+    phenotype_as_labeled: methicillin
+    mechanism_discriminating: "no"
+    discrimination_method: "none"
+    numerator: 11
+    denominator: 304
+    denominator_basis: all_participants_swabbed
+    locator: "croi2023_molina_doxyvac_slides.md (MRSA throat carriage, doxy month3)"
+  - source_type: conference_abstract
+    source_citation: "Molina 2023 (CROI DOXYVAC, Microbiome Analysis slide)"
+    arm: doxy
+    timepoint: month6
+    organism: mrsa
+    phenotype_measured: methicillin
+    phenotype_as_labeled: methicillin
+    mechanism_discriminating: "no"
+    discrimination_method: "none"
+    numerator: 16
+    denominator: 251
+    denominator_basis: all_participants_swabbed
+    locator: "croi2023_molina_doxyvac_slides.md (MRSA throat carriage, doxy month6)"
+  - source_type: conference_abstract
+    source_citation: "Molina 2023 (CROI DOXYVAC, Microbiome Analysis slide)"
+    arm: doxy
+    timepoint: month9
+    organism: mrsa
+    phenotype_measured: methicillin
+    phenotype_as_labeled: methicillin
+    mechanism_discriminating: "no"
+    discrimination_method: "none"
+    numerator: 11
+    denominator: 193
+    denominator_basis: all_participants_swabbed
+    locator: "croi2023_molina_doxyvac_slides.md (MRSA throat carriage, doxy month9)"
+  - source_type: conference_abstract
+    source_citation: "Molina 2023 (CROI DOXYVAC, Microbiome Analysis slide)"
+    arm: doxy
+    timepoint: month12
+    organism: mrsa
+    phenotype_measured: methicillin
+    phenotype_as_labeled: methicillin
+    mechanism_discriminating: "no"
+    discrimination_method: "none"
+    numerator: 12
+    denominator: 121
+    denominator_basis: all_participants_swabbed
+    note: "MRSA carriage 9.9% at M12 vs 1.8% at M0 in the doxy-PEP arm — a 5.5x rise; nearly double the no-PEP 5.1%. Molina between-arm NS; Vanbaelen 2024c within-arm trend p<0.0001. Carriage, not resistance-within-S.aureus; small numbers."
+    locator: "croi2023_molina_doxyvac_slides.md (MRSA throat carriage, doxy month12)"
+  - source_type: conference_abstract
+    source_citation: "Molina 2023 (CROI DOXYVAC, Microbiome Analysis slide)"
+    arm: control
+    timepoint: baseline
+    organism: mrsa
+    phenotype_measured: methicillin
+    phenotype_as_labeled: methicillin
+    mechanism_discriminating: "no"
+    discrimination_method: "none"
+    numerator: 2
+    denominator: 168
+    denominator_basis: all_participants_swabbed
+    locator: "croi2023_molina_doxyvac_slides.md (MRSA throat carriage, control baseline)"
+  - source_type: conference_abstract
+    source_citation: "Molina 2023 (CROI DOXYVAC, Microbiome Analysis slide)"
+    arm: control
+    timepoint: month3
+    organism: mrsa
+    phenotype_measured: methicillin
+    phenotype_as_labeled: methicillin
+    mechanism_discriminating: "no"
+    discrimination_method: "none"
+    numerator: 4
+    denominator: 150
+    denominator_basis: all_participants_swabbed
+    locator: "croi2023_molina_doxyvac_slides.md (MRSA throat carriage, control month3)"
+  - source_type: conference_abstract
+    source_citation: "Molina 2023 (CROI DOXYVAC, Microbiome Analysis slide)"
+    arm: control
+    timepoint: month6
+    organism: mrsa
+    phenotype_measured: methicillin
+    phenotype_as_labeled: methicillin
+    mechanism_discriminating: "no"
+    discrimination_method: "none"
+    numerator: 9
+    denominator: 126
+    denominator_basis: all_participants_swabbed
+    locator: "croi2023_molina_doxyvac_slides.md (MRSA throat carriage, control month6)"
+  - source_type: conference_abstract
+    source_citation: "Molina 2023 (CROI DOXYVAC, Microbiome Analysis slide)"
+    arm: control
+    timepoint: month9
+    organism: mrsa
+    phenotype_measured: methicillin
+    phenotype_as_labeled: methicillin
+    mechanism_discriminating: "no"
+    discrimination_method: "none"
+    numerator: 2
+    denominator: 94
+    denominator_basis: all_participants_swabbed
+    locator: "croi2023_molina_doxyvac_slides.md (MRSA throat carriage, control month9)"
+  - source_type: conference_abstract
+    source_citation: "Molina 2023 (CROI DOXYVAC, Microbiome Analysis slide)"
+    arm: control
+    timepoint: month12
+    organism: mrsa
+    phenotype_measured: methicillin
+    phenotype_as_labeled: methicillin
+    mechanism_discriminating: "no"
+    discrimination_method: "none"
+    numerator: 3
+    denominator: 59
+    denominator_basis: all_participants_swabbed
+    note: "No-PEP MRSA carriage 5.1% at M12 (from 1.2% at M0), peak 7.1% at M6. Vanbaelen within-arm trend p=0.0139."
+    locator: "croi2023_molina_doxyvac_slides.md (MRSA throat carriage, control month12)"

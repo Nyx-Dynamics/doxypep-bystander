@@ -1,6 +1,6 @@
 # Stream A result — the same result, reported many ways
 
-3 trial(s) coded; 33 resistance observations (one per *reported
+3 trial(s) coded; 43 resistance observations (one per *reported
 instance*). First-pass coding (`claude-firstpass`); needs PI verification +
 double-coding (Phase F). See `data/processed/trial_observations.csv`.
 

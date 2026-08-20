@@ -297,11 +297,13 @@ assay the resistance phenotype at all. DoxyPEP measured doxycycline resistance
 *within* *S. aureus* by E-test, reported over two denominators — all swabbed and
 colonized — that do not agree; DuDHS measured the same phenotype by disc diffusion in
 a single-digit number of carriers; DOXYVAC measured only MRSA *carriage prevalence* —
-whether a participant carried a methicillin-resistant isolate — not doxycycline or
-tetracycline resistance within *S. aureus*, and even those counts are not in the
-public record. So of three trials, only two measured the phenotype this question turns
-on, by two methods over three denominators, and none resolves mechanism. A pooled
-estimate is not defensible; the heterogeneity is itself the finding.
+whether a participant carried a methicillin-resistant isolate, which climbed from 1.8%
+to 9.9% in the doxy-PEP arm over 12 months (reported as non-significant between arms;
+significant on a within-arm trend test in reanalysis [@vanbaelen2024c]) — not
+doxycycline or tetracycline resistance within *S. aureus*. So of three trials, only two
+measured the phenotype this question turns on, by two methods over three denominators,
+and none resolves mechanism. A pooled estimate is not defensible; the heterogeneity is
+itself the finding.
 
 Power is no kinder. Of the four doxy-versus-control comparisons DoxyPEP's own
 *S. aureus* counts can support, **0 of 4** are powered to detect even an externally

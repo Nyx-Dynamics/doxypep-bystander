@@ -7,7 +7,7 @@ with endpoints and denominators that differ in ways that resist pooling."
 
 | trial | s aureus measured | phenotype axis | assay | body site | denominator bases | discriminating method | any mechanism discriminating | n firstparty obs |
 |---|---|---|---|---|---|---|---|---|
-| DOXYVAC (ANRS 174) | partial | not coded (see trial note) | Etest (bioMerieux) ... whole-genome sequencing and/or polymerase chain reaction sequencing | nan | - | none | False | 0 |
+| DOXYVAC (ANRS 174) | partial | carriage/other | Etest (bioMerieux) ... whole-genome sequencing and/or polymerase chain reaction sequencing | nan | all_participants_swabbed | none | False | 10 |
 | DoxyPEP | yes | resistance-within-S.aureus | doxycycline resistance by ETEST (bioMerieux) | nares and oropharynx | all_participants_swabbed, colonized_participants | standard_breakpoint | False | 18 |
 | DuDHS | yes | resistance-within-S.aureus | S. aureus isolates were tested against doxycycline by disk diffusion | nasal swabs using Copan transport media swabs | colonized_participants | standard_breakpoint | False | 1 |
 

@@ -38,6 +38,7 @@ files flagged **[coded-source]** below — re-hash before trusting a re-download
 | `molina2018_ipergay_doxypep_substudy.pdf` | 358539 | `cfba3dbaf923556e8a06d08fde1fb07ff4c28f7b9182aaeb8bb207a9c5c71659` | Molina IPERGAY doxy-PEP substudy, Lancet ID 2018;18:308-317 (original RCT; measured NO S. aureus) |
 | `graham_jmir_who_ppt_vs_doxypep_protocol.pdf` | 580548 | `b80cbb9a7aa08d435cc17ddd6198be1ff53999119f946dfad36a241287fd188f` | JMIR protocol (future WHO-PPT vs doxy-PEP trial); EXPLICITLY omits S. aureus resistance testing |
 | `molina2023_croi_doxyvac_efficacy_abstract.pdf` | 198351 | `e7a6c353a2e49482e0842f4e879f353446e7ee61fa2906f83896733bd85aea12` | DOXYVAC CROI 2023 abstract #119 (efficacy only; 546 rand/502 analyzed 2:1; NO S. aureus data) |
+| `croi2023_molina_doxyvac_slides.md` | 2926 | `eaa4e01fd69c7bcdfa2004bf84d7483b3a0de41d45a4a2c288deacb8b895324b` | DOXYVAC CROI 2023 slides transcript; MRSA throat carriage (doxy 1.8->9.9%) — carriage not S. aureus resistance |
 | `croi2023_luetkemeyer_OA3.md` | 15042 | `611bdf559f2a52d5a7f4dafd30597a1e863c7033147330e98cbee3642d6dd4d8` | **[coded-source]** CROI OA-3 abstract body + verbatim table + slides (PI-captured); the keystone exhibit |
 | `miko2012_microbesinfect_usa300_std_reservoir.pdf` | 35350 | `c53e98ba667b9c1007f584246645afb1449ed7a788b731ec19099e7eb455afc8` |  |
 | `mishriky_chan2026_cid_amr_should_not_limit.pdf` | 351968 | `6099a404d26e33349e25a5fb83461a88a45ce57daaa602ddb524ae8091e53d68` |  |
