@@ -2,6 +2,23 @@
 
 Dated analysis decisions, logged before results are known. Append-only.
 
+## 2026-08-20 — Cross-trial non-monotonicity (M6/mid-study), held as illustration
+
+PI observation: the non-monotone S. aureus/MRSA trajectory is in BOTH pivotal trials,
+and the tell is that the arms move TOGETHER at the shared mid-study timepoint.
+- DOXYVAC MRSA carriage: non-monotone in both arms; at M6 no-PEP (7.1%) > doxy (6.4%).
+- DoxyPEP S. aureus colonization: falls in BOTH arms at M6 (SOC 48->38%, doxy 44->29%),
+  recovers by M12 (43%, 31%). The SOC dip cannot be a doxy-PEP effect — a dose-response
+  moves only the exposed arm, monotonically. Arms lurching together = a network/temporal
+  process the cross-sectional endpoint samples but cannot resolve.
+Discipline held (per PI + the M6 reasoning): ILLUSTRATION, not proof. The pattern is
+consistent with clustered transmission AND with sampling noise at these single-to-low-
+double-digit counts; the design cannot separate them — which is the point (indicts the
+instrument). Denominators are read off the slides and NOT used for statistical weight;
+formal within-arm trend would need the trials' supplements. Folded into manuscript S3.1
+(cross-trial) building on the sharpened para 4 (network-continuity licensing + category
+error). No causal claim.
+
 ## 2026-08-19 (overnight) — S. aureus broadening of Stream A
 
 The clinical reframe fixes the unit as *S. aureus* (MRSA a subset). Checked whether
