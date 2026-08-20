@@ -35,6 +35,8 @@ files flagged **[coded-source]** below — re-hash before trusting a re-download
 | `liu2011_idsa_mrsa_guideline.pdf` | 429301 | `20bf68eb595a4e66ad89eb05a855dd1c79365ccf29ebefb5ddb79f4b7b92efce` | **[coded-source]** IDSA MRSA gl: doxycycline A-II oral CA-MRSA option; tetK/tetM clinical distinction |
 | `stevens2014_idsa_ssti_guideline.pdf` | 1049258 | `927cc2af2a1566426589ab397baec67c5ce3b1ca41533d326b548de76e589683` | IDSA SSTI gl 2014: armamentarium-erosion framing |
 | `vanderlinden1998_skin_reactions_abstract.pdf` | 201499 | `f0e8ec06f1aa0aff09aad5c79e342bd19a85a84bbacf7c1684c090e4b7c6a37a` | abstract only (full text paywalled): TMP-sulfa skin-reaction IDR 4.4 vs tetracyclines |
+| `molina2018_ipergay_doxypep_substudy.pdf` | 358539 | `cfba3dbaf923556e8a06d08fde1fb07ff4c28f7b9182aaeb8bb207a9c5c71659` | Molina IPERGAY doxy-PEP substudy, Lancet ID 2018;18:308-317 (original RCT; measured NO S. aureus) |
+| `graham_jmir_who_ppt_vs_doxypep_protocol.pdf` | 580548 | `b80cbb9a7aa08d435cc17ddd6198be1ff53999119f946dfad36a241287fd188f` | JMIR protocol (future WHO-PPT vs doxy-PEP trial); EXPLICITLY omits S. aureus resistance testing |
 | `croi2023_luetkemeyer_OA3.md` | 15042 | `611bdf559f2a52d5a7f4dafd30597a1e863c7033147330e98cbee3642d6dd4d8` | **[coded-source]** CROI OA-3 abstract body + verbatim table + slides (PI-captured); the keystone exhibit |
 | `miko2012_microbesinfect_usa300_std_reservoir.pdf` | 35350 | `c53e98ba667b9c1007f584246645afb1449ed7a788b731ec19099e7eb455afc8` |  |
 | `mishriky_chan2026_cid_amr_should_not_limit.pdf` | 351968 | `6099a404d26e33349e25a5fb83461a88a45ce57daaa602ddb524ae8091e53d68` |  |
