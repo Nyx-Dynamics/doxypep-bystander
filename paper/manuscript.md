@@ -145,6 +145,23 @@ exposure to staphylococcal phenotype at any geographic resolution with a populat
 denominator. Taken together, these are not three separate gaps but one — a question
 rendered unanswerable by the design of the instruments meant to answer it.
 
+Whether that unanswerability matters depends on who would bear the cost, and it is not
+the population being prescribed doxy-PEP. The benefit — fewer sexually transmitted
+infections — is real, individual, and immediate. A cost, if one is accruing, would be
+the slow erosion of an oral option for treating community *S. aureus*, and it would
+fall on people who never took the drug and were never represented in the trials or the
+guidelines that scaled it: the patient with diabetes, on dialysis, recovering from
+surgery, or receiving cancer therapy, for whom an oral anti-staphylococcal agent can
+be the difference between a clinic visit and an admission. A harm of that shape —
+deferred, diffuse, and borne by third parties who never consented to the exposure — is
+the structure of a negative externality, and it is one that cannot be weighed because
+it is not being measured. The question this paper asks is thus not whether doxy-PEP
+should be used; its benefit is not in dispute. It is whether the systems built around
+doxy-PEP can see the potential cost clearly enough for anyone — clinician, guideline
+writer, or public-health authority — to weigh it at all. That is a question of
+antimicrobial stewardship, of surveillance adequacy, and, in the end, of distributive
+justice.
+
 ## 2. The keystone: the trial's own report
 
 The DoxyPEP antimicrobial-resistance substudy was presented as CROI 2023 Oral
@@ -413,27 +430,26 @@ epistemological exercise conducted with data science: it uses public data and
 regenerable code to locate the boundary of what the current instruments can know
 about the bystander, and finds that boundary short of the question.
 
-For a clinician the stake is specific, and its shape is an externality. Doxycycline
-is one of a small number of oral agents for community MRSA [@liu2011], and the IDSA
-skin-and-soft-tissue guideline already frames its field by "the emergence of
-resistance to many of the antimicrobial agents commonly used to treat" these
-infections in the past [@stevens2014]; the population in which doxy-PEP concentrates
-tetracycline exposure is the same one through which community MRSA once spread
-[@diep2008; @dejong2025]. If continuous doxycycline were, over time, to enrich
-doxycycline resistance in community *S. aureus*, the cost would appear as a slow
-erosion of an outpatient treatment option — and it would fall on people who never
-took doxy-PEP: patients with diabetes, on dialysis, recovering from surgery, or
-receiving cancer therapy, who depend on oral anti-staphylococcal treatment, and on
-care delivered years later, while the benefit was individual and immediate. We are
-careful not to assert that this is happening; contemporary MRSA carriage in these
-cohorts is low and the trials' own between-arm tests are non-significant. The point is
-narrower and about who decides and who pays: an externality of this shape — deferred,
-diffuse, and borne by a population absent from the trials and the guidelines — is
-exactly the kind that must be measured to be weighed at all, and it is precisely what
-none of the guidelines that counsel patients about resistance are instrumented to
-record. An unmeasured externality is not a small one; it is an unpriced one, and the
-question is finally one of stewardship and distributive justice as much as of
-epidemiology.
+The mechanism sharpens the externality set out in the Introduction. What the trials
+score as doxycycline resistance is, in mechanistic terms, the part that matters most.
+Tetracycline resistance in community *S. aureus* is predominantly tet(K), an efflux
+determinant that raises the tetracycline reading while leaving doxycycline largely
+active; the ribosomal-protection determinant tet(M), by contrast, confers resistance
+to the whole class — doxycycline and minocycline alike [@liu2011; @grossman2016].
+Because doxycycline pressure selects poorly against tet(K) but strongly against
+tet(M)-negative strains, it is predicted to shift the resistant fraction toward
+tet(M); and a shift toward tet(M) does not erode one agent, it removes the oral
+tetracycline option as a whole. So the cost, were it accruing in the population
+through which community MRSA once spread [@diep2008; @dejong2025], would be not the
+loss of a single alternative but the loss of a class — and it is exactly the shift a
+"tetracycline-class" endpoint, scored at a single breakpoint, cannot see. We do not
+assert that this is happening; contemporary carriage is low and the trials' own
+between-arm tests are non-significant. The durable point is narrower: an externality
+of this shape — deferred, diffuse, borne by third parties, and mechanistically total
+rather than partial — is exactly the kind that must be measured to be weighed at all,
+and it is precisely what none of the guidelines that counsel patients about resistance
+are instrumented to record. An unmeasured externality is not a small one; it is an
+unpriced one.
 
 What would it take to see the signal? The streams name the instrumentation: sentinel
 sampling of *S. aureus* from doxy-PEP-exposed individuals (which raises κ by
