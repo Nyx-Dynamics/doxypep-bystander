@@ -126,12 +126,19 @@ much echoed that concern as answered it. Luetkemeyer's CROI presentation address
 figures; the NEJM publication reads the same way [@luetkemeyer2023croi;
 @luetkemeyer2023]. But a small MRSA proportion, measured as colonisation at fixed
 follow-up points, does not answer the question being asked. Community MRSA in this
-population has never behaved as a steady-state prevalence. USA300 was documented
-moving through sexual networks in men who have sex with men two decades ago, in
-clusters and outbreaks — the same networks doxy-PEP now targets [@diep2008;
-@dejong2025]. A cross-sectional colonisation endpoint is structurally blind to
-clustered transmission, and a low proportion is precisely what one would expect
-shortly before an outbreak rather than evidence against one.
+population has never behaved as a steady-state prevalence: the USA300 lineage was
+documented two decades ago moving through the sexual networks of men who have sex
+with men in clusters and outbreaks [@diep2008; @dejong2025], and doxy-PEP is deployed
+into those same networks. That continuity is not an analogy but an identity of
+transmission substrate — it is the same network, observed with a different instrument —
+which is what licenses reading the outbreak history onto these trials. And the
+instrument measures the wrong property. An organism whose natural history is clustered,
+wave-like spread is not characterised by its steady-state fraction; to read a low
+cross-sectional proportion as reassurance is to report the mean of a process whose
+risk was never in the mean. A cross-sectional colonisation endpoint is structurally
+blind to clustered transmission, and a low proportion is exactly what such an organism
+shows between waves — not evidence of safety, but an artefact of asking the wrong
+question of the right population.
 
 The question is therefore not whether doxy-PEP increases *S. aureus* tetracycline
 resistance, but whether the existing evidence base could detect it if it did. We
@@ -304,6 +311,22 @@ doxycycline or tetracycline resistance within *S. aureus*. So of three trials, o
 measured the phenotype this question turns on, by two methods over three denominators,
 and none resolves mechanism. A pooled estimate is not defensible; the heterogeneity is
 itself the finding.
+
+The DOXYVAC carriage trajectory also illustrates the endpoint problem of §1 directly.
+It is non-monotone in both arms — at month 6 the no-PEP arm (7.1%) exceeds the doxy-PEP
+arm (6.4%), and both rise relative to month 3 before falling at month 9. That is what a
+clustering process looks like when sampled cross-sectionally: a snapshot catching
+different phases of transmission through a shared network, the arms crossing, the
+proportion refusing to behave like prevalence. It is equally consistent with sampling
+noise at these single- to low-double-digit counts, and the design cannot separate the
+two — which is the point, not a defect to explain away. An endpoint that cannot
+distinguish clustered transmission from noise is the wrong endpoint for an organism
+whose documented natural history in these networks is clustered; the trial's
+between-arm null is therefore uninformative about the population where the concern is
+most grounded, rather than reassuring about it. (We use month 6 only as illustration:
+the MRSA panel's per-visit denominators are read from the same slide as the
+percentages and are not asserted to carry statistical weight; that would require the
+trial's supplementary tables.)
 
 Power is no kinder. Of the four doxy-versus-control comparisons DoxyPEP's own
 *S. aureus* counts can support, **0 of 4** are powered to detect even an externally
