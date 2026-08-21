@@ -18,12 +18,16 @@ hashed source (data/raw/papers/croi2023_luetkemeyer_OA3.md and the coded YAML);
 see outputs/ and DECISIONS.md. Convert to the target venue with, e.g.:
     pandoc manuscript.md --citeproc -o manuscript.docx
 
-FRAMING NOTE (do not delete): the central claim is EVIDENTIARY ADEQUACY, not effect
-size and not causation. The trial's own between-arm test is non-significant (p=0.19)
-and we do not dispute it. The finding is that the instrumentation, the denominator,
-the label, and the reporting render the bystander question unanswerable — a claim
-about the measurement apparatus, not about whether doxy-PEP causes resistant staph.
-Any sentence asserting causation is a bug.
+FRAMING NOTE (do not delete): the central claim is MEASUREMENT INHERITANCE / evidentiary
+adequacy, not a population effect estimate. The trial's FINAL analysis (Luetkemeyer 2025
+Lancet ID) reports a SIGNIFICANT individual-level signal — incident doxy-R S. aureus,
+HR 3.89 (95% CI 1.42-10.68), p=0.0044 — and we do NOT dispute it; we build on it. The
+finding is that the guidance mandates no measurement of the bystander and no deployed
+surveillance can join exposure to phenotype at a population denominator, so the
+individual-level signal the trial resolved cannot be followed into a population externality
+— a claim about the DOWNSTREAM measurement apparatus, not about whether doxy-PEP drives
+population-level resistant staph. Any sentence asserting a POPULATION-level causal effect is
+a bug. (The narrow individual-level hazard is the trial's finding, reported as such.)
 
 TONE (do not delete): write QUIETLY, not sharply. The facts are strong enough that
 understatement serves them better than indictment. No prosecutorial edge, no clever
@@ -42,10 +46,12 @@ resistance beyond its target organism; *Staphylococcus aureus* — a commensal a
 pathogen that carries mobile tetracycline-resistance determinants, that once spread
 community MRSA through the same sexual networks, and for which doxycycline is one of
 few *oral* treatment options — is the natural **bystander**, and one with a clinical
-stake. The trials that established doxy-PEP called for longer-term monitoring of
-exactly this. We ask not whether doxy-PEP causes resistant *S. aureus*, but whether
-that monitoring exists — whether the evidence base and guidance now in place are
-*instrumented to answer the question at all*.
+stake. The pivotal trial's final
+analysis has now demonstrated exactly such a signal — a significant increase in incident
+doxycycline-resistant *S. aureus* — and its authors call for public-health surveillance of
+it. We ask not whether doxy-PEP drives population-level resistant *S. aureus*, but whether
+the guidance and surveillance now in place could *follow* the signal the trial resolved —
+whether they are instrumented to inherit it at all.
 
 **Methods.** We audit the doxy-PEP evidence base in three streams, collected and
 analysed in sequence and scored against one yardstick — the within-exposed effect each
@@ -56,39 +62,38 @@ phenotype?). All coding carries page/table locators; all sources are SHA-256–p
 surveillance stream decomposes a defined universe of deployed systems and adds a
 quantitative feasibility model; every figure and table regenerates from one command.
 
-**Results.** Several features of the trial's own report bear on the question. (i) Its
-data **table caption** describes "phenotypic resistance to the *tetracycline*
-antibiotic class," while the methods define the *S. aureus* and commensal-*Neisseria*
-assays as **doxycycline** (E-test) and only the gonococcal assay as tetracycline; two
-drugs and three organisms are grouped under one heading. (ii) *S. aureus* doxycycline
-resistance is reported over all swabbed participants, a denominator that falls as the
-intervention reduces colonization (by 16%): 3.6% (12/334) → 11.7% (16/137),
-summarized as "without a significant increase … modest … unlikely clinical
-significance" (p=0.19); computed per carrier, the same counts give 8.5% (12/141) →
-40.0% (16/40), a figure the report does not present or test. (iii) The same
-month-12 endpoint appears as **5, 16, or 28** resistant isolates over three differing
-denominators across the trial's NEJM appendix, its CROI table, and its slides as cited by
-CDC — a spread the public record cannot resolve because the individual-level data are not
-shared. A footnote records that gonococcal resistance
-testing was unavailable for **83% (212/256)** of diagnoses. Three streams find the
-same pattern more widely: 0 of 4 primary *S. aureus* comparisons are powered for even
-an external benchmark; every governmental guideline we coded — including all six
-jurisdictions with documented local CA-MRSA outbreaks — counsels about the harm while
+**Results.** In its final analysis (the as-randomised period plus an open-label extension),
+the DoxyPEP trial reports a **statistically significant increase in incident
+doxycycline-resistant *S. aureus*** under doxy-PEP: among participants free of it at
+baseline, hazard ratio **3.89 (95% CI 1.42–10.68), p=0.0044** (68/393 vs 5/163), while the
+hazard of *clearing* colonisation did not differ (HR 1.01, p=0.98) — a signal on resistance,
+none on carriage. The finding emerged only as the estimand caught up to it. The 2023 interim
+reported a cross-sectional resistance fraction — labelled for the "tetracycline class" though
+the *S. aureus* assay was doxycycline, and given three irreconcilable ways (5, 16, or 28
+isolates) across its own venues — and read it as "modest … unlikely clinical significance";
+its cross-sectional comparisons were underpowered (minimum detectable RR 3.8–5.1). The 2024
+federal guideline repeated a 5%→13% rise among the colonised and appended a monitoring call.
+The 2025 final incidence analysis asked the question the others had not and returned HR 3.89.
+The endpoint never changed; the question asked of it did — and the implementation
+architecture did not change with it. Every governmental guideline we coded — including all
+six jurisdictions with documented local CA-MRSA outbreaks — counsels about the harm while
 requiring no measurement of it; and of twelve established surveillance systems none links
-doxy-PEP exposure to *S. aureus* tetracycline phenotype at a common population denominator
-— that phenotype is surveilled nowhere with a population base, the architecture being
-organised around methicillin, and the exposed subgroup is too dilute to move a population
-rate regardless. Of 361 doxy-PEP papers (2015–2026), 13 (3.6%) name a bystander
-staphylococcal organism and 2 measure it against an exposure contrast.
+doxy-PEP exposure to an *S. aureus* tetracycline phenotype at a common population denominator
+(that phenotype is surveilled nowhere with a population base, the architecture organised
+around methicillin, and the exposed subgroup too dilute to move a population rate
+regardless). Of 361 doxy-PEP papers (2015–2026), 13 (3.6%) name a bystander staphylococcal
+organism and 2 measure it against an exposure contrast.
 
-**Conclusions.** As instrumented, the doxy-PEP → bystander-*S. aureus* question
-cannot be answered: the reported phenotype is named for one drug and measured with
-another, the rate is expressed over a denominator the intervention moves, the counts
-are reported over denominators that cannot be reconciled from the public record, the data
-are not released, and no deployed surveillance system links exposure to the phenotype. The trial's authors close by noting that
-longer-term monitoring is needed — monitoring the evidence base they helped launch is
-not built to provide. We offer this as a quantified instance of *measurement
-inheritance*, and **make no causal claim**.
+**Conclusions.** The randomised trial has answered the question it was built to answer:
+during about a year of exposure, participants beginning free of doxycycline-resistant
+*S. aureus* acquired it roughly four times as fast under doxy-PEP. What remains unanswerable
+*as instrumented* is everything downstream of that individual-level fact — whether the signal
+propagates into a population externality — because the guidance mandates no *S. aureus*
+measurement and no deployed surveillance system can join exposure to the phenotype at a
+population denominator. The upstream instrument generated information the downstream systems
+are not built to receive, and the trial's own authors call for exactly the *S. aureus* AMR
+surveillance that does not exist. We offer this as a quantified instance of *measurement
+inheritance*, and **make no population-level causal claim**.
 
 ---
 
@@ -136,11 +141,12 @@ in throat swabs runs 1.8, 3.6, 6.4, 5.7, and 9.9% across visits in the doxy-PEP 
 no-PEP arm lurching 1.2, 2.7, 7.1, 2.1, and 5.1%, the two crossing at month six
 [@molina2023croi; @vanbaelen2024c]. This is what a clustering organism looks like when a
 prevalence snapshot is the instrument: non-monotone, arm-crossing, uninterpretable at
-any single visit. The resistance fraction, by contrast, does not swing — it ratchets,
-5% to 13% and holds, because once *tetM* is selected into the population it does not
-wash back out the way a colonisation proportion does. The carriage measures oscillate as
-clustered transmission dictates; the resistance measure accumulates as selection
-dictates. A between-arms contrast at one visit, or a twelve-month prevalence read as a
+any single visit. The resistance fraction, by contrast, does not swing — it accumulates,
+because once *tetM* is selected into the population it does not wash back out the way a
+colonisation proportion does. The trial's final analysis draws exactly this line: no effect
+on clearing carriage, a significant increase in incident resistance (§3.1). The carriage
+measures oscillate as clustered transmission dictates; the resistance measure accumulates as
+selection dictates. A between-arms contrast at one visit, or a twelve-month prevalence read as a
 level, is structurally blind to the first and demotes the second. What the trials
 measured, and where, is a bounded phenomenon: MRSA clustering within the sexual networks
 the trials enrolled to study.
@@ -279,21 +285,17 @@ extrapolation from sample to follow-up months; we therefore report the sample mu
 and do not infer a duration, recording the early efficacy stop as the reason the realised
 denominator is what it is rather than as a counterfactual about a longer trial.
 
-**Selection.** Within the one trial that measured doxycycline resistance in *S. aureus*
-by a common assay across three visits over a common denominator (US DoxyPEP), we test the
-selection prediction directionally rather than by fitting a shape to three points. Having
-first confirmed that the reported resistance figure is a fraction of all swabbed and not
-of carriers, we recover the susceptible-carriage series as colonisation prevalence minus
-the all-swabbed resistance rate (equivalently, colonisation times one minus the
-per-carrier resistant fraction). Selection predicts susceptible carriage depletes while
-the resistant fraction rises: we test the depletion with a one-sided trend test whose
-direction is pre-specified, the per-carrier increase with a one-sided Fisher exact test,
-and — against a null of neutral suppression, under which carriage is cleared regardless of
-resistance and resistant carriage falls in proportion to colonisation — whether the
-observed resistant carriage exceeds its proportional-decline expectation. The
-standard-of-care arm is analysed identically and reported as uninformative where it is
-underpowered, not as a contrasting shape. Only *S. aureus* carries this analysis; MRSA,
-which no trial reports with a primary *S. aureus*-style denominator, cannot.
+**Selection.** The interim publications reported no participant-level test of selection, so
+an earlier version of this analysis reconstructed one from aggregate counts — recovering
+susceptible carriage as colonisation prevalence minus the all-swabbed resistance rate, and
+testing the predicted depletion and per-carrier increase directionally. The final DoxyPEP
+analysis has since performed the appropriate participant-level test itself: among
+participants free of doxycycline-resistant *S. aureus* at baseline, time to first detection
+by arm, standard-of-care censored at crossover, by Cox proportional hazards [@luetkemeyer2025].
+We therefore report that randomised result directly (§3.1) and retire the aggregate
+reconstruction, retaining the interim's two denominators only as an exhibit of how the same
+endpoint was conveyed across venues before the incidence estimand resolved it. We fit no
+shape to the short arm-split series.
 
 **Clustering.** That MRSA behaves as a clustered, network phenomenon rather than a
 quantity a cross-sectional proportion can settle is instrumented separately and kept
@@ -408,11 +410,36 @@ source to detect the bystander signal?* — across three streams: the clinical t
 them (C). Coding schemas, double-coding reliability, and every locator are in the
 Methods and the repository; each source is SHA-256–pinned.
 
-### 3.1 Stream A — the trials measured the bystander, and could not report it
+### 3.1 Stream A — the trial measured the bystander, and in the end reported it
 
-Stream A begins with the pivotal DoxyPEP trial's own antimicrobial-resistance report,
-because four features of how it measured and reported *S. aureus* recur across the
-whole stream. The first is a label. The trial's data table is headed "phenotypic
+When its follow-up was allowed to accrue, the signal the interim was said to be unpowered
+for appeared. In the final DoxyPEP analysis — the as-randomised period together with the
+open-label extension, standard-of-care participants censored at crossover — the
+investigators ran the participant-level test the interim could not: among those free of
+doxycycline-resistant *S. aureus* at baseline, time to first detection by arm, by Cox
+proportional hazards. Doxy-PEP carried a **3.89-fold higher hazard** of acquiring
+doxycycline-resistant *S. aureus* (95% CI 1.42–10.68; 68 of 393 versus 5 of 163; p=0.0044),
+while the hazard of *clearing* colonisation did not differ between arms (HR 1.01,
+0.69–1.46, p=0.98) [@luetkemeyer2025]. The effect was, in the authors' own word, mixed:
+carriage unchanged, resistance roughly quadrupled. We do not soften it. By the falsification
+standard we set out in §5, the claim that this endpoint lay beyond the trial's reach is
+refuted — the trial reached it. What it did not, and by design could not, reach is
+everything downstream of that individual-level fact, and that is where the rest of this
+stream, and the paper, now turn.
+
+The sharper reading is historical, because the endpoint never changed — the question asked
+of it did. The 2023 interim reported a cross-sectional resistance fraction and read it as
+reassurance ("modest … unlikely clinical significance"); the 2024 federal guideline
+repeated a rise from 5% to 13% among the colonised and appended a call for monitoring
+[@cdc2024doxypep]; the 2025 final analysis asked the estimand the others had not — incident
+resistance among those who began without it, as a time-to-event contrast — and returned
+HR 3.89 [@luetkemeyer2025]. Across three years the trial's own measurement system evolved
+until it resolved its internal question. The implementation system did not evolve with it,
+and that gap is the subject of Streams B and C.
+
+That evolution is legible in the interim record the final analysis superseded, and it is
+worth setting out, because the same features recur — generalised — across the stream. The
+first is a label. The trial's data table is headed "phenotypic
 resistance to the *tetracycline* antibiotic class," yet its methods define the
 *S. aureus* assay as *doxycycline* (E-test, MIC ≥16 µg/mL) and only the gonococcal
 assay as tetracycline; three organisms and two drugs sit under one heading. The
@@ -489,8 +516,11 @@ sampling noise at these single- to low-double-digit counts, and the design canno
 separate the two — which is the point, not a defect to explain away. An endpoint that
 cannot distinguish clustered transmission from noise is the wrong endpoint for an
 organism whose documented natural history in these networks is clustered; the trials'
-between-arm nulls are therefore uninformative about the population where the concern is
-most grounded, rather than reassuring about it. (We use these mid-study timepoints only
+between-arm *carriage* nulls are therefore uninformative about the population where the
+concern is most grounded, rather than reassuring about it — and note that the significant
+signal the final analysis did return is an *individual-level* incidence hazard, which says
+nothing either way about whether resistant strains cluster or propagate through the network.
+(We use these mid-study timepoints only
 as illustration; their per-visit denominators are read off the same slides as the
 percentages and are not asserted to carry statistical weight, which would require the
 trials' supplementary tables.)
@@ -515,55 +545,51 @@ and with noise at once — the point, quantified, not a defect to explain away.
 (`outputs/dejong_sigma_result.md`, `outputs/coverage_null_result.md`,
 `outputs/three_outbreak_fit_result.md`.)
 
-The carriage endpoints oscillate; the resistance endpoint does not, and the contrast is
-diagnostic. Three DoxyPEP *S. aureus* endpoints have to be held apart. Colonisation
-fell in the doxy-PEP arm (roughly 44% to 30%) — unsurprising for an active
-antistaphylococcal drug. Doxycycline resistance among cultured *S. aureus* rose: the
-all-swabbed rate the trial reported is 3.6% (12/334) to 11.7% (16/137). Recomputed over
-carriers rather than all swabbed, the same published counts give 8.5% (12/141) to 40%
-(16/40), because reported rate = per-carrier rate × colonisation and doxy-PEP shrinks the
-colonised denominator the rate is divided over. We treat the per-carrier figure as an
-illustration of that denominator sensitivity, not a tested quantity: its month-12 numerator
-is 16 of 40 carriers, it rests on the same aggregate counts whose venue-to-venue discordance
-we noted above, and the individual-level data that would test it are withheld. What is
-robust to the choice of denominator is the between-arm direction — the standard-of-care arm
-fell over the same interval while the doxy-PEP arm rose roughly three- to fivefold depending
-on the denominator, a divergence in the direction of selection. Doxycycline resistance
-within the MRSA subset — itself ~6% of isolates — stayed low and, if anything, declined. The
-trial's summary foregrounded the third — *"MRSA prevalence was low … and doxy-R MRSA was
-unchanged"* — both clauses true, but the reassurance is assembled by narrowing from
-*S. aureus*, where the cultured-isolate resistance rose several-fold under either
-denominator, to the small MRSA subset, where it did not: reporting the endpoint that
-reassures rather than the one the exposure moves.
-And unlike the carriage measures, the resistance fraction does not swing — it ratchets.
-Once a stable, mobile determinant such as tet(M) [@grossman2016] is selected into a
-population it does not wash back out the way a colonisation proportion does: the carriage
-endpoints oscillate as clustering dictates, the resistance endpoint accumulates as
-selection dictates. DOXYVAC keeps the same signal out of the headline by the other
-route — a within-arm rise (1.8% to 9.9%) reported as a between-arms null — so that
-across both flagship trials the exposure-relevant signal is real and, by one mechanism
-or another, demoted.
+Three DoxyPEP *S. aureus* endpoints have to be held apart, and the interim's reassurance
+came from reporting the one that moved least. Colonisation fell in the doxy-PEP arm
+(roughly 44% to 30%) — unsurprising for an active antistaphylococcal drug, and, the final
+analysis later confirmed, not different from the standard-of-care arm's own decline
+(HR 1.01, p=0.98) [@luetkemeyer2025]. Doxycycline resistance among cultured *S. aureus*
+rose: the all-swabbed rate the interim reported was 3.6% (12/334) to 11.7% (16/137);
+recomputed over carriers, the same counts give 8.5% (12/141) to 40% (16/40), the reported
+rate being per-carrier rate × colonisation and doxy-PEP shrinking the colonised denominator
+over which it is divided. We had used that per-carrier reconstruction to argue the
+all-swabbed framing understated the change; we retain it now only as an exhibit of
+denominator sensitivity, because the selection it was reaching for is established directly,
+at participant level, by the randomised incidence analysis above — HR 3.89, which needs no
+reconstruction. Doxycycline resistance within the MRSA subset — itself ~6% of isolates —
+stayed low and did not change; the interim summary foregrounded exactly that third endpoint
+(*"MRSA prevalence was low … and doxy-R MRSA was unchanged"*, both clauses true), assembling
+reassurance by narrowing from *S. aureus*, where resistance was accumulating, to the small
+subset where it was not. DOXYVAC demoted the same kind of signal by the other route,
+reporting a within-arm MRSA-carriage rise (1.8% to 9.9%) as a between-arms null
+[@vanbaelen2024c] — so across both flagship trials the exposure-relevant signal was real
+and, by one framing or another, kept out of the headline, until the final DoxyPEP analysis
+put it there.
 
-Power is no kinder. Of the four doxy-versus-control comparisons DoxyPEP's own
-*S. aureus* counts can support, **0 of 4** are powered to detect even an externally
-specified effect. Treating the benchmark as fixed *a priori* from an independent
-source (a design-based sensitivity analysis, not observed power), the minimum
-detectable relative risk is 3.8–5.1, above both the *S. aureus*-matched benchmark
-(Soge's tetracycline-resistant colonization, 18% vs 8%, RR ≈ 2.25) and the
-cross-organism gonococcal figure (RR 1.42) [@soge2025].
+That the interim read as null was, in part, a matter of estimand and power. Of the four
+doxy-versus-control comparisons DoxyPEP's interim cross-sectional *S. aureus* counts can
+support, **0 of 4** are powered to detect even an externally specified effect: treating the
+benchmark as fixed *a priori* from an independent source (a design-based sensitivity
+analysis, not observed power), the minimum detectable relative risk for those cross-sectional
+contrasts is 3.8–5.1, above both the *S. aureus*-matched benchmark (Soge's
+tetracycline-resistant colonisation, 18% vs 8%, RR ≈ 2.25) and the cross-organism gonococcal
+figure (RR 1.42) [@soge2025]. The effect the final analysis eventually measured, HR 3.89,
+sits at the very edge of that band — which is why a cross-sectional proportion test could not
+resolve it while a time-to-event contrast over the full as-randomised follow-up could. The
+signal did not become real between 2023 and 2025; the estimand became adequate to it.
 
-Power is also a question of duration, and the trials stopped short of it. Preserving each
-comparison's arm ratio and control rate, DoxyPEP's *S. aureus* endpoint would have needed
-roughly **six times** its realised twelve-month sample — and some forty times, for the
-cross-organism benchmark — to reach 80% power for the matched RR 2.25; the multiple is a
-lower bound. The realised denominator is what it is for a documented reason: DoxyPEP's
-standard-of-care arm, the smaller and binding arm, was closed at the DSMB efficacy
-interim, truncating exactly the accrual the comparison depends on; DOXYVAC was likewise
-halted at a nine-month median, though it measured only MRSA. Whether a longer trial would
-have sufficed cannot be inferred from the two-visit, declining schedule the data provide,
-and we do not assert it — the firmer point is that the efficacy stop foreclosed the
-*S. aureus* accrual before it could reach the sample its own design required.
-(`outputs/duration_result.md`.)
+Duration is the other half of that story, and it cuts against the interim rather than the
+endpoint. DoxyPEP's standard-of-care arm, the smaller and binding one, was closed at the
+DSMB efficacy interim; preserving each comparison's arm ratio and control rate, the interim
+*S. aureus* contrast would have needed roughly **six times** its realised twelve-month
+sample — some forty times, for the cross-organism benchmark — to reach 80% power for the
+matched RR 2.25 (the multiple is a lower bound; `outputs/duration_result.md`). What supplied
+part of that missing accrual was the open-label extension: it is the extension's added
+follow-up, folded into a time-to-event estimand, that carried the final analysis to
+significance. The lesson is not that the trial could never have seen the signal, but that
+seeing it required accrual and an estimand the interim publication did not yet have — and
+that the signal, once seen, still says nothing about what happens past the trial's horizon.
 
 The mechanism asymmetry is systematic and cross-trial: the in-category organisms are
 assayed with mechanism-*discriminating* methods (tetM PCR, whole-genome sequencing,
@@ -574,6 +600,22 @@ antimalarial doxycycline shows why this matters: overall tetracycline resistance
 common in the doxycycline-exposed (p=0.031) — the blind endpoint null, the
 discriminating endpoint positive, within one dataset.
 (`outputs/detectability_result.md`.)
+
+What the trial resolved is therefore bounded, and naming the boundary is what sets up the
+rest of the paper. It established that, over about a year of randomised exposure,
+participants who began free of doxycycline-resistant *S. aureus* were roughly four times as
+likely to have it detected. It did not establish whether that resistance persists under
+longer exposure; whether it is tet(K), tet(M), tet(L), or tet(38), or how that molecular
+architecture shifts over time; whether the risk scales with doxycycline dose; whether
+resistant lineages spread from doxy-PEP recipients to others or propagate through sexual and
+community networks; whether population-level *S. aureus* resistance moves as a result;
+whether any of it yields more resistant clinical infections; or what happens past the roughly
+twelve-month, three-timepoint horizon — nares and oropharynx sampled at baseline, six, and
+twelve months, which is a trial procedure, not population surveillance. Each of these is a
+population-level or durational question on which the clinical stake actually rests, and the
+trial, by design, reaches none of them. The randomised instrument generated the signal;
+whether the deployed architecture inherited the capacity to follow it is a separate
+question — the one Streams B and C answer.
 
 ### 3.2 Stream B — guidelines counsel about the harm they do not measure
 
@@ -671,31 +713,37 @@ named, and when named, almost never measured. (`outputs/literature_search_result
 
 ## 4. Discussion
 
-We asked not whether doxy-PEP selects for tetracycline resistance in *S. aureus* but
-whether the systems assembled around doxy-PEP could detect it if it did. Across all three
-places an answer would have to come from, the answer is the same: no. The pivotal trial's
-own report is the first and clearest instance. On its face it reads as reassurance —
-colonisation down, resistance "modest," changes "unlikely to have clinical significance."
-Read against its own numbers it is instead an account of a question the instrument in hand
-cannot answer: the reported phenotype is named for one drug and measured with another; the
-rate is expressed over a denominator the intervention moves; the same month-twelve endpoint
-is reported as 5, 16, or 28 across three venues; the data that would settle the difference
-are withheld; the in-category organism was phenotyped in fewer than one diagnosis in five.
+We asked not whether doxy-PEP drives population-level resistant *S. aureus*, but whether the
+systems assembled around doxy-PEP could follow such a signal if the trial found one. The
+trial has now found one. In its final analysis the pivotal DoxyPEP study reports a
+significant increase in incident doxycycline-resistant *S. aureus* under exposure — HR 3.89
+(95% CI 1.42–10.68), with no matching effect on carriage — and its authors close by calling
+for public-health surveillance of AMR in *S. aureus* and other common colonisers
+[@luetkemeyer2025]. That reframes the question the rest of the paper answers. The upstream
+instrument has generated the information; the question is whether the downstream architecture
+can receive it.
 
-None of this is peculiar to one presentation. Each feature recurs across the streams,
-generalised: trials underpowered and mechanism-blind for the bystander; guidelines that
-counsel patients about a harm they require no one to measure; and a surveillance
-architecture that captures exposure and phenotype at incompatible resolutions and joins
-them nowhere. The three streams are not three separate failures but one failure seen three
-times.
+Across the two places that would have to, the answer is no. The guidelines built on the
+trial counsel patients about the harm and require no one to measure it — including in the six
+jurisdictions where local CA-MRSA outbreaks are documented. The deployed surveillance systems
+capture exposure and phenotype at incompatible resolutions and join them nowhere: the
+*S. aureus* tetracycline unit is surveilled at no population denominator, the architecture
+standing around the methicillin axis while the tetracycline unit falls orthogonally through
+it. The signal the trial resolved at the level of the individual cannot be followed to the
+level where the clinical stake lives — the population, the network, the years past the
+trial's twelve-month horizon.
 
-One sentence carries the argument, and it belongs to the trial team, not to us: the
-monitoring they call for is monitoring the evidence base they helped launch is not built to
-provide. It is a quiet observation rather than a charge. Having measured the bystander,
-named the assay for a different drug, reported it over a denominator its own effect moved,
-failed to reconcile the result across its own venues, and withheld the data that would
-settle it, the investigators asked for longer-term monitoring — and the streams show why
-that monitoring cannot simply be assembled from what exists.
+The sharper reading is that the trial's own measurement system evolved to meet its internal
+question while the implementation system did not evolve with it. The 2023 interim reported a
+cross-sectional fraction as reassurance — named for one drug and measured with another, given
+three irreconcilable ways across its own venues, the individual data withheld. The 2024
+federal guideline repeated a 5%-to-13% rise among the colonised and appended a call for
+monitoring. The 2025 final analysis asked the estimand the others had not — incident
+resistance among those who began without it — and returned HR 3.89. Three years, one
+endpoint, an evolving question, and at the end of it a demonstrated signal handed to systems
+built to measure something else. That is the argument, and the load-bearing sentence still
+belongs to the trial team, not to us: the surveillance they call for is surveillance the
+evidence base they helped launch is not built to provide.
 
 This is *measurement inheritance*, made concrete. An analysis — or a guideline, or a
 surveillance system — carries in its sampling frame, its cadence, its coding, and its
@@ -703,12 +751,15 @@ surveillance system — carries in its sampling frame, its cadence, its coding, 
 built to measure gonococcal efficacy; applied to a bystander commensal it inherits a
 denominator the intervention itself moves, a label that spans two mechanisms, a
 surveillance architecture standardised around the methicillin axis while the tetracycline
-unit falls orthogonally through it, and a reporting frame in which a several-fold
-per-carrier change appears modest. The gap is not an oversight to be closed by a better
-analysis of the existing data; it is a property of the instrument. The paper is, in that
-sense, an epistemological exercise conducted with data science: it uses public data and
-regenerable code to locate the boundary of what the current instruments can know about the
-bystander, and finds that boundary short of the question.
+unit falls orthogonally through it, and a cadence and estimand that read a cross-sectional
+snapshot as modest until a time-to-event analysis, three years on, resolved it. The
+downstream gap is not an oversight to be closed by a better analysis of the trial's data —
+the trial's own better analysis has now been done, and it is significant; it is a property of
+the guidance and surveillance instruments, which are built around a different organism and a
+different question. The paper is, in that sense, an epistemological exercise conducted with
+data science: it uses public data and regenerable code to locate the boundary of what the
+deployed instruments can know about the bystander, and finds that boundary short of the
+population question the trial's individual-level signal now poses.
 
 The gap reaches the present analysis as well, and admitting where is the surest test of
 the claim. We take *S. aureus*, not its methicillin-resistant fraction, as the unit —
@@ -742,10 +793,13 @@ engineered to evade both determinants, would remain. So a cost of this kind, wer
 accruing in the population through which community MRSA once spread, would be not the loss of
 a single alternative but the loss of the oral tetracyclines as a usable category — the very
 shift a "tetracycline-class" endpoint, read at a single breakpoint, cannot see. We
-do not assert that this is happening; contemporary carriage is low and the trials' own
-between-arm tests are non-significant. The narrower and firmer point is that an externality
-of this shape — deferred, diffuse, mechanistically total rather than partial — is exactly
-the kind that must be measured to be weighed at all.
+do not assert that this mechanistic shift is happening: the trial resolved the doxycycline
+*phenotype* — incident resistance, HR 3.89 — but not its mechanism, and whether the resistant
+fraction is enriching for tet(M) rather than tet(K) is exactly the question a standard
+breakpoint cannot answer and no one has yet measured in this population. The narrower and
+firmer point is that an externality of this shape — deferred, diffuse, mechanistically total
+rather than partial — is exactly the kind that must be measured to be weighed at all, and the
+trial has now supplied the individual-level signal that makes the measuring urgent.
 
 And it is not being measured, which returns the argument to whom it falls on. The third
 parties named at the outset — the outpatient with a skin infection, and at the sharp end
@@ -769,49 +823,58 @@ it to exposure on geography; and, at a minimum, release of the individual-level 
 trials already hold. None of these is exotic; none is yet in place at scale. That absence,
 rather than any single estimate, is the finding.
 
-**A note on what we are and are not claiming.** We do not claim doxy-PEP causes
-tetracycline- or doxycycline-resistant *S. aureus*; the trial's own between-arm test
-is non-significant and we do not dispute it. We do not claim the per-carrier rise is
-statistically significant; the data to test it are not public. We claim that the
-evidence base — the pivotal trial's own report first, and the surrounding streams
-after — is not instrumented to answer the question, and that its reassuring
-framing is an artifact of that instrumentation. Colonization is not infection, and
-the colonization–infection link for *S. aureus* is itself unmeasured here; that is
-one more thing the apparatus does not see.
+**A note on what we are and are not claiming.** We do not claim that doxy-PEP drives
+population-level resistant *S. aureus*, or that the individual-level signal the trial found
+propagates into a population externality — that is precisely what no deployed system can now
+determine. The trial's own randomised analysis of incident doxycycline-resistant *S. aureus*
+is statistically significant (HR 3.89), and we accept it rather than dispute it; the earlier
+per-carrier reconstruction we used to argue the interim understated the change is therefore
+retired in its favour. We claim that the guidance and surveillance built around doxy-PEP are
+not instrumented to follow that signal to the population level where the clinical stake lies,
+and that the interim's reassuring framing was an artifact of estimand and instrumentation
+that the final analysis has since corrected. Colonization is not infection, and the
+colonization–infection link for *S. aureus* is itself unmeasured here; that is one more thing
+the apparatus does not see.
 
 ## 5. What would change this conclusion
 
-Consistent with a falsification standard: the argument fails if a doxy-PEP guideline
-requires *S. aureus* monitoring (Stream B falsified), if any primary trial proves
-adequately powered and mechanism-resolving for the bystander endpoint (Stream A
-weakened), if a deployed surveillance system links doxy-PEP exposure to *S. aureus*
-tetracycline phenotype at a common population denominator (Stream C falsified), or if the
-trials' individual-level data are released and the
-5/16/28 discordance resolves cleanly to a single correct value with a per-carrier
-rate that is flat. Should such data ever permit a controlled test, the underlying
-hypothesis is itself falsifiable: if tetracycline resistance in *S. aureus* is flat
-or declining in high-exposure populations while negative controls behave, the
-hypothesis is wrong, and that is a publishable result. The present claim is prior to
-and independent of that test: with the evidence base that exists, the test cannot be
-run.
+Consistent with a falsification standard, we set out in advance what would defeat each leg.
+One leg has, in part, already been decided — and against our earlier framing, which we report
+plainly. We had proposed that the argument would weaken if any primary trial proved
+adequately powered for the bystander endpoint; the final DoxyPEP analysis is, and its
+incident-resistance signal is significant (HR 3.89). We do not treat that as a weakening but
+as the paper's premise: the upstream instrument worked. What it did not do — resolve the
+mechanism (tet(K) versus tet(M)), or follow the signal past twelve months, or to the
+population — is what the remaining legs concern. The inheritance claim fails if a doxy-PEP
+guideline comes to require *S. aureus* monitoring (Stream B falsified), or if a deployed
+surveillance system links doxy-PEP exposure to an *S. aureus* tetracycline phenotype at a
+common population denominator (Stream C falsified). The underlying biological hypothesis
+remains separately falsifiable: were tetracycline resistance in *S. aureus* shown flat or
+declining in high-exposure populations while negative controls behaved, the concern would be
+wrong, and that too would be a publishable result. The present claim is prior to and
+independent of that population test: the trial has resolved the individual-level question,
+and with the surveillance that exists the population question cannot be run at all.
 
 ## Figures
 
-![**Figure 1. Detectability of the bystander signal by evidence stream, against the
-largest within-exposed effect ever observed.** Grey band: Soge et al.'s plausible
-within-exposed relative risk — RR 1.42 for the cross-organism gonococcal figure (dotted)
-to RR 2.25 for tetracycline-resistant *S. aureus* colonisation (dashed), the
-*S. aureus*-matched benchmark. Each stream's detectability threshold — the within-exposed
-RR it would need to detect the signal — lies beyond that band. *Stream A (trials):*
-minimum detectable RR 3.8–5.1 at 80% power; 0 of 4 primary *S. aureus* comparisons clear
-either benchmark. *Stream B (guidelines):* no *S. aureus* measurement is required (0 of 6
-documented-outbreak jurisdictions, 0 of 10 coded), so no threshold exists — shown as an
-off-scale arrow. *Stream C (surveillance):* under the controlled panel actually
-under test, the within-exposed RR needed to move a population rate at the realistic cell is
-≈14–64 across the design-effect range (bar); detection appears only in a best-case cell that
-compounds four implausible assumptions and is disowned (§3.3), and no deployed system links
-doxy-PEP exposure to *S. aureus* phenotype at a common population denominator. Every computable threshold exceeds the plausible effect; where none is
-computable, nothing is measured.](../outputs/figures/three_streams.png)
+![**Figure 1. The trial cleared the reference line; the systems built to follow it cannot.**
+One axis — within-exposed relative risk / hazard ratio (log scale) — carries all three
+streams against Soge et al.'s plausible within-exposed effect band (grey: RR 1.42 for the
+cross-organism gonococcal figure, dotted, to RR 2.25 for tetracycline-resistant *S. aureus*
+colonisation, dashed). *Stream A (trials):* the red marker is the **observed** effect from
+the final DoxyPEP analysis — incident doxycycline-resistant *S. aureus*, HR **3.89** (95% CI
+1.42–10.68; whisker), which clears the band. The faint grey tick above it is the interim's
+minimum-detectable RR (3.8–5.1): the effect landed at the very edge of what the
+cross-sectional interim could see, which is why a time-to-event estimand resolved it and the
+interim did not. *Stream B (guidelines):* no *S. aureus* measurement is required (0 of 6
+documented-outbreak jurisdictions, 0 of 10 coded), so no detection threshold exists — an
+off-scale arrow. *Stream C (surveillance):* under the controlled panel actually under test,
+the within-exposed RR needed to move a population rate at the realistic cell is ≈14–64 across
+the design-effect range (bar); detection appears only in a best-case cell that compounds four
+implausible assumptions and is disowned (§3.3), and no deployed system links doxy-PEP exposure
+to an *S. aureus* phenotype at a common population denominator. The signal is above the line;
+the guidance measures nothing, and surveillance would need an implausible effect to see
+it.](../outputs/figures/three_streams.png)
 
 ![**Figure 2. No deployed system links doxy-PEP exposure to *S. aureus* tetracycline
 resistance.** Linking the two requires one system to carry both at a common population
@@ -847,9 +910,9 @@ the 100%-of-males physical ceiling.](../outputs/figures/feasibility_metro_breake
 
 **Data and code availability.** All data are public (AIDSVu; published trials,
 guidelines, and the CROI abstract) and all analysis code is openly available in the
-project repository [GITHUB URL], archived at Zenodo [DOI], which regenerates every
-figure and table via `make all`. Every coded source is SHA-256–pinned. No
-restricted-access data were used.
+project repository (<https://github.com/Nyx-Dynamics/doxypep-bystander>), archived at
+Zenodo (<https://doi.org/10.5281/zenodo.22051031>), which regenerates every figure and table via `make all`. Every coded source
+is SHA-256–pinned. No restricted-access data were used.
 
 **Conflicts of interest.** A.C.D. reports former employment at Gilead Sciences
 (01/2020–11/2024) with prior ownership of corporate stock, all divested by 12/2024;

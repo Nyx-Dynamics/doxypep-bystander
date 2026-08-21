@@ -19,3 +19,12 @@ paper/*.pdf
 # deposit build artifacts — regenerable via `make bundle` / `make deposit`
 submission/*.tar.gz
 submission/*.sha256
+
+# copyrighted third-party source PDFs/DOCX — NOT for a public repo. Provenance travels via
+# data/raw/**/CHECKSUMS.md + SOURCES.md; analysis reads coded YAML, not the PDFs.
+# NOTE: 66 such files are already in git history from earlier commits — a public push needs a
+# history scrub (git filter-repo/BFG) first. See DECISIONS.md 2026-08-21 (push-readiness).
+data/raw/papers/*.pdf
+data/raw/papers/*.docx
+data/raw/guidelines/*.pdf
+data/raw/guidelines/**/*.pdf

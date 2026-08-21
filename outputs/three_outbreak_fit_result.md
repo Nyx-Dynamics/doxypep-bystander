@@ -1,8 +1,8 @@
 # Three-model fit — what shape can the trial MRSA series actually resolve?
 
 Companion to `coverage_null_result.md`; the **MRSA** single-cohort illustration (not the
-S. aureus unit — see `selection_ratchet_result.md`). For each observed MRSA carriage
-series we fit three nested models by maximum binomial likelihood —
+S. aureus unit — whose randomised signal is the final trial's HR 3.89, Luetkemeyer 2025).
+For each observed MRSA carriage series we fit three nested models by maximum binomial likelihood —
 
 - **flat** `logit p = a` (no change),
 - **trend** `logit p = a + b·v` (monotone selection),
@@ -55,6 +55,7 @@ blind to clustering it did contain, misreading a flat process as a trend the lar
 majority of the time at the empirically anchored between-cohort σ̂≈2.7
 (`dejong_sigma_result.md`) — this closes the loop: the design cannot see the clustering
 *shape* in principle, and cannot rule it out in these data. (MRSA-scoped throughout; the
-S. aureus selection question is `selection_ratchet_result.md`.)
+S. aureus selection question was answered by the final trial's randomised incidence
+analysis — Luetkemeyer 2025, HR 3.89.)
 
 (`SEED=20260820`, `N_BOOT=2000`; regenerate with `python -m src.analysis.three_outbreak_fit`.)

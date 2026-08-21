@@ -4,7 +4,8 @@ Immutable source PDFs. DOIs from embedded metadata, verified 2026-08-18.
 
 | File | Paper | Role | DOI |
 |---|---|---|---|
-| `luetkemeyer2023_nejm_doxypep.pdf` | Luetkemeyer et al. NEJM 2023;388:1296–1306 (**DoxyPEP**, NCT03980223) | **Primary Stream A trial.** S. aureus secondary outcome: nares/oropharynx at baseline/6/12mo; 12% doxy-resistant S. aureus at baseline; carriage 28% (doxy) vs 47% (SoC) at mo 12; "S. aureus Culture" figure w/ high-level tetR (MIC ≥2). tetR-in-carriers 5%→13% figure is in CDC's cite of this. | 10.1056/NEJMoa2211934 |
+| `luetkemeyer2023_nejm_doxypep.pdf` | Luetkemeyer et al. NEJM 2023;388:1296–1306 (**DoxyPEP**, NCT03980223) | **Primary Stream A trial (interim).** S. aureus secondary outcome: nares/oropharynx at baseline/6/12mo; 12% doxy-resistant S. aureus at baseline; carriage 28% (doxy) vs 47% (SoC) at mo 12; "S. aureus Culture" figure w/ high-level tetR (MIC ≥2). tetR-in-carriers 5%→13% figure is in CDC's cite of this. | 10.1056/NEJMoa2211934 |
+| `luetkemeyer2025_lancetid_doxypep_final.pdf` | Luetkemeyer et al. Lancet Infect Dis 2025;25:873–83 (**DoxyPEP FINAL + open-label extension**, NCT03980223) | **Supersedes the NEJM interim for S. aureus.** New *randomised* participant-level analysis: among those without doxy-R *S. aureus* at baseline, doxy-PEP → first detection, standard-care censored at crossover, Cox PH. **HR 3.89 (95% CI 1.42–10.68), p=0.0044** (68/393 vs 5/163; Fig 4B). Colonisation clearance no diff (HR 1.01, 0.69–1.46, p=0.98; Fig 4A). MRSA unchanged. Authors call for public-health AMR surveillance of *S. aureus*. | 10.1016/S1473-3099(25)00085-4 |
 | `ciaf089_soge.pdf` | Soge et al. CID 2025;80:1188–96 | **RR 1.42 anchor**; tetR *S. aureus* colonization, King County | 10.1093/cid/ciaf089 |
 | `ciaf234.pdf` | Spinelli et al. CID 2026;82:1075–8 | 96-wk ITS (cite via CID letter, don't re-litigate) | 10.1093/cid/ciaf234 |
 | `ciaf043.pdf` | Grennan et al. (DuDHS, doxy-PrEP) CID | Stream A trial; 6 resistant, P=.077, concedes underpowered | 10.1093/cid/ciaf043 |
@@ -66,7 +67,8 @@ population because GISP samples MSM isolates):**
   A duplicate of the Soge PDF (`ciaf089.pdf`) was also dropped.
 - **Missing Stream A trials to acquire before detectability coding:**
   ~~Luetkemeyer/DoxyPEP NEJM 2023~~ — INGESTED (`luetkemeyer2023_nejm_doxypep.pdf`);
-  Luetkemeyer 2025 DoxyPEP final + OLE, Lancet ID (10.1016/S1473-3099(25)00085-4);
+  ~~Luetkemeyer 2025 DoxyPEP final + OLE, Lancet ID~~ — INGESTED 2026-08-21
+  (`luetkemeyer2025_lancetid_doxypep_final.pdf`, 10.1016/S1473-3099(25)00085-4);
   Stewart/dPEP-KE NEJM 2023;389:2331–40 (10.1056/NEJMoa2304007 — verify);
   Molina/IPERGAY OLE Lancet ID 2018;18:308–17; Bolan Sex Transm Dis 2015;42:98–103;
   DOXYVAC main Lancet ID paper (only the CID substudy is here).

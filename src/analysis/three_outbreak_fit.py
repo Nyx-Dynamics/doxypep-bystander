@@ -1,8 +1,8 @@
 """Do the trial MRSA carriage series distinguish an outbreak/wave from noise?
 
 The companion to `coverage_null.py` — the **MRSA** single-cohort illustration (the
-methicillin-resistant subset, not the S. aureus analytic unit; that is
-`selection_ratchet.py`). Where coverage_null shows a mean-based endpoint *would* be blind
+methicillin-resistant subset, not the S. aureus analytic unit; the S. aureus signal is
+the final trial's HR 3.89, Luetkemeyer 2025). Where coverage_null shows a mean-based endpoint *would* be blind
 to clustering, this one asks the empirical question directly of the data in hand: fit
 three competing generative models to each observed MRSA carriage series and test whether
 the data can tell them apart at the trials' denominators.
@@ -133,8 +133,8 @@ def _write_report(root, results):
     md = f"""# Three-model fit — what shape can the trial MRSA series actually resolve?
 
 Companion to `coverage_null_result.md`; the **MRSA** single-cohort illustration (not the
-S. aureus unit — see `selection_ratchet_result.md`). For each observed MRSA carriage
-series we fit three nested models by maximum binomial likelihood —
+S. aureus unit — whose randomised signal is the final trial's HR 3.89, Luetkemeyer 2025).
+For each observed MRSA carriage series we fit three nested models by maximum binomial likelihood —
 
 - **flat** `logit p = a` (no change),
 - **trend** `logit p = a + b·v` (monotone selection),
@@ -194,7 +194,8 @@ blind to clustering it did contain, misreading a flat process as a trend the lar
 majority of the time at the empirically anchored between-cohort σ̂≈2.7
 (`dejong_sigma_result.md`) — this closes the loop: the design cannot see the clustering
 *shape* in principle, and cannot rule it out in these data. (MRSA-scoped throughout; the
-S. aureus selection question is `selection_ratchet_result.md`.)
+S. aureus selection question was answered by the final trial's randomised incidence
+analysis — Luetkemeyer 2025, HR 3.89.)
 
 """
     md += (f"(`SEED={SEED}`, `N_BOOT={N_BOOT}`; regenerate with "

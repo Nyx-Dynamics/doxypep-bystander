@@ -1,0 +1,104 @@
+# Coded source — DoxyPEP FINAL analysis + open-label extension (S. aureus).
+# Luetkemeyer AF, et al. Lancet Infect Dis 2025;25:873-83. DOI 10.1016/S1473-3099(25)00085-4.
+# NCT03980223. source_file: luetkemeyer2025_lancetid_doxypep_final.pdf (SHA-256 pinned in
+# data/raw/papers/CHECKSUMS.md). Coded 2026-08-21; PI-directed pivot (see DECISIONS.md).
+#
+# This is a standalone coded record, NOT a trial_*.yaml — it is deliberately not globbed by
+# build_trials/detectability. It supersedes the NEJM 2023 interim for the S. aureus endpoint:
+# the interim reported cross-sectional fractions; the final analysis runs the participant-
+# level randomised test. The manuscript (§3.1, Abstract, §4, Fig 1) cites these values.
+unit: doxypep_us_final
+citation: "Luetkemeyer AF, et al. Lancet Infect Dis 2025;25:873-83"
+doi: "10.1016/S1473-3099(25)00085-4"
+registry_id: NCT03980223
+source_file: luetkemeyer2025_lancetid_doxypep_final.pdf
+coder: claude-2025pivot
+code_date: "2026-08-21"
+
+# --- the load-bearing result: randomised incident doxycycline-resistant S. aureus ---
+incident_doxyR_saureus:
+  design:
+    value: "Cox proportional hazards; participants free of doxy-R S. aureus at baseline; time to first detection; standard-care censored at crossover; as-randomised"
+    locator: "p. 876 (Methods, S. aureus) + p. 880 col 2 (Results)"
+    quote: >-
+      We conducted a randomised comparison by treatment group of S aureus colonisation and
+      doxycycline resistance ... standard-care participants were censored when they crossed
+      over to doxy-PEP. Doxycycline-resistant S aureus was defined as an MIC of at least
+      16 ug/mL by ETEST.
+  hazard_ratio:
+    value: 3.89
+    ci95: [1.42, 10.68]
+    p: 0.0044
+    events_doxy: "68/393"
+    events_soc: "5/163"
+    locator: "p. 880 col 2 + Figure 4B"
+    quote: >-
+      In a survival analysis of those without doxycycline-resistant S aureus at baseline,
+      doxy-PEP use was associated with a statistically significant increase in detection of
+      doxycycline-resistant S aureus (HR 3.89, 95% CI 1.42-10.68, p=0.0044; figure 4).
+  baseline_prevalence:
+    value: "42/636 (7%)"
+    locator: "p. 880 col 2"
+  doxy_arm_month12:
+    value: "52/340 (15%) had doxycycline-resistant isolates"
+    locator: "p. 880 col 2 (appendix p 10)"
+
+# --- the paired null: no effect on clearing colonisation ---
+clearing_colonisation:
+  hazard_ratio:
+    value: 1.01
+    ci95: [0.69, 1.46]
+    p: 0.98
+    events_doxy: "109/179"
+    events_soc: "37/89"
+    locator: "p. 880 col 2 + Figure 4A"
+    quote: >-
+      participants taking doxy-PEP were not significantly more likely to clear S aureus
+      colonisation than those with no doxy-PEP use (hazard ratio [HR] 1.01, 95% CI
+      0.69-1.46, p=0.98; figure 4).
+  colonisation_decline_both_arms:
+    value: "doxy-PEP 43% (187/430) baseline -> 36% (121/340) mo12; SC 48% (98/206) -> 42% (32/76) mo12 (only 76/206=37% had mo12 results, due to crossover)"
+    locator: "p. 880 col 2"
+
+# --- MRSA: unchanged (supports 'MRSA is the wrong unit' scoping) ---
+mrsa:
+  colonisation:
+    value: "36/636 (6%) at enrolment; no change either arm (doxy 24/430->21/340=6%; SC 12/206->4/76)"
+    locator: "p. 880 col 2"
+  doxy_resistant_mrsa:
+    value: "8/636 (1%) baseline; mo12 6/340 (2%) doxy, 1/76 (1%) SC; only 7 total doxy-R MRSA isolates at mo12"
+    locator: "p. 880 col 2"
+
+# --- the authors' own framing + call for surveillance (Stream B/C hinge) ---
+authors_summary:
+  mixed_effect:
+    value: "effect on S aureus 'mixed': no evidence of effect on loss of colonisation, significant increase in doxycycline resistance"
+    locator: "p. 881 (Discussion)"
+    quote: >-
+      The effect of doxy-PEP on S aureus was mixed with no evidence of effect on loss of
+      colonisation but a significant increase in doxycycline resistance in the doxy-PEP group.
+  microbiome_companion:
+    value: "doxy-PEP associated with increased expression of tetracycline-resistance genes (Chu 2025 Nat Med)"
+    locator: "p. 882, ref 19"
+  call_for_surveillance:
+    value: "AMR evaluation in S. aureus warranted as part of public health surveillance with long-term doxy-PEP use"
+    locator: "p. 882 (Conclusion)"
+    quote: >-
+      Evaluation of AMR in N gonorrhoeae and common colonising bacteria, such as S aureus
+      and Streptococcus pneumoniae, is warranted as part of public health surveillance and
+      research with long-term doxy-PEP use.
+
+# --- sampling frame (a trial procedure, not population surveillance) ---
+sampling:
+  value: "anterior nares + oropharynx at baseline, 6 months, 12 months"
+  locator: "p. 876 (Methods, Procedures)"
+
+# --- what the trial does NOT resolve (the inheritance bridge; §3.1 closing) ---
+not_resolved:
+  - "resistance mechanism: tet(K)/tet(M)/tet(L)/tet(38) — standard breakpoint is mechanism-blind"
+  - "persistence beyond ~12 months (one year follow-up, median 2 OLE quarters)"
+  - "transmission/spread of resistant strains to others; network propagation"
+  - "population-level S. aureus resistance change"
+  - "more resistant clinical infections (colonisation != infection)"
+  - "dose-response with doxycycline frequency"
+  - "whether any deployed surveillance can detect these after the trial ends"

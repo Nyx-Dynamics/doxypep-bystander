@@ -34,16 +34,17 @@ reliability:
 	$(PY) -m src.analysis.reliability
 
 # Stream A — trial coding + reporting analyses
-# detectability: min-detectable RR (between-arm power).
-# selection_ratchet: S. aureus-scoped within-US-DoxyPEP selection (the ratchet).
+# detectability: min-detectable RR (between-arm power) for the interim cross-sectional
+#   contrasts — now explanatory (why the interim read null; §3.1), not a claim of
+#   non-detectability. The final trial's randomised incidence analysis detected the
+#   signal (Luetkemeyer 2025, HR 3.89); the S. aureus selection ratchet is retired.
 # dejong_sigma: empirical between-cohort MRSA overdispersion σ̂ (feeds coverage_null).
-# coverage_null + three_outbreak_fit: MRSA-scoped clustering-detectability pair (¶4) —
+# coverage_null + three_outbreak_fit: MRSA-scoped clustering-detectability pair —
 # a mean-based endpoint cannot resolve clustering, and the trial series cannot
 # identify the clustering shape either way. (dejong_sigma must run before coverage_null.)
 trials:
 	$(PY) -m src.coding.build_trials
 	$(PY) -m src.analysis.detectability
-	$(PY) -m src.analysis.selection_ratchet
 	$(PY) -m src.analysis.dejong_sigma
 	$(PY) -m src.analysis.coverage_null
 	$(PY) -m src.analysis.three_outbreak_fit

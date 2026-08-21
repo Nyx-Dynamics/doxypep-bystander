@@ -6,6 +6,20 @@ Project context for Claude Code. Read this before touching anything.
 design is dead; the feasibility work is not a failed gate but the project's
 strongest evidence. See "What changed" at the end.*
 
+**PIVOT 2026-08-21 (Luetkemeyer 2025 Lancet ID final analysis — READ THIS FIRST).**
+The DoxyPEP FINAL paper (Lancet Infect Dis 2025;25:873–83, coded in
+`data/raw/coding/luetkemeyer2025_saureus_final.yaml`) ran a NEW randomised participant-level
+analysis and DETECTED the bystander signal: incident doxy-R *S. aureus*, **HR 3.89 (95% CI
+1.42–10.68), p=0.0044** (68/393 vs 5/163); paired colonisation-clearance null HR 1.01. The
+paper's frame therefore changed from "the trial cannot see it" to **Signal → Mandate →
+Inheritance**: the RCT detected the signal (Stream A); the guidelines require no measurement
+of it (Stream B); no deployed surveillance can join exposure to phenotype at a population
+denominator (Stream C). The upstream instrument generated information the downstream systems
+cannot inherit. The old "trial underpowered / between-arm test non-significant / the ratchet"
+framing is RETIRED — `selection_ratchet.py` deleted, its inference superseded by the trial's
+own test. No POPULATION-level causal claim is made; the individual-level hazard is the
+trial's finding, cited as such. Full log in DECISIONS.md (2026-08-21).
+
 ## The hypothesis
 
 Doxycycline is one of a small number of oral agents for outpatient MRSA. Doxy-PEP
@@ -21,10 +35,13 @@ nobody looked, but because:
 - **Surveillance** cannot detect it at any geographic grain with a population
   denominator — demonstrated quantitatively, not asserted.
 
-**This is a claim about evidentiary adequacy, not about effect size.** Any sentence
-asserting that doxy-PEP causes MRSA is a bug. The deliverable shows the question is
-unanswerable as instrumented, and quantifies how large an effect would have to be
-to become visible.
+**This is a claim about evidentiary adequacy and measurement inheritance, not a population
+effect estimate.** The trial's final analysis DID detect an individual-level signal
+(HR 3.89) and we build on it; any sentence asserting a POPULATION-level causal effect
+(that doxy-PEP has been shown to move community MRSA/S. aureus resistance) is a bug. The
+deliverable shows the downstream systems cannot inherit the signal the trial resolved —
+guidelines mandate no measurement, surveillance cannot link exposure to phenotype — and
+quantifies how large an effect surveillance would need to see it.
 
 PI: Adrian C. Demidont, DO. Nyx Institute for Computational Medicine.
 No institutional affiliation, no restricted-data access. Public data only.
@@ -40,7 +57,9 @@ signal?** — benchmarked against the one empirical anchor the literature suppli
 > was **not** associated (RR 1.14; high-level tetR RR 1.16). Median use 3
 > doses/month, IQR 2–6.
 
-- **Stream A (trials):** RR detectable at 80% power given observed n colonized.
+- **Stream A (trials):** the Signal. The final trial detected incident doxy-R *S. aureus*
+  (HR 3.89); the interim's RR-detectable-at-80%-power (min 3.8–5.1) is now explanatory —
+  why the cross-sectional interim read null while the incidence estimand resolved it.
 - **Stream B (guidelines):** undefined — nothing is measured. The degenerate case,
   and the point.
 - **Stream C (surveillance):** RR needed to move a population rate given dilution.

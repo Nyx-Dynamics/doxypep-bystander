@@ -1,71 +1,23 @@
-"""Tests for the restructured Stream-A pair:
-- src/analysis/selection_ratchet.py  — S. aureus-scoped within-US-DoxyPEP selection
-- src/analysis/dejong_sigma.py        — MRSA-scoped between-cohort overdispersion σ̂
+"""Tests for the MRSA-scoped between-cohort overdispersion σ̂ (dejong_sigma.py).
+
+The S. aureus selection ratchet (formerly selection_ratchet.py) was RETIRED once the
+final DoxyPEP analysis (Luetkemeyer 2025 Lancet ID) reported the participant-level
+randomised test the reconstruction was approximating — incident doxy-R S. aureus,
+HR 3.89 (95% CI 1.42-10.68). The manuscript now cites that result directly (§3.1); the
+aggregate reconstruction and its one-sided Fisher / Poisson neutral-suppression tests are
+no longer part of the argument. See DECISIONS.md (2026-08-21, Luetkemeyer-2025 pivot).
 """
 from pathlib import Path
 
 import numpy as np
 import pytest
 
-from src.analysis import selection_ratchet as R
 from src.analysis import dejong_sigma as D
 
 ROOT = Path(__file__).resolve().parents[1]
 HAVE_DEJONG = (ROOT / "data/raw/coding/dejong_mrsa_cohorts.yaml").exists()
 
 
-# --------------------------------------------------------------------------- #
-# selection_ratchet (S. aureus unit)                                          #
-# --------------------------------------------------------------------------- #
-def test_susceptible_carriage_is_colonization_minus_resistant():
-    s = R._series(R.DOXY)
-    # susceptible carriage prevalence = colonization − all-swabbed resistant (identity)
-    np.testing.assert_allclose(
-        s["susceptible_prev"], s["colonization_prev"] - s["resistant_prev"], atol=1e-9)
-    # and equals colonization × (1 − per-carrier resistant)
-    np.testing.assert_allclose(
-        s["susceptible_prev"],
-        s["colonization_prev"] * (1 - s["per_carrier_R"]), atol=1e-9)
-
-
-def test_doxy_arm_shows_the_ratchet():
-    res = R.analyze()
-    d = res["doxy"]
-    # susceptible carriage depletes (one-sided decline) and per-carrier resistance rises
-    assert d["susceptible_decline_p"] < 0.01
-    assert d["per_carrier"]["p"] < 0.01
-    assert d["per_carrier"]["month12"][2] > d["per_carrier"]["baseline"][2]
-    # resistant carriage exceeds the neutral-suppression expectation (selection)
-    assert d["neutral"]["observed"] > d["neutral"]["expected"]
-    assert d["neutral"]["p"] < 0.01
-
-
-def test_soc_arm_is_uninformative():
-    res = R.analyze()
-    sc = res["soc"]
-    # not a contrasting shape — simply non-significant on every directional test
-    assert sc["susceptible_decline_p"] > 0.05
-    assert sc["per_carrier"]["p"] > 0.05        # per-carrier resistance did not rise
-
-
-def test_ratchet_directional_tests_are_one_sided():
-    # a flat series must NOT trip the one-sided decline test
-    flat_counts = [50, 50, 50]
-    denoms = [200, 200, 200]
-    p = R.one_sided_decline_p(flat_counts, denoms)
-    assert 0.3 < p < 0.7                          # ~0.5 for no trend
-
-
-@pytest.mark.skipif(not (ROOT / "data/raw/papers/croi2023_luetkemeyer_OA3.md").exists(),
-                    reason="CROI artifact not present")
-def test_selection_ratchet_run_writes_report():
-    R.run(ROOT)
-    assert (ROOT / "outputs/selection_ratchet_result.md").exists()
-
-
-# --------------------------------------------------------------------------- #
-# dejong_sigma (MRSA unit)                                                     #
-# --------------------------------------------------------------------------- #
 @pytest.mark.skipif(not HAVE_DEJONG, reason="de Jong cohort data not present")
 def test_sigma_large_and_lower_ci_above_one():
     cohorts = D.load_cohorts(ROOT)

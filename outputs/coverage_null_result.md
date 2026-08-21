@@ -1,8 +1,8 @@
 # Coverage of the null — a mean-based endpoint cannot resolve MRSA clustering
 
-The **MRSA** clustering instrument for the ¶4 frame (the methicillin-resistant subset,
-not the S. aureus analytic unit — that is `selection_ratchet_result.md`).
-**Detectability, not effect estimation. No causal claim.**
+The **MRSA** clustering instrument for the clustering frame (the methicillin-resistant
+subset, not the S. aureus analytic unit — whose randomised signal is Luetkemeyer 2025,
+HR 3.89). **Detectability, not effect estimation. No causal claim.**
 
 MRSA carriage is modelled as `logit(p_visit) = a + b·visit + N(0, σ²)`: a true trend `b`
 embedded in between-visit clustering of intensity `σ`. Counts are simulated at the
@@ -22,26 +22,26 @@ not a rigged null.
 | clustering σ | power (real trend) | Type-I (flat process) | design effect |
 |---|---|---|---|
 | 0.00 *(calibration check)* | 96% | 5% | 1.0 |
-| 0.25 | 92% | 10% | 4.0 |
-| 0.50 | 85% | 22% | 13.0 |
-| 0.75 | 79% | 37% | 28.0 |
-| 1.00 | 77% | 48% | 49.0 |
+| 0.25 | 92% | 9% | 4.0 |
+| 0.50 | 84% | 22% | 13.0 |
+| 0.75 | 79% | 35% | 28.0 |
+| 1.00 | 76% | 48% | 49.0 |
 
 **Empirically anchored — Type-I at the de Jong between-cohort σ̂** (`dejong_sigma_result.md`; MRSA colonization dispersion):
 
 | σ (empirical) | power (real trend) | Type-I (flat process) |
 |---|---|---|
-| 1.74 — de Jong 95% CI lower | 81% | **68%** |
-| 2.70 — de Jong σ̂ (point) | 87% | **77%** |
-| 4.57 — de Jong 95% CI upper | 88% | **88%** |
+| 1.74 — de Jong 95% CI lower | 81% | **67%** |
+| 2.70 — de Jong σ̂ (point) | 86% | **78%** |
+| 4.57 — de Jong 95% CI upper | 89% | **87%** |
 
 **Read power and Type-I together — the test loses discrimination.** With no clustering
 (σ=0) the test is fair. As σ grows, the false-positive rate climbs until the test rejects
 almost regardless of whether a trend exists: at σ=0.5, Type-I is already
 22%. At the empirically anchored σ̂ = 2.70 the flat-process
-false-positive rate is **77%**, and even at the 95% CI lower bound
-(σ = 1.74) it is **68%** — power
-(87%) and Type-I (77%) are so close that a
+false-positive rate is **78%**, and even at the 95% CI lower bound
+(σ = 1.74) it is **67%** — power
+(86%) and Type-I (78%) are so close that a
 "significant" cross-sectional trend carries almost no information about whether a real
 trend exists. The mean-based endpoint cannot separate a real selection trend from the
 clustering it is embedded in.

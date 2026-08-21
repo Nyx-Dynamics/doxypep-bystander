@@ -1,15 +1,22 @@
-"""The unifying figure — three streams, one reference line, nothing clears it.
+"""The unifying figure — the trial cleared the line; the downstream systems cannot follow.
 
-For each stream we place the within-exposed relative risk it would NEED to detect the
-bystander signal against the largest effect anyone has actually observed (Soge: RR 2.25
-for tetracycline-resistant S. aureus colonisation, 1.42 for the cross-organism gonococcal
-figure). Where a threshold is computable it lies beyond that plausible effect; where it is
-not (guidelines), no threshold exists at all — which is the stronger version of the same
-finding. Regenerable: numbers are pulled live from the analysis modules.
+The pivot (Luetkemeyer 2025 Lancet ID final analysis): the trial DID detect the bystander
+signal — incident doxycycline-resistant S. aureus, HR 3.89 (95% CI 1.42-10.68). So Stream A
+no longer shows a detection *threshold* nothing clears; it shows the *observed* effect, which
+clears the Soge reference band. Streams B and C then show the inheritance failure: guidelines
+measure nothing (no threshold exists), and surveillance would need an implausible within-
+exposed RR (~14-64) to move a population rate. One reference line: the signal is above it,
+and the systems built to follow it are not. Numbers pulled live where computed; the final-
+trial HR is a published scalar (Fig 4B), carried as a documented constant.
 """
 from __future__ import annotations
 
 from pathlib import Path
+
+# Luetkemeyer AF, et al. Lancet Infect Dis 2025;25:873-83, Figure 4B — randomised, Cox PH,
+# incident doxy-R S. aureus among those free of it at baseline (SC censored at crossover).
+HR_SAUREUS_FINAL = 3.89
+HR_SAUREUS_CI = (1.42, 10.68)
 
 
 def _numbers(root: Path):
@@ -29,8 +36,8 @@ def _numbers(root: Path):
     c_realistic = panel["realistic_RR_needed"]
     return {
         "RR_saureus": D.RR_SAUREUS, "RR_gc": D.RR_GC,
-        "A_lo": float(mdr.min()), "A_hi": float(mdr.max()),
-        "A_n_detect": int(tab["detect_matched_2.25"].sum()), "A_n": len(tab),
+        "A_hr": HR_SAUREUS_FINAL, "A_ci_lo": HR_SAUREUS_CI[0], "A_ci_hi": HR_SAUREUS_CI[1],
+        "A_interim_lo": float(mdr.min()), "A_interim_hi": float(mdr.max()),
         "C_lo": float(c_realistic.min()), "C_hi": float(c_realistic.max()),
         "C_n_detect": int(panel.loc[panel.deff == 1.0, "n_detectable"].iloc[0]),
         "C_n": int(panel.loc[panel.deff == 1.0, "n_cells"].iloc[0]),
@@ -45,8 +52,7 @@ def run(root: Path | str = None):
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    # Clean panel: only structural elements (bars, band, arrow, axes). All explanatory
-    # text lives in the manuscript figure caption, not on the figure.
+    # Clean panel: only structural elements. All explanatory text lives in the caption.
     fig, ax = plt.subplots(figsize=(7.2, 3.4))
     XMAX = 120
 
@@ -55,29 +61,37 @@ def run(root: Path | str = None):
     ax.axvline(n["RR_saureus"], color="0.35", ls="--", lw=1.2, zorder=1)
     ax.axvline(n["RR_gc"], color="0.55", ls=":", lw=1.0, zorder=1)
 
-    bar = dict(lw=7, solid_capstyle="round", color="#1f4e79", zorder=3)
-    mk = dict(marker="D", ms=7, color="#1f4e79", zorder=4)
+    SIGNAL = "#c1121f"   # the detected effect
+    THRESH = "#1f4e79"   # detection thresholds / ranges
 
-    # Stream A — trials: minimum detectable RR (a computable threshold, beyond the band)
-    ax.plot([n["A_lo"], n["A_hi"]], [2, 2], **bar)
-    ax.plot([n["A_hi"]], [2], **mk)
+    # Stream A — trials: the FINAL analysis DETECTED the signal. Observed hazard ratio with
+    # its 95% CI whisker (filled marker = an observed effect, not a threshold); it clears the
+    # band. Faint tick marks the interim's minimum-detectable RR — the threshold that kept the
+    # cross-sectional interim blind to the effect the incidence estimand later resolved.
+    ax.plot([n["A_interim_lo"], n["A_interim_hi"]], [2.26, 2.26], lw=3,
+            color="0.72", solid_capstyle="round", zorder=1)
+    ax.plot([n["A_ci_lo"], n["A_ci_hi"]], [2, 2], lw=2.4, color=SIGNAL,
+            solid_capstyle="round", zorder=3)
+    ax.plot([n["A_hr"]], [2], marker="o", ms=11, color=SIGNAL,
+            markeredgecolor="white", markeredgewidth=1.2, zorder=5)
 
     # Stream B — guidelines: no measurement, so no threshold exists (off-scale arrow)
     ax.annotate("", xy=(XMAX, 1), xytext=(n["RR_saureus"] * 1.1, 1),
                 arrowprops=dict(arrowstyle="-|>", color="#7a7a7a", lw=1.8))
 
-    # Stream C — surveillance: RR needed to move a population rate, realistic cell
-    # under the controlled panel across the design-effect range (dilution leg)
-    ax.plot([n["C_lo"], n["C_hi"]], [0, 0], **bar)
-    ax.plot([n["C_hi"]], [0], **mk)
+    # Stream C — surveillance: RR needed to move a population rate, realistic cell under the
+    # controlled panel across the design-effect range (dilution leg) — a threshold, unreached.
+    ax.plot([n["C_lo"], n["C_hi"]], [0, 0], lw=7, color=THRESH,
+            solid_capstyle="round", zorder=3)
+    ax.plot([n["C_hi"]], [0], marker="D", ms=7, color=THRESH, zorder=4)
 
     ax.set_xscale("log")
     ax.set_xlim(1, XMAX)
-    ax.set_ylim(-0.6, 2.6)
+    ax.set_ylim(-0.6, 2.7)
     ax.set_yticks([2, 1, 0])
     ax.set_yticklabels(["Stream A\n(trials)", "Stream B\n(guidelines)",
                         "Stream C\n(surveillance)"], fontsize=10)
-    ax.set_xlabel("within-exposed relative risk  (log scale)", fontsize=10)
+    ax.set_xlabel("within-exposed relative risk / hazard ratio  (log scale)", fontsize=10)
     ax.set_xticks([1, 2, 5, 10, 20, 50, 100])
     ax.set_xticklabels(["1", "2", "5", "10", "20", "50", "100"])
     for s in ("top", "right"):
@@ -93,8 +107,9 @@ def run(root: Path | str = None):
 
 if __name__ == "__main__":
     n, out = run()
-    print(f"Stream A min-det RR {n['A_lo']:.1f}-{n['A_hi']:.1f} ({n['A_n_detect']}/{n['A_n']})")
+    print(f"Stream A DETECTED HR {n['A_hr']} (CI {n['A_ci_lo']}-{n['A_ci_hi']}); "
+          f"interim min-detectable RR {n['A_interim_lo']:.1f}-{n['A_interim_hi']:.1f}")
     print(f"Stream C realistic-cell RR_needed {n['C_lo']:.0f}-{n['C_hi']:.0f} "
           f"(panel, {n['C_n_detect']}/{n['C_n']} detectable at DEFF=1)")
-    print(f"Soge reference: {n['RR_gc']} (GC) - {n['RR_saureus']} (S. aureus)")
+    print(f"Soge reference band: {n['RR_gc']} (GC) - {n['RR_saureus']} (S. aureus)")
     print(f"wrote {out}")

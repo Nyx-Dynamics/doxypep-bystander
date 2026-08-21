@@ -28,8 +28,8 @@ clustering it is embedded in.
 SCOPE (Contract 2). This is the **MRSA** clustering instrument. It runs on DOXYVAC MRSA
 throat carriage — the methicillin-resistant subset — and licenses a statement about the
 MRSA endpoint's detectability, NOT about doxycycline-resistant S. aureus (the analytic
-unit, handled separately by `selection_ratchet.py`). The MRSA nesting is stated, not
-elided.
+unit, whose randomised incidence signal the final trial reports directly — Luetkemeyer
+2025, HR 3.89). The MRSA nesting is stated, not elided.
 
 The clustering intensity `sigma` is anchored EXTERNALLY: the DOXYVAC series itself
 cannot estimate it (five timepoints, three residual df — unidentified; see the σ̂≈0
@@ -199,9 +199,9 @@ def _write_report(root, arms, fit, fit_ctrl, rows, anchored, dj):
     r0 = rows[0]
     md = f"""# Coverage of the null — a mean-based endpoint cannot resolve MRSA clustering
 
-The **MRSA** clustering instrument for the ¶4 frame (the methicillin-resistant subset,
-not the S. aureus analytic unit — that is `selection_ratchet_result.md`).
-**Detectability, not effect estimation. No causal claim.**
+The **MRSA** clustering instrument for the clustering frame (the methicillin-resistant
+subset, not the S. aureus analytic unit — whose randomised signal is Luetkemeyer 2025,
+HR 3.89). **Detectability, not effect estimation. No causal claim.**
 
 MRSA carriage is modelled as `logit(p_visit) = a + b·visit + N(0, σ²)`: a true trend `b`
 embedded in between-visit clustering of intensity `σ`. Counts are simulated at the

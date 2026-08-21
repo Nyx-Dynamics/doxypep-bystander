@@ -1041,3 +1041,56 @@ the reviewer conflated it with the clindamycin D-zone "inducible resistance" tha
 appears in Liu. Kept as-is; quote logged for the response-to-reviews.
 
 116 tests green; PDF rebuilt.
+
+## 2026-08-21 — The Luetkemeyer 2025 pivot: Signal -> Mandate -> Inheritance
+
+A new primary source arrived (PI-provided): Luetkemeyer AF, et al. **Lancet Infect Dis
+2025;25:873-83**, the DoxyPEP FINAL analysis + open-label extension (10.1016/S1473-3099(25)00085-4;
+ingested as luetkemeyer2025_lancetid_doxypep_final.pdf, SHA-256 pinned; coded in
+data/raw/coding/luetkemeyer2025_saureus_final.yaml). It SUPERSEDES the NEJM 2023 interim +
+CROI abstract/slides for the S. aureus endpoint.
+
+**The fact that pivots the paper.** The investigators added a NEW randomised participant-level
+analysis: among those free of doxy-R S. aureus at baseline, time to first detection by arm,
+SC censored at crossover, Cox PH. Result: **HR 3.89 (95% CI 1.42-10.68), p=0.0044**
+(68/393 vs 5/163; Fig 4B) — a statistically significant increase in incident doxy-R S. aureus.
+Paired null: clearing colonisation HR 1.01 (0.69-1.46), p=0.98. Authors call the effect
+"mixed" and call for public-health AMR surveillance of S. aureus (p.882).
+
+**What this breaks, reported plainly.** The old thesis ("trial cannot see it -> guidelines
+don't require it -> surveillance cannot see it") required proving the trial was incapable of
+seeing the signal. The final trial SAW it. So the following became obsolete and were changed:
+- "the trial's own between-arm test is non-significant" (was in FRAMING NOTE, §4, the
+  claiming-box, the tet(M) para) -> removed everywhere; the trial's randomised test IS
+  significant and we build on it.
+- "We do not claim the per-carrier rise is statistically significant; the data are not public"
+  -> the investigators ran the participant-level test themselves; retired.
+- "As instrumented, the ... question cannot be answered" -> qualified: the trial answers the
+  INDIVIDUAL-level incidence question; what is uninheritable is the POPULATION externality.
+- The selection ratchet (one-sided Fisher, Poisson neutral-suppression, 8.5->40% inferential
+  weight) is RETIRED: the final trial did the analysis properly, at participant level. Deleted
+  src/analysis/selection_ratchet.py + its output doc + its tests (kept the sigma tests);
+  removed from the Makefile trials target. The 2023/CROI/CDC denominators are retained only as
+  the HISTORICAL reporting-evolution exhibit (§3.1).
+
+**The new structure (PI-specified): Signal -> Mandate -> Inheritance.**
+- Stream A (Signal): the RCT detects HR 3.89. §3.1 reopened with the signal + the estimand-
+  evolution reading (2023 interim cross-sectional/reassuring -> 2024 CDC 5->13% + monitoring
+  call -> 2025 incident-resistance HR 3.89: endpoint unchanged, question evolved). Power leg
+  recast (interim cross-sectional estimand underpowered, min RR 3.8-5.1; incidence estimand
+  adequate). Duration leg recast (the OLE supplied the accrual). New closing bridge: "what the
+  trial does NOT answer" (mechanism, persistence, transmission, population, clinical infection,
+  dose-response, beyond 12 mo, whether surveillance can follow) -> Streams B/C.
+- Stream B/C unchanged in substance, strengthened: the trialists' own call for S. aureus AMR
+  surveillance is a system that Stream C shows does not exist.
+- Falsification (§5): the "adequately powered trial" leg is now MET; reported as the paper's
+  premise, not a weakening.
+- Figure 1 INVERTED: was "three streams, one line, nothing clears it"; now Stream A shows the
+  OBSERVED HR 3.89 (CI whisker) clearing the Soge band, with the interim min-detectable RR as
+  a faint tick (the effect landed at the edge of interim detectability); B/C show the
+  inheritance failure. summary_figure.py rewired to HR_SAUREUS_FINAL constant (Fig 4B).
+- references.bib: added luetkemeyer2025. Availability statement: GitHub
+  (github.com/Nyx-Dynamics/doxypep-bystander) + Zenodo DOI 10.5281/zenodo.22051031 wired in.
+
+No population-level causal claim is made. The individual-level hazard is the trial's finding,
+reported as such; the claim is that the deployed guidance/surveillance cannot inherit it.
