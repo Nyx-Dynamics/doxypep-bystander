@@ -7,6 +7,18 @@ answered, with the manuscript location of the change. Load-bearing revisions wer
 *before* submission; this document records them so an editor can see the paper already
 survives its own panel.
 
+> **Update (2026-08-21) — the manuscript pivoted after this panel ran.** The DoxyPEP FINAL
+> analysis (Luetkemeyer et al., *Lancet Infect Dis* 2025;25:873–83) reported a *randomised,
+> participant-level* result: incident doxy-R *S. aureus*, **HR 3.89 (95% CI 1.42–10.68),
+> p=0.0044**. The paper's frame is now **Signal → Mandate → Inheritance** (the trial detected
+> the signal; guidelines and surveillance cannot follow it). Several items below are thereby
+> *strengthened or superseded*: the panel-power point (item 2) still stands; the "effect claim
+> wearing a disclaimer" worry (item 1) is resolved — the trial's own randomised test is now the
+> premise, and the paper makes no *population* causal claim; the per-carrier reconstruction
+> (item 3) is **retired** in favour of the trial's own analysis; the tet(K) wording (item 4)
+> is unchanged (verified faithful to Liu 2011). The MRSA-unit and surveillance items are
+> unaffected.
+
 ---
 
 ### 1. "This is an effect claim wearing a disclaimer."

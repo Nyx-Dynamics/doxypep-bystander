@@ -64,11 +64,13 @@ writes `submission/CHECKSUMS.sha256`.
   bundle, so `make deposit` runs both).
 
 ## Before submission (author to complete)
-- [ ] Fill `[GITHUB URL]` and `[DOI]` in the manuscript's Data-and-code-availability
-      statement and in `COVER_LETTER.md` once the repo is public and the Zenodo deposit is
-      minted.
+- [x] GitHub URL (github.com/Nyx-Dynamics/doxypep-bystander) + Zenodo DOI
+      (10.5281/zenodo.22051031) wired into the manuscript availability statement.
+- [ ] **BLOCKER for a PUBLIC push:** 66 copyrighted publisher PDFs (57 MB) are in git
+      history. Scrub with `git filter-repo` before pushing public (or keep the repo private).
+      See DECISIONS.md 2026-08-21 (push-readiness).
 - [ ] Post the preprint to medRxiv; add the DOI to the record.
-- [ ] Add a `LICENSE` file before minting the Zenodo DOI (e.g. MIT/BSD-3 for code,
-      CC-BY-4.0 for text/data) — none is present, and Zenodo reuse terms should be explicit.
+- [ ] Add a `LICENSE` file before minting/publishing (e.g. MIT/BSD-3 for code,
+      CC-BY-4.0 for text/data) — none is present.
 - [ ] Optional: apply the P2 strengthening edits (see `RESPONSE_TO_ANTICIPATED_REVIEWS.md`
       items 8–10 and the minor-accuracy list).
