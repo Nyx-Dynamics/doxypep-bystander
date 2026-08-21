@@ -1,0 +1,269 @@
+# Stream C — the established US public-health surveillance systems denominator.
+# Re-anchored 2026-08-20 (see DECISIONS.md Stream C CHECKPOINT): the prior "0/81"
+# was a dilution parameter grid, NOT a systems denominator. This file is the
+# principled frame for the LINKAGE claim (intro ¶6, third leg).
+#
+# SELECTION RULE (closed universe, parallel to Stream B's de-Jong rule):
+#   "Established US public-health surveillance systems (federal, state, or metro)
+#    that plausibly capture, at a population denominator, either (i) doxy-PEP /
+#    doxycycline exposure or (ii) Staphylococcus aureus antimicrobial-resistance
+#    phenotype."
+# Each system is coded on its own terms (blind to the expected 0-linked answer) for
+# three capabilities: exposure-side capture, phenotype-side capture (S. AUREUS
+# TETRACYCLINE/DOXYCYCLINE resistance — the analytic unit, NOT MRSA), and the join.
+#
+# EXCLUSIONS (stated, parallel to Stream B excluding clinics):
+#   - commercial/research convenience datasets (Pfizer ATLAS, BD Insights, PINC AI,
+#     IQVIA): not public-health surveillance, no population denominator.
+#   - provider directories (CDC Find Doxy PEP): a locator tool, not surveillance.
+#   - one-off research cohorts (the doxy-PEP RCTs, Soge): not surveillance systems.
+#
+# CONTRACT 2: the phenotype unit is S. aureus tetracycline/doxycycline resistance.
+# Systems that surveil the METHICILLIN (MRSA) subset are flagged `unit_flag: mrsa`
+# as a wrong-unit near-miss, not counted as phenotype-side capture for the unit.
+# CONTRACT 1: every field is a capability (captures / denominator / resolution),
+# never an effect size. CONTRACT 3: capability of DEPLOYED systems, not in principle.
+
+selection_rule: >-
+  Established US public-health surveillance systems (federal, state, or metro) that
+  plausibly capture, at a population denominator, either doxy-PEP/doxycycline exposure
+  or S. aureus antimicrobial-resistance phenotype.
+phenotype_unit: "S. aureus tetracycline/doxycycline resistance"
+
+systems:
+  # ----------------------------- exposure side ----------------------------- #
+  - id: aidsvu
+    name: "AIDSVu (Emory/Rollins + Gilead)"
+    tier: national_academic
+    exposure_capture: proxy_pop          # PrEP use as a doxy-PEP-eligibility proxy
+    exposure_resolution: county_metro_state
+    exposure_denominator: "per 100k (adult; sex-stratified male PrEP rate)"
+    phenotype_capture: not_captured
+    phenotype_resolution: none
+    links: false
+    included: true
+    unit_flag: none
+    note: >-
+      The exposure-side dataset the project holds. PrEP use by state/county/metro with a
+      population denominator; a proxy for doxy-PEP eligibility, NOT doxy-PEP itself. No
+      S. aureus phenotype. This is the resolution the phenotype side would have to match.
+    source: "data/raw/aidsvu/ (state/county/metro PrEP, PnR); aidsvu.org"
+
+  - id: cdc_atlasplus
+    name: "CDC NCHHSTP AtlasPlus"
+    tier: federal
+    exposure_capture: proxy_pop          # PrEP coverage / STI rates by state, some county
+    exposure_resolution: state_county
+    exposure_denominator: "population (per 100k)"
+    phenotype_capture: not_captured
+    phenotype_resolution: none
+    links: false
+    included: true
+    unit_flag: none
+    note: >-
+      Federal HIV/STI/PrEP surveillance with population denominators (PrEP coverage, the
+      PrEP-to-need ratio, STI incidence). Captures the PrEP exposure proxy, not doxy-PEP;
+      no S. aureus phenotype.
+    source: "gis.cdc.gov/grasp/nchhstpatlas"
+
+  - id: nhsn_au
+    name: "NHSN Antimicrobial Use (AU) Option"
+    tier: federal
+    exposure_capture: facility_no_denom  # inpatient antimicrobial use, incl. doxycycline
+    exposure_resolution: facility
+    exposure_denominator: "days present (facility-level, inpatient)"
+    phenotype_capture: not_captured
+    phenotype_resolution: none
+    links: false
+    included: true
+    unit_flag: none
+    note: >-
+      Tracks facility inpatient antimicrobial USE (including doxycycline) as days-of-therapy
+      per days-present — a facility denominator, inpatient only. Does not capture outpatient
+      doxy-PEP and carries no population denominator.
+    source: "cdc.gov/nhsn/psc/aur"
+
+  - id: state_pdmp
+    name: "State Prescription Drug Monitoring Programs (PDMPs)"
+    tier: state
+    exposure_capture: not_captured       # controlled substances only; doxycycline unscheduled
+    exposure_resolution: state
+    exposure_denominator: "none for antibiotics"
+    phenotype_capture: not_captured
+    phenotype_resolution: none
+    links: false
+    included: true
+    unit_flag: none
+    note: >-
+      PDMPs monitor SCHEDULED (controlled) substances. Doxycycline is an antibiotic, not
+      scheduled, so PDMPs do not capture doxy-PEP prescribing at all.
+    source: "state PDMP statutes; PDMP TTAC (pdmpassist.org)"
+
+  - id: metro_std_sentinel
+    name: "Metro STD/HIV sentinel surveillance (e.g., SF DPH, NYC DOHMH)"
+    tier: metro
+    exposure_capture: sentinel_no_denom  # some clinics track doxy-PEP uptake, no pop denom
+    exposure_resolution: clinic_sentinel
+    exposure_denominator: "clinic caseload (no population denominator)"
+    phenotype_capture: not_captured
+    phenotype_resolution: none
+    links: false
+    included: true
+    unit_flag: none
+    note: >-
+      Some metro STD programs track doxy-PEP uptake in sentinel clinics, but at clinic
+      caseload, not a population denominator; no S. aureus phenotype.
+    source: "metro DPH STI surveillance reports"
+
+  # ---------------------------- phenotype side ----------------------------- #
+  - id: narms
+    name: "NARMS (National Antimicrobial Resistance Monitoring System)"
+    tier: federal
+    exposure_capture: not_captured
+    exposure_resolution: none
+    phenotype_capture: not_captured      # enteric bacteria + (separately) GC; NO S. aureus
+    phenotype_resolution: none
+    links: false
+    included: true
+    unit_flag: none
+    note: >-
+      VERIFIED (cdc.gov/narms/about): NARMS surveils ENTERIC bacteria only — Salmonella,
+      Campylobacter, Shigella, E. coli O157, Vibrio, Enterococcus. S. aureus is NOT
+      included. So the closest-named federal AR surveillance system does not touch the unit.
+    source: "cdc.gov/narms/about/index.html (verified 2026-08-20)"
+
+  - id: gisp
+    name: "GISP / eGISP (Gonococcal Isolate Surveillance Project)"
+    tier: federal_sentinel
+    exposure_capture: not_captured
+    exposure_resolution: none
+    phenotype_capture: wrong_organism    # N. gonorrhoeae tetracycline, not S. aureus
+    phenotype_resolution: sentinel_clinics
+    links: false
+    included: true
+    unit_flag: none
+    note: >-
+      Sentinel surveillance of N. gonorrhoeae antimicrobial susceptibility (including
+      tetracycline). Tetracycline-relevant but the WRONG ORGANISM; no S. aureus.
+    source: "cdc.gov/std/gisp"
+
+  - id: abcs_eip_saureus
+    name: "ABCs / EIP invasive S. aureus surveillance"
+    tier: federal_sitebased
+    exposure_capture: not_captured
+    exposure_resolution: none
+    phenotype_capture: wrong_phenotype_pop   # population denom, but METHICILLIN (MRSA), invasive
+    phenotype_resolution: eip_sites          # ~7-10 EIP catchment areas, population-based
+    phenotype_denominator: "population-based (EIP catchment)"
+    links: false
+    included: true
+    unit_flag: mrsa
+    note: >-
+      VERIFIED (cdc.gov/abcs; NY DOH EIP): the ONE population-based S. aureus surveillance
+      system — but it tracks INVASIVE MRSA/MSSA (methicillin phenotype), bloodstream, in
+      ~7-10 EIP catchment sites. It has a population denominator, but reports the
+      METHICILLIN subset, not tetracycline/doxycycline susceptibility, and only invasive
+      disease. Wrong-unit near-miss (Contract 2): the platform that COULD carry the unit
+      exists, but is not instrumented for it.
+    source: "cdc.gov/abcs/methodology (verified 2026-08-20)"
+
+  - id: nhsn_ar_mrsa_labid
+    name: "NHSN AR Option / MRSA LabID Event"
+    tier: federal
+    exposure_capture: not_captured
+    exposure_resolution: none
+    phenotype_capture: facility_no_denom     # facility MRSA; methicillin; no population denom
+    phenotype_resolution: facility
+    links: false
+    included: true
+    unit_flag: mrsa
+    note: >-
+      Facility-reported MRSA bacteremia LabID events / AR Option — methicillin phenotype,
+      facility denominator (patient-days/admissions), no population denominator, and MRSA
+      not the tetracycline unit.
+    source: "cdc.gov/nhsn/psc/ar"
+
+  - id: arln
+    name: "AR Lab Network (ARLN, ELC-funded regional/state AR labs)"
+    tier: federal_state
+    exposure_capture: not_captured
+    exposure_resolution: none
+    phenotype_capture: not_captured          # targeted (CRE, C. auris, GC); not S. aureus tetR
+    phenotype_resolution: none
+    links: false
+    included: true
+    unit_flag: none
+    note: >-
+      The ELC-funded state/regional AR labs do targeted testing (carbapenem-resistant
+      organisms, Candida auris, gonorrhea). No routine population S. aureus tetracycline
+      surveillance. (Named in the task's option (c).)
+    source: "cdc.gov/ar-lab-network"
+
+  - id: nndss
+    name: "NNDSS (National Notifiable Diseases Surveillance System)"
+    tier: federal
+    exposure_capture: not_captured
+    exposure_resolution: none
+    phenotype_capture: not_captured          # S. aureus not notifiable (only VISA/VRSA)
+    phenotype_resolution: none
+    links: false
+    included: true
+    unit_flag: none
+    note: >-
+      VERIFIED: general S. aureus is NOT nationally notifiable; only vancomycin-
+      intermediate/resistant S. aureus (VISA/VRSA) are notifiable. Tetracycline-resistant
+      S. aureus is notifiable nowhere. NNDSS cannot capture the unit.
+    source: "cdc.gov/nndss; ndc.services.cdc.gov (verified 2026-08-20)"
+
+  - id: hospital_antibiograms
+    name: "Hospital / health-system cumulative antibiograms"
+    tier: facility
+    exposure_capture: not_captured
+    exposure_resolution: none
+    phenotype_capture: facility_nonstandard_no_denom  # right unit, but non-standardized per M39, no pop denom
+    phenotype_resolution: facility
+    phenotype_denominator: "isolates tested at that facility (convenience; no population base)"
+    phenotype_standard: "CLSI M39-A5 / M39 5th ed. (2022)"
+    methicillin_axis_mandated: true      # M39 requires S. aureus stratified into MRSA/MSSA
+    tetracycline_suppressible: true      # M39: supplemental agents selectively reportable/suppressible
+    links: false
+    included: true
+    unit_flag: none
+    note: >-
+      The only routine source that reports S. aureus tetracycline/doxycycline
+      susceptibility — but INCONSISTENTLY even at facility level, and never with a
+      population denominator. CLSI M39 (5th ed., 2022), the national standard governing
+      cumulative-antibiogram presentation, (a) REQUIRES S. aureus to be stratified into
+      MRSA and MSSA subsets — the methicillin axis is mandated — and (b) treats non-primary
+      agents as selectively reportable/suppressible (labs directed not to report
+      supplemental agents tested only on resistant isolates; LIS/instrument cascade rules
+      may suppress agents for stewardship). Tetracycline/doxycycline for S. aureus is such a
+      supplemental agent: not in the required S. aureus presentation, and suppressible. So
+      facility S. aureus tetracycline data are non-standardized and patchy across labs, and
+      carry no population base regardless. LICENSED CLAIM: inconsistency / non-
+      standardization ("captured nowhere consistently, nowhere with a population
+      denominator"), NOT universal absence — some labs do report it; M39 neither requires
+      nor forbids it, and a single reporting lab does not falsify the claim, which is about
+      the standard and the resulting patchwork.
+    source: "CLSI M39-A5 / M39 5th ed. (2022): S. aureus MSSA/MRSA stratification requirement + selective-reporting/suppression provision (verified against the standard's text)"
+
+  # ----------------------------- excluded ---------------------------------- #
+  - id: find_doxy_pep
+    name: "CDC Find Doxy PEP directory"
+    tier: federal
+    included: false
+    exclusion_reason: "a provider/location directory, not surveillance — carries no population denominator or phenotype data"
+    source: "finddoxypep.cdc.gov"
+  - id: commercial_ast_networks
+    name: "Commercial AST networks (Pfizer ATLAS, BD Insights, PINC AI, IQVIA)"
+    tier: commercial
+    included: false
+    exclusion_reason: "commercial/research convenience datasets, not public-health surveillance; no population denominator (parallel to Stream B excluding clinics)"
+    unit_flag: none
+    source: "atlas-surveillance.com; vendor networks"
+  - id: research_cohorts
+    name: "Doxy-PEP RCTs and observational cohorts (DoxyPEP, DOXYVAC, Soge)"
+    tier: research
+    included: false
+    exclusion_reason: "one-off research studies, not deployed surveillance systems"
+    source: "Streams A coding"

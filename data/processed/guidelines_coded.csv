@@ -7,4 +7,5 @@ massachusetts_dph_2024,state,"Massachusetts Department of Public Health, Bureau 
 nyc_dohmh_2023,city,New York City Department of Health and Mental Hygiene (DOHMH),dear_colleague,True,patient_counselling_script,silent,True,explicitly_none,True,False,,"Galindo GR et al. 2012, J Community Health, 10.1007/s10900-011-9463-6 (DOHMH co-authors Weiss, Marx)",yes
 philadelphia_pdph_2024,city,"Philadelphia Department of Public Health, Division of Disease Control",health_advisory,True,reference_title_only,silent,True,silent,True,False,"CDC (6 Jun 2024 guidance) — the document is titled 'Updated Guidance from CDC'; every substantive claim is CDC's, no local epidemiology added",,no
 san_diego_county_2023,county,"County of San Diego HHSA, Public Health Services (CAHAN San Diego)",health_advisory,True,body_text,silent,True,suggested,True,True,,,no
+sf_dph_2026,city,San Francisco Department of Public Health (SF City Clinic),clinical_protocol,False,absent,silent,True,silent,True,False,,,same_city_different_institution
 who_2026,global,World Health Organization,guideline,True,reference_title_only,silent,True,silent,True,False,,,no

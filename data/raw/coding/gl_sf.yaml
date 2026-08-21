@@ -1,0 +1,56 @@
+# Stream B v2 — governmental. First-pass (claude-firstpass); needs PI verification.
+# Coded 2026-08-20 during the de-Jong denominator reconciliation: SF is the canonical
+# USA300-in-MSM outbreak jurisdiction (Diep 2008, cited by de Jong 2025 Table 1), so it
+# is the single most load-bearing member of the outbreak-anchored denominator, and it
+# was on disk but uncoded. Governmental: SF Department of Public Health / SF City Clinic
+# (contact alyson.decker@sfdph.org; sf.gov/cityclinic). Coded from full document text.
+unit: sf_dph_2026
+jurisdiction_level: city
+issuing_body: "San Francisco Department of Public Health (SF City Clinic)"
+document_title: "Doxy-PEP prescribing guide for San Francisco providers"
+document_type: clinical_protocol
+version: "2026-05"
+effective_date: "2026-05"
+source_file: guideline_sf_provider_guide_2026.pdf
+coder: claude-firstpass
+code_date: "2026-08-20"
+
+bystander_treatment: generic_microbiome_resistance
+bystander_treatment_locator: "How should I counsel patients taking doxy-PEP? bullet — microbiome + antibiotic resistance"
+
+s_aureus_named: false
+s_aureus_location: absent
+s_aureus_location_locator: "whole document — S. aureus / staph / MRSA not named anywhere"
+
+in_category_monitoring: "Every 3 months, screen for gonorrhea and chlamydia at all anatomic sites of exposure, syphilis, and HIV (if not known to be living with HIV)"
+in_category_monitoring_locator: "How should I monitor patients taking doxy-PEP? (first bullet)"
+
+s_aureus_monitoring: silent
+s_aureus_monitoring_locator: "How should I monitor — only in-category STIs (GC/CT/syphilis/HIV) are monitored; no organism beyond them"
+
+host_toxicity_labs: silent
+host_toxicity_labs_locator: "no LFT/CMP/CBC ordered; pregnancy testing is directed at the host but is not a toxicity lab"
+
+counselling_language_verbatim: "Risks of doxy-PEP related to the microbiome and antibiotic resistance are being studied."
+counselling_language_locator: "How should I counsel patients taking doxy-PEP? (final risk bullet)"
+
+derived_from: null
+local_mrsa_msm_literature: null
+literature_search_provenance: >-
+  The document cites only the trial literature (Luetkemeyer 2023, Molina 2024, plus two
+  2025 doxy-PEP-in-women studies). It does NOT cite San Francisco's own USA300-in-MSM
+  outbreak literature (Diep 2008, Ann Intern Med) — the very source de Jong 2025 Table 1
+  uses to classify SF as a documented CA-MRSA/MSM cluster. The bystander concern is most
+  epidemiologically grounded in this jurisdiction and least instrumented by its guidance.
+same_institution_authored_both: same_city_different_institution
+
+note: >-
+  The lineage SEED. Detroit (gl_detroit) and LA County (gl_la_county) both state their
+  protocols are adapted from "San Francisco City Clinic" — this is the updated 5/2026
+  version of that origin document. Coded blind: bystander named only as generic
+  "microbiome and antibiotic resistance ... being studied" (NOT S. aureus); S. aureus /
+  staph / MRSA absent from the whole document; monitoring silent (only GC/CT/syphilis/HIV
+  every 3 months). Unlike Detroit it does not even order host-toxicity labs. Defers to
+  CDC only for STI TREATMENT ("treated according to standard CDC STI treatment
+  guidelines"), NOT for its doxy-PEP prescribing/monitoring policy, which is substantive
+  and independent — this is an independent decline, not a defer-to-CDC echo.

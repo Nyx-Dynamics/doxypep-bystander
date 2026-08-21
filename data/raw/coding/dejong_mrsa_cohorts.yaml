@@ -1,0 +1,127 @@
+# CA-MRSA COLONIZATION prevalence across MSM/PLWH cohorts, extracted from
+# de Jong et al., BMC Infect Dis 2025;25:299, Table 1 ("Study overviews").
+# Source PDF: data/raw/papers/12879_2025_Article_10593.pdf (SHA-256 pinned).
+#
+# Purpose: the between-cohort DISPERSION of MRSA colonization prevalence is the
+# empirical overdispersion parameter (sigma, logit scale) for the MRSA endpoint's
+# detectability argument (Task 2). This is MRSA-SCOPED — the methicillin-resistant
+# subset — and licenses a statement about the MRSA endpoint only, never S. aureus.
+#
+# INCLUSION: a study is included iff Table 1 reports a CA-MRSA *colonization*
+# prevalence with a recoverable positive count AND denominator. Infection-only
+# studies (Lee, Mathews, Sztramko, Diep, Hidron, Hirota, Shinohara) are EXCLUDED —
+# they carry no colonization-prevalence denominator. Counts marked `back_computed`
+# are prevalence x N rounded to the nearest integer (percentages are Table 1's own
+# labels); counts marked `explicit` are printed as a fraction in Table 1.
+#
+# POPULATION BASIS is recorded per study and is deliberately heterogeneous (general
+# MSM screen vs mixed cohort vs conditional-on-infection). That heterogeneity is why
+# the resulting sigma is an UPPER BOUND on transmission clustering, not a clean
+# estimate of it (see dejong_sigma.py).
+
+source: "de Jong N, et al. BMC Infect Dis 2025;25:299, Table 1"
+source_file: "12879_2025_Article_10593.pdf"
+endpoint: "CA-MRSA colonization prevalence"
+scope: mrsa            # methicillin-resistant subset; NOT S. aureus (Contract 2)
+
+cohorts:
+  - study: "Shastry 2007, New York City"
+    ref: 12
+    count: 9
+    n: 27
+    count_basis: explicit          # "33% (9/27)"
+    population: "MSM with CA-MRSA SSTI, screened for nasal colonization"
+    basis_flag: selected           # colonization screen within SSTI patients
+    locator: "Table 1, Shastry 2007 [12]"
+
+  - study: "Szumowski 2009, Boston"
+    ref: 27
+    count: 30
+    n: 795
+    count_basis: back_computed     # 3.8% x 795 = 30.2
+    population: "outpatient clinic + ED; 547/795 MSM"
+    basis_flag: mixed              # prevalence over total (MSM + non-MSM)
+    locator: "Table 1, Szumowski 2009 [27]"
+
+  - study: "Antoniou 2009, Canada"
+    ref: 21
+    count: 8
+    n: 500
+    count_basis: back_computed     # 1.6% x 500 = 8.0
+    population: "500 MSM"
+    basis_flag: msm                # general MSM colonization screen
+    locator: "Table 1, Antoniou 2009 [21]"
+
+  - study: "Giuliani 2010, Italy"
+    ref: 22
+    count: 0
+    n: 104
+    count_basis: back_computed     # 0%
+    population: "104 PLWH and MSM"
+    basis_flag: msm
+    locator: "Table 1, Giuliani 2010 [22]"
+
+  - study: "Fouere 2012, Paris"
+    ref: 23
+    count: 0
+    n: 300
+    count_basis: back_computed     # 0%
+    population: "300 MSM"
+    basis_flag: msm
+    locator: "Table 1, Fouere 2012 [23]"
+
+  - study: "Joore 2013, Amsterdam"
+    ref: 18
+    count: 0
+    n: 211
+    count_basis: back_computed     # 0%
+    population: "211 MSM, STI clinic"
+    basis_flag: msm
+    locator: "Table 1, Joore 2013 [18]"
+
+  - study: "Witzel 2014, Brazil"
+    ref: 24
+    count: 2
+    n: 302
+    count_basis: back_computed     # 0.7% x 302 = 2.1
+    population: "302 prisoners; 25 MSM"
+    basis_flag: mixed              # prevalence over total group
+    locator: "Table 1, Witzel 2014 [24]"
+
+  - study: "Imaz 2015, Barcelona"
+    ref: 25
+    count: 0
+    n: 190
+    count_basis: back_computed     # 0%
+    population: "190 outpatient HIV clinic; 26% MSM"
+    basis_flag: mixed
+    locator: "Table 1, Imaz 2015 [25]"
+
+  - study: "Popovich 2020, Chicago"
+    ref: 26
+    count: 40
+    n: 171
+    count_basis: explicit          # "171 MSM of which 40 CA-MRSA positive"; 23%
+    population: "correctional facility; 171 MSM (mainly USA500)"
+    basis_flag: msm
+    locator: "Table 1, Popovich 2020 [26]"
+
+  - study: "De La Mora 2023, Barcelona"
+    ref: 29
+    count: 13
+    n: 24
+    count_basis: back_computed     # 54% of (8% x 299 = 24) CA-MRSA-infected patients
+    population: "299 PLWH engaged in chemsex; colonization among the CA-MRSA-infected"
+    basis_flag: conditional        # prevalence conditional on CA-MRSA infection — the 54% outlier
+    locator: "Table 1, De La Mora 2023 [29]"
+
+# DROPPED (documented, not hidden):
+#  - Ikeuchi 2021, Tokyo [28]: "9.4% (of which 4.3% PVL-MRSA)" over PLWH, but the
+#    row mixes colonization and infection ("26 MRSA infection episodes, 2 MRSA
+#    colonization") and no clean colonization count is recoverable. Dropped; noted.
+#  - Infection-only studies (Lee, Mathews, Sztramko, Diep, Hidron, Hirota,
+#    Shinohara): no colonization denominator (Contract: no fabrication).
+dropped:
+  - study: "Ikeuchi 2021, Tokyo"
+    ref: 28
+    reason: "colonization and infection mixed in the row; no clean colonization count/denominator recoverable"
