@@ -53,7 +53,7 @@ study, or writing this two-level negative result up as the
 surveillance-infrastructure paper (the measurement-inheritance thesis, made
 quantitative).
 
-The metro result is **hardened**: a robustness sweep shows the verdict is 0/81
+The metro result is **hardened**: a robustness sweep shows the verdict is 0/135
 achievable at any realistic metro density (≤2× the densest US geography) and is
 insensitive to the male-fraction assumption; a proxy-free break-even shows
 detection would require an implausible share of *all* adult males on PrEP (325%

@@ -2,6 +2,319 @@
 
 Dated analysis decisions, logged before results are known. Append-only.
 
+## 2026-08-20 — Build the clustering-detectability analysis (Contract 3, ¶7)
+
+Alignment audit found intro ¶7 ("the systems report the mean of a process whose risk
+was never in the mean") and ¶4's clustering frame had NO computational backing — the
+non-monotonicity was illustrative only, and no clustering/simulation model existed.
+PI: this is a build need. Design (logged before results):
+
+- `src/analysis/coverage_null.py` — the structural demonstration. Carriage is modelled
+  as an OVERDISPERSED (clustered) process: logit(p_visit) = trend + ε, ε ~ N(0, σ²).
+  Simulate colonized counts at the trials' ACTUAL per-visit denominators (loaded from
+  the coded DOXYVAC MRSA rows), then apply the naive cross-sectional trend test the
+  trials use (Cochran-Armitage, which assumes binomial variance). Two failures reported
+  as clustering σ grows: (a) POWER to detect a fixed true trend collapses toward α;
+  (b) TYPE-I error under a flat process inflates above α (clustering fabricates trends).
+  σ is ESTIMATED from the observed DOXYVAC series (residual logit variance beyond a
+  fitted trend), so the 'realistic clustering' is data-anchored, not arbitrary. Endpoint
+  is coverage/power (detectability), NOT an effect size (Contract 1). Unit is S. aureus
+  carriage (MRSA rows used only because they are the coded carriage series; the argument
+  is about the endpoint's structure, which is organism-agnostic).
+- `src/analysis/three_outbreak_fit.py` — applied companion. Fit flat / monotone-trend /
+  wave models by maximum likelihood to the observed non-monotone series (DOXYVAC 5-visit
+  both arms; DoxyPEP colonisation 3-visit both arms) and compare by AIC + a parametric-
+  bootstrap discrimination test. Expected/target finding: at the observed denominators
+  the data do NOT significantly favour the clustered/wave model over the flat null (nor
+  vice versa) — the cross-sectional series is statistically uninformative about
+  clustering. This QUANTIFIES the manuscript's 'consistent with clustering,
+  indistinguishable from noise, which is the point' WITHOUT claiming the data prove
+  clustering (discipline: illustration becomes measured indistinguishability, not proof).
+
+No causal claim. Seeded simulations for reproducibility. Both write outputs, get tests,
+wire into `make`, and — once verified — are cited from Methods §2 and Results §3.1 to
+close the audit's row-9/row-10 gap.
+
+### Results (after the pre-registered design above)
+
+Built, tested (9 new tests; full suite 94 passed), wired into `make trials`.
+
+**coverage_null** (`outputs/coverage_null_result.md`). The naive Cochran-Armitage trend
+test is calibrated at σ=0 (5% Type-I, 96% power for the observed-magnitude trend). As
+clustering grows the two errors diverge: at σ=0.5, power 85% / Type-I **22%**; at σ=1.0,
+power 77% / Type-I **48%** — a flat process is read as a significant trend nearly half
+the time. The DOXYVAC series cannot constrain σ (σ̂≈0.00 doxy, 0.15 no-PEP, only 3
+residual df — meaningless). Sharper-than-expected consequence: this REFRAMES Vanbaelen's
+"within-arm trend significant in BOTH arms" — at the clustering these USA300 networks are
+documented to carry, both-arms-significant is exactly the coverage-null signature
+(clustering the endpoint can't see), not necessarily selection. Symmetric/neutral: the
+endpoint fails in either direction, which is the point. Does NOT undercut the bystander
+concern — it shows the instrument cannot adjudicate it.
+
+**three_outbreak_fit** (`outputs/three_outbreak_fit_result.md`). Fit flat/trend/wave by
+ML, two parametric-bootstrap tests. More nuanced (and more honest) than a blanket
+"indistinguishable from noise": the doxy arm has a RESOLVABLE monotone rise
+(trend-vs-flat p<0.001, consistent with Vanbaelen), but the OUTBREAK CURVATURE is
+unidentifiable in BOTH arms (wave-vs-trend bootstrap p=0.43 doxy, 0.15 no-PEP; wave never
+lowers AIC by ~2 over trend). The data can establish THAT carriage rose (one arm) but not
+HOW — a monotone selection trend and a clustered wave fit equally well; the mechanism is
+unidentifiable from these endpoints. HOLDS the manuscript's line (M6 non-monotonicity =
+illustration, not proof) and quantifies it. The DoxyPEP resistance series (2-3 points/arm)
+is too sparse to bring to the test — a further instance of the same gap. (Design note: I
+had planned to fit DoxyPEP colonisation too; it has only 2-3 post-baseline points/arm, so
+the fit runs on the two DOXYVAC 5-visit arms and the sparsity is reported as a finding.)
+
+Net: Contract 3 (¶7) moves from UNSUPPORTED to computed — "the endpoint cannot resolve
+clustering in principle (coverage_null) and cannot identify it in these data
+(three_outbreak_fit)." A detectability claim; no causation; discipline intact.
+
+## 2026-08-20 — Restructure into two correctly-scoped instruments (Contract 2 fix)
+
+PI flagged a Contract-2 violation: coverage_null / three_outbreak_fit run on MRSA throat
+carriage (the methicillin-resistant SUBSET), but the manuscript's declared analytic unit
+is doxycycline-resistant S. aureus entire. The dichotomy — MRSA behaves as a clustered
+network phenomenon, doxy-R S. aureus accumulates under selection — needs TWO instruments,
+each on data that can bear it; do NOT demonstrate it by comparing the DOXYVAC MRSA curve
+to the US S. aureus curve as fitted shapes (point-count asymmetry, cross-trial confounds,
+MRSA⊂S. aureus nesting make that uninterpretable). No cross-trial pooling.
+
+- **Task 1 — `selection_ratchet.py` (S. aureus-scoped).** Within US DoxyPEP only (single
+  trial/assay/denominator). Recover susceptible carriage = colonization − all-swabbed
+  doxy-R from the CROI slides (428/360/222 doxy; 202/91/65 SOC). DIRECTIONAL confirmatory
+  tests only (three timepoints cannot support flat/trend/wave shape discovery): one-sided
+  decline of susceptible carriage; one-sided per-carrier resistance increase; a
+  neutral-suppression contrast (observed vs proportional-decline expectation).
+  ARITHMETIC-BASE FINDING: the reported 5%→13% is over ALL-SWABBED, not per-carrier (slide
+  states so) — the manuscript's "fraction-of-carriers" phrasing applies only to the
+  derived per-carrier series (11%→41%); corrected.
+- **Task 2 — `dejong_sigma.py` (MRSA-scoped).** de Jong Table 1 is not a time series; it
+  is 10 cross-sectional MRSA COLONIZATION prevalences (recoverable count+n; infection-only
+  and %-only studies dropped and listed). Fit logit-normal binomial random-effects for the
+  between-cohort σ. σ̂ is an UPPER BOUND on transmission clustering (includes methodological
+  heterogeneity, unpartitionable at 18 studies); the load-bearing claim rests on the LOWER
+  CI. Kept MRSA-scoped; NOT imported as an S. aureus σ.
+- **Task 3.** coverage_null & three_outbreak_fit remain MRSA-scoped, now stated as such;
+  coverage_null imports the external de Jong σ̂ (its own series can't estimate σ: σ̂≈0 at 3
+  resid df — a Stream-A finding); σ=0 row confirmed calibrated by construction (CA test
+  correctly sized). three_outbreak_fit: "best=wave" struck for the no-PEP arm (ΔAIC 0.8 =
+  indistinguishable, noise-mining); doxy trend-vs-flat reported as <1/N_BOOT not "0.000".
+
+### Results (before any manuscript prose — held for PI number-check)
+
+- **selection_ratchet (S. aureus):** doxy arm — susceptible carriage 39%→16%→18%
+  (one-sided decline p=1.6e-11); per-carrier doxy-R 11%→41% (Fisher p=2.7e-07); resistant
+  carriage rose to 28 vs 7 expected under neutral suppression (Poisson p=5.5e-09). SOC arm
+  uninformative on every test (decline p=0.37; per-carrier fell 21%→11%, p=0.94). The
+  ratchet is on the S. aureus unit — Contract 1 (detectability/direction, not effect) and
+  Contract 2 (S. aureus, MRSA a subset) both respected.
+- **dejong_sigma (MRSA):** σ̂ = 2.70 (95% profile CI 1.74–4.57); stable dropping the 54%
+  (2.67) and to general-MSM-only (2.62). Prevalence spans 0%–54% over 10 cohorts.
+- **coverage_null (MRSA), Type-I at the de Jong σ:** σ=0 calibrated (5%); at σ̂=2.70,
+  Type-I(flat)=78%; at the lower CI σ=1.74, Type-I=67%. Both far exceed the 20–48% the
+  argument needs — the claim rests on the lower CI, robust to the upper-bound caveat. At
+  σ̂ power (86%) ≈ Type-I (78%): the test rejects regardless of truth — no discrimination.
+
+## 2026-08-21 — Align selection_ratchet to the abstract table; fix §1 axis mislabel
+
+Data-integrity pass on the doxy-R S. aureus series (PI-directed). Two fixes:
+- **§1 line 110 axis mislabel:** "resistance among cultured isolates rose, from 5% to 13%"
+  paired a per-carrier LABEL with the all-swabbed NUMBER (5→13 is the slides/CDC all-swabbed
+  venue). Corrected to the per-carrier figures that match §3.1: doxy 8.5%→40%, SOC 24%→11%.
+  (Line 135's "ratchets 5% to 13%" and line 149's quoted CDC "5%…13%" left as legitimate
+  all-swabbed/CDC-venue figures.)
+- **selection_ratchet.py re-anchored slides → abstract table.** Was computing on the CROI
+  SLIDES (428/360/222; per-carrier 11%→41%) while the manuscript §3.1 cites the CROI
+  ABSTRACT TABLE (8.5%→40%). Switched the module's counts to the published abstract table
+  (doxy M0 141/334, 12/334; M12 40/137, 16/137; SOC M0 78/161, 19/161; M12 28/62, 3/62) so
+  the code REGENERATES the 8.5%→40% the prose uses. Cost: abstract table is M0/M12 only, so
+  the ratchet is now a two-endpoint directional test (no M6 midpoint). Active expansion
+  HOLDS and is if anything cleaner: susceptible carriage 38.6%→17.5% (decline p=4.5e-6),
+  per-carrier 8.5%→40% (Fisher p=9.6e-6), neutral-null 16 observed vs 3.4 expected
+  (Poisson p=6.4e-7); SOC uninformative (susceptible rises 37%→40%, per-carrier falls
+  24%→11%). NB: the slides-vs-abstract-vs-NEJM (5/16/28) venue discordance is NOT smoothed
+  — it is the authors' inconsistency and remains a Stream A finding in §3.1; detectability.py
+  deliberately keeps the NEJM peer-reviewed denominators. 8 ratchet tests pass.
+
+## 2026-08-21 — Citation verification pass + reference-list reconciliation
+
+Claim-support pass (12 parallel source-verifications + 2 web resolutions,
+`citation_verification.md`): no cited source failed; every load-bearing number verified
+verbatim. Applied safe metadata fixes (sfdph2022 real title+URL, cdc2024 full title,
+diep2008 author-order note). Two prose tightenings held for PI (grossman "wash out"
+attribution; CROI "~6%" clarity).
+
+Reference-list reconciliation: PI identified that 6 uncited entries (`harrison1979`,
+`lopezbernal2018`, `miko2012`, `schroder2025`, `spinelli2026`, `demidont2026cid`) belong
+to a SEPARATE work — the ITS "time zero" correspondence to the CID editor re: the Spinelli
+doxy-PEP ITS paper (gonococcal/STI-focused), not this S. aureus manuscript; they had bled
+into the bib. Also removed `demidont2026metaarxiv` (the "150-journal audit" self-cite) and
+its §2.6 in-text clause, per PI direction. `demidont2026cid` is a real submitted (not
+published) correspondence; it had two inconsistent IDs in-repo (CID-S-26-03420 vs
+CID-132517) — both now removed. Cleaned the bib header's "verified against the companion
+CID correspondence" line and the stale CLAUDE.md "cite the CID letter" instruction.
+Result: bib closed at 15 entries — every one cited, every citation resolved, citeproc
+clean.
+
+## 2026-08-21 — Stream C: recode the facility-antibiogram cell against CLSI M39
+
+The antibiogram cell was coded "right unit, no denominator" — an understatement. PI
+verified CLSI M39 (5th ed., 2022) text: it (a) REQUIRES S. aureus stratified into MRSA/MSSA
+(methicillin axis mandated) and (b) treats non-primary agents as selectively
+reportable/suppressible (supplemental agents tested only on resistant isolates not reported;
+cascade rules may suppress). Tetracycline/doxycycline for S. aureus is such a supplemental
+agent. Recoded to **right unit, non-standardized (M39), no population denominator**
+(`phenotype_capture: facility_nonstandard_no_denom`). Scope discipline held: licensed claim
+is inconsistency/non-standardization ("captured nowhere consistently, nowhere with a
+population denominator"), NOT universal absence — M39 permits tetracycline reporting and
+some labs do it; a single reporting lab must not falsify the claim.
+
+Added the CROSS-TIER SYNTHESIS: the methicillin axis is the reported axis at every tier —
+ABCs/EIP (pop-denom invasive MRSA), NHSN AR/LabID (MRSA), facility antibiogram (M39-mandated
+MSSA/MRSA split). The architecture is standardized around methicillin at all levels; S.
+aureus tetracycline resistance is orthogonal and falls through at each. This is the Stream C
+analogue of the endpoint-substitution seam in Stream A (tet(K)/tet(M) mislabel; narrowing to
+the methicillin subset) and Stream B (efficacy graded, harms un-graded) — the same
+measurement-inheritance seam, now codified in a national laboratory standard.
+
+Count UNCHANGED (still 2 exposure-only / 0 phenotype / 0 both / 0 linked); this deepens the
+mechanism of the phenotype-side failure, it does not change the count. Updated: decomposition
+table, licenses/not block (may claim non-standardized facility capture per M39; may NOT claim
+universal facility absence), gap-register Stream C row. Scope bound from Task 5 unchanged
+(closable by adding tetracycline AST for S. aureus to ABCs/EIP; none deployed).
+
+## 2026-08-20 — Stream C CHECKPOINT (Task 1): the "81" is not a systems denominator
+
+Validated what the Stream C "0/81" actually counts BEFORE trusting it (standing order:
+don't run to a clean 0/N on a shaky denominator). Two findings, both flagged:
+
+1. **The count is STALE.** `dilution.sensitivity_table` sweeps UPTAKE(3) × KAPPA(5) ×
+   R0(3) × N(3) = **135 cells**, not 81. The "0/81" in the gap register, manuscript
+   (~line 516), and README predates the κ<1 grid expansion (KAPPA 3→5 values). Correct
+   figure is **0/135**.
+2. **The 135 are PARAMETER-GRID SCENARIOS, not surveillance systems / jurisdictions /
+   documents.** Each cell is a hypothetical (uptake, kappa, R0, N) combination. The grid
+   answers a DILUTION/DETECTABILITY question — "is the doxy-PEP-exposed subgroup too
+   dilute to move a population S. aureus tetR rate detectably?" (answer: yes, RR_needed
+   far above Soge 1.42 across all favorable cells) — which is a legitimate finding but is
+   NOT the LINKAGE question ¶6's third leg makes: "does any established surveillance
+   system LINK doxy-PEP exposure to S. aureus phenotype at a common population
+   denominator?" The linkage claim has NO principled systems denominator; it was being
+   backed by a robustness sweep of a different model.
+
+DECISION: re-anchor (Task 1 mandate: do not proceed to Task 2 on a convenience/parameter
+denominator). Stream C is split into two legs:
+- **Linkage leg (NEW, principled denominator):** a defined, closed universe of established
+  US public-health surveillance systems (federal/state/metro) that could plausibly capture,
+  at a population denominator, EITHER doxy-PEP/doxycycline exposure OR S. aureus
+  tetracycline/doxycycline resistance. Coded three ways (exposure-side / phenotype-side /
+  join) — Tasks 2–4. Anchor = option (c) systems universe, with AIDSVu (option b) as the
+  concrete exposure-side member for the resolution/computational leg. This directly backs
+  ¶6's third leg.
+- **Dilution leg (EXISTING dilution.py/dilution_metro.py):** even if a linked
+  population-denominator system existed, the exposed subgroup is too dilute to move the
+  rate (0/135 state; metro needs implausible density). Kept as a SUPPORTING, deepening
+  finding — Contract-1-compliant (RR_needed, not an effect), S.-aureus-scoped (R0 = S.
+  aureus tetR) — and relabeled 0/135, not 0/81.
+
+Old-vs-new: gap-register Row 7 currently cites "dilution.py → 0/81" as the linkage
+evidence; that conflates dilution with linkage and is stale. To be replaced by the
+decomposed linkage finding + the corrected dilution 0/135.
+
+## 2026-08-20 — Stream B denominator: convenience → de-Jong-anchored purposive
+
+Converted Stream B's denominator from a convenience set (jurisdictions on disk) to a
+purposive one whose selection rule is inherited from de Jong 2025 Table 1 — the US
+jurisdictions with documented CA-MRSA/USA300 in MSM (same source as `dejong_sigma.py`'s
+σ̂). Full analysis in `streamb_denominator_reconciliation.md`.
+
+- **Outbreak set (7, de Jong Table 1):** San Francisco (Diep 2008), Chicago (Popovich
+  2020), NYC (Shastry 2007), Boston (Szumowski 2009), LA County (Lee 2005), San Diego
+  (Mathews 2005), Atlanta (Hidron 2011). International sites excluded (US governmental
+  denominator).
+- **Intersection:** Matched 6 (SF, Chicago, NYC, Boston→MA, LA, San Diego) — all coded,
+  all silent on S. aureus monitoring. Gap 1: Atlanta → confirmed-none (Georgia DPH page is
+  HIV-PEP only, verified by fetch; doxy-PEP via CDC finder + Grady clinic, excluded).
+  Non-outbreak reclassified: Detroit, Maryland, Philadelphia (+ RI uncoded).
+- **Coded SF** (`gl_sf.yaml`) — was on disk (SFDPH/City Clinic provider guide 5/2026) but
+  uncoded; the single most load-bearing outbreak jurisdiction. Coded blind: bystander =
+  generic "microbiome/antibiotic resistance ... being studied" (S. aureus NOT named);
+  S. aureus/staph/MRSA absent from the whole doc; monitoring silent; no host-toxicity
+  labs. Corpus now 10; gate still clear (0 require S. aureus monitoring).
+- **DC (Task 3):** not a de Jong outbreak jurisdiction → out of the purposive denominator;
+  its missing guidance does not affect the sample (absence explained, not conspicuous).
+- **Independent vs defer-to-CDC:** headline split so CDC-echoes are not counted as
+  independent declines. Outbreak-matched 6 all substantive-independent, 0 defer-to-CDC, 0
+  monitor. Philadelphia (non-outbreak) defers to CDC — dependent observation, separated.
+- **Optional refinement applied:** of the 6, 3 name S. aureus (NYC/LA/San Diego), 2
+  generic (SF/MA), 1 silent (Chicago) — even naming is uneven; none monitor.
+- **Coded blind** to the expected "counseling at most" outcome; SF read from full text; no
+  document departed from the pattern. Status: Stream B complete under the de-Jong rule
+  (6/6 matched coded; Atlanta confirmed-none; 3 reclassified).
+- **DC checked-and-excluded (on record):** not a de Jong documented-outbreak jurisdiction
+  (no Table 1 row; the only "Washington" in de Jong is Washington *State* re: E. coli), so
+  it is outside the purposive denominator. DC doxy-PEP provision is clinic-only
+  (Whitman-Walker); the DC DOH role is a referral hotline, with no standalone governmental
+  doxy-PEP guidance. Its absence therefore does not affect the sample — logged so the
+  check is on record rather than a conspicuous gap.
+
+## 2026-08-20 — Stream B independence check WITHIN the outbreak-matched six
+
+Applied the same lineage test that excluded Philadelphia to the load-bearing six, from
+document content (structure, section order, shared passages, stated derivation) — an
+independence claim enforced on the non-outbreak tier must hold on the load-bearing tier.
+Findings (`streamb_denominator_reconciliation.md` lineage table):
+- **4 independently authored:** SF (lineage seed), Chicago (formal protocol, bystander
+  silent), NYC (Dear Colleague, "staph infections" lay register), San Diego (health
+  advisory, formal "Staphylococcus aureus" + commensal Neisseria/plasmid mechanism).
+- **1 adapted within the six:** LA County — "Adapted from San Francisco City Clinic, 2022",
+  carries SF's numbered "What are we still learning?" template → SF+LA = one lineage group,
+  not two independent declines.
+- **1 adapted from an external template:** Massachusetts — "Adapted from: DoxyPEP … Fact
+  Sheet" (unnamed); its "benefits/risks/how-to-access" FAQ does NOT match SF's still-
+  learning template, so the source is not one of the six.
+- **Stronger result on organism-naming:** the 3 S. aureus-naming docs do NOT share a
+  sentence — NYC ("staph infections", lay) and San Diego ("Staphylococcus aureus", formal)
+  are independently authored in different registers/document types; LA names it ("for
+  example staph") within the SF template. So ≥2 departments independently named and then
+  independently declined to monitor — not one template propagating.
+Restated headline: "6 outbreak jurisdictions, of which 4 independently authored, 0 require
+or suggest S. aureus monitoring" (LA adapted from SF; MA from an external fact sheet;
+Philadelphia, non-outbreak, defers to CDC).
+
+## 2026-08-20 — Close Row 4 (early-stopping/duration) on a sample-accrual basis
+
+Row 4 was the last partial Stream-A claim (documented, not computed). Extended the
+design-based sensitivity analysis in `detectability.py` to quantify the duration/accrual
+impact. Design (before results):
+- Hold the benchmark at the matched RR 2.25 (Soge tet-R S. aureus, the number
+  detectability.py uses); RR 1.42 (gonococcal) secondary, flagged cross-organism.
+- For each primary-trial S. aureus comparison solve for the sample needed at 80% power,
+  preserving the trial's arm ratio and control rate; report the multiple over realised.
+  METHOD: normal approximation for the required (large) N — valid in that regime and
+  where exact-Fisher region enumeration is impractical — with an exact-Fisher spot-check
+  that the solved N delivers ~80%. Exact Fisher retained for the tiny realised counts.
+- Duration: attempt only if the retention schedule supports a defensible extrapolation.
+- S. aureus unit only; MRSA has no primary denominator (per detectability_result.md).
+
+Results (before manuscript prose):
+- Required-sample multiples (RR 2.25 matched): M6 colonised 3.6×, M6 all-swabbed 3.7×,
+  M12 colonised **6.3×**, M12 all-swabbed 5.8×. Cross-organism RR 1.42: 24×–43×. Exact-
+  Fisher spot-check at the solved N = 79% (validates the approximation; multiples are
+  slight under-estimates → conservative). 0/4 remains, consistent.
+- DURATION NOT INFERABLE, stated not fabricated: S. aureus has only 2 arm-split
+  timepoints (M6, M12) and per-visit N DECLINES (colonised 51→31; all-swabbed 192→111) —
+  a declining 2-point curve cannot support an accrual/retention extrapolation, and
+  repeated swabs on a shrinking cohort do not accrue independent observations. Report the
+  sample-size multiple; do not infer months.
+- Early stop folded in as the REASON for the realised denominator: DoxyPEP's SOC arm was
+  closed at the 5/2022 DSMB efficacy interim, truncating the control-arm accrual (the
+  binding constraint: control colonised n=29 M6, 24 M12). DOXYVAC stopped ~9mo median but
+  measured only MRSA — no S. aureus denominator, cannot enter the test.
+- License: "would have needed ≈6× the sample; the efficacy stop foreclosed it." NOT "a
+  longer/larger trial would have found an effect." Row 4 → computed (sample-size basis;
+  duration not inferable). Intro flag: phrase ¶4/¶6 "stopped early" as sample-accrual
+  foreclosure, not a duration claim.
+
 ## 2026-08-20 — Cross-trial non-monotonicity (M6/mid-study), held as illustration
 
 PI observation: the non-monotone S. aureus/MRSA trajectory is in BOTH pivotal trials,
@@ -662,3 +975,69 @@ trials/guidelines/surveillance is reproduced in the surrounding literature. Coun
 frozen to data/raw/literature_search/snapshot.json (PubMed grows); `make literature
 ARGS=--refresh` re-queries. New module src/analysis/literature_search.py + 4 tests.
 esearch runs via curl (sandbox TLS proxy uses a self-signed cert urllib rejects).
+
+## 2026-08-21 — P0 revisions from the adversarial panel (Stream C panel-power; per-carrier reframe)
+
+Six-reviewer adversarial panel (submission/PANEL_SYNTHESIS.md) converged on two
+load-bearing fixes; both are revisions to how already-computed results are *presented*,
+no new analysis.
+
+1. **Stream C now reports the panel-power correction and anchors on the realistic cell.**
+   The manuscript previously printed only the single-two-proportion grid (0/135; RR 2.9-53)
+   while the repo's own feasibility_result.md computes the controlled-panel correction and
+   labels the single-comparison median "retired." §3.3, the abstract, and Figure 1 now
+   anchor on the realistic cell under the panel: RR_needed ~=14 (DEFF=1) to ~=64 (DEFF=25),
+   above Soge's 1.42-2.25 across the range. The best case (RR~=1.0 at DEFF=1) is stated and
+   explicitly disowned as compounding four implausibilities that fail individually.
+   summary_figure.py rewired from sensitivity_table min/median to panel_summary
+   realistic_RR_needed. Flagged as the single most exposed number by both the
+   biostatistician and the surveillance epidemiologist independently.
+2. **Per-carrier 8.5->40% reframed as bounded denominator-sensitivity, not a headline.**
+   §3.1 now states the 16/40 month-12 numerator, calls it an illustration "not a tested
+   quantity," and notes it inherits the same withheld-data uncertainty; the robust claim is
+   the between-arm direction and a several-fold rise "under either denominator" (~3x
+   all-swabbed, ~5x per-carrier). The 5/16/28 spread is presented as a reconciliation table
+   (venue x numerator x denominator x basis) with "we do not suggest impropriety" — softened
+   from "the counts do not reconcile." Abstract and topline aligned.
+
+Deferred to a P1 pass (logged, not yet applied): tet(K) "inducible" wording (AMR reviewer:
+Liu 2011 "inducible" describes clindamycin/MLS_B, not tet(K)); soften clustering "measured
+property" + fix "18 vs 10 cohorts"; promote S. aureus-vs-MRSA scope note to the Intro;
+"unmeasurable" -> "unmeasured as instrumented"; position measurement-inheritance vs
+neighbours; credit the benefit side of the distributive-justice ledger.
+
+116 tests green; PDF rebuilt.
+
+## 2026-08-21 — P1 revisions from the adversarial panel (wording/precision)
+
+Surgical fixes; no analysis changed except regenerating dejong_sigma's output doc.
+
+- **Clustering "measured property" softened + study count fixed.** §3.1 now states the
+  between-cohort→between-visit transfer is "an assumption, not an identity" (upper bound on
+  a *different* variance component; we lean on the lower CI). "Eighteen studies" -> "the ten
+  colonisation cohorts (of eighteen screened)" in the manuscript AND in dejong_sigma.py
+  (docstring + generated result doc). σ̂ fit is on 10 colonisation cohorts, not 18.
+- **"Loss of a class" recast as stake-sizing.** "predicted to shift toward tet(M)" -> "one
+  would expect ... a mechanistic expectation, not a dynamic anyone has yet measured"; "loss
+  of a class" -> "loss of the oral tetracyclines as a usable category," now noting the newer
+  glycylcyclines/aminomethylcyclines (tigecycline, eravacycline, omadacycline) evade both
+  determinants and remain.
+- **Unit scope condition promoted to the Introduction.** New §1 paragraph states the
+  empirical spine (dispersion, outbreak jurisdictions) exists only for the MRSA subset,
+  marks the reliance as an early instance of the argument, forward-refs §4.
+- **"unmeasurable" -> "unmeasured as instrumented"** in the Intro externality passage, with
+  an added sentence that the harm is not unmeasurable in principle (§5 gives the instrument)
+  but unpriced by deployed systems — the stronger governance claim. The one other occurrence
+  (§2.5) already contrasts "un-built instrument" against "unmeasurable phenomenon" and is
+  correct as written.
+
+**tet(K) "inducible" — ADJUDICATED, NO CHANGE.** The molecular-AMR reviewer flagged
+"tet(K) confers ... only inducible doxycycline resistance" as unsupported. Verified against
+the source PDF (data/raw/papers/liu2011_idsa_mrsa_guideline.pdf): Liu 2011 states verbatim
+"the tet(M) gene confers resistance to all agents in the class, tet(K) confers resistance
+to tetracycline [78] and inducible resistance to doxycycline [79], with no impact on
+minocycline susceptibility." The manuscript is faithful and attributes it to the guideline;
+the reviewer conflated it with the clindamycin D-zone "inducible resistance" that also
+appears in Liu. Kept as-is; quote logged for the response-to-reviews.
+
+116 tests green; PDF rebuilt.

@@ -174,8 +174,11 @@ enrichment, 13% R0, 100k isolates/geography-year) and fails on any one alone.
    (Amsterdam 0%, Paris 0%, Barcelona 0%, Toronto 1.6%); elevated prevalence
    appears only in behaviorally defined subgroups (de Jong, BMC Infect Dis
    2025;25:299).
-5. **Cite the CID letter, don't re-litigate it.** CID-132517, submitted 18 Aug
-   2026, covers the ITS identification problem. One sentence, no more.
+5. **The ITS/Spinelli correspondence is a SEPARATE work — keep it out of this
+   paper.** The doxy-PEP ITS "time zero" correspondence (and its gonococcal/STI
+   reference set: Spinelli, Lopez Bernal, Harrison, Schröder, Miko) belongs to a
+   different manuscript. This paper's unit is *S. aureus*; do not re-import those
+   citations here.
 
 ## Data
 
