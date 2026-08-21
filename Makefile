@@ -57,8 +57,10 @@ literature:
 # Manuscript PDF — pandoc + citeproc + pdflatex, house preamble (paper/preamble.tex).
 # Figures are read from outputs/figures/ (regenerate them with `make feasibility`).
 # --resource-path lets the manuscript's ../outputs/figures/ paths resolve from root.
+# --csl paper/plos.csl → PLoS Biology numbered (Vancouver) reference style.
 pdf:
 	pandoc paper/manuscript.md --citeproc --bibliography=paper/references.bib \
+	  --csl=paper/plos.csl \
 	  --resource-path=paper:. -H paper/preamble.tex --pdf-engine=pdflatex \
 	  -o paper/manuscript.pdf
 	@echo "wrote paper/manuscript.pdf"
