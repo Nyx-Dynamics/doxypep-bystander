@@ -2,11 +2,12 @@
 
 **Gate: CLEAR — no
 governmental guideline REQUIRES *S. aureus* monitoring.** (10 units;
-`data/processed/guidelines_coded.csv`.) First-pass coding (`claude-firstpass`);
-needs PI verification + 20% double-coding (Phase F).
+`data/processed/guidelines_coded.csv`.) Coding is double-coded (blind second pass, 20%;
+92% agreement, disagreements adjudicated into CODEBOOK.md rules — `outputs/reliability_result.md`)
+and PI-verified.
 
 Scope: governmental public-health authorities only (see DECISIONS.md /
-STREAM_B_HANDOFF.md); FQHCs and professional societies excluded, retained in
+METHODS_streamB.md); FQHCs and professional societies excluded, retained in
 `data/raw/guidelines/excluded/` with reasons.
 
 ## The within-artifact asymmetry

@@ -1,7 +1,7 @@
 """Phase 0 feasibility gate — metro level (the pivot from the failed state gate).
 
 The state gate (`dilution.py`) failed: the doxy-PEP-exposed subgroup is too
-dilute inside a whole state's *S. aureus* isolate stream. SCAFFOLD.md says pivot
+dilute inside a whole state's *S. aureus* isolate stream. The feasibility plan says pivot
 to metro (SF, King County, LA, NYC), where uptake density is far higher. This
 module runs the same feasibility test at metro grain.
 
@@ -25,7 +25,7 @@ We then compare rate_required against the DENSEST geography that actually exists
 in the AIDSVu panel — **Washington, D.C.** (2,694 / 100k adult males in 2022, a
 city-state and a generous empirical ceiling for any real US metro; SF and King
 County do not exceed it). No metro-specific PrEP file is on disk (the AIDSVu
-metro downloadable datasets carry HIV prevalence/SDOH, not PrEP — CLAUDE.md), so
+metro downloadable datasets carry HIV prevalence/SDOH, not PrEP — see DECISIONS.md), so
 D.C. stands in as the observed high-water mark and results are expressed as
 multiples of it. If a cell needs many times the densest geography in the country,
 a real metro cannot reach it.
@@ -366,7 +366,7 @@ primary quantitative test. Two legitimate paths forward, to choose deliberately:
    panel, and needs its own preregistration.
 2. **Surveillance-infrastructure paper** — write up this two-level negative
    feasibility result as the empirical demonstration that no existing
-   surveillance system can detect the bystander signal. Per CLAUDE.md this is a
+   surveillance system can detect the bystander signal. Per the project design (DECISIONS.md) this is a
    legitimate and arguably the more important output.
 
 ## Artifacts

@@ -1,76 +1,75 @@
-# Stream B — sampling frame, scope, and retrieval log
+# Stream B — sampling frame, scope, and final denominator
 
-*Written 2026-08-19, while the corpus was fresh. This is the methods-section
-provenance for the guideline coding.*
+*Final methodological record. Written 2026-08-19 while the corpus was fresh; revised
+2026-08-22 to the final de-Jong-anchored design. The per-jurisdiction table and the
+independence analysis live in `outputs/streamb_denominator_reconciliation.md`; this file is
+the narrative methods/provenance.*
 
-## Sampling frame
+## From convenience set to purposive denominator
 
-The frame was assembled from a third-party compilation plus a fixed set of
-authoritative bodies — **not** an ad-hoc search:
-
-- **NCSD "Doxy and STI PEP Sample Policies" compilation** (National Coalition of
-  STD Directors) — the base list of US jurisdictional doxy-PEP policies.
-- Plus, by design, four apex/anchor bodies: **WHO** (global), **CDC** (US
-  national), the **Australian** consensus statement, and the **UK BASHH** position
-  (international contrast).
+The frame began as an availability-based set of jurisdictional doxy-PEP policies (assembled
+from the NCSD "Doxy and STI PEP Sample Policies" compilation plus apex bodies WHO, CDC,
+Australia). It was then **converted to a purposive denominator** whose selection rule is
+inherited from the paper's own clustering evidence: the US jurisdictions where CA-MRSA/USA300
+transmission in MSM is documented, defined by **de Jong 2025 Table 1 and its cited primary
+outbreak sources** — the same source that supplies the between-cohort σ̂ in `dejong_sigma.py`.
+One source does two structural jobs: the outbreak cities that prove MRSA is clustered
+(Stream A) are the cities whose health departments should therefore monitor, and do not
+(Stream B).
 
 ## Scope filter (governmental authorities only)
 
-The unit of analysis is a **governmental public-health authority** — city, county,
-state, national, or global. Rationale: these bodies both (a) set doxy-PEP policy
-and (b) hold the local surveillance / outbreak record, and that pairing is what
-makes the institutional-memory comparison meaningful. This is a scope decision,
-not a finding.
+The unit of analysis is a **governmental public-health authority** — city, county, state,
+national, or global. These bodies both set doxy-PEP policy and hold the local surveillance /
+outbreak record, and that pairing is what makes the comparison meaningful. Clinic and
+professional-society documents are excluded (below), explicitly, not silently.
 
-## Exclusions (with reasons)
+## Final denominator (de-Jong-anchored)
 
-Excluded documents are retained in `data/raw/guidelines/excluded/` with per-file
-reasons (`excluded/README.md`). Categories excluded and why:
+**Outbreak-matched sample — 6 of 6** US documented-outbreak jurisdictions (de Jong 2025
+Table 1) with standalone governmental doxy-PEP guidance, each traceable to a Table 1 outbreak
+citation: San Francisco (Diep 2008), Chicago (Popovich 2020), New York City (Shastry 2007),
+Boston → Massachusetts (Szumowski 2009), Los Angeles County (Lee 2005), San Diego (Mathews
+2005). The one outbreak jurisdiction without governmental guidance — **Atlanta** — is
+confirmed-none (doxy-PEP provision runs through the CDC directory / Grady clinic, not a
+health-department policy). Three on-disk documents fall **outside** the outbreak set and are
+retained under a distinct high-exposure rationale, reported separately (Detroit, Maryland,
+Philadelphia); Philadelphia defers to CDC and is a dependent observation, not an independent
+decline. WHO (global tier) is kept in the international corpus, not the subnational
+denominator.
 
-- **FQHCs / community health centers** — relay their health department's language
-  rather than making the policy decision under study: Howard Brown Health
-  (Chicago), Open Door Health (Providence RI; note RI DOH↔Open Door is a
-  *collaboration*, entangled — see DECISIONS), Callen-Lorde (NYC), Fenway Health
-  (Boston).
-- **Patient-navigation / outreach** — VOISES (Johns Hopkins/Baltimore).
-- **Nonprofit advocacy / patient education** — American Sexual Health Association
-  (ASHA, national).
-- **Professional societies** — German STI Society (DSTIG), IUSTI Europe.
-- **Advocacy comments** — Fenway Health's public *comment to CDC* (a submission,
-  not a jurisdictional policy).
+## Coding and reliability
 
-Coding these would grade safety-net providers / advocacy bodies on a policy
-judgement they do not own and dilute the monitoring column with documents that
-were never going to specify monitoring.
+Ten governmental documents are coded (`data/raw/coding/gl_*.yaml`), each value carrying a
+page/section locator. Coding was **double-coded** — a blind independent second pass on a 20%
+sample (`data/raw/coding/reliability/second_pass.json`); **92% agreement**, Cohen's κ per
+field, and the two edge-case disagreements were adjudicated by the PI into binding CODEBOOK
+rules (`outputs/reliability_result.md`, `CODEBOOK.md`). The coding is PI-verified.
 
-`ECDC` (EU/EEA considerations) is left pending a PI call — an EU agency document
-but a meeting report, not a jurisdictional policy with a matched surveillance
-record.
+## Result
 
-## Retrieval log (as of 2026-08-19)
+Under the de-Jong selection rule, **0 of 6** outbreak-matched jurisdictions require or suggest
+*S. aureus* monitoring. Within the six, **4 are independently authored** (SF, Chicago, NYC,
+San Diego), 1 (LA County) is adapted from SF, and 1 (Massachusetts) from an external
+fact-sheet template; the two organism-naming independents (NYC, San Diego) name *S. aureus* in
+different registers, so the naming is not a propagating template. Details and the independence
+table: `outputs/streamb_denominator_reconciliation.md`.
 
-**Obtained and in corpus (14 governmental units):**
-WHO (global); CDC (US national); Australia (national consensus); and city/county/
-state: NYC DOHMH, Chicago CDPH, Philadelphia PDPH, Detroit Public Health, San
-Diego County, Los Angeles County, San Francisco DPH, Maryland DOH, Massachusetts
-DPH, Rhode Island DOH (pointer stub — substantive guidance entangled with Open
-Door / RI PHI). *v2-coded: 9; CDC / SF / Australia / RI in hand, coding pending.*
+## Exclusions (governmental-only, with reasons)
 
-**Attempted but NOT retrieved (flagged; a corpus of public documents should log
-which stopped being public):**
+Excluded documents are retained in `data/raw/guidelines/excluded/` with per-file reasons.
+Categories and rationale: FQHCs / community health centers (relay their health department's
+language — Howard Brown, Open Door Health, Callen-Lorde, Fenway); patient-navigation/outreach
+(VOICES); nonprofit advocacy / patient education (ASHA); professional societies (DSTIG, IUSTI
+Europe); advocacy comments (Fenway's comment to CDC). Coding these would grade bodies on a
+policy judgement they do not own and dilute the monitoring column.
 
-| Jurisdiction | Status (2026-08-19) |
-|---|---|
-| **Seattle–King County** | Landing page **errors** on access; the PDF is reportedly reachable via `cdn.kingcounty.gov`. Access failure recorded; retrieval outstanding. |
-| **UK BASHH** (international contrast) | Named in the frame; position document not yet retrieved. |
-| California DPH (statewide) | Not retrieved; check whether a CDPH v2.0 post-dates the June-2024 CDC guidance. |
-| Alameda, Santa Clara (CA) | Not retrieved. |
-| Multnomah / Oregon | Not retrieved. |
-| Minnesota | Not retrieved. |
-| New Mexico | Not retrieved. |
-| Michigan (state) | Detroit (city) obtained; state-level not retrieved. |
-| Jefferson County | Not retrieved. |
+## Retrieval discipline
 
-Absence in this corpus means "not retrieved under the stated attempts as of the
-date above," never "does not exist." Re-attempts and any further access failures
-should be appended here with dates.
+Absence in this corpus means "not retrieved under the stated attempts," never "does not
+exist." The earlier intermediate retrieval log (Seattle–King County access failure, UK
+BASHH, ECDC, and other non-retrieved state/county jurisdictions) is **superseded by the
+purposive design**: those jurisdictions are not in the de-Jong outbreak set, so their
+non-retrieval does not affect the outbreak-matched denominator or the 0/6 result. The one
+outbreak jurisdiction without guidance (Atlanta) is treated as confirmed-none, with the
+negative-search caveat stated in the reconciliation.

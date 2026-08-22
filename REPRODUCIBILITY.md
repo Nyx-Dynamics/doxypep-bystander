@@ -13,13 +13,13 @@ participant-level trial data are used or required.
 ## One command
 
 ```
-python3 scripts/fetch_aidsvu.py   # fetch + verify the AIDSVu inputs (not redistributed)
+python3 scripts/verify_aidsvu.py  # verify manually-downloaded AIDSVu inputs (not redistributed)
 make all                          # runs the full pytest suite, then regenerates outputs/figures
 make pdf                           # builds paper/manuscript.pdf (pandoc + citeproc + plos.csl + pdflatex)
 ```
 
 The AIDSVu State PrEP/PnR datasets are **not** redistributed (IQVIA-sourced; see
-`THIRD_PARTY_DATA.md`). `scripts/fetch_aidsvu.py` records their source portal, retrieval date,
+`THIRD_PARTY_DATA.md`). `scripts/verify_aidsvu.py` records their source portal, retrieval date,
 and per-file SHA-256, and verifies the files you place in `data/raw/aidsvu/`. `make all`
 requires them present and verified.
 
@@ -29,24 +29,22 @@ a null. Analysis decisions were logged with dates, before results, in `DECISIONS
 
 ## Expected runtime (the honest numbers)
 
-The full `pytest` suite is **the complete suite** (currently 111 tests) and takes roughly
-**2.5–3 minutes** on a laptop. Most modules finish in seconds; two are deliberately
-compute-heavy and dominate the wall-clock:
+The complete suite is 111 tests. **92 are fast** (structural/unit checks) and finish in a few
+seconds. **19 are computationally heavy** and are marked `@pytest.mark.slow` (see
+`pytest.ini`): the exact-Fisher rejection-region enumeration in `tests/test_detectability.py`
+(no large-sample shortcut at these small counts) and the Monte-Carlo Type-I / parametric-
+bootstrap model-selection tests in `tests/test_clustering_detectability.py`.
 
-- `tests/test_detectability.py` — exact-Fisher rejection-region enumeration (no large-sample
-  shortcut at these small counts). This is the single slowest module and can exceed ~150 s on
-  a constrained machine.
-- the clustering / parametric-bootstrap tests (`coverage_null`, `three_outbreak_fit`,
-  `dejong_sigma`) — Monte-Carlo Type-I and bootstrap model-selection.
+- **Fast structural check** (seconds): `pytest -m "not slow"`
+- **The heavy tests only:** `pytest -m slow`
+- **Everything** (what `make all` runs): `pytest`
 
-If you only want a fast structural check, run everything except those:
-
-```
-pytest -q --ignore=tests/test_detectability.py --ignore=tests/test_clustering_detectability.py
-```
-
-Then run the two heavy modules separately with a generous timeout. A full clean-extraction
-`make all` completes end-to-end; budget ~5 minutes including figure regeneration.
+Wall-clock for the full suite is roughly **~3 minutes on the author's reference machine**
+(CPython 3.12.12, `requirements-lock.txt`) but **considerably longer on resource-constrained
+CI/containers** — the two slow modules can each take several minutes there, so budget
+accordingly or run `-m "not slow"` for a quick check. A full clean-extraction `make all`
+(tests + all output/figure regeneration) completes end-to-end; budget ~5–10 minutes depending
+on the machine.
 
 ## Third-party inputs
 

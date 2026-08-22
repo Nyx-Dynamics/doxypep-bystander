@@ -92,7 +92,7 @@ primary quantitative test. Two legitimate paths forward, to choose deliberately:
    panel, and needs its own preregistration.
 2. **Surveillance-infrastructure paper** — write up this two-level negative
    feasibility result as the empirical demonstration that no existing
-   surveillance system can detect the bystander signal. Per CLAUDE.md this is a
+   surveillance system can detect the bystander signal. Per the project design (DECISIONS.md) this is a
    legitimate and arguably the more important output.
 
 ## Artifacts

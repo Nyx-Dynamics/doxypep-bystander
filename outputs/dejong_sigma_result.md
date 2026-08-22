@@ -32,12 +32,13 @@ the primary set. The estimate is stable to dropping the 54% outlier
 (σ̂ = 2.67) and to restricting to general-MSM screens
 (σ̂ = 2.62).
 
-**What this licenses.** σ̂ is an UPPER BOUND on transmission clustering — the cohorts
+**What this licenses.** σ̂ is a deliberately conservative external sensitivity anchor for the
+scale of heterogeneity — not an estimate of the trial's between-visit variance. The cohorts
 differ in assay, site, and risk stratum, and ten colonisation cohorts cannot separate
 methodological heterogeneity from genuine clustering. The load-bearing claim rests on the **lower**
 confidence bound, not the point estimate: even σ = 1.74 is far into the
-regime where the naive cross-sectional trend test's Type-I error is 20–48%
-(`coverage_null_result.md`). So the documented dispersion of the MRSA colonization
+regime where the naive cross-sectional trend test's Type-I error is well above nominal
+(~67% at this lower bound, rising to ~87% across the de Jong 95% CI; `coverage_null_result.md`). So the documented dispersion of the MRSA colonization
 endpoint is *not small* — sufficient to place the mean-based trend test in its degraded
 regime — which is all the detectability argument requires. This σ is for MRSA
 colonization overdispersion and licenses a statement about the **MRSA** endpoint only;

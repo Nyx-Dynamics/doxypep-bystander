@@ -1,4 +1,4 @@
-# Stream B v2 — governmental. First-pass (claude-firstpass); needs PI verification.
+# Stream B — governmental. Double-coded (blind 2nd pass) + PI-verified 2026-08-22 (see outputs/reliability_result.md).
 unit: chicago_cdph_2023
 jurisdiction_level: city
 issuing_body: "Chicago Department of Public Health, Bureau of Syndemic Infectious Disease, STI Specialty Clinics"

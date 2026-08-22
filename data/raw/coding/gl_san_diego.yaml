@@ -1,4 +1,4 @@
-# Stream B v2 — governmental. First-pass (claude-firstpass); needs PI verification.
+# Stream B — governmental. Double-coded (blind 2nd pass) + PI-verified 2026-08-22 (see outputs/reliability_result.md).
 unit: san_diego_county_2023
 jurisdiction_level: county
 issuing_body: "County of San Diego HHSA, Public Health Services (CAHAN San Diego)"
@@ -31,7 +31,7 @@ counselling_language_locator: "p. 2"
 
 derived_from: null
 local_mrsa_msm_literature: null
-literature_search_provenance: "Not independently searched by coder as of 2026-08-19; the STREAM_B_HANDOFF verified institutional-memory pairings do not list San Diego. Flagged for AC to search/confirm. A null cell means 'none found under stated (here, un-run) terms', not 'none exists'."
+literature_search_provenance: "Outbreak-jurisdiction inclusion is anchored to de Jong 2025 Table 1 (San Diego: Mathews WC et al. 2005 — CA-MRSA in PLWH, MSM risk factor), per outputs/streamb_denominator_reconciliation.md. The denominator basis is the de-Jong outbreak citation, NOT an independent local-cluster search; an earlier ad-hoc search step was flagged and is superseded (not load-bearing). Resolved 2026-08-22."
 same_institution_authored_both: "no"
 
 note: >-
@@ -39,5 +39,6 @@ note: >-
   reservoir — the sharpest microbiological framing in the corpus — yet Actions
   Requested mandates STI/HIV screening and suggests host organ-toxicity labs while
   calling for no microbiological monitoring of the reservoir it names.
-  same_institution_authored_both coded 'no' provisionally (undetermined pending the
-  literature search above).
+  same_institution_authored_both coded 'no': the CAHAN advisory is an independently
+  authored San Diego HHSA document (formal S. aureus/commensal-Neisseria framing not
+  matching any other document in the corpus; see streamb_denominator_reconciliation.md).

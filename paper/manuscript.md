@@ -80,7 +80,7 @@ requiring no measurement of it; and of twelve established surveillance systems n
 doxy-PEP exposure to an *S. aureus* tetracycline phenotype at a common population denominator
 (that phenotype is surveilled nowhere with a population base, the architecture organised
 around methicillin, and the exposed subgroup too dilute to move a population rate
-regardless). Of 361 doxy-PEP papers (2015–2026), 13 (3.6%) name a bystander staphylococcal
+under the realistic surveillance configurations evaluated here). Of 361 doxy-PEP papers (2015–2026), 13 (3.6%) name a bystander staphylococcal
 organism and 2 measure it against an exposure contrast.
 
 The randomised trial has answered the question it was built to answer:
@@ -371,8 +371,9 @@ large: a logit-scale standard deviation of about 2.7 (95% CI 1.7–4.6), scoped 
 methicillin subset where the carriage data live. Transporting a between-cohort dispersion
 onto a trial's between-visit series is an assumption, not an identity — cross-cohort spread
 absorbs methodological heterogeneity that one trial's repeated visits do not incur — so it
-serves as an upper bound on a *different* variance component, and we lean on the lower
-confidence bound, not the point estimate. Even at that low end, the naive cross-sectional
+serves as a deliberately conservative external anchor for the *scale* of heterogeneity, on a
+*different* variance component, not an estimate of the trial's between-visit variance; and we
+lean on the lower confidence bound, not the point estimate. Even at that low end, the naive cross-sectional
 trend test a between-arm reading relies on stops being a test — simulated at the trials' own
 denominators, a *flat* process is scored as a significant trend some 70–80% of the time,
 so its power to detect a real trend and its false-positive rate converge and it
@@ -779,7 +780,8 @@ cohorts assembled by a systematic review [@dejong2025] — the same review whose
 sources define the Stream B denominator (Materials and methods) — as a logit-normal binomial
 random-effects model fitted by marginal maximum likelihood (Gauss–Hermite quadrature),
 reporting the between-cohort dispersion on the logit scale with a profile-likelihood
-interval and treating it as an *upper bound* on transmission clustering, since the ten
+interval and treating it as a deliberately *conservative external sensitivity anchor* for the
+scale of heterogeneity (not an estimate of the trial's between-visit variance), since the ten
 colonisation cohorts (of eighteen studies screened, the ten reporting usable prevalence)
 cannot partition genuine clustering from the methodological heterogeneity it also
 absorbs. Against that dispersion we ask, by simulation at a trial's actual per-visit

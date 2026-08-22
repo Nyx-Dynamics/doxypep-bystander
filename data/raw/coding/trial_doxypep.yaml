@@ -1,5 +1,5 @@
-# Stream A coded trial — DoxyPEP (Luetkemeyer 2023). First-pass (claude-firstpass);
-# needs PI verification + double-coding (Phase F). Values quoted (YAML booleans).
+# Stream A coded trial — DoxyPEP (Luetkemeyer 2023 interim; final = Luetkemeyer 2025, coded separately). PI-verified 2026-08-22;
+# double-coding done (see outputs/reliability_result.md). Values quoted (YAML booleans).
 #
 # NEJM measured DOXYCYCLINE resistance in S. aureus (ETEST, MIC >=16 ug/mL); the
 # relabel to "tetracycline" happens downstream (Szondy's table title, CDC). NEJM

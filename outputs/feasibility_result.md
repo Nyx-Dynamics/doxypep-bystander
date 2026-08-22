@@ -89,7 +89,7 @@ coding the paper criticises). Both widen the margin above 1.42.
 
 ## Decision
 
-Per CLAUDE.md's kill criterion, the state-level ecological design **cannot detect
+Per the feasibility kill criterion (DECISIONS.md), the state-level ecological design **cannot detect
 this signal** and is abandoned as the primary design. The project pivots to
 **metro-level** analysis (SF, King County, LA, NYC), where uptake density is far
 higher — shrinking the denominator in eq. (2) and raising `f` — and where King

@@ -11,8 +11,8 @@ work, not this S. aureus manuscript): `harrison1979`, `lopezbernal2018`, `miko20
 `schroder2025`, `spinelli2026`, `demidont2026cid`; and the companion `demidont2026metaarxiv`
 "150-journal audit" (removed with its §2.6 in-text citation). The bib is now **closed**:
 **15 entries, every one cited, every citation resolved, no undefined citations** (citeproc
-clean). The stale `CLAUDE.md` "cite the CID letter" instruction and the bib header's
-"verified against the companion CID correspondence" line were removed.
+clean). A stale "cite the CID letter" instruction and the bib header's "verified against the
+companion CID correspondence" line were removed.
 
 ## Summary
 

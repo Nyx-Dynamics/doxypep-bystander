@@ -1,5 +1,6 @@
-# make all regenerates every figure and table from raw data with no manual steps.
-# Phases are gated (SCAFFOLD.md): a target must not run before its predecessor passes.
+# make all regenerates every figure and table from raw data (one manual prerequisite:
+# download the AIDSVu inputs and run scripts/verify_aidsvu.py — see THIRD_PARTY_DATA.md).
+# Phases are gated: a target must not run before its predecessor passes (see DECISIONS.md).
 
 PY := python3
 
@@ -85,9 +86,10 @@ docx:
 # Two artifacts:
 #   bundle  -> journal submission package (manuscript + submission-facing aids)
 #   deposit -> clean research compendium for Zenodo (reproducibility artifacts only)
-# Both set COPYFILE_DISABLE=1 and exclude AppleDouble (._*/.DS_Store) so macOS extended
-# attributes do not pollute the archive, and NEVER place the tarball's own checksum inside
-# the tarball — the .sha256 is computed AFTER the archive is closed and lives beside it.
+# Both set COPYFILE_DISABLE=1, --no-mac-metadata, and exclude AppleDouble (._*/.DS_Store) so
+# macOS extended attributes (AppleDouble files AND com.apple.* xattr PAX headers) do not
+# pollute the archive, and NEVER place the tarball's own checksum inside the tarball — the
+# .sha256 is computed AFTER the archive is closed and lives beside it.
 
 # Journal submission package (author-facing; includes the editorial aids).
 bundle:
@@ -99,7 +101,7 @@ bundle:
 	  submission/PANEL_SYNTHESIS.md submission/MANIFEST.md submission/REPO_DEPOSIT_README.md \
 	  DECISIONS.md outputs/gap_register.md outputs/citation_verification.md \
 	  $$(ls outputs/*_result.md) $$(ls outputs/figures/*.png)"; \
-	COPYFILE_DISABLE=1 tar --exclude='._*' --exclude='.DS_Store' \
+	COPYFILE_DISABLE=1 tar --no-mac-metadata --exclude='._*' --exclude='.DS_Store' \
 	  -czf submission/doxypep-bystander-submission.tar.gz $$files; \
 	shasum -a 256 submission/doxypep-bystander-submission.tar.gz \
 	  > submission/doxypep-bystander-submission.tar.gz.sha256; \
@@ -109,10 +111,10 @@ bundle:
 # (no CLAUDE.md/SCAFFOLD.md/STREAM_B_HANDOFF.md, no submission/); NO copyrighted publisher or
 # guideline PDFs / transcriptions, and NO AIDSVu XLSX (IQVIA-sourced) — all excluded, with
 # provenance travelling via SOURCES.md + CHECKSUMS.md. AIDSVu is retrieved+verified by
-# scripts/fetch_aidsvu.py before `make all`. See THIRD_PARTY_DATA.md.
+# scripts/verify_aidsvu.py before `make all` (download AIDSVu first). See THIRD_PARTY_DATA.md.
 DEPOSIT_PATHS = README.md CITATION.cff LICENSE-CODE LICENSE-TEXT THIRD_PARTY_DATA.md \
-  REPRODUCIBILITY.md Makefile requirements.txt requirements-lock.txt \
-  CODEBOOK.md CODEBOOK_streamA.md METHODS_streamB.md PREREGISTRATION.md DECISIONS.md \
+  REPRODUCIBILITY.md REPRODUCTION_LOG.md Makefile pytest.ini requirements.txt requirements-lock.txt \
+  CODEBOOK.md CODEBOOK_streamA.md METHODS_streamB.md ECOLOGICAL_PREREGISTRATION_DRAFT_NOT_REGISTERED.md DECISIONS.md \
   src tests scripts outputs \
   paper/manuscript.md paper/manuscript.pdf paper/references.bib paper/preamble.tex paper/plos.csl \
   data/processed data/raw/coding data/raw/literature data/raw/literature_search \
@@ -126,7 +128,7 @@ deposit:
 	@COPYFILE_DISABLE=1 find $(DEPOSIT_PATHS) -type f \
 	  ! -name '._*' ! -name '.DS_Store' ! -name '*.pyc' ! -path '*/__pycache__/*' \
 	  | LC_ALL=C sort | xargs shasum -a 256 > CHECKSUMS.sha256
-	@COPYFILE_DISABLE=1 tar --exclude='__pycache__' --exclude='*.pyc' \
+	@COPYFILE_DISABLE=1 tar --no-mac-metadata --exclude='__pycache__' --exclude='*.pyc' \
 	  --exclude='._*' --exclude='.DS_Store' \
 	  -czf submission/doxypep-bystander-repo.tar.gz $(DEPOSIT_PATHS) CHECKSUMS.sha256
 	@shasum -a 256 submission/doxypep-bystander-repo.tar.gz \

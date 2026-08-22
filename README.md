@@ -24,7 +24,8 @@ question that fact raises, across three streams against one yardstick:
 - **Stream C — the Inheritance.** No deployed US surveillance system links doxy-PEP exposure
   to an *S. aureus* tetracycline phenotype at a common population denominator; the
   architecture is standardised around the methicillin axis, and the exposed subgroup is too
-  dilute to move a population rate regardless.
+  dilute to move a population rate under the realistic surveillance configurations evaluated
+  here.
 
 The upstream instrument generated information the downstream systems are not built to
 receive — a structural gap we call **measurement inheritance**. The paper makes **no
@@ -42,23 +43,25 @@ population denominator (median required within-exposed RR ≈ 14; the metro vers
 male-PrEP density many times the densest US geography — see
 `outputs/feasibility_result.md`, `outputs/feasibility_metro_result.md`). The ecological
 design was therefore **not executed**, and the preregistration **remained a draft**
-(`PREREGISTRATION.md`) — there is **no timestamped OSF registration**. That negative
+(`ECOLOGICAL_PREREGISTRATION_DRAFT_NOT_REGISTERED.md`) — there is **no timestamped OSF registration**. That negative
 feasibility result is itself Stream C evidence, and it motivated the present
 measurement-inheritance analysis.
 
 ## Reproducibility
 
-Every figure and table regenerates from public inputs with no manual steps:
+Every figure and table regenerates from public inputs (one manual step: download the AIDSVu
+inputs, below):
 
 ```
 pip install -r requirements-lock.txt   # exact validated versions
-python3 scripts/fetch_aidsvu.py        # fetch+verify AIDSVu inputs (not redistributed; see below)
+python3 scripts/verify_aidsvu.py       # download AIDSVu inputs manually, then verify (see below)
 make all                               # test-gated: full pytest suite, then regenerate outputs
 make pdf                                # build the manuscript PDF (needs pandoc + pdflatex)
 ```
 
 See `REPRODUCIBILITY.md` for the environment and expected runtime, `DECISIONS.md` for the
-dated analysis-decision log, and `CLAUDE.md` for the full internal build/claim constraints.
+dated analysis-decision log, `METHODS_streamB.md` for the guideline sampling frame, and the
+`CODEBOOK*.md` files for the coding rules.
 Raw data in `data/raw/` is immutable; all cleaning is in code.
 
 ## Licensing & third-party data
@@ -68,4 +71,4 @@ figures: **CC BY 4.0** (`LICENSE-TEXT`). Externally-sourced inputs are **not** r
 **not** redistributed — see `THIRD_PARTY_DATA.md`: publisher/guideline PDFs, verbatim
 conference transcriptions, and the IQVIA-sourced AIDSVu datasets are all excluded, with
 provenance travelling via `SOURCES.md` + `CHECKSUMS.md`. AIDSVu is retrieved and verified with
-`scripts/fetch_aidsvu.py`.
+`scripts/verify_aidsvu.py` (which verifies manually-downloaded files against frozen hashes).

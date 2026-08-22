@@ -9,7 +9,7 @@ provenance travels here so anyone can reproduce the exact inputs.
 - **Retrieved:** 2026-05-25 (encoded as the `_20260525` suffix in each filename).
 - **Files required:** 28 (State PrEP 2012–2025 and State PnR 2012–2025); exact names, byte
   sizes, and SHA-256 hashes are frozen in `CHECKSUMS.md` beside this file.
-- **Retrieve + verify:** `python3 scripts/fetch_aidsvu.py` (downloads are portal-based, so
+- **Download + verify:** download the files from the portal, then `python3 scripts/verify_aidsvu.py` (downloads are portal-based, so
   place the files here keeping their exact names; the script verifies them against the frozen
   hashes). `make all` requires these files to be present and verified.
 - **Terms:** AIDSVu permits downloading its datasets for analyses and publications; it does

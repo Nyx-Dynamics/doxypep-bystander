@@ -46,7 +46,7 @@ def frame(records) -> pd.DataFrame:
 
 def monitoring_gate(records) -> list[str]:
     """Stream B gate: units that REQUIRE S. aureus monitoring. Non-empty => the
-    leg fails and the paper says so (STREAM_B_HANDOFF.md falsification)."""
+    leg fails and the paper says so (METHODS_streamB.md falsification)."""
     return [r.unit for r in records if r.s_aureus_monitoring == "required"]
 
 
@@ -67,11 +67,12 @@ def _write_report(records, df, gate, lin, root):
 
 **Gate: {'CLEAR' if not gate else 'TRIPPED'} — {'no' if not gate else len(gate)}
 governmental guideline REQUIRES *S. aureus* monitoring.** ({n} units;
-`data/processed/guidelines_coded.csv`.) First-pass coding (`claude-firstpass`);
-needs PI verification + 20% double-coding (Phase F).
+`data/processed/guidelines_coded.csv`.) Coding is double-coded (blind second pass, 20%;
+92% agreement, disagreements adjudicated into CODEBOOK.md rules — `outputs/reliability_result.md`)
+and PI-verified.
 
 Scope: governmental public-health authorities only (see DECISIONS.md /
-STREAM_B_HANDOFF.md); FQHCs and professional societies excluded, retained in
+METHODS_streamB.md); FQHCs and professional societies excluded, retained in
 `data/raw/guidelines/excluded/` with reasons.
 
 ## The within-artifact asymmetry

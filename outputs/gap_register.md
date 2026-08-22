@@ -66,10 +66,9 @@ status. Revised after the Contract-2 restructuring into two correctly-scoped ins
   Intro flag: the "stopped early" language in ¶4/¶6 should be phrased as **sample-accrual
   foreclosure** (the trials would have needed ≈6× the S. aureus sample; the efficacy stop
   cut the control-arm accrual) rather than a duration/"longer trial" claim.
-- Manuscript prose for the two new instruments is **held** pending PI check of the numbers
-  above (σ̂ and the Type-I at σ̂), per the handoff instruction. The prior-turn Methods §2.3
-  and Results §3.1 additions were **reverted** because they carried the Contract-2
-  conflation this restructuring corrects.
+- Manuscript prose for the clustering instruments (σ̂ and the Type-I at σ̂) is **in the
+  manuscript** (Methods §Stream A and Results §Stream A), PI-verified; the σ̂ is framed as a
+  conservative external sensitivity anchor (not a strict upper bound), scoped to MRSA.
 - De Jong denominators: **sufficient** (10 cohorts with recoverable count+n ≥ the ~10
   threshold). One study dropped (Ikeuchi 2021, Tokyo — colonization/infection mixed, no
   clean count); infection-only studies excluded (no colonization denominator).

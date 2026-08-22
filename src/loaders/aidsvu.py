@@ -8,7 +8,7 @@ tidy state-year frame:
     prep_rate_stability, male_prep_rate_stability,
     pnr, male_pnr
 
-File quirks handled (see CLAUDE.md and tests/test_aidsvu_loader.py):
+File quirks handled (see tests/test_aidsvu_loader.py):
   * header junk in rows 1-3; the real header is row 4, data start row 5.
   * column names carry embedded newlines, e.g. 'State\\nPrEP\\nRate'.
   * suppressed / unavailable values are negative sentinels. AIDSVu uses several

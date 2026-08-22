@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch-and-verify the AIDSVu State PrEP / PnR inputs.
+"""Verify the AIDSVu State PrEP / PnR inputs (download them manually first).
 
 The AIDSVu State-level datasets are **not redistributed** in this repository or its Zenodo
 deposit (they are IQVIA-sourced and carry an "All Rights Reserved" notice; see
@@ -13,8 +13,8 @@ Source (portal, not a stable direct link per file):
 Retrieved for this study: 2026-05-25 (encoded in each filename's _20260525 suffix).
 
 Usage:
-    python3 scripts/fetch_aidsvu.py            # verify present files against the hashes
-    python3 scripts/fetch_aidsvu.py --list     # print the exact files + hashes needed
+    python3 scripts/verify_aidsvu.py           # verify present files against the hashes
+    python3 scripts/verify_aidsvu.py --list    # print the exact files + hashes needed
 
 Exit 0 iff every required file is present and matches its recorded SHA-256. Otherwise it
 lists what is missing/mismatched with download instructions and exits non-zero.

@@ -27,10 +27,13 @@ RR 1.42. Either way, none are.
 | doxypep_us | month12 | all_participants_swabbed | 5/111 | 2/51 | 4% | 5.05 | 10% | 2% |
 
 Every cell's minimum detectable RR (**3.8–5.1**) sits above **both** the matched
-2.25 and the cross-organism 1.42 — so the primary trials are
-structurally underpowered for the bystander endpoint regardless of which benchmark
-a reviewer prefers. This is the Stream A leg: the trials measured *S. aureus*
-non-uniformly and at sample sizes that cannot support inference.
+2.25 and the cross-organism 1.42 — so the 2023 interim CROSS-SECTIONAL
+comparisons were underpowered for the prespecified resistance benchmarks. This explains why
+the interim presentation read as non-informative; it does NOT apply to the 2025
+participant-level time-to-event analysis (Luetkemeyer 2025), which detected the signal
+(incident doxy-R *S. aureus*, HR 3.89, 95% CI 1.42-10.68). The Stream A point is that the
+interim cross-sectional estimand was inadequate to a signal the incidence estimand later
+resolved — not that the trial could never support inference.
 
 Methods language to carry into the manuscript verbatim: *"a design-based
 sensitivity analysis (not observed power): the minimum detectable effect and the

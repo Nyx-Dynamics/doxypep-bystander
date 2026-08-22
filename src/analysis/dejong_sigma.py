@@ -15,15 +15,16 @@ profile-likelihood confidence interval on sigma. The zeros (0/104, 0/300, 0/211,
 fudge on the logit is used for the fit.
 
 WHAT THIS LICENSES (guard rail). sigma-hat here is the dispersion an MRSA prevalence
-endpoint must work against in this population. It is an UPPER BOUND on transmission
-clustering: the cohorts differ in assay, site, and risk stratum (0% general MSM up to
-54% chemsex-PLWH conditional on infection), and ten colonisation cohorts cannot partition
-methodological heterogeneity from genuine clustering. So the claim is NOT "MRSA
+endpoint must work against in this population. It is a deliberately CONSERVATIVE EXTERNAL
+SENSITIVITY ANCHOR for the scale of heterogeneity — not an estimate of the trial's
+between-visit variance: the cohorts differ in assay, site, and risk stratum (0% general MSM
+up to 54% chemsex-PLWH conditional on infection), and ten colonisation cohorts cannot
+partition methodological heterogeneity from genuine clustering. So the claim is NOT "MRSA
 transmission clusters with sigma = X." It is "the documented dispersion is not small —
 its lower confidence bound already sits in the regime where the naive cross-sectional
-trend test's Type-I error reaches 20-48% (`coverage_null.py`)." That is all the
-argument needs, and it is robust to the upper-bound caveat because it rests on the
-LOWER bound of sigma-hat. Do NOT let this sigma become an S. aureus sigma — that would
+trend test's Type-I error is well above nominal (~67% at the CI lower bound, rising to ~87%;
+`coverage_null.py`)." That is all the argument needs, and it rests on the LOWER bound of
+sigma-hat, so it does not depend on treating the anchor as a strict bound. Do NOT let this sigma become an S. aureus sigma — that would
 repeat the MRSA/S. aureus nesting error in a new place.
 """
 from __future__ import annotations
@@ -174,12 +175,13 @@ the primary set. The estimate is stable to dropping the 54% outlier
 (σ̂ = {no_cond['sigma']:.2f}) and to restricting to general-MSM screens
 (σ̂ = {msm_only['sigma']:.2f}).
 
-**What this licenses.** σ̂ is an UPPER BOUND on transmission clustering — the cohorts
+**What this licenses.** σ̂ is a deliberately conservative external sensitivity anchor for the
+scale of heterogeneity — not an estimate of the trial's between-visit variance. The cohorts
 differ in assay, site, and risk stratum, and ten colonisation cohorts cannot separate
 methodological heterogeneity from genuine clustering. The load-bearing claim rests on the **lower**
 confidence bound, not the point estimate: even σ = {full['ci'][0]:.2f} is far into the
-regime where the naive cross-sectional trend test's Type-I error is 20–48%
-(`coverage_null_result.md`). So the documented dispersion of the MRSA colonization
+regime where the naive cross-sectional trend test's Type-I error is well above nominal
+(~67% at this lower bound, rising to ~87% across the de Jong 95% CI; `coverage_null_result.md`). So the documented dispersion of the MRSA colonization
 endpoint is *not small* — sufficient to place the mean-based trend test in its degraded
 regime — which is all the detectability argument requires. This σ is for MRSA
 colonization overdispersion and licenses a statement about the **MRSA** endpoint only;

@@ -9,6 +9,7 @@ __pycache__/
 # processed panels committed only if small — decide per file, so ignore by default
 data/processed/*.parquet
 .venv/
+.venv-lock/
 
 # LaTeX build artifacts
 paper/*.aux

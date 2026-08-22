@@ -7,8 +7,7 @@ section). The builder raises on a missing locator; it does not emit a null.**
 
 Coding is single-coder for the first pass; 20% is double-coded and agreement
 reported in Phase F (`src/analysis/reliability.py`). Re-verify every field against
-the source PDF at a locator — do not trust any external summary, including
-CLAUDE.md's "Verified guideline findings."
+the source PDF at a locator — do not trust any external summary.
 
 ## Coded value format
 
@@ -27,9 +26,9 @@ document). `partial` requires a `note` explaining the boundary.
 
 ## Stream B — guideline schema
 
-**Superseded by `STREAM_B_HANDOFF.md` + `src/coding/schema_guideline.py` (v2).**
-Scope is now governmental public-health authorities only; the schema is the richer
-field set in the handoff (bystander_treatment, s_aureus_location,
+**Schema and sampling frame in `METHODS_streamB.md` + `src/coding/schema_guideline.py`.**
+Scope is governmental public-health authorities only; the schema is the richer
+field set (bystander_treatment, s_aureus_location,
 in_category_monitoring vs s_aureus_monitoring vs host_toxicity_labs, derived_from
 lineage, institutional-memory pairing). The v1 5-field schema below is retained
 for history; v1 coded records live in `data/raw/coding/superseded_streamb_v1/`.

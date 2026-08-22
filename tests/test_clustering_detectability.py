@@ -7,6 +7,9 @@ from pathlib import Path
 import numpy as np
 import pytest
 
+# whole module is computationally heavy — see pytest.ini 'slow' marker
+pytestmark = pytest.mark.slow
+
 from src.analysis import coverage_null as C
 from src.analysis import three_outbreak_fit as T
 

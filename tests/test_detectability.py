@@ -2,6 +2,9 @@
 cross-trial mechanism-blindness view."""
 import pytest
 
+# whole module is computationally heavy — see pytest.ini 'slow' marker
+pytestmark = pytest.mark.slow
+
 from src.analysis import detectability as D
 from src.analysis import observations as O
 from src.coding.schema_trial import load_trial

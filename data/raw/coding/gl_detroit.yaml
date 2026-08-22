@@ -1,4 +1,4 @@
-# Stream B v2 — governmental. First-pass (claude-firstpass); needs PI verification.
+# Stream B — governmental. Double-coded (blind 2nd pass) + PI-verified 2026-08-22 (see outputs/reliability_result.md).
 unit: detroit_pubhealth_2022
 jurisdiction_level: city
 issuing_body: "Detroit Public Health STD Clinic (Detroit Health Department)"
@@ -31,7 +31,7 @@ counselling_language_locator: "IV Counseling Messages"
 
 derived_from: "San Francisco City Clinic — 'The protocol proposed here has been adapted from the San Francisco [City Clinic]'"
 local_mrsa_msm_literature: null
-literature_search_provenance: "Not independently searched as of 2026-08-19; Detroit not in the STREAM_B_HANDOFF verified-pairings table. Flagged for AC."
+literature_search_provenance: "Detroit is a NON-outbreak jurisdiction (not in de Jong 2025 Table 1), retained under a distinct high-exposure rationale OUTSIDE the purposive outbreak denominator, so no local-cluster anchoring applies. See outputs/streamb_denominator_reconciliation.md. Resolved 2026-08-22."
 same_institution_authored_both: "no"
 
 note: >-

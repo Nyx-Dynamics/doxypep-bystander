@@ -1,4 +1,4 @@
-# Stream B v2 — governmental. First-pass (claude-firstpass); needs PI verification.
+# Stream B — governmental. Double-coded (blind 2nd pass) + PI-verified 2026-08-22 (see outputs/reliability_result.md).
 unit: maryland_doh_2024
 jurisdiction_level: state
 issuing_body: "Maryland Department of Health, Center for STI Prevention"

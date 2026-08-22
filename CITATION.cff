@@ -4,7 +4,11 @@ title: "Monitoring That the Instrument Cannot Provide: Measurement Inheritance a
 abstract: >-
   Complete computational research compendium (code, coded data, and manuscript) supporting
   the measurement-inheritance analysis of doxy-PEP and bystander tetracycline-resistant
-  Staphylococcus aureus. Contains no participant-level trial data.
+  Staphylococcus aureus. Contains no participant-level trial data. Licensing is
+  content-specific: the SOFTWARE (src/, tests/, scripts/, Makefile) is MIT (LICENSE-CODE);
+  the manuscript TEXT and figures are CC BY 4.0 (LICENSE-TEXT); externally-sourced third-party
+  inputs are neither relicensed nor redistributed (see THIRD_PARTY_DATA.md). The `license`
+  field below is the SOFTWARE license.
 type: software
 authors:
   - family-names: Demidont
@@ -13,7 +17,7 @@ authors:
     affiliation: "Nyx Dynamics, LLC, Fairfield, CT, USA; and Nyx Institute for Computational Medicine, Philadelphia, PA, USA"
     email: acdemidont@nyxdynamics.org
 version: "1.0.0"
-date-released: "2026-08-21"
+date-released: "2026-08-22"
 license: MIT
 license-url: "https://github.com/Nyx-Dynamics/doxypep-bystander/blob/main/LICENSE-CODE"
 repository-code: "https://github.com/Nyx-Dynamics/doxypep-bystander"

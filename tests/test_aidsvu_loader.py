@@ -1,6 +1,6 @@
 """Tests for the AIDSVu loader — written BEFORE the implementation.
 
-These pin the file quirks documented in CLAUDE.md and discovered on inspection:
+These pin the file quirks documented in the loader docstring and discovered on inspection:
   * header junk in rows 1-3, real header on row 4, data from row 5
   * column names carry embedded newlines, e.g. 'State\\nPrEP\\nRate'
   * suppressed / unavailable values are coded as negative sentinels

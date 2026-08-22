@@ -24,9 +24,9 @@ and is not redistributed here.
   from *downloading them for analysis*. We therefore **exclude** the XLSX from this repository
   and its Zenodo deposit and instead ship the source portal URL, retrieval date, exact
   filenames, byte sizes, and SHA-256 hashes (`data/raw/aidsvu/SOURCES.md` + `CHECKSUMS.md`)
-  with a **fetch-and-verify script** (`scripts/fetch_aidsvu.py`) — mirroring how the publisher
+  with a **verify script** (`scripts/verify_aidsvu.py`; download the files from AIDSVu first) — mirroring how the publisher
   PDFs are handled, and fully reproducible for anyone who downloads AIDSVu themselves.
-  `make all` requires these files to be fetched and verified first.
+  `make all` requires these files to be downloaded and verified first.
 
 ## Authored here (covered by the repository licenses)
 

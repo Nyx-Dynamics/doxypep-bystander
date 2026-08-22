@@ -1,6 +1,6 @@
 """Phase 0 feasibility gate — the dilution calculation.
 
-The question (CLAUDE.md, "Phase 0 is a gate, not a warm-up"): before acquiring
+The question (the feasibility gate; see DECISIONS.md): before acquiring
 any outcome data, what fraction of a state's *S. aureus* isolates could
 plausibly originate from doxy-PEP-exposed people, and what within-exposed effect
 would be needed to move the *state-level* tetracycline non-susceptibility rate
@@ -420,7 +420,7 @@ coding the paper criticises). Both widen the margin above {RR_SOGE}.
 
 ## Decision
 
-Per CLAUDE.md's kill criterion, the state-level ecological design **cannot detect
+Per the feasibility kill criterion (DECISIONS.md), the state-level ecological design **cannot detect
 this signal** and is abandoned as the primary design. The project pivots to
 **metro-level** analysis (SF, King County, LA, NYC), where uptake density is far
 higher — shrinking the denominator in eq. (2) and raising `f` — and where King

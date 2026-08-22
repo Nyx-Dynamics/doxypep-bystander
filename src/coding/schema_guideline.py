@@ -1,4 +1,4 @@
-"""Stream B schema v2 — governmental doxy-PEP guidelines (STREAM_B_HANDOFF.md).
+"""Stream B schema — governmental doxy-PEP guidelines (see METHODS_streamB.md).
 
 Supersedes the v1 5-field GuidelineRecord. The thesis is an asymmetry WITHIN a
 single artifact: S. aureus is discussed / counselled / unmeasured while
