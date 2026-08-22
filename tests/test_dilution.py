@@ -8,6 +8,10 @@ import pytest
 
 from src.feasibility import dilution as D
 
+_AIDSVU = D.Path(__file__).resolve().parents[1] / "data/raw/aidsvu"
+# skip AIDSVu-dependent tests when the (gitignored, not-redistributed) XLSX are absent
+HAVE_AIDSVU = _AIDSVU.exists() and any(_AIDSVU.glob("*.xlsx"))
+
 
 # --------------------------------------------------------------------------- #
 # algebra                                                                      #
@@ -89,8 +93,8 @@ def test_panel_effective_n_and_mde():
 
 
 @pytest.mark.skipif(
-    not (D.Path(__file__).resolve().parents[1] / "data/raw/aidsvu").exists(),
-    reason="raw AIDSVu data not present")
+    not HAVE_AIDSVU,
+    reason="AIDSVu XLSX not present (download + verify_aidsvu.py)")
 def test_panel_power_matches_preregistered_prediction():
     """DECISIONS.md (Phase A) predicted, before running: (a) the realistic cell
     stays > Soge's 1.42 across every design effect; (b) the best cell falls below
@@ -107,8 +111,8 @@ def test_panel_power_matches_preregistered_prediction():
 
 
 @pytest.mark.skipif(
-    not (D.Path(__file__).resolve().parents[1] / "data/raw/aidsvu").exists(),
-    reason="raw AIDSVu data not present")
+    not HAVE_AIDSVU,
+    reason="AIDSVu XLSX not present (download + verify_aidsvu.py)")
 def test_real_state_gate_fails_decisively():
     """Documented expectation: the state-level design is infeasible. Even the
     best-case required RR should dwarf Soge's 1.42."""

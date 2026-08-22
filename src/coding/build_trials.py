@@ -41,8 +41,10 @@ def _write_report(records, obs, disc, relab, mech, prim, root):
     md = f"""# Stream A result — the same result, reported many ways
 
 {n_trials} trial(s) coded; {n_obs} resistance observations (one per *reported
-instance*). First-pass coding (`claude-firstpass`); needs PI verification +
-double-coding (Phase F). See `data/processed/trial_observations.csv`.
+instance*). PI-verified (2026-08-22); the interim DoxyPEP coding is cross-checked against
+the NEJM appendix, and the *S. aureus* endpoint is superseded by the trial's final analysis
+(Luetkemeyer 2025, coded in `data/raw/coding/luetkemeyer2025_saureus_final.yaml`).
+See `data/processed/trial_observations.csv`.
 
 ## Denominator discordance
 
@@ -92,11 +94,12 @@ denominator**: NEJM reports no methicillin breakdown, so the only MRSA numbers
 re-tabulation of the same data) / the CROI 2023 abstract — not the primary
 publication. MRSA rows in the primary-trial detectability set: **{len(mrsa_primary)}**.
 
-Note (high-scrutiny): the CDC MMWR S. aureus figures (20/428 -> 28/222) are coded
-as UNRESOLVED, not as a reconciliation failure — the assay/provenance
-(NEJM doxycycline ETEST vs CROI) and the analysis population behind those
-denominators are not yet established. See the CDC observations' notes; resolve
-before any manuscript use.
+Note: the CDC MMWR S. aureus figures (20/428 -> 28/222) are the CROI all-swabbed panel
+(doxycycline ETEST, relabelled "tetracycline"); provenance and analysis population are
+established. The cross-venue 5/16/28 spread is presented in the manuscript's Stream A
+results as a documented reporting-evolution exhibit (with a reconciliation table), and is
+superseded for the biological claim by the trial's final randomised incidence analysis
+(HR 3.89). See the CDC observations' notes.
 
 ## Gate
 

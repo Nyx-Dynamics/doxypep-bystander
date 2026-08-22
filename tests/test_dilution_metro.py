@@ -4,6 +4,10 @@ import pytest
 from src.feasibility import dilution_metro as M
 from src.feasibility import dilution as D
 
+_AIDSVU = M.Path(__file__).resolve().parents[1] / "data/raw/aidsvu"
+# skip AIDSVu-dependent tests when the (gitignored, not-redistributed) XLSX are absent
+HAVE_AIDSVU = _AIDSVU.exists() and any(_AIDSVU.glob("*.xlsx"))
+
 
 def test_required_f_inverts_rr_needed():
     """f_required is exactly the f at which RR_needed == RR_SOGE."""
@@ -27,8 +31,8 @@ def test_required_rate_falls_with_enrichment_and_isolates():
 
 
 @pytest.mark.skipif(
-    not (M.Path(__file__).resolve().parents[1] / "data/raw/aidsvu").exists(),
-    reason="raw AIDSVu data not present")
+    not HAVE_AIDSVU,
+    reason="AIDSVu XLSX not present (download + verify_aidsvu.py)")
 def test_real_metro_gate_fails_and_dc_is_densest():
     root = M.Path(__file__).resolve().parents[1]
     df = M.load_aidsvu(root / "data/raw/aidsvu")
@@ -51,8 +55,8 @@ def test_male_fraction_is_a_real_parameter():
 
 
 @pytest.mark.skipif(
-    not (M.Path(__file__).resolve().parents[1] / "data/raw/aidsvu").exists(),
-    reason="raw AIDSVu data not present")
+    not HAVE_AIDSVU,
+    reason="AIDSVu XLSX not present (download + verify_aidsvu.py)")
 def test_robustness_verdict_holds_at_realistic_ceilings():
     """At any realistic metro density (<= 2x the densest US geography) and male
     fraction <= 0.5, achievable-cell count stays 0 — the negative verdict is not
@@ -70,8 +74,8 @@ def test_robustness_verdict_holds_at_realistic_ceilings():
 
 
 @pytest.mark.skipif(
-    not (M.Path(__file__).resolve().parents[1] / "data/raw/aidsvu").exists(),
-    reason="raw AIDSVu data not present")
+    not HAVE_AIDSVU,
+    reason="AIDSVu XLSX not present (download + verify_aidsvu.py)")
 def test_any_openable_cell_requires_fantastical_isolate_volume():
     """Every cell that becomes 'achievable' even when granted 5x D.C. density
     sits at the maximum (fantastical) isolate volume and elevated enrichment —
@@ -86,8 +90,8 @@ def test_any_openable_cell_requires_fantastical_isolate_volume():
 
 
 @pytest.mark.skipif(
-    not (M.Path(__file__).resolve().parents[1] / "data/raw/aidsvu").exists(),
-    reason="raw AIDSVu data not present")
+    not HAVE_AIDSVU,
+    reason="AIDSVu XLSX not present (download + verify_aidsvu.py)")
 def test_breakeven_impossible_under_realistic_isolate_volume():
     """Under realistic N and proportional sampling, detection would need >100%
     of adult males on PrEP — physically impossible, proxy-free."""

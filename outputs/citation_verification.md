@@ -10,7 +10,7 @@ off-corpus entries). 2 off-corpus (diep2008, sfdph2022) resolved via web. Verdic
 work, not this S. aureus manuscript): `harrison1979`, `lopezbernal2018`, `miko2012`,
 `schroder2025`, `spinelli2026`, `demidont2026cid`; and the companion `demidont2026metaarxiv`
 "150-journal audit" (removed with its §2.6 in-text citation). The bib is now **closed**:
-**15 entries, every one cited, every citation resolved, no undefined citations** (citeproc
+**16 entries, every one cited, every citation resolved, no undefined citations** (citeproc
 clean). A stale "cite the CID letter" instruction and the bib header's "verified against the
 companion CID correspondence" line were removed.
 
@@ -19,6 +19,7 @@ companion CID correspondence" line were removed.
 | key | claims checked | verdict | action |
 |---|---|---|---|
 | luetkemeyer2023 (NEJM) | efficacy; 5-of-31 appendix count; data withheld; doxycycline assay | **supported** (4/4) | none |
+| **luetkemeyer2025 (Lancet ID, FINAL)** | randomised incident doxy-R *S. aureus* **HR 3.89 (95% CI 1.42–10.68), p=0.0044** (68/393 vs 5/163, Fig 4B, p.880); colonisation-clearance **HR 1.01 (0.69–1.46), p=0.98** (Fig 4A); MRSA unchanged; "mixed" effect + call for *S. aureus* AMR surveillance (Discussion/Conclusion, p.881–882) | **supported** (verified verbatim against the PDF; coded in `luetkemeyer2025_saureus_final.yaml`) | none |
 | cdc2024doxypep | recommends; "monitored" quote; "tetracycline resistance in S. aureus"; 5%→13% [20/428→28/222]; names S. aureus | **supported** (5/5) | bib title fuller (below) |
 | soge2025 | 18% vs 8% P<.0001; RR 1.42 (>3 doses GC); any-use RR 1.14/1.16; median 3 (IQR 2–6) | **supported** | none — see note |
 | dejong2025 | 18 studies; 0–54%; 3 clusters SF/Tokyo/Chicago; MSM not itself a risk factor | **supported** (4/4) | none |
@@ -28,9 +29,9 @@ companion CID correspondence" line were removed.
 | dona2026 | n=36; MRSA selection 91.7%, tied-highest with GC resistance | **supported** | none |
 | vanderlinden1998 | IDR 4.4 co-trimoxazole vs tetracyclines, highest of classes | **supported** | none |
 | molina2023croi | DOXYVAC MRSA carriage 1.8/3.6/6.4/5.7/9.9 & 1.2/2.7/7.1/2.1/5.1, cross at M6 | **supported** | none (transcript-sourced) |
-| luetkemeyer2023croi | doxy-R MRSA low/unchanged; 16/137 at M12; "surveillance…needed" | **partial** | tighten "~6%" wording |
+| luetkemeyer2023croi | doxy-R MRSA low/unchanged; 16/137 at M12; "surveillance…needed" | **supported** (resolved 2026-08-22) | "~6%" wording corrected to MRSA carriage prevalence |
 | diep2008 | USA300 MDR MRSA in MSM, SF (RR 13.2 male-male sex) | **supported** (PubMed) | bib-note nit |
-| grossman2016 | tet(K) efflux / tet(M) ribosomal; tetracycline-scored phenotype ambiguous | **partial** | soften one attribution |
+| grossman2016 | tet(K) efflux / tet(M) ribosomal; tetracycline-scored phenotype ambiguous | **supported** (resolved 2026-08-22) | "does not wash back out" recast as inference from tet(M) stability |
 | sfdph2022 | SF issued municipal doxy-PEP guidance | **fix** (real doc, wrong title) | update bib entry |
 | aidsvu | PrEP density exposure proxy | **supported** | none |
 | ~~demidont2026metaarxiv~~ | 150-journal audit | **removed** | stripped (§2.6 clause + cite) |

@@ -68,8 +68,8 @@ def _write_report(records, df, flagged, asym, root):
 guideline requires *S. aureus* monitoring.** ({n} units coded; see
 `data/processed/guidelines_coded.csv`.)
 
-First-pass coding (coder `claude-firstpass`) from the source PDFs with a locator
-and quote per field; needs PI verification and 20% double-coding (Phase F).
+Coded from the source PDFs with a locator and quote per field; PI-verified (2026-08-22)
+and double-coded (20% blind second pass; 92% agreement — `outputs/reliability_result.md`).
 
 ## The degenerate case, quantified
 
