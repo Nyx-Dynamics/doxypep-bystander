@@ -1,7 +1,6 @@
 ---
 title: "Monitoring That the Instrument Cannot Provide: Measurement Inheritance and Tetracycline-Resistant *Staphylococcus aureus* in Doxycycline Post-Exposure Prophylaxis"
-author:
-  - Adrian C. Demidont, DO^[Nyx Dynamics, LLC, Fairfield, CT, USA; and Nyx Institute for Computational Medicine, Philadelphia, PA, USA. ORCID https://orcid.org/0000-0002-9216-8569. Correspondence: acdemidont@nyxdynamics.org]
+author: "Adrian C. Demidont, DO^[Nyx Dynamics, LLC, Fairfield, CT, USA; and Nyx Institute for Computational Medicine, Philadelphia, PA, USA. ORCID https://orcid.org/0000-0002-9216-8569. Correspondence: acdemidont@nyxdynamics.org]"
 date: 2026-08-21
 bibliography: references.bib
 csl: plos.csl

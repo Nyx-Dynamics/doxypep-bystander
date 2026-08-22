@@ -1188,3 +1188,15 @@ Two further rights actions before the public push (PI-directed):
 After this, the public git tree and Zenodo compendium contain NO third-party copyrighted
 binaries or datasets — only our code, coded values (with locators), generated outputs, the
 manuscript, and provenance/hashes for every external input.
+
+## 2026-08-22 — Editable submission formats + author-block bug fix
+
+- **Bug (fixed):** the manuscript YAML `author:` was an UNQUOTED scalar containing
+  "Correspondence: " (colon-space), which YAML mis-parses and pandoc coerced to `\author{true}`
+  — so the author name rendered NOWHERE in the built PDF (and .tex/.docx). Quoting the scalar
+  fixes it; the PDF now shows "Adrian C. Demidont, DO" + the affiliation footnote. This
+  affected the v1.0.0 PDF/deposit — re-cut after the fix.
+- **Editable submission sources:** added `make tex` (standalone LaTeX + natbib, pairs with
+  paper/references.bib) and `make docx` (citeproc + plos.csl, numbered refs baked, figures
+  embedded). Both regenerable; gitignored like the PDF. PLoS accepts LaTeX+.bib or .docx;
+  medRxiv takes the PDF.

@@ -3,7 +3,7 @@
 
 PY := python3
 
-.PHONY: all test loader feasibility guidelines trials reliability literature pdf bundle deposit clean
+.PHONY: all test loader feasibility guidelines trials reliability literature pdf tex docx bundle deposit clean
 
 all: test feasibility guidelines trials literature
 	$(PY) -m src.analysis.streamc_linkage
@@ -64,6 +64,22 @@ pdf:
 	  --resource-path=paper:. -H paper/preamble.tex --pdf-engine=pdflatex \
 	  -o paper/manuscript.pdf
 	@echo "wrote paper/manuscript.pdf"
+
+# Editable LaTeX source for journal submission (PLoS accepts LaTeX + .bib). natbib citations
+# pair with paper/references.bib; compile with pdflatex + bibtex. Set the .bst at submission.
+tex:
+	pandoc paper/manuscript.md --standalone --natbib \
+	  --bibliography=paper/references.bib --resource-path=paper:. \
+	  -o paper/manuscript.tex
+	@echo "wrote paper/manuscript.tex (compile: pdflatex/bibtex; uses paper/references.bib)"
+
+# Editable Word source (PLoS also accepts .docx). PLoS numbered references baked in via
+# citeproc + plos.csl; figures embedded. Most reviewer-portable editable format.
+docx:
+	pandoc paper/manuscript.md --citeproc --csl=paper/plos.csl \
+	  --bibliography=paper/references.bib --resource-path=paper:. \
+	  -o paper/manuscript.docx
+	@echo "wrote paper/manuscript.docx (editable; PLoS numbered refs baked in, figures embedded)"
 
 # --- Deposit archives -------------------------------------------------------- #
 # Two artifacts:
