@@ -44,7 +44,7 @@ timeliness is unusual: the enabling trial result appeared in 2025, and the surve
 it exposes is live.
 
 **Reproducibility.** Every number, table, and figure regenerates from public data by one
-command (`make all`) over a test-gated pipeline (116 unit tests). Each coded value carries a
+command (`make all`) over a test-gated pipeline (the complete pytest suite). Each coded value carries a
 page or table locator, and the builder fails rather than emit an unlocated value. Analysis
 decisions were logged, with dates, before results were known. The full repository — code,
 coded source data, and this manuscript — is openly available on GitHub and archived at

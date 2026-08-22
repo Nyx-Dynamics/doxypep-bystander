@@ -1,0 +1,24 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 Adrian C. Demidont
+
+SPDX-License-Identifier: CC-BY-4.0
+
+Applies to the CREATIVE/TEXT content authored for this work: the manuscript
+(paper/manuscript.md and the built paper/manuscript.pdf), the figures generated
+under outputs/figures/, and the prose documentation authored here (README, CODEBOOK*,
+METHODS_streamB.md, DECISIONS.md, REPRODUCIBILITY.md). It does NOT apply to the
+software (see LICENSE-CODE) or to third-party source data (see THIRD_PARTY_DATA.md).
+
+You are free to Share (copy and redistribute in any medium or format) and Adapt
+(remix, transform, and build upon the material) for any purpose, even commercially,
+under the following term:
+
+  Attribution — You must give appropriate credit, provide a link to the license,
+  and indicate if changes were made. You may do so in any reasonable manner, but
+  not in any way that suggests the licensor endorses you or your use.
+
+The full legal code is at: https://creativecommons.org/licenses/by/4.0/legalcode
+A human-readable summary is at: https://creativecommons.org/licenses/by/4.0/
+
+Suggested citation is in CITATION.cff.

@@ -19,6 +19,7 @@ paper/*.pdf
 # deposit build artifacts — regenerable via `make bundle` / `make deposit`
 submission/*.tar.gz
 submission/*.sha256
+/CHECKSUMS.sha256
 
 # copyrighted third-party source PDFs/DOCX — NOT for a public repo. Provenance travels via
 # data/raw/**/CHECKSUMS.md + SOURCES.md; analysis reads coded YAML, not the PDFs.

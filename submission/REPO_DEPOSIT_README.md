@@ -9,7 +9,7 @@ Zenodo-citable snapshot that the manuscript's data-and-code-availability stateme
 
 ```
 pip install -r requirements.txt      # Python 3.11; pandas, statsmodels, scipy, matplotlib
-make all                             # test-gated: 116 unit tests, then regenerate every output/figure
+make all                             # test-gated: the complete pytest suite, then regenerate every output/figure
 make pdf                             # rebuild paper/manuscript.pdf (needs pandoc + pdflatex)
 ```
 

@@ -136,8 +136,9 @@ distinct quantities. Colonisation fell in the doxy-PEP arm, from 44% at baseline
 at twelve months — unsurprising for an active anti-staphylococcal drug. Doxycycline
 resistance among cultured isolates rose several-fold — from 3.6% to 11.7% over all swabbed,
 or, recomputed per carrier, from 8.5% to 40% (the Stream A results) — while the standard-of-care arm fell,
-a between-arms divergence in the direction of selection. And doxycycline resistance within the methicillin-resistant subset — itself
-roughly 6% of isolates — stayed low and did not change [@luetkemeyer2023croi]. The trial's
+a between-arms divergence in the direction of selection. And doxycycline resistance within the methicillin-resistant subset — MRSA
+colonisation being about 6% of sampled participants — stayed low and did not change
+[@luetkemeyer2023croi]. The trial's
 summary foregrounded the last of these: MRSA resistance low and unchanged. The
 reassurance is assembled by narrowing from *S. aureus*, in which resistance to
 doxycycline doubled, to the small methicillin-resistant fraction, in which it did not.
@@ -158,10 +159,12 @@ in throat swabs runs 1.8, 3.6, 6.4, 5.7, and 9.9% across visits in the doxy-PEP 
 no-PEP arm lurching 1.2, 2.7, 7.1, 2.1, and 5.1%, the two crossing at month six
 [@molina2023croi; @vanbaelen2024c]. This is what a clustering organism looks like when a
 prevalence snapshot is the instrument: non-monotone, arm-crossing, uninterpretable at
-any single visit. The resistance fraction, by contrast, does not swing — it accumulates,
-because once *tetM* is selected into the population it does not wash back out the way a
-colonisation proportion does. The trial's final analysis draws exactly this line: no effect
-on clearing carriage, a significant increase in incident resistance (the Stream A results). The carriage
+any single visit. The resistance fraction, by contrast, does not swing — it accumulates:
+because *tetM* is a molecularly stable, mobile determinant [@grossman2016], a resistant
+fraction it establishes would be expected to persist rather than wash back out the way a
+colonisation proportion does — an inference from the determinant's biology, not a measured
+population dynamic. The trial's final analysis draws exactly this line: no effect on clearing
+carriage, a significant increase in incident resistance (the Stream A results). The carriage
 measures oscillate as clustered transmission dictates; the resistance measure accumulates as
 selection dictates. A between-arms contrast at one visit, or a twelve-month prevalence read as a
 level, is structurally blind to the first and demotes the second. What the trials
@@ -394,8 +397,8 @@ over which it is divided. We had used that per-carrier reconstruction to argue t
 all-swabbed framing understated the change; we retain it now only as an exhibit of
 denominator sensitivity, because the selection it was reaching for is established directly,
 at participant level, by the randomised incidence analysis above — HR 3.89, which needs no
-reconstruction. Doxycycline resistance within the MRSA subset — itself ~6% of isolates —
-stayed low and did not change; the interim summary foregrounded exactly that third endpoint
+reconstruction. Doxycycline resistance within the MRSA subset — MRSA colonisation about 6% of sampled
+participants — stayed low and did not change; the interim summary foregrounded exactly that third endpoint
 (*"MRSA prevalence was low … and doxy-R MRSA was unchanged"*, both clauses true), assembling
 reassurance by narrowing from *S. aureus*, where resistance was accumulating, to the small
 subset where it was not. DOXYVAC demoted the same kind of signal by the other route,

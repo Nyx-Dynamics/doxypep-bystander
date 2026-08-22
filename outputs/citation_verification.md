@@ -100,11 +100,14 @@ into this bib and have been **removed** — this manuscript's unit is *S. aureus
 reference list is now scoped accordingly. (Two inconsistent IDs — CID-S-26-03420 vs
 CID-132517 — had appeared for the correspondence; both are now out of this repo.)
 
-## Remaining open items (manuscript prose — held for PI sign-off)
+## Remaining open items (manuscript prose)
 
-Two claim-support tightenings still pending, both light manuscript-prose edits:
-- **grossman2016** — reframe the standalone "does not wash back out" sentence as an
-  inference from tet(M) stability (Grossman supports the mechanism, not the population
-  dynamics).
-- **luetkemeyer2023croi** — tighten the "~6% of isolates" wording (it is MRSA carriage
-  prevalence, not the doxy-R-within-MRSA rate) at two spots.
+Both claim-support tightenings **RESOLVED 2026-08-21** (pre-Zenodo freeze):
+- **grossman2016** — the "does not wash back out" sentence is now cast as an explicit
+  inference from tet(M) molecular stability/mobility ("an inference from the determinant's
+  biology, not a measured population dynamic"), which is what Grossman supports.
+- **luetkemeyer2023croi** — the "~6% of isolates" wording is corrected at both spots to
+  "MRSA colonisation about 6% of sampled participants" (carriage prevalence, not the
+  doxy-R-within-MRSA rate).
+
+No open claim-support items remain.

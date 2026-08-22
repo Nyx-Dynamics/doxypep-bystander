@@ -20,8 +20,8 @@ make pdf       # builds paper/manuscript.pdf (pandoc + citeproc + pdflatex)
 ```
 
 Environment: Python 3.11 (pandas, statsmodels, scipy, matplotlib), pandoc + a TeX Live
-`pdflatex`. No proprietary dependencies; no restricted-access data. `make all` runs 116
-unit tests before regenerating outputs. Analysis decisions were logged with dates in
+`pdflatex`. No proprietary dependencies; no restricted-access data. `make all` runs the
+complete pytest suite before regenerating outputs. Analysis decisions were logged with dates in
 `DECISIONS.md` **before** results were known.
 
 ## Claim → artifact map

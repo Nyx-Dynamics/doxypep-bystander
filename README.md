@@ -1,69 +1,68 @@
 # doxypep-bystander
 
-Ecological analysis: is population-level doxycycline post-exposure prophylaxis
-(doxy-PEP) uptake associated with rising **tetracycline-resistant
-*Staphylococcus aureus*** — the bystander organism outside the STI-surveillance
-frame — and is any surveillance system even instrumented to detect it?
+**Signal → Mandate → Measurement Inheritance.** A reproducible research compendium asking
+whether the systems built around doxycycline post-exposure prophylaxis (doxy-PEP) can
+*follow* a bystander antimicrobial-resistance signal the pivotal trial has now detected.
 
-PI: Adrian C. Demidont, DO — Nyx Institute for Computational Medicine.
-Public data only. See `CLAUDE.md` for the precise claim and hard constraints,
-`SCAFFOLD.md` for build order.
+PI: Adrian C. Demidont, DO — Nyx Dynamics, LLC (Fairfield, CT) and Nyx Institute for
+Computational Medicine (Philadelphia, PA). ORCID 0000-0002-9216-8569.
+Public data only; **no participant-level trial data** are used.
 
-## The link is ecological — two proxy layers
+## The paper
 
-*S. aureus* isolates carry no sexual-behaviour tag. Geographic PrEP density is a
-proxy for doxy-PEP uptake, which is a proxy for cumulative population
-doxycycline-days. No output is written as causal; the strongest phrasing is
-"consistent with."
+The DoxyPEP trial's final analysis (Luetkemeyer et al., *Lancet Infect Dis* 2025;25:873–83)
+reported a randomised, participant-level result: among those free of doxycycline-resistant
+*Staphylococcus aureus* at baseline, doxy-PEP was associated with a **significant increase in
+its incidence — HR 3.89 (95% CI 1.42–10.68)** — with no matching effect on carriage, and its
+authors called for public-health surveillance of exactly this. This compendium asks the
+question that fact raises, across three streams against one yardstick:
 
-## Falsification statement
+- **Stream A — the Signal.** The randomised trial detected the bystander signal (HR 3.89).
+- **Stream B — the Mandate.** The guidelines built on the trial counsel about the harm but
+  require no *S. aureus* measurement — including in every jurisdiction with a documented
+  local CA-MRSA outbreak.
+- **Stream C — the Inheritance.** No deployed US surveillance system links doxy-PEP exposure
+  to an *S. aureus* tetracycline phenotype at a common population denominator; the
+  architecture is standardised around the methicillin axis, and the exposed subgroup is too
+  dilute to move a population rate regardless.
 
-If tetracycline resistance in *S. aureus* is **flat or declining** in
-high-PrEP-density geographies after the guideline interruption, while the three
-negative controls (methicillin resistance, cisgender women, a non-tetracycline
-phenotype) behave, **the hypothesis is wrong and this repo says so.** That is a
-publishable result and it is why the negative controls are mandatory and are
-coded before the primary analysis.
+The upstream instrument generated information the downstream systems are not built to
+receive — a structural gap we call **measurement inheritance**. The paper makes **no
+population-level causal claim**. Manuscript: `paper/manuscript.md` (built PDF
+`paper/manuscript.pdf`), formatted for PLoS Biology (Meta-Research).
+
+## Provenance: how this project began (and why the original design was not run)
+
+The repository began as a **preregistered-*planned* ecological analysis** — testing whether
+population-level doxy-PEP uptake was associated with rising tetracycline-resistant
+*S. aureus*. A Phase-0 feasibility gate was run **before** any outcome data were touched, and
+it **failed**: because the dilution fraction tracks exposure *density* not headcount, the
+exposed subgroup is too dilute to move a population rate at any geographic grain with a
+population denominator (median required within-exposed RR ≈ 14; the metro version needs
+male-PrEP density many times the densest US geography — see
+`outputs/feasibility_result.md`, `outputs/feasibility_metro_result.md`). The ecological
+design was therefore **not executed**, and the preregistration **remained a draft**
+(`PREREGISTRATION.md`) — there is **no timestamped OSF registration**. That negative
+feasibility result is itself Stream C evidence, and it motivated the present
+measurement-inheritance analysis.
 
 ## Reproducibility
 
-Every figure and table regenerates from `make all` with no manual steps. Raw
-data in `data/raw/` is immutable; all cleaning is in code. The primary analysis
-is preregistered (OSF) before any outcome data is touched; this repo ships
-public with both code and data.
+Every figure and table regenerates from public inputs with no manual steps:
 
-## Status
+```
+pip install -r requirements-lock.txt   # exact validated versions
+make all                               # test-gated: full pytest suite, then regenerate outputs
+make pdf                                # build the manuscript PDF (needs pandoc + pdflatex)
+```
 
-**Phase 0 complete — gate FAILED at the state level.** The dilution calculation
-shows the doxy-PEP-exposed subgroup is too dilute inside a whole state's
-*S. aureus* isolate stream: the within-exposed effect needed to move the
-state-level rate detectably exceeds Soge's optimistic RR 1.42 at every plausible
-setting (median required RR ≈ 14; see `outputs/feasibility_result.md`). Per the
-kill criterion the project pivots to **metro-level** — but the **metro gate also
-FAILS** (`outputs/feasibility_metro_result.md`): because the dilution fraction
-tracks exposure *density*, not headcount, detection would require male-PrEP
-density 2.1× to nearly 500× the densest geography that exists in the US
-(Washington D.C.), i.e. more than 100% of males on PrEP under realistic isolate
-volumes. Population-scale
-ecological sampling dilutes the signal below detectability at every grain with a
-population denominator. The only lever that rescues it — high isolate enrichment —
-means **targeted sexual-health-clinic sampling** (a cohort design, not
-ecological). Two forward paths are on the table: a King County/SF clinic cohort
-study, or writing this two-level negative result up as the
-surveillance-infrastructure paper (the measurement-inheritance thesis, made
-quantitative).
+See `REPRODUCIBILITY.md` for the environment and expected runtime, `DECISIONS.md` for the
+dated analysis-decision log, and `CLAUDE.md` for the full internal build/claim constraints.
+Raw data in `data/raw/` is immutable; all cleaning is in code.
 
-The metro result is **hardened**: a robustness sweep shows the verdict is 0/135
-achievable at any realistic metro density (≤2× the densest US geography) and is
-insensitive to the male-fraction assumption; a proxy-free break-even shows
-detection would require an implausible share of *all* adult males on PrEP (325%
-under realistic isolate volumes — impossible; 6.5% even in the fantastical best
-case, vs D.C.'s observed 2.7%). See `outputs/feasibility_metro_result.md`.
+## Licensing & third-party data
 
-**Write-up in progress.** The surveillance-infrastructure / measurement-inheritance
-paper — the empirical demonstration that no existing surveillance system can
-detect the bystander signal — is drafted at `paper/manuscript.md` (with
-`paper/references.bib`). Venue-neutral; every quoted figure regenerates from
-`make all`. Convert with `pandoc paper/manuscript.md --citeproc -o out.docx`.
-Phases 1–3 (outcome-data acquisition and the ITS) remain gated — and, per the
-feasibility result, are not the path forward.
+Code (`src/`, `tests/`, Makefile): **MIT** (`LICENSE-CODE`). Manuscript text and figures:
+**CC BY 4.0** (`LICENSE-TEXT`). Externally-sourced inputs are **not** relicensed — see
+`THIRD_PARTY_DATA.md`: publisher and guideline PDFs are excluded (provenance travels via
+`SOURCES.md` + `CHECKSUMS.md`), and the AIDSVu datasets carry a rights caveat.

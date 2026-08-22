@@ -65,45 +65,57 @@ pdf:
 	  -o paper/manuscript.pdf
 	@echo "wrote paper/manuscript.pdf"
 
-# Deposit bundle — assemble the submission package and checksum it.
-# Depends on a current PDF and figures (run `make pdf` / `make all` first).
-# Writes submission/CHECKSUMS.sha256 and a portable tarball under submission/.
+# --- Deposit archives -------------------------------------------------------- #
+# Two artifacts:
+#   bundle  -> journal submission package (manuscript + submission-facing aids)
+#   deposit -> clean research compendium for Zenodo (reproducibility artifacts only)
+# Both set COPYFILE_DISABLE=1 and exclude AppleDouble (._*/.DS_Store) so macOS extended
+# attributes do not pollute the archive, and NEVER place the tarball's own checksum inside
+# the tarball — the .sha256 is computed AFTER the archive is closed and lives beside it.
+
+# Journal submission package (author-facing; includes the editorial aids).
 bundle:
 	@mkdir -p submission
-	@files="paper/manuscript.pdf paper/manuscript.md paper/references.bib \
-	  paper/preamble.tex \
+	@files="paper/manuscript.pdf paper/manuscript.md paper/references.bib paper/preamble.tex \
+	  paper/plos.csl \
 	  submission/COVER_LETTER.md submission/REVIEWER_GUIDE.md \
 	  submission/RESPONSE_TO_ANTICIPATED_REVIEWS.md submission/VENUE_MATRIX.md \
-	  submission/PANEL_SYNTHESIS.md submission/MANIFEST.md \
-	  submission/REPO_DEPOSIT_README.md \
+	  submission/PANEL_SYNTHESIS.md submission/MANIFEST.md submission/REPO_DEPOSIT_README.md \
 	  DECISIONS.md outputs/gap_register.md outputs/citation_verification.md \
 	  $$(ls outputs/*_result.md) $$(ls outputs/figures/*.png)"; \
-	shasum -a 256 $$files > submission/CHECKSUMS.sha256; \
-	tar -czf submission/doxypep-bystander-deposit.tar.gz $$files \
-	  submission/CHECKSUMS.sha256; \
-	echo "wrote submission/CHECKSUMS.sha256 ($$(wc -l < submission/CHECKSUMS.sha256) files)"; \
-	echo "wrote submission/doxypep-bystander-deposit.tar.gz"
+	COPYFILE_DISABLE=1 tar --exclude='._*' --exclude='.DS_Store' \
+	  -czf submission/doxypep-bystander-submission.tar.gz $$files; \
+	shasum -a 256 submission/doxypep-bystander-submission.tar.gz \
+	  > submission/doxypep-bystander-submission.tar.gz.sha256; \
+	echo "wrote submission/doxypep-bystander-submission.tar.gz (+ .sha256, computed after)"
 
-# Full-repository deposit for Zenodo — code + coded/derived data + manuscript.
-# Enumerates only verified-safe paths: NO copyrighted publisher PDFs/DOCX or verbatim
-# transcriptions (their SHA-256 provenance pins in data/raw/**/CHECKSUMS.md + SOURCES.md
-# travel instead). An extracted copy runs `make all` from the coded YAML, AIDSVu public
-# data, and the literature snapshot — the PDFs are source references, not runtime inputs.
-deposit: bundle
+# Zenodo research compendium — reproducibility artifacts only. NO editorial/process layer
+# (no CLAUDE.md/SCAFFOLD.md/STREAM_B_HANDOFF.md, no submission/); NO copyrighted publisher or
+# guideline PDFs / transcriptions (provenance travels via SOURCES.md + CHECKSUMS.md). AIDSVu
+# XLSX are included pending rights confirmation — see THIRD_PARTY_DATA.md; to ship provenance
+# only, drop `data/raw/aidsvu` from DEPOSIT_PATHS below.
+DEPOSIT_PATHS = README.md CITATION.cff LICENSE-CODE LICENSE-TEXT THIRD_PARTY_DATA.md \
+  REPRODUCIBILITY.md Makefile requirements.txt requirements-lock.txt \
+  CODEBOOK.md CODEBOOK_streamA.md METHODS_streamB.md PREREGISTRATION.md DECISIONS.md \
+  src tests outputs \
+  paper/manuscript.md paper/manuscript.pdf paper/references.bib paper/preamble.tex paper/plos.csl \
+  data/processed data/raw/coding data/raw/literature data/raw/literature_search data/raw/aidsvu \
+  data/raw/papers/SOURCES.md data/raw/papers/CHECKSUMS.md \
+  data/raw/guidelines/SOURCES.md data/raw/guidelines/CHECKSUMS.md
+
+deposit:
 	@mkdir -p submission
-	tar --exclude='__pycache__' --exclude='*.pyc' --exclude='*.tar.gz' \
-	  -czf submission/doxypep-bystander-repo.tar.gz \
-	  src tests paper outputs submission \
-	  data/processed data/raw/aidsvu data/raw/coding \
-	  data/raw/literature data/raw/literature_search \
-	  data/raw/papers/CHECKSUMS.md data/raw/papers/SOURCES.md \
-	  data/raw/guidelines/CHECKSUMS.md data/raw/guidelines/SOURCES.md \
-	  Makefile requirements.txt README.md CLAUDE.md DECISIONS.md \
-	  CODEBOOK.md CODEBOOK_streamA.md METHODS_streamB.md SCAFFOLD.md \
-	  PREREGISTRATION.md STREAM_B_HANDOFF.md
+	@rm -f CHECKSUMS.sha256
+	@COPYFILE_DISABLE=1 find $(DEPOSIT_PATHS) -type f \
+	  ! -name '._*' ! -name '.DS_Store' ! -name '*.pyc' ! -path '*/__pycache__/*' \
+	  | LC_ALL=C sort | xargs shasum -a 256 > CHECKSUMS.sha256
+	@COPYFILE_DISABLE=1 tar --exclude='__pycache__' --exclude='*.pyc' \
+	  --exclude='._*' --exclude='.DS_Store' \
+	  -czf submission/doxypep-bystander-repo.tar.gz $(DEPOSIT_PATHS) CHECKSUMS.sha256
 	@shasum -a 256 submission/doxypep-bystander-repo.tar.gz \
 	  > submission/doxypep-bystander-repo.tar.gz.sha256
-	@echo "wrote submission/doxypep-bystander-repo.tar.gz ($$(du -h submission/doxypep-bystander-repo.tar.gz | cut -f1))"
+	@echo "wrote submission/doxypep-bystander-repo.tar.gz ($$(du -h submission/doxypep-bystander-repo.tar.gz | cut -f1); $$(tar tzf submission/doxypep-bystander-repo.tar.gz | grep -c .) members)"
+	@echo "external checksum beside archive (NOT inside): submission/doxypep-bystander-repo.tar.gz.sha256"
 
 clean:
 	rm -rf data/interim/* .pytest_cache
