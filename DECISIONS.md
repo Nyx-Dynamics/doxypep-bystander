@@ -1167,3 +1167,24 @@ are backed up and restored to the working tree (untracked, gitignored) — analy
 need them. RESIDUAL rights items flagged for PI: (a) AIDSVu rehosting (above); (b) the two
 verbatim CROI transcription markdowns (data/raw/papers/croi2023_*.md) remain tracked — decide
 whether to strip those too before public push.
+
+## 2026-08-22 — Strip CROI transcriptions + exclude AIDSVu (rights) ; retrieval script
+
+Two further rights actions before the public push (PI-directed):
+- **CROI transcriptions stripped from history.** data/raw/papers/croi2023_luetkemeyer_OA3.md
+  and croi2023_molina_doxyvac_slides.md (verbatim third-party conference content) removed from
+  ALL git history via filter-repo, gitignored, and restored to the working tree (untracked)
+  for local reference. Nothing reads them at runtime (the only code mention is a docstring
+  citation in three_outbreak_fit.py). Manuscript + methods references repointed to
+  data/raw/papers/SOURCES.md provenance.
+- **AIDSVu XLSX excluded (not just from the deposit — from the repo).** The 28 State PrEP/PnR
+  XLSX (IQVIA-sourced, "All Rights Reserved") are stripped from history, gitignored, and NOT
+  redistributed in the repo or Zenodo deposit. Provenance travels via data/raw/aidsvu/
+  SOURCES.md (portal URL + retrieval date 2026-05-25) + CHECKSUMS.md (per-file SHA-256). New
+  scripts/fetch_aidsvu.py fetch-and-verifies them; `make all` requires them present+verified.
+  DEPOSIT_PATHS updated (aidsvu dir -> its SOURCES/CHECKSUMS + scripts/). README,
+  REPRODUCIBILITY.md, THIRD_PARTY_DATA.md updated.
+
+After this, the public git tree and Zenodo compendium contain NO third-party copyrighted
+binaries or datasets — only our code, coded values (with locators), generated outputs, the
+manuscript, and provenance/hashes for every external input.

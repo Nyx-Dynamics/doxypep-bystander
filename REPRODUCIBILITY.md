@@ -13,9 +13,15 @@ participant-level trial data are used or required.
 ## One command
 
 ```
-make all      # runs the full pytest suite, then regenerates every output, table, and figure
-make pdf       # builds paper/manuscript.pdf (pandoc + citeproc + plos.csl + pdflatex)
+python3 scripts/fetch_aidsvu.py   # fetch + verify the AIDSVu inputs (not redistributed)
+make all                          # runs the full pytest suite, then regenerates outputs/figures
+make pdf                           # builds paper/manuscript.pdf (pandoc + citeproc + plos.csl + pdflatex)
 ```
+
+The AIDSVu State PrEP/PnR datasets are **not** redistributed (IQVIA-sourced; see
+`THIRD_PARTY_DATA.md`). `scripts/fetch_aidsvu.py` records their source portal, retrieval date,
+and per-file SHA-256, and verifies the files you place in `data/raw/aidsvu/`. `make all`
+requires them present and verified.
 
 `make all` is test-gated: the suite must pass before outputs regenerate. Each coded value
 carries a page/table locator and the builder fails on a missing locator rather than emitting

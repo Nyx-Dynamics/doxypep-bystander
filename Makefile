@@ -91,15 +91,16 @@ bundle:
 
 # Zenodo research compendium — reproducibility artifacts only. NO editorial/process layer
 # (no CLAUDE.md/SCAFFOLD.md/STREAM_B_HANDOFF.md, no submission/); NO copyrighted publisher or
-# guideline PDFs / transcriptions (provenance travels via SOURCES.md + CHECKSUMS.md). AIDSVu
-# XLSX are included pending rights confirmation — see THIRD_PARTY_DATA.md; to ship provenance
-# only, drop `data/raw/aidsvu` from DEPOSIT_PATHS below.
+# guideline PDFs / transcriptions, and NO AIDSVu XLSX (IQVIA-sourced) — all excluded, with
+# provenance travelling via SOURCES.md + CHECKSUMS.md. AIDSVu is retrieved+verified by
+# scripts/fetch_aidsvu.py before `make all`. See THIRD_PARTY_DATA.md.
 DEPOSIT_PATHS = README.md CITATION.cff LICENSE-CODE LICENSE-TEXT THIRD_PARTY_DATA.md \
   REPRODUCIBILITY.md Makefile requirements.txt requirements-lock.txt \
   CODEBOOK.md CODEBOOK_streamA.md METHODS_streamB.md PREREGISTRATION.md DECISIONS.md \
-  src tests outputs \
+  src tests scripts outputs \
   paper/manuscript.md paper/manuscript.pdf paper/references.bib paper/preamble.tex paper/plos.csl \
-  data/processed data/raw/coding data/raw/literature data/raw/literature_search data/raw/aidsvu \
+  data/processed data/raw/coding data/raw/literature data/raw/literature_search \
+  data/raw/aidsvu/SOURCES.md data/raw/aidsvu/CHECKSUMS.md \
   data/raw/papers/SOURCES.md data/raw/papers/CHECKSUMS.md \
   data/raw/guidelines/SOURCES.md data/raw/guidelines/CHECKSUMS.md
 

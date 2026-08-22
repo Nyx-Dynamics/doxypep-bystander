@@ -29,3 +29,8 @@ data/raw/papers/*.pdf
 data/raw/papers/*.docx
 data/raw/guidelines/*.pdf
 data/raw/guidelines/**/*.pdf
+# verbatim conference transcriptions (third-party) — provenance in papers/SOURCES.md
+data/raw/papers/croi2023_luetkemeyer_OA3.md
+data/raw/papers/croi2023_molina_doxyvac_slides.md
+# AIDSVu XLSX (IQVIA-sourced) — not redistributed; fetch via scripts/fetch_aidsvu.py
+data/raw/aidsvu/*.xlsx

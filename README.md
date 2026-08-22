@@ -52,6 +52,7 @@ Every figure and table regenerates from public inputs with no manual steps:
 
 ```
 pip install -r requirements-lock.txt   # exact validated versions
+python3 scripts/fetch_aidsvu.py        # fetch+verify AIDSVu inputs (not redistributed; see below)
 make all                               # test-gated: full pytest suite, then regenerate outputs
 make pdf                                # build the manuscript PDF (needs pandoc + pdflatex)
 ```
@@ -62,7 +63,9 @@ Raw data in `data/raw/` is immutable; all cleaning is in code.
 
 ## Licensing & third-party data
 
-Code (`src/`, `tests/`, Makefile): **MIT** (`LICENSE-CODE`). Manuscript text and figures:
-**CC BY 4.0** (`LICENSE-TEXT`). Externally-sourced inputs are **not** relicensed — see
-`THIRD_PARTY_DATA.md`: publisher and guideline PDFs are excluded (provenance travels via
-`SOURCES.md` + `CHECKSUMS.md`), and the AIDSVu datasets carry a rights caveat.
+Code (`src/`, `tests/`, `scripts/`, Makefile): **MIT** (`LICENSE-CODE`). Manuscript text and
+figures: **CC BY 4.0** (`LICENSE-TEXT`). Externally-sourced inputs are **not** relicensed and
+**not** redistributed — see `THIRD_PARTY_DATA.md`: publisher/guideline PDFs, verbatim
+conference transcriptions, and the IQVIA-sourced AIDSVu datasets are all excluded, with
+provenance travelling via `SOURCES.md` + `CHECKSUMS.md`. AIDSVu is retrieved and verified with
+`scripts/fetch_aidsvu.py`.

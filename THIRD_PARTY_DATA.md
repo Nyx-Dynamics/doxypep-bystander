@@ -17,26 +17,16 @@ and is not redistributed here.
 - **Verbatim conference transcriptions** (CROI abstract/slides) — **excluded**; source
   identifiers in `data/raw/papers/SOURCES.md`.
 
-## Redistributed with a rights caveat — CONFIRM BEFORE PUBLIC FREEZE
-
-- **AIDSVu PrEP / PnR datasets** (`data/raw/aidsvu/*.xlsx`). AIDSVu makes state/county
-  PrEP/PnR datasets publicly downloadable and its published protocol permits users to
-  download datasets for analyses and publications. However, AIDSVu identifies the PrEP source
-  as **IQVIA data supplied under a data-sharing agreement** and the site carries an
+- **AIDSVu PrEP / PnR datasets** (`data/raw/aidsvu/*.xlsx`) — **NOT redistributed.** AIDSVu
+  makes State-level PrEP/PnR datasets freely downloadable for analysis and publication, but
+  identifies the PrEP source as **IQVIA data under a data-sharing agreement** and carries an
   **"All Rights Reserved"** notice, so *rehosting the original files* is a distinct question
-  from *downloading them for analysis*. These files are therefore **NOT** sublicensed under
-  CC BY 4.0.
-
-  **Decision needed before the Zenodo/public freeze — two defensible options:**
-  1. Confirm with AIDSVu that redistribution/rehosting of the downloaded files is permitted,
-     and note that confirmation here; or
-  2. **Exclude** the original XLSX from the public archive and instead ship exact source
-     URLs, retrieval dates, SHA-256 hashes (already in `data/raw/aidsvu/CHECKSUMS.md`), and a
-     retrieval script — mirroring how the publisher PDFs are handled. This is the safer
-     default and is fully reproducible for anyone who downloads AIDSVu themselves.
-
-  Until (1) is confirmed, treat the XLSX as retained for convenience only, under AIDSVu's
-  own terms, not under this repository's licenses.
+  from *downloading them for analysis*. We therefore **exclude** the XLSX from this repository
+  and its Zenodo deposit and instead ship the source portal URL, retrieval date, exact
+  filenames, byte sizes, and SHA-256 hashes (`data/raw/aidsvu/SOURCES.md` + `CHECKSUMS.md`)
+  with a **fetch-and-verify script** (`scripts/fetch_aidsvu.py`) — mirroring how the publisher
+  PDFs are handled, and fully reproducible for anyone who downloads AIDSVu themselves.
+  `make all` requires these files to be fetched and verified first.
 
 ## Authored here (covered by the repository licenses)
 
