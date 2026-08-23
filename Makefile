@@ -4,12 +4,13 @@
 
 PY := python3
 
-.PHONY: all test loader feasibility guidelines trials reliability literature pdf tex docx bundle deposit clean
+.PHONY: all test loader feasibility guidelines trials reliability literature pdf tex texpdf supp docx bundle deposit clean
 
 all: test feasibility guidelines trials literature
 	$(PY) -m src.analysis.streamc_linkage
 	$(PY) -m src.analysis.summary_figure
 	$(PY) -m src.analysis.linkage_figure
+	$(PY) -m src.analysis.architecture_figure
 	@echo "Stream C (feasibility) + Stream B (guidelines) + Stream A (trials) + literature-gap regenerated."
 
 test:
@@ -66,13 +67,34 @@ pdf:
 	  -o paper/manuscript.pdf
 	@echo "wrote paper/manuscript.pdf"
 
-# Editable LaTeX source for journal submission (PLoS accepts LaTeX + .bib). natbib citations
-# pair with paper/references.bib; compile with pdflatex + bibtex. Set the .bst at submission.
+# paper/manuscript.tex is the HAND-MAINTAINED canonical submission source (2026-08-22):
+# it carries editorial edits + Figure 3 that are NOT in manuscript.md. `make tex` therefore
+# no longer overwrites it — it emits a scratch copy for diffing only. Compile the canonical
+# with `make texpdf`. (manuscript.md is now a secondary convenience source; pdf/docx below
+# still render from it, but the .tex is authoritative for submission.)
 tex:
 	pandoc paper/manuscript.md --standalone --natbib \
 	  --bibliography=paper/references.bib --resource-path=paper:. \
-	  -o paper/manuscript.tex
-	@echo "wrote paper/manuscript.tex (compile: pdflatex/bibtex; uses paper/references.bib)"
+	  -o paper/manuscript.generated.tex
+	@echo "wrote paper/manuscript.generated.tex (SCRATCH — diff against the canonical paper/manuscript.tex)"
+	@echo "NOTE: canonical paper/manuscript.tex is hand-maintained and was NOT overwritten. Compile it with 'make texpdf'."
+
+# Compile the canonical hand-maintained LaTeX -> paper/manuscript.pdf (pdflatex + bibtex).
+# TEXINPUTS resolves the figures' bare filenames from outputs/figures/; bibtex uses references.bib.
+texpdf:
+	cd paper && TEXINPUTS="../outputs/figures:$$TEXINPUTS" pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex >/dev/null
+	cd paper && bibtex manuscript >/dev/null
+	cd paper && TEXINPUTS="../outputs/figures:$$TEXINPUTS" pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex >/dev/null
+	cd paper && TEXINPUTS="../outputs/figures:$$TEXINPUTS" pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex >/dev/null
+	@rm -f paper/manuscript.aux paper/manuscript.bbl paper/manuscript.blg paper/manuscript.out
+	@echo "wrote paper/manuscript.pdf (from canonical paper/manuscript.tex)"
+
+# Compile the standalone supporting-information supplement -> paper/supplementary.pdf.
+supp:
+	cd paper && TEXINPUTS="../outputs/figures:$$TEXINPUTS" pdflatex -interaction=nonstopmode -halt-on-error supplementary.tex >/dev/null
+	cd paper && TEXINPUTS="../outputs/figures:$$TEXINPUTS" pdflatex -interaction=nonstopmode -halt-on-error supplementary.tex >/dev/null
+	@rm -f paper/supplementary.aux paper/supplementary.log paper/supplementary.out
+	@echo "wrote paper/supplementary.pdf (from paper/supplementary.tex)"
 
 # Editable Word source (PLoS also accepts .docx). PLoS numbered references baked in via
 # citeproc + plos.csl; figures embedded. Most reviewer-portable editable format.
@@ -116,7 +138,8 @@ DEPOSIT_PATHS = README.md CITATION.cff LICENSE-CODE LICENSE-TEXT THIRD_PARTY_DAT
   REPRODUCIBILITY.md REPRODUCTION_LOG.md Makefile pytest.ini requirements.txt requirements-lock.txt \
   CODEBOOK.md CODEBOOK_streamA.md METHODS_streamB.md ECOLOGICAL_PREREGISTRATION_DRAFT_NOT_REGISTERED.md DECISIONS.md \
   src tests scripts outputs \
-  paper/manuscript.md paper/manuscript.pdf paper/references.bib paper/preamble.tex paper/plos.csl \
+  paper/manuscript.md paper/manuscript.pdf paper/manuscript.tex paper/supplementary.tex paper/supplementary.pdf \
+  paper/references.bib paper/plos2015.bst paper/preamble.tex paper/plos.csl \
   data/processed data/raw/coding data/raw/literature data/raw/literature_search \
   data/raw/aidsvu/SOURCES.md data/raw/aidsvu/CHECKSUMS.md \
   data/raw/papers/SOURCES.md data/raw/papers/CHECKSUMS.md \

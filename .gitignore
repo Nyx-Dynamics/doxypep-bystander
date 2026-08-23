@@ -15,14 +15,20 @@ data/processed/*.parquet
 paper/*.aux
 paper/*.log
 paper/*.out
+paper/*.bbl
+paper/*.blg
 paper/*.pdf
-paper/manuscript.tex
 paper/manuscript.docx
+# scratch pandoc-generated tex (diff-only); the canonical paper/manuscript.tex is now
+# hand-maintained and IS tracked as source. See Makefile `tex`/`texpdf`.
+paper/manuscript.generated.tex
 
 # deposit build artifacts — regenerable via `make bundle` / `make deposit`
 submission/*.tar.gz
 submission/*.sha256
 /CHECKSUMS.sha256
+# extracted deposit staging copy (a full repo snapshot; regenerable by untarring the deposit)
+submission/doxypep-bystander-repo/
 
 # copyrighted third-party source PDFs/DOCX — NOT for a public repo. Provenance travels via
 # data/raw/**/CHECKSUMS.md + SOURCES.md; analysis reads coded YAML, not the PDFs.
