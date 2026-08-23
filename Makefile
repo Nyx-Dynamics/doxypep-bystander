@@ -56,16 +56,10 @@ trials:
 literature:
 	$(PY) -m src.analysis.literature_search $(ARGS)
 
-# Manuscript PDF — pandoc + citeproc + pdflatex, house preamble (paper/preamble.tex).
-# Figures are read from outputs/figures/ (regenerate them with `make feasibility`).
-# --resource-path lets the manuscript's ../outputs/figures/ paths resolve from root.
-# --csl paper/plos.csl → PLoS Biology numbered (Vancouver) reference style.
-pdf:
-	pandoc paper/manuscript.md --citeproc --bibliography=paper/references.bib \
-	  --csl=paper/plos.csl \
-	  --resource-path=paper:. -H paper/preamble.tex --pdf-engine=pdflatex \
-	  -o paper/manuscript.pdf
-	@echo "wrote paper/manuscript.pdf"
+# Manuscript PDF. The canonical source is the hand-maintained PLoS LaTeX (paper/manuscript.tex),
+# NOT the superseded Markdown; `make pdf` therefore builds it via `texpdf` (pdflatex + bibtex).
+# (The old pandoc-from-Markdown recipe is retired; `make docx` still uses the Markdown.)
+pdf: texpdf
 
 # paper/manuscript.tex is the HAND-MAINTAINED canonical submission source (2026-08-22):
 # it carries editorial edits + Figure 3 that are NOT in manuscript.md. `make tex` therefore
@@ -138,7 +132,7 @@ DEPOSIT_PATHS = README.md CITATION.cff LICENSE-CODE LICENSE-TEXT THIRD_PARTY_DAT
   REPRODUCIBILITY.md REPRODUCTION_LOG.md Makefile pytest.ini requirements.txt requirements-lock.txt \
   CODEBOOK.md CODEBOOK_streamA.md METHODS_streamB.md ECOLOGICAL_PREREGISTRATION_DRAFT_NOT_REGISTERED.md DECISIONS.md \
   src tests scripts outputs \
-  paper/manuscript.md paper/manuscript.pdf paper/manuscript.tex paper/supplementary.tex paper/supplementary.pdf \
+  paper/manuscript.pdf paper/manuscript.tex paper/supplementary.tex paper/supplementary.pdf \
   paper/references.bib paper/plos2015.bst paper/preamble.tex paper/plos.csl \
   data/processed data/raw/coding data/raw/literature data/raw/literature_search \
   data/raw/aidsvu/SOURCES.md data/raw/aidsvu/CHECKSUMS.md \
@@ -151,13 +145,13 @@ deposit:
 	@COPYFILE_DISABLE=1 find $(DEPOSIT_PATHS) -type f \
 	  ! -name '._*' ! -name '.DS_Store' ! -name '*.pyc' ! -path '*/__pycache__/*' \
 	  | LC_ALL=C sort | xargs shasum -a 256 > CHECKSUMS.sha256
-	@COPYFILE_DISABLE=1 tar --no-mac-metadata --exclude='__pycache__' --exclude='*.pyc' \
+	@COPYFILE_DISABLE=1 tar --no-mac-metadata --no-xattrs --exclude='__pycache__' --exclude='*.pyc' \
 	  --exclude='._*' --exclude='.DS_Store' \
-	  -czf submission/doxypep-bystander-repo.tar.gz $(DEPOSIT_PATHS) CHECKSUMS.sha256
-	@shasum -a 256 submission/doxypep-bystander-repo.tar.gz \
-	  > submission/doxypep-bystander-repo.tar.gz.sha256
-	@echo "wrote submission/doxypep-bystander-repo.tar.gz ($$(du -h submission/doxypep-bystander-repo.tar.gz | cut -f1); $$(tar tzf submission/doxypep-bystander-repo.tar.gz | grep -c .) members)"
-	@echo "external checksum beside archive (NOT inside): submission/doxypep-bystander-repo.tar.gz.sha256"
+	  -czf submission/doxy_zenodo_final.tz $(DEPOSIT_PATHS) CHECKSUMS.sha256
+	@shasum -a 256 submission/doxy_zenodo_final.tz \
+	  > submission/doxy_zenodo_final.tz.sha256
+	@echo "wrote submission/doxy_zenodo_final.tz ($$(du -h submission/doxy_zenodo_final.tz | cut -f1); $$(tar tzf submission/doxy_zenodo_final.tz | grep -c .) members)"
+	@echo "external checksum beside archive (NOT inside): submission/doxy_zenodo_final.tz.sha256"
 
 clean:
 	rm -rf data/interim/* .pytest_cache

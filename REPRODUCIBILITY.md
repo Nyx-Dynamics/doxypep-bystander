@@ -8,14 +8,15 @@ participant-level trial data are used or required.
 - Python 3.11+ (validated on CPython 3.12.12; also exercised under 3.13).
 - `pip install -r requirements-lock.txt` for the exact validated versions
   (`requirements.txt` keeps broad bounds for normal use).
-- `make pdf` additionally needs **pandoc** and a TeX Live **pdflatex** on the PATH.
+- `make pdf` builds the canonical LaTeX source (`paper/manuscript.tex`) and needs a TeX Live
+  **pdflatex** + **bibtex** on the PATH (`plos2015.bst` ships in `paper/`). `make docx` still uses **pandoc**.
 
 ## One command
 
 ```
 python3 scripts/verify_aidsvu.py  # verify manually-downloaded AIDSVu inputs (not redistributed)
 make all                          # runs the full pytest suite, then regenerates outputs/figures
-make pdf                           # builds paper/manuscript.pdf (pandoc + citeproc + plos.csl + pdflatex)
+make pdf                           # builds paper/manuscript.pdf from paper/manuscript.tex (pdflatex + bibtex + plos2015.bst)
 ```
 
 The AIDSVu State PrEP/PnR datasets are **not** redistributed (IQVIA-sourced; see

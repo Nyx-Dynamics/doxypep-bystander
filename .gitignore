@@ -25,10 +25,13 @@ paper/manuscript.generated.tex
 
 # deposit build artifacts — regenerable via `make bundle` / `make deposit`
 submission/*.tar.gz
+submission/*.tz
 submission/*.sha256
 /CHECKSUMS.sha256
 # extracted deposit staging copy (a full repo snapshot; regenerable by untarring the deposit)
 submission/doxypep-bystander-repo/
+# hi-res TIFF figure exports for journal upload (600 dpi; regenerable from the figure scripts)
+submission/figures/
 
 # copyrighted third-party source PDFs/DOCX — NOT for a public repo. Provenance travels via
 # data/raw/**/CHECKSUMS.md + SOURCES.md; analysis reads coded YAML, not the PDFs.

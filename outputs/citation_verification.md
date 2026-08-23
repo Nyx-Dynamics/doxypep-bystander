@@ -9,10 +9,28 @@ off-corpus entries). 2 off-corpus (diep2008, sfdph2022) resolved via web. Verdic
 6 that belonged to the *separate* ITS/Spinelli editor correspondence (a gonococcal/STI
 work, not this S. aureus manuscript): `harrison1979`, `lopezbernal2018`, `miko2012`,
 `schroder2025`, `spinelli2026`, `demidont2026cid`; and the companion `demidont2026metaarxiv`
-"150-journal audit" (removed with its §2.6 in-text citation). The bib is now **closed**:
-**16 entries, every one cited, every citation resolved, no undefined citations** (citeproc
-clean). A stale "cite the CID letter" instruction and the bib header's "verified against the
-companion CID correspondence" line were removed.
+"150-journal audit" (removed with its §2.6 in-text citation). The bib was **closed** at that
+point at **16 entries** (later 19; see the 2026-08-23 addendum below). A stale "cite the CID
+letter" instruction and the bib header's "verified against the companion CID correspondence"
+line were removed.
+
+**Addendum — final conceptual-literature pass (2026-08-23).** For the PLoS Meta-Research
+submission the manuscript was positioned against its intellectual neighbours, adding **five**
+meta-research sources (all verified against source PDF or PubMed metadata; see
+`references.bib`):
+
+| key | source | supports | placement |
+|---|---|---|---|
+| `montoya2025estimand` | Renson, Montoya et al., *Am J Epidemiol* 2025;194(12):3566–71 (doi 10.1093/aje/kwaf169) | estimand specification — the quantity estimated is part of the scientific question | Discussion, neighbours ¶ |
+| `tancredi2024surveillance` | Tancredi et al., *Public Health* 2024;234:98–104 (doi 10.1016/j.puhe.2024.06.006) | surveillance/ascertainment bias, indicator dependence | Discussion, neighbours ¶ |
+| `treem2023visibility` | Treem et al., *J Comput-Mediat Commun* 2023;28(4):zmad023 (doi 10.1093/jcmc/zmad023) | Goodhart-type metric/visibility decoupling | Discussion, neighbours ¶ |
+| `montoya2025affected` | Montoya et al., *Stat Med* 2025;44(28–30):e70353 (doi 10.1002/sim.70353) | estimand defined on the *affected* (non-treated) population | Methods, B≠H schema |
+| `armond2024integrity` | Armond, Cobey, Moher, *J Clin Epidemiol* 2024;171:111367 (doi 10.1016/j.jclinepi.2024.111367) | research integrity / reproducibility; research-to-policy "domino effect" | Methods (Reproducibility) + Discussion (generalisation) |
+
+Two previously-listed but **uncited** records were removed from the bib: `vanderlinden1998`
+and `molina2023croi`. The bib is again **closed: 19 entries, every one cited, every citation
+resolved, no undefined citations** (bibtex/plos2015 clean; the manuscript is now the PLoS
+LaTeX source `paper/manuscript.tex`, compiled with `plos2015.bst`).
 
 ## Summary
 

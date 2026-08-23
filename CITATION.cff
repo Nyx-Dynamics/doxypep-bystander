@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this research compendium, please cite it as below."
-title: "Monitoring That the Instrument Cannot Provide: Measurement Inheritance and Tetracycline-Resistant Staphylococcus aureus in Doxycycline Post-Exposure Prophylaxis — research compendium"
+title: "Measurement inheritance: following a doxy-PEP bystander-resistance signal from trial to surveillance — research compendium"
 abstract: >-
   Complete computational research compendium (code, coded data, and manuscript) supporting
   the measurement-inheritance analysis of doxy-PEP and bystander tetracycline-resistant
@@ -17,7 +17,7 @@ authors:
     affiliation: "Nyx Dynamics, LLC, Fairfield, CT, USA; and Nyx Institute for Computational Medicine, Philadelphia, PA, USA"
     email: acdemidont@nyxdynamics.org
 version: "1.0.0"
-date-released: "2026-08-22"
+date-released: "2026-08-23"
 license: MIT
 license-url: "https://github.com/Nyx-Dynamics/doxypep-bystander/blob/main/LICENSE-CODE"
 repository-code: "https://github.com/Nyx-Dynamics/doxypep-bystander"

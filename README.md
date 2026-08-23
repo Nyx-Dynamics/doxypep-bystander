@@ -29,8 +29,9 @@ question that fact raises, across three streams against one yardstick:
 
 The upstream instrument generated information the downstream systems are not built to
 receive — a structural gap we call **measurement inheritance**. The paper makes **no
-population-level causal claim**. Manuscript: `paper/manuscript.md` (built PDF
-`paper/manuscript.pdf`), formatted for PLoS Biology (Meta-Research).
+population-level causal claim**. Manuscript: `paper/manuscript.tex` — the canonical,
+hand-maintained PLoS Biology (Meta-Research) LaTeX source (built PDF `paper/manuscript.pdf`;
+supplement `paper/supplementary.tex`). `paper/manuscript.md` is a superseded earlier draft.
 
 ## Provenance: how this project began (and why the original design was not run)
 
@@ -56,7 +57,7 @@ inputs, below):
 pip install -r requirements-lock.txt   # exact validated versions
 python3 scripts/verify_aidsvu.py       # download AIDSVu inputs manually, then verify (see below)
 make all                               # test-gated: full pytest suite, then regenerate outputs
-make pdf                                # build the manuscript PDF (needs pandoc + pdflatex)
+make pdf                                # build paper/manuscript.pdf from paper/manuscript.tex (pdflatex + bibtex)
 ```
 
 See `REPRODUCIBILITY.md` for the environment and expected runtime, `DECISIONS.md` for the
