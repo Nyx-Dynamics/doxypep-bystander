@@ -26,6 +26,7 @@ paper/manuscript.generated.tex
 # deposit build artifacts — regenerable via `make bundle` / `make deposit`
 submission/*.tar.gz
 submission/*.tz
+submission/*.zip
 submission/*.sha256
 /CHECKSUMS.sha256
 # extracted deposit staging copy (a full repo snapshot; regenerable by untarring the deposit)

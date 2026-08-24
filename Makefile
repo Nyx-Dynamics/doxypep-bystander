@@ -4,7 +4,7 @@
 
 PY := python3
 
-.PHONY: all test loader feasibility guidelines trials reliability literature pdf tex texpdf supp docx bundle deposit clean
+.PHONY: all test loader feasibility guidelines trials reliability literature pdf tex texpdf supp docx bundle deposit deposit-zip clean
 
 all: test feasibility guidelines trials literature
 	$(PY) -m src.analysis.streamc_linkage
@@ -152,6 +152,22 @@ deposit:
 	  > submission/doxy_zenodo_final.tz.sha256
 	@echo "wrote submission/doxy_zenodo_final.tz ($$(du -h submission/doxy_zenodo_final.tz | cut -f1); $$(tar tzf submission/doxy_zenodo_final.tz | grep -c .) members)"
 	@echo "external checksum beside archive (NOT inside): submission/doxy_zenodo_final.tz.sha256"
+
+# Same compendium as `deposit`, packaged as .zip for portals/OSes that don't open .tz
+# (macOS Archive Utility). Identical file set + internal CHECKSUMS.sha256; `zip -X` drops
+# extra file attributes (AppleDouble resource forks, extended attributes).
+deposit-zip:
+	@mkdir -p submission
+	@rm -f CHECKSUMS.sha256
+	@COPYFILE_DISABLE=1 find $(DEPOSIT_PATHS) -type f \
+	  ! -name '._*' ! -name '.DS_Store' ! -name '*.pyc' ! -path '*/__pycache__/*' \
+	  | LC_ALL=C sort | xargs shasum -a 256 > CHECKSUMS.sha256
+	@rm -f submission/doxy_zenodo_final.zip
+	@COPYFILE_DISABLE=1 zip -X -r -9 -q submission/doxy_zenodo_final.zip $(DEPOSIT_PATHS) CHECKSUMS.sha256 \
+	  -x '*/__pycache__/*' '*.pyc' '*.DS_Store' '*/._*'
+	@shasum -a 256 submission/doxy_zenodo_final.zip > submission/doxy_zenodo_final.zip.sha256
+	@echo "wrote submission/doxy_zenodo_final.zip ($$(du -h submission/doxy_zenodo_final.zip | cut -f1); $$(unzip -Z1 submission/doxy_zenodo_final.zip | grep -c .) entries)"
+	@echo "external checksum beside archive (NOT inside): submission/doxy_zenodo_final.zip.sha256"
 
 clean:
 	rm -rf data/interim/* .pytest_cache
