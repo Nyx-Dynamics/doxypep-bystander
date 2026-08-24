@@ -47,3 +47,5 @@ data/raw/papers/croi2023_luetkemeyer_OA3.md
 data/raw/papers/croi2023_molina_doxyvac_slides.md
 # AIDSVu XLSX (IQVIA-sourced) — not redistributed; fetch via scripts/fetch_aidsvu.py
 data/raw/aidsvu/*.xlsx
+# rendered submission letters (regenerable from the .md via pandoc)
+submission/*.pdf
