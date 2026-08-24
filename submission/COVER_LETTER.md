@@ -9,66 +9,59 @@ To the Editors, PLOS Biology — Meta-Research Section
 
 Dear Editors,
 
-I am submitting a Meta-Research Article for consideration in the Meta-Research section:
-**"Measurement inheritance: following a doxy-PEP bystander-resistance signal from trial to
-surveillance."**
+I submit **"Measurement inheritance: following a doxy-PEP bystander-resistance signal from
+trial to surveillance"** as a Meta-Research Article.
 
-**What it argues, and what it does not.** The paper makes no population-level causal claim.
-Its starting point is a fact the pivotal trial's final analysis has now established: in its
-randomised, participant-level analysis, doxycycline post-exposure prophylaxis (doxy-PEP) was
-associated with a significant increase in incident doxycycline-resistant *Staphylococcus
-aureus* (hazard ratio 3.89, 95% CI 1.42–10.68), with no matching effect on carriage — and
-its authors call for public-health surveillance of exactly this. The paper asks the question
-that fact raises: can the systems built around doxy-PEP *follow* the signal the trial
-resolved? Working from public data alone, it audits the three sources any answer would have
-to come from — the trials, the governing guidelines, and the deployed surveillance systems —
-and finds that the upstream instrument generated information the downstream systems cannot
-receive. The guidelines counsel patients about the harm while mandating no measurement of it;
-and no deployed US surveillance system links doxy-PEP exposure to the *S. aureus* tetracycline
-phenotype at a common population denominator. The signal is individual-level and real; whether
-it propagates into a population externality is precisely what no deployed system can determine.
+**Scientific question.** When an evidence base is built to answer one question, can the
+downstream systems that inherit it — clinical guidelines and public-health surveillance —
+follow a *different* signal the intervention later raises? Doxycycline post-exposure
+prophylaxis (doxy-PEP), built and measured for gonococcal efficacy, is the worked case: it
+also selects tetracycline resistance in the commensal *Staphylococcus aureus*, for which
+doxycycline is one of few oral treatments.
 
-**Why Meta-Research.** The durable contribution is not about one drug. It is a
-meta-scientific one — *measurement inheritance*: an evidence apparatus carries, in its
-sampling frame, cadence, coding, and denominator, the organism and question it was built
-for, and so cannot answer an orthogonal question about a bystander. Doxy-PEP is the worked
-instance; the apparatus was built to measure gonococcal efficacy and, applied to a
-commensal *S. aureus*, inherits a denominator the intervention itself moves, a phenotype
-label that spans two resistance mechanisms, and a surveillance architecture standardised
-around the methicillin axis while the tetracycline unit falls orthogonally through it. The
-paper also derives, from the same public data, a distributive consequence it terms
-*distributive observability* — the intervention's benefit is legible upstream while the
-population that would bear any externality is not estimable downstream — and positions the
-construct explicitly against its neighbours (estimand specification, surveillance/ascertainment
-bias, Goodhart-type metric substitution, and research-integrity/reproducibility practice).
-The claim is that the trial's newly-resolved individual-level signal is *uninheritable as
-instrumented*: the population question it raises cannot be followed by the deployed systems —
-an epistemological finding established with data science, not an effect estimate. The
-timeliness is unusual: the enabling trial result appeared in 2025, and the surveillance gap
-it exposes is live. As a Meta-Research contribution its aim is to improve evaluation practice
-— it specifies, per source, the falsifiable instrument that *would* make the signal followable.
+**Key finding.** They cannot. The pivotal trial's 2025 final analysis newly detected the
+bystander signal — a significant rise in incident doxycycline-resistant *S. aureus* (hazard
+ratio 3.89, 95% CI 1.42–10.68) — and its authors called for surveillance of exactly this. Yet
+no governmental guideline requires *S. aureus* measurement (0 of 6 outbreak-matched
+jurisdictions), and none of twelve deployed US surveillance systems links doxy-PEP exposure to
+the *S. aureus* tetracycline phenotype at a common population denominator. The upstream
+instrument generated information the downstream architecture is not built to receive; we name
+this *measurement inheritance*.
 
-**Reproducibility.** Every number, table, and figure regenerates from public data by one
-command (`make all`) over a test-gated pipeline (the complete pytest suite; 111 tests). Each
-coded value carries a page or table locator, and the builder fails rather than emit an
-unlocated value. Analysis decisions were logged, with dates, before results were known. The
-full repository — code, coded source data, and this manuscript — is openly available on GitHub
-and archived at Zenodo with a citable DOI (10.5281/zenodo.22051031); a reviewer guide mapping
-every claim to its regenerable artifact accompanies the submission.
+**Nature of the evidence.** A fully reproducible public-data audit across three streams
+(trials, guidelines, surveillance) scored on one yardstick — the within-exposed effect each
+could detect. Every number and figure regenerates from one command over a test-gated pipeline;
+each coded value carries a page/table locator; analysis decisions were date-logged before
+results were known; code, data, and manuscript are archived at Zenodo with a citable DOI. We
+make **no population-level causal claim** — the contribution is epistemological.
 
-**Disclosures.** I am the sole author. I report former employment at Gilead Sciences
-(01/2020–11/2024) with prior ownership of corporate stock, all divested by 12/2024; Gilead
-played no role in this work, which was completed independently of any funding. A large
-language model was used for writing and analysis-engineering assistance; the scientific
-argument, the reading of primary sources, the model specification, and all conclusions are
-my own, I verified every value and quotation against primary sources, and no AI tool is
-credited as an author. These statements appear in full in the manuscript's Declarations and
-are entered in the submission system's financial-disclosure and competing-interests fields.
+**Three most recent relevant articles.** (1) Luetkemeyer AF, et al. Lancet Infect Dis
+2025;25:873–83 — the trial's final analysis, the enabling signal. (2) Soge OO, et al. Clin
+Infect Dis 2025;80:1188–96 — tetracycline-resistant *S. aureus* colonization under doxy-PEP,
+our empirical benchmark. (3) Donà MG, et al. Ital J Dermatol Venereol 2026;161:120–5 —
+clinicians rate MRSA selection under doxy-PEP a top concern.
 
-The work has not been published elsewhere and is not under consideration by another journal.
-I suggest that reviewers with expertise in AMR surveillance methodology, biostatistics
-(design-based sensitivity analysis), and meta-research would be well matched to the manuscript;
-I have no competing-interest exclusions to request.
+**Significance for the field.** Measurement inheritance is a portable diagnostic: an evidence
+system carries the unit, denominator, coding, and cadence of the question it was built for, and
+goes blind when responsibility passes to a downstream question. We operationalize it as a
+per-source, falsifiable detectability standard other meta-researchers can apply, positioned
+against its neighbours (estimand specification, surveillance bias, Goodhart-type metric
+substitution, reproducibility practice).
+
+**Significance for the broader community.** Doxy-PEP is scaling into guidance worldwide; the
+paper shows the very surveillance its trial authors requested cannot yet be run, and specifies
+the instrument that would run it — a direct input to antimicrobial-stewardship policy.
+
+**Other novel findings.** *Distributive observability*: the benefit is legible in recipients
+while any externality falls on an unobserved population — a measurement asymmetry derived from
+the architecture, not asserted. Also: a reconciliation of the trial's own cross-venue
+reporting, and a design-based demonstration that even a linked surveillance system would face
+an exposed subgroup too dilute to move a population rate.
+
+**Additional information.** Sole author. Former Gilead Sciences employment (2020–2024), all
+equity divested by 2024, no role in this work; no funding. Generative-AI writing assistance is
+disclosed, with all content author-verified. I request no reviewer exclusions and have no
+competing interests requiring one.
 
 Thank you for your consideration.
 
