@@ -105,6 +105,10 @@
 % line numbers
 \usepackage[right]{lineno}
 
+% Suppress a benign microtype warning about \showhyphens changing
+\usepackage{silence}
+\WarningFilter{microtype}{Command \showhyphens has changed}
+
 % ligatures disabled
 \usepackage[nopatch=eqnum]{microtype}
 \DisableLigatures[f]{encoding = *, family = * }
@@ -114,6 +118,10 @@
 
 % array package and thick rules for tables
 \usepackage{array}
+\usepackage{tabularx}
+
+% booktabs provides \toprule/\midrule/\bottomrule and \addlinespace
+\usepackage{booktabs}
 
 % create "+" rule type for thick vertical lines
 \newcolumntype{+}{!{\vrule width 2pt}}
@@ -175,8 +183,8 @@
 
 %% Include all macros below
 
-\newcommand{\lorem}{{\bf LOREM}}
-\newcommand{\ipsum}{{\bf IPSUM}}
+\newcommand{\lorem}{LOREM}
+\newcommand{\ipsum}{IPSUM}
 
 %% END MACROS SECTION
 
@@ -192,40 +200,39 @@
 \\
 \textbf{Short title:} Measurement inheritance from trial to surveillance
 \\
+% Insert author names, affiliations and corresponding author email (do not include titles, positions, or degrees).
 Adrian C. Demidont\textsuperscript{1,2*}
 \\
 \bigskip
-\textbf{1} Nyx Dynamics, LLC, Fairfield, Connecticut, United States of America
+\textbf{1} Nyx Dynamics, LLC, Fairfield, CT, USA
 \\
-\textbf{2} Nyx Institute for Computational Medicine, Philadelphia, Pennsylvania, United States of America
+\textbf{2} Nyx Institute for Computational Medicine, Philadelphia, PA, USA
 \\
 \bigskip
-* Corresponding author
-\\
-E-mail: acdemidont@nyxdynamics.org (ACD)
+* acdemidont@nyxdynamics.org
 
 \end{flushleft}
 
 \section*{Abstract}
 Downstream evidence systems --- guidelines, then surveillance --- can follow an upstream trial
 signal only if they inherit the dimensions on which it was defined: the estimand, denominator,
-unit, cadence, and linkage. We call the failure of that transmission \textbf{measurement
-inheritance} and study it here. Doxycycline post-exposure prophylaxis (doxy-PEP) reduces bacterial sexually transmitted infections (STIs) and has scaled into guidance at every level; doxycycline also selects for tetracycline
+unit, cadence, and linkage. We call the failure of that transmission measurement
+inheritance and study it here. Doxycycline post-exposure prophylaxis (doxy-PEP) reduces bacterial sexually transmitted infections (STIs) and has scaled into guidance at every level; doxycycline also selects for tetracycline
 resistance beyond its target, and \emph{Staphylococcus aureus} --- a commensal and pathogen for
-which doxycycline is one of few oral treatments --- is the natural \textbf{bystander}. The pivotal
+which doxycycline is one of few oral treatments --- is the natural bystander. The pivotal
 trial's final analysis now demonstrates a signal: among participants free of it at baseline,
-doxy-PEP raised the hazard of incident doxycycline-resistant \emph{S. aureus} \textbf{3.89-fold
-(95\% confidence interval [CI] 1.42--10.68; 68/393 vs 5/163)}, while colonisation clearance did not differ (HR 1.01), and
+doxy-PEP raised the hazard of incident doxycycline-resistant \emph{S. aureus} 3.89-fold
+(95\% confidence interval [CI] 1.42--10.68; 68/393 vs 5/163), while colonization clearance did not differ (HR 1.01), and
 its authors call for surveillance of it. We ask not whether doxy-PEP drives population-level
-resistance, but whether the guidance and surveillance in place could \emph{follow} the signal the
+resistance, but whether the guidance and surveillance in place could follow the signal the
 trial resolved. Auditing the evidence base in three streams against one yardstick --- the
 within-exposed effect each could detect --- we find that no governmental guideline required \emph{S. aureus} measurement (0 of 6 outbreak-matched jurisdictions), and that of twelve established surveillance systems
 none links doxy-PEP exposure to an \emph{S. aureus} tetracycline phenotype at a common population
 denominator. The upstream instrument generated information the downstream systems are not built to
 receive. The failure is also distributive: the benefit is estimable in recipients, while any
 externality would fall on people outside the trial's frame and is joined to no denominator --- so one
-side of the policy ledger is far more measurable than the other, an asymmetry we call \emph{distributive
-observability}. We make \textbf{no population-level causal claim}.
+side of the policy ledger is far more measurable than the other, an asymmetry we call distributive
+observability. We make no population-level causal claim.
 
 \section*{Abbreviations}
 ABCs/EIP, Active Bacterial Core surveillance / Emerging Infections Program; AMR, antimicrobial
@@ -248,7 +255,7 @@ departments \cite{cdc2024doxypep, sfdph2022}.
 
 Every dose is selective pressure, and not only on the organisms it
 targets. \emph{Staphylococcus aureus} is the consequential bystander: it
-colonises the anatomical sites these trials swabbed, and it carries
+colonizes the anatomical sites these trials swabbed, and it carries
 mobile tetracycline determinants \cite{grossman2016}.
 
 Clinicians who prescribe doxy-PEP have registered the concern directly:
@@ -258,24 +265,24 @@ highest-rated in the study \cite{dona2026}.
 
 The trial literature has not so much echoed the dermatologists' concern
 as answered a narrower version of it. The US DoxyPEP trial cultured
-\emph{S. aureus} and reported three distinct quantities: colonisation
+\emph{S. aureus} and reported three distinct quantities: colonization
 fell in the doxy-PEP arm (unsurprising for an active anti-staphylococcal
 drug); doxycycline resistance among cultured isolates rose; and
 resistance within the small methicillin-resistant subset stayed low
-\cite{luetkemeyer2023croi}. The interim summary emphasised the last of
+\cite{luetkemeyer2023croi}. The interim summary emphasized the last of
 these --- MRSA resistance low and unchanged --- over the broader
 \emph{S. aureus} measure, in which it rose. Carriage and resistance are
-different quantities with different behaviour, and the trial's own final
+different quantities with different behavior, and the trial's own final
 analysis has since drawn the line empirically: no effect on clearing
 carriage (HR 1.01) but a significant increase in incident resistance (HR
 3.89).
 
 The choice of unit matters because methicillin-resistant \emph{S.
-aureus} in this population is a clustered transmission process that a cross-sectional proportion cannot by itself characterise. For two decades, community MRSA in men who have
+aureus} in this population is a clustered transmission process that a cross-sectional proportion cannot by itself characterize. For two decades, community MRSA in men who have
 sex with men has been documented not as steady-state carriage but as
 clustered, outbreak-pattern transmission --- the USA300 lineage moving
 through sexual networks in San Francisco, Tokyo, and Chicago
-\cite{diep2008, dejong2025}; outside those clusters colonisation in MSM
+\cite{diep2008, dejong2025}; outside those clusters colonization in MSM
 is low, often near zero, and identifying as MSM is not itself a risk
 factor. A prevalence proportion read at a single visit therefore swings
 with whether a sample happens to catch a cluster (the trial carriage
@@ -287,13 +294,13 @@ measured, and where, is a bounded phenomenon: MRSA clustering within the
 sexual networks they enrolled to study.
 
 But \emph{S. aureus} does not stay where MRSA clusters. The organism
-colonising these networks is the same one carried on skin throughout the
+colonizing these networks is the same one carried on skin throughout the
 community, and resistance selected within the network could, if transmitted, extend beyond that boundary. The guidance that recommends doxy-PEP registers this
 without instrumenting it. The CDC's 2024 recommendation names
 antimicrobial resistance in ``other common bacterial pathogens (e.g.,
 \emph{Staphylococcus aureus})'' as a concern, reproduces the trial
 finding of an increase in tetracycline-resistant \emph{S. aureus} ``from
-5\% \ldots{} to 13\%'' among colonised participants in the doxy-PEP arm
+5\% \ldots{} to 13\%'' among colonized participants in the doxy-PEP arm
 while the standard-of-care arm did not change, and concludes that
 ``potential risks related to the development of resistance and changes
 in the microbiome will need to be monitored as these guidelines are
@@ -347,47 +354,47 @@ the outpatient with a purulent skin infection, and at the sharp end the
 patient on dialysis, recovering from surgery, or receiving chemotherapy.
 None is party to the prescribing decision, enrolled in the networks the
 trials measured, or counted by any surveillance now in place. This is
-the structure of a \textbf{negative externality}, and therefore a
-question of \textbf{distributive justice} --- but the distinctive
+the structure of a negative externality, and therefore a
+question of distributive justice --- but the distinctive
 feature, and the one this paper is about, is that the two sides are not
 observed on comparable terms. The benefit has an identified exposed
 population, an explicit denominator, prespecified endpoints, repeated
 ascertainment, and randomised inference; the potential externality has
 diffuse recipients, no exposure linkage, no corresponding phenotype at a
-population denominator, and no assigned monitoring. \textbf{The
+population denominator, and no assigned monitoring. The
 measurement architecture makes one side of the benefit--externality
-ledger estimable and leaves the other structurally under-observed.} (Fig~\ref{fig1}) The
+ledger estimable and leaves the other structurally under-observed. (Fig~\ref{fig1}) The
 harm is not unmeasurable in principle --- the closing subsection of the
 Discussion specifies the instrument that would measure it --- but
-\emph{unpriced} by the systems deployed, which is the stronger
+unpriced by the systems deployed, which is the stronger
 governance claim, not the weaker. Establishing this requires more than
 naming it; it requires showing, system by system, where the signal is
 lost before it can reach anyone positioned to act. We therefore examine
 each in turn --- the trials, the guidance, and the surveillance.
 
-\begin{figure}[!h]
-\caption{{\bf The measurement-inheritance chain, and its distributive fork.}
+\begin{figure}[!ht]
+\caption{The measurement-inheritance chain, and its distributive fork.
 The construct in a single view; every cell is licensed by an analysis in the Results, not by
-assertion. \emph{(Top)} The measurement vector $M = \{U, E, P, D, T, L, R\}$ --- unit, exposure,
+assertion. (Top) The measurement vector $M = \{U, E, P, D, T, L, R\}$ --- unit, exposure,
 phenotype, denominator, temporal structure, linkage, and measurement responsibility (Materials and
 methods) --- shown at each stage of the evidence chain. Cells are shaded by whether the dimension is
-present at the resolution the \emph{downstream} question needs (green), present but at the wrong unit
+present at the resolution the downstream question needs (green), present but at the wrong unit
 or resolution, inherited from the upstream question (amber), or absent (red). Stream A --- the trial
 that generated the signal --- holds every dimension of its own participant-level estimand; the systems
 built downstream inherit the architecture but not the dimensions the new question requires. The two
 red-bordered cells are the load-bearing gaps: no party is assigned to measure the bystander (Stream B,
 $R$), and no deployed system joins doxy-PEP exposure to the \emph{S. aureus} tetracycline phenotype at
-a common population denominator (Stream C, $L$; 0 of 12 systems). \emph{(Bottom)} The distributive
+a common population denominator (Stream C, $L$; 0 of 12 systems). (Bottom) The distributive
 fork: the benefit accrues to an observed recipient population ($B$) and the potential externality to an
 unobserved third-party population ($H$), $B \neq H$ --- one side of the policy ledger measurable and
-the other not, the condition we term \emph{distributive observability}.}
+the other not, the condition we term distributive observability.}
 \label{fig1}
 \end{figure}
 
 \section*{Results}
 
-We coded the evidence base against a single yardstick --- \emph{what
-would it take for this source to detect the bystander signal?} ---
+We coded the evidence base against a single yardstick --- what
+would it take for this source to detect the bystander signal? ---
 across three streams: the clinical trials (A), the guidelines built on
 them (B), and the population surveillance meant to watch them (C).
 Coding schemas, double-coding reliability, and every locator are in the
@@ -399,35 +406,35 @@ Methods and the repository; each source is SHA-256--pinned.
 When the analysis was framed to match the question, the signal the
 interim's cross-sectional presentation had not resolved appeared. In the
 final DoxyPEP report the investigators ran the participant-level test
-the interim had not --- a \emph{randomised} comparison restricted to the
+the interim had not --- a randomized comparison restricted to the
 as-randomised follow-up (standard-of-care participants censored at
 crossover): among those free of doxycycline-resistant \emph{S. aureus}
 at baseline, time to first detection by arm, by Cox proportional
-hazards. Doxy-PEP carried a \textbf{3.89-fold higher hazard} of
+hazards. Doxy-PEP carried a 3.89-fold higher hazard of
 acquiring doxycycline-resistant \emph{S. aureus} (95\% CI 1.42--10.68;
 68 of 393 versus 5 of 163; p=0.0044), while the hazard of
-\emph{clearing} colonisation did not differ between arms (HR 1.01,
+clearing colonization did not differ between arms (HR 1.01,
 0.69--1.46, p=0.98) \cite{luetkemeyer2025}. The effect was, in the
 authors' own word, mixed: carriage unchanged, the hazard of incident resistant \emph{S. aureus} roughly quadrupled. By the falsification standard set out at the end of the
 Discussion, the claim that this endpoint lay beyond the trial's reach is
 refuted --- the trial reached it. What it did not, and by design could
 not, reach is everything downstream of that individual-level fact, and
-that is where the rest of this stream, and the paper, now turn. The trial's effect against the within-exposed reference band, and the downstream detection thresholds no deployed system reaches, are summarised in Fig~\ref{fig2}.
+that is where the rest of this stream, and the paper, now turn. The trial's effect against the within-exposed reference band, and the downstream detection thresholds no deployed system reaches, are summarized in Fig~\ref{fig2}.
 
-\begin{figure}[!h]
-\caption{{\bf The trial cleared the reference line; the systems built to follow it cannot.}
+\begin{figure}[!ht]
+\caption{The trial cleared the reference line; the systems built to follow it cannot.
 One axis --- within-exposed relative risk / hazard ratio (log scale) --- carries all three streams
-against Soge et al.'s plausible within-exposed effect band (grey: RR 1.42 for the cross-organism
-gonococcal figure, dotted, to RR 2.25 for tetracycline-resistant \emph{S. aureus} colonisation,
-dashed). \emph{Stream A (trials):} the red marker is the \textbf{observed} effect from the final
-DoxyPEP analysis --- incident doxycycline-resistant \emph{S. aureus}, HR \textbf{3.89} (95\% CI
-1.42--10.68; whisker). The faint grey tick is the interim's minimum-detectable RR (3.8--5.1) for its
-\emph{cross-sectional} contrasts; it is shown for scale only and is not directly comparable to the
+against Soge et al.'s plausible within-exposed effect band (gray: RR 1.42 for the cross-organism
+gonococcal figure, dotted, to RR 2.25 for tetracycline-resistant \emph{S. aureus} colonization,
+dashed). Stream A (trials): the red marker is the observed effect from the final
+DoxyPEP analysis --- incident doxycycline-resistant \emph{S. aureus}, HR 3.89 (95\% CI
+1.42--10.68; whisker). The faint gray tick is the interim's minimum-detectable RR (3.8--5.1) for its
+cross-sectional contrasts; it is shown for scale only and is not directly comparable to the
 hazard ratio, which comes from a different (participant-level, time-to-event) estimand --- the point
-being that the estimand and design, not sample size alone, were inadequate to the question. \emph{Stream B
-(guidelines):} no \emph{S. aureus} measurement is required (0 of 6 documented-outbreak jurisdictions,
-0 of 10 coded), so no detection threshold exists --- an off-scale arrow. \emph{Stream C
-(surveillance):} under the controlled panel actually under test, the within-exposed RR needed to move
+being that the estimand and design, not sample size alone, were inadequate to the question. Stream B
+(guidelines): no \emph{S. aureus} measurement is required (0 of 6 documented-outbreak jurisdictions,
+0 of 10 coded), so no detection threshold exists --- an off-scale arrow. Stream C
+(surveillance): under the controlled panel actually under test, the within-exposed RR needed to move
 a population rate at the realistic cell is $\approx$14--64 across the design-effect range (bar);
 detection appears only in a best-case cell that compounds four implausible assumptions and is disowned
 (the Stream C results), and no deployed system links doxy-PEP exposure to an \emph{S. aureus} phenotype
@@ -440,7 +447,7 @@ The sharper reading is historical, because the underlying resistance phenotype d
 --- the question asked of it did. The 2023 interim reported a
 cross-sectional resistance fraction and read it as reassurance (``modest
 \ldots{} unlikely clinical significance''); the 2024 federal guideline
-repeated a rise from 5\% to 13\% among the colonised and appended a call
+repeated a rise from 5\% to 13\% among the colonized and appended a call
 for monitoring \cite{cdc2024doxypep}; the 2025 final analysis asked the
 estimand the others had not --- incident resistance among those who
 began without it, as a time-to-event contrast --- and returned HR 3.89
@@ -451,11 +458,11 @@ estimand catching up to the concern. The implementation system did not
 evolve with it, and that gap is the subject of Streams B and C.
 
 That evolution is legible in the interim record the final analysis
-superseded, in features that recur --- generalised --- across the
+superseded, in features that recur --- generalized --- across the
 stream. The first is a unit mismatch. The trial's data table is headed
-``phenotypic resistance to the \emph{tetracycline} antibiotic class,''
+``phenotypic resistance to the tetracycline antibiotic class,''
 while its methods define the \emph{S. aureus} assay as
-\emph{doxycycline} (E-test, MIC ≥16 µg/mL): the assay measures one drug,
+doxycycline (E-test, MIC ≥16 µg/mL): the assay measures one drug,
 the label names a class, and the CDC guidance then inherits the wording,
 describing this doxycycline result as ``tetracycline resistance in
 \emph{S. aureus}'' \cite{cdc2024doxypep}. Because those are not
@@ -464,38 +471,126 @@ tetracycline class'' does not answer the treatment-relevant question ---
 a concrete instance of a downstream coding that does not match the
 construct it is asked to carry.
 
-The second feature is that the published figures for this one quantity
-are reported over differing, incompletely documented denominators and
-cannot be reconciled from the public record. The same nominal quantity
---- month-12 doxycycline-resistant \emph{S. aureus} in the doxy-PEP arm
---- is given three ways across the trial's own venues:
+The second feature is that the resistance signal was reported over
+differing, incompletely documented denominators within the trial record,
+and then propagated into secondary clinical reporting under additional
+contrasts and conditioning sets. The sequence below follows that
+transformation from the primary trial record into federal guidance and
+clinical synthesis.
 
-\begin{adjustwidth}{-1.25in}{0in}
+\begin{table}[htbp]
 \centering
-\begin{tabular}{lllll}
-\hline
-Venue & Resistant isolates & Denominator & Denominator basis & Rate \\ \hline
-NEJM appendix, Table 2 & 5 & 31 & colonised carriers & 16\% \\
-CROI abstract table & 16 & 137 & all swabbed & 12\% \\
-CROI slides $\rightarrow$ CDC guideline & 28 & 222 & all swabbed & 13\% \\ \hline
-\end{tabular}
-\end{adjustwidth}
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{\textbf{Propagation of the DoxyPEP \emph{S. aureus} resistance
+signal across reporting venues.}
+The rows are not assumed to represent identical estimands; differences
+in contrast, conditioning set, denominator, and terminology are
+themselves the object of comparison.}
+\begin{tabular}{@{}
+>{\raggedright\arraybackslash}p{0.15\textwidth}
+>{\raggedright\arraybackslash}p{0.20\textwidth}
+>{\raggedright\arraybackslash}p{0.25\textwidth}
+>{\raggedright\arraybackslash}p{0.30\textwidth}
+@{}}
+\toprule
+\textbf{Venue} &
+\textbf{Reported \emph{S. aureus} resistance result} &
+\textbf{Frame / conditioning set} &
+\textbf{What travels downstream} \\
+\midrule
 
-The three rates are of a similar order, but the resistant
-\emph{numerator} itself differs (5, 16, 28), the denominators differ and
-their basis --- carriers versus all swabbed --- is not uniformly stated,
-and the two CROI presentations of the same analysis disagree (16 versus
-28). Part of the spread is a denominator-basis artefact; part is a
-genuine count difference between venues; the public record does not
-distinguish them
-\cite{luetkemeyer2023, luetkemeyer2023croi, cdc2024doxypep}. We do not
-suggest impropriety --- only that choosing the correct value would
-require the individual-level data, and the third feature is that those
-data are withheld. The trial's data-sharing statement answers ``Will the
-data collected for your study be made available to others?'' with a
-single word, ``No,'' every subsequent field left blank
-\cite{luetkemeyer2023}. The one dataset that could reconcile the
-trial's own discordant numbers is the one dataset not released.
+NEJM appendix (2023) \cite{luetkemeyer2023} &
+5/31 = 16\%
+&
+Month-12 doxy-PEP arm; resistant among colonised carriers
+&
+Numerator and carrier denominator explicit. \\
+
+\addlinespace
+
+CROI abstract (2023) \cite{luetkemeyer2023croi} &
+16/137 = 12\%
+&
+Doxy-PEP arm; all-swabbed denominator
+&
+Different numerator and denominator basis from the NEJM appendix. \\
+
+\addlinespace
+
+CROI slides $\rightarrow$ CDC guideline (2024) \cite{cdc2024doxypep} &
+28/222 = 13\%; CDC summarizes 5\% $\rightarrow$ 13\%
+&
+Doxy-PEP arm; presentation/guideline frame
+&
+Percentage retained while provenance and denominator basis become less transparent. \\
+
+\addlinespace
+
+JAMA Insights, Mayer et al.\ (2023) \cite{mayer2023} &
+5\% vs 4\%
+&
+Doxy-PEP vs control; described as becoming ``infected with''
+tetracycline-resistant \emph{S. aureus}
+&
+Between-arm percentage retained; numerator, denominator, timepoint, and
+carriage/resistance distinction not carried forward. \\
+
+\addlinespace
+
+JAMA Clinical Guidelines Synopsis, Flores et al.\ (2025) \cite{flores2025} &
+5\% $\rightarrow$ 16\%
+&
+Within doxy-PEP arm, among participants with nasopharyngeal
+\emph{S. aureus} isolated
+&
+Carrier-conditioned longitudinal percentage retained; raw numerator and denominator omitted. \\
+
+\bottomrule
+\end{tabular}
+\end{table}
+Within the trial's own venues, the resistant numerator changes from
+5 to 16 to 28, the denominator basis shifts from colonised carriers to
+all swabbed, and the two CROI presentations remain unreconciled in the
+public record \cite{luetkemeyer2023, luetkemeyer2023croi,
+cdc2024doxypep}. As the signal moved into secondary clinical synthesis,
+its representation changed again: Mayer et al.\ reported a 5\% versus
+4\% between-arm comparison without the underlying numerator,
+denominator, timepoint, or conditioning set and described the finding
+as ``infection'' \cite{mayer2023}, whereas Flores et al.\ reported a
+5\% to 16\% within-arm increase conditioned on \emph{S. aureus}
+isolation \cite{flores2025}. These expressions need not contradict one
+another because they answer different questions. The metascientific
+point is that the percentage travelled more reliably than the
+denominator, contrast, conditioning set, and measurement terminology
+needed to interpret it.
+
+We do not suggest impropriety. Part of the variation reflects different
+denominator bases and contrasts; part reflects genuine differences in
+the reported counts that cannot be reconciled from the public record.
+Resolving those differences would require the individual-level data,
+and the third feature is that those data are not released. The trial's
+data-sharing statement answers ``Will the data collected for your study
+be made available to others?'' with a single word, ``No,'' with the
+subsequent fields left blank \cite{luetkemeyer2023}. The dataset that
+could reconcile the trial's discordant first-party reports is therefore
+not publicly available.
+
+The reporting instability did not stop at the trial boundary.
+Secondary clinical syntheses propagated the same safety finding in
+additional, non-equivalent frames. Mayer et al.\ described participants
+receiving doxy-PEP as more likely to become ``infected with
+tetracycline-resistant \emph{S. aureus},'' 5\% versus 4\% in the control
+group, without reporting the underlying numerator, denominator,
+conditioning set, or timepoint \cite{mayer2023}. Flores et al.\ instead
+reported, among participants with nasopharyngeal \emph{S. aureus}
+isolated, an increase within the doxy-PEP arm from 5\% at baseline to
+16\% after 12 months \cite{flores2025}. These statements need not be
+numerically contradictory: they condition on and contrast different
+populations. That is precisely the reporting problem. As the result
+moved from trial report to clinical synthesis, the percentage travelled
+more reliably than the denominator, contrast, and measurement unit
+needed to interpret it.
 
 Nor is the bystander the only under-measured organism here: even the
 intensively surveilled gonococcus was phenotyped in fewer than one
@@ -506,11 +601,10 @@ investigators called for longer-term monitoring
 monitoring is possible with the evidence base as it stands.
 
 The trials usually said to have ``assayed \emph{S. aureus}'' did so on
-incompatible terms: DoxyPEP
-measured doxycycline resistance within \emph{S. aureus} by E-test over
+incompatible terms: DoxyPEP measured doxycycline resistance within \emph{S. aureus} by E-test over
 two disagreeing denominators; DuDHS measured the same phenotype by disc
 diffusion in a single-digit number of carriers; DOXYVAC measured only
-MRSA \emph{carriage prevalence} --- a methicillin, not a tetracycline,
+MRSA carriage prevalence --- a methicillin, not a tetracycline,
 quantity (and one that itself rose within the doxy-PEP arm, 1.8\% to
 9.9\%, while being reported as a between-arms null
 \cite{vanbaelen2024c}). Of three trials, two measured the phenotype
@@ -525,16 +619,16 @@ prevalence read at these small counts cannot separate clustered
 transmission from sampling noise: in both pivotal trials the carriage
 trajectories move non-monotonically and in step across arms; a naive
 between-arm trend test, simulated against the documented between-cohort
-dispersion of MRSA colonisation, is badly oversized (scoring a flat
+dispersion of MRSA colonization, is badly oversized (scoring a flat
 process as a significant trend most of the time); and the outbreak
 curvature that would mark clustering is statistically unidentifiable
 from a plain trend. The significant signal the final analysis returned
-is an \emph{individual-level} incidence hazard, and says nothing either
+is an individual-level incidence hazard, and says nothing either
 way about whether resistant strains cluster or propagate. The full
 carriage-trajectory, dispersion, trend-test-degradation, and
 outbreak-shape analyses are in the S1 Text and regenerate
 from the repository (\texttt{outputs/}); they establish that the cross-sectional endpoint could not resolve the downstream population question under the observed designs and sampling structure, and are not load-bearing for the individual-level
-result now in hand. Where interim summaries emphasised the
+result now in hand. Where interim summaries emphasized the
 methicillin-resistant subset --- in which resistance stayed low (MRSA
 about 6\% of sampled participants, doxy-R MRSA unchanged) --- over the
 broader \emph{S. aureus} measure, in which it did not, the two reporting
@@ -547,10 +641,10 @@ its cross-sectional contrasts were underpowered for any externally
 specified effect (0 of 4 powered; minimum detectable RR 3.8--5.1 against
 Soge's RR ≈ 1.42--2.25 \cite{soge2025}; S1 Text), but
 the final analysis did not simply add data --- it changed what was
-measured, from a cross-sectional resistance \emph{proportion} to
-participant-level \emph{incident} resistance. Its hazard ratio is
+measured, from a cross-sectional resistance proportion to
+participant-level incident resistance. Its hazard ratio is
 therefore not comparable to that cross-sectional minimum-detectable
-effect; the \emph{measurement design}, not the sample, became adequate
+effect; the measurement design, not the sample, became adequate
 to the question. What no change of estimand can do is reach past the
 trial's roughly one-year horizon.
 
@@ -560,7 +654,7 @@ phenotype: efflux (tet(K)) and ribosomal-protection (tet(M)) mechanisms
 differ in whether doxycycline still works, and MRSA status measures
 methicillin resistance, not tetracycline resistance at all
 \cite{liu2011, grossman2016}. The trial resolved the doxycycline
-\emph{phenotype} (HR 3.89) but not its molecular basis, and a standard
+phenotype (HR 3.89) but not its molecular basis, and a standard
 breakpoint cannot separate the two --- so the choice of surveillance
 variable determines which downstream question remains answerable. (A
 cross-organism instance of the same blindness --- a military
@@ -595,8 +689,8 @@ asymmetry throughout: the efficacy question receives a graded,
 systematic evidence review; the antimicrobial-resistance harm ---
 explicitly including resistant-pathogen development --- receives an
 ungraded literature review in the same document. Providers are
-\emph{required to counsel} patients about resistance in commensal
-organisms, yet \emph{no} document requires any \emph{S. aureus}
+required to counsel patients about resistance in commensal
+organisms, yet no document requires any \emph{S. aureus}
 measurement, follow-up culture, or bystander panel; where a monitoring
 recommendation appears at all, it concerns a different organism.
 
@@ -607,7 +701,7 @@ MSM (de Jong 2025 and the outbreak literature it cites
 \cite{dejong2025, diep2008}). Of the six documented-outbreak
 jurisdictions with governmental doxy-PEP guidance --- San Francisco,
 Chicago, New York City, Boston (Massachusetts), Los Angeles County, and
-San Diego --- \textbf{0 require or suggest \emph{S. aureus} monitoring}.
+San Diego --- 0 require or suggest \emph{S. aureus} monitoring.
 The finding survives an independence check applied to the six from
 document content: four are independently authored (San Francisco,
 Chicago, NYC, San Diego), one (LA County) is adapted from San Francisco
@@ -623,6 +717,7 @@ is identical: 0 instrument the bystander. Inter-coder agreement was
 92\%; the one field with meaningful disagreement (κ = 0.58) is reported
 as such and not rounded up.
 
+
 \subsection*{Stream C --- Can deployed surveillance link doxy-PEP exposure to the relevant S. aureus phenotype?}
 
 The monitoring the trial's authors call for would have to link two
@@ -632,24 +727,24 @@ closed universe of twelve established US surveillance systems
 (governmental only; commercial and research datasets and provider
 directories excluded with reasons), none does --- and the decomposition
 says why. Two systems capture exposure at a population denominator ---
-AIDSVu and CDC AtlasPlus, both as a PrEP \emph{proxy}, not doxy-PEP
-itself \cite{aidsvu} --- and \textbf{zero} capture \emph{S. aureus}
+AIDSVu and CDC AtlasPlus, both as a PrEP proxy, not doxy-PEP
+itself \cite{aidsvu} --- and zero capture \emph{S. aureus}
 tetracycline resistance at a population denominator. The join is
 vacuous: there is nothing on the phenotype side to join to. It is not
 that two halves exist and no one connects them; one half does not exist.
 
 The reason it does not exist is a codified seam. Wherever \emph{S.
 aureus} is surveilled at a population denominator, the reported axis is
-\emph{methicillin}, not tetracycline: the one population-based platform,
-ABCs/EIP, reports invasive \textbf{MRSA}; NHSN reports MRSA events; and
+methicillin, not tetracycline: the one population-based platform,
+ABCs/EIP, reports invasive MRSA; NHSN reports MRSA events; and
 the only routine source of \emph{S. aureus} tetracycline susceptibility
---- the facility cumulative antibiogram --- is non-standardised and
+--- the facility cumulative antibiogram --- is non-standardized and
 carries no population denominator, because CLSI M39, the national
-standard, \emph{mandates} the MRSA/MSSA split and makes tetracycline a
+standard, mandates the MRSA/MSSA split and makes tetracycline a
 selectively suppressible supplemental agent. NARMS, the closest-named
 federal AR system, excludes \emph{S. aureus} altogether;
 tetracycline-resistant \emph{S. aureus} is nationally notifiable
-nowhere. The surveillance architecture is organised around the
+nowhere. The surveillance architecture is organized around the
 methicillin axis at every tier, and the tetracycline unit is orthogonal
 to it --- the Stream C twin of the endpoint substitution that runs
 through Stream A. The two sides also exist at incompatible resolutions:
@@ -663,7 +758,7 @@ population-based ABCs/EIP platform that already holds the denominator
 Nor could an ordinary population system recover the missing side simply
 by collecting more observations. Under realistic exposure density and
 isolate volumes, the within-exposed effect required to move a population
-rate runs to roughly \textbf{RR 14--64} --- far above any plausible
+rate runs to roughly RR 14--64 --- far above any plausible
 effect (Soge's optimistic 1.42--2.25) --- and the only configuration
 that restores sensitivity is to sample \emph{S. aureus} directly from
 doxy-PEP-exposed persons, which converts the system into a sentinel
@@ -676,23 +771,24 @@ benefit is measured in an identified exposed population; a
 population-level resistance consequence would be borne by a broader
 population whose \emph{S. aureus} tetracycline phenotype is linked to
 exposure at no common denominator --- and because the mismatch is one of
-\emph{unit}, not sample size, scaling the inherited instrument does not repair it. (Fig~\ref{fig3}.)
+unit, not sample size, scaling the inherited instrument does not
+repair it. (Fig~\ref{fig3}.)
 
-\begin{figure}[!h]
-\caption{{\bf No deployed system links doxy-PEP exposure to \emph{S. aureus} tetracycline resistance.}
+\begin{figure}[!ht]
+\caption{No deployed system links doxy-PEP exposure to \emph{S. aureus} tetracycline resistance.
 Linking the two requires one system to carry both at a common population denominator --- one column
-usable in both rows; none is. Cells are shaded by status (see legend). \textbf{(a)} Exposure is
-captured at a population denominator (AIDSVu, CDC AtlasPlus), only as a PrEP proxy. \textbf{(b)} The
-other exposure source, NHSN, captures inpatient antimicrobial \emph{use}, not doxy-PEP. \textbf{(c)}
-The \emph{S. aureus} tetracycline phenotype is captured at a population denominator \textbf{nowhere}
+usable in both rows; none is. Cells are shaded by status (see legend). (a) Exposure is
+captured at a population denominator (AIDSVu, CDC AtlasPlus), only as a PrEP proxy. (b) The
+other exposure source, NHSN, captures inpatient antimicrobial use, not doxy-PEP. (c)
+The \emph{S. aureus} tetracycline phenotype is captured at a population denominator nowhere
 --- the one population-based \emph{S. aureus} platform, ABCs/EIP, reports the methicillin (MRSA)
-subset, the wrong unit; this is the load-bearing gap. \textbf{(d)} The only routine tetracycline
+subset, the wrong unit; this is the load-bearing gap. (d) The only routine tetracycline
 reading, the facility cumulative antibiogram, carries no population base and is a
 selectively-suppressible supplemental agent under CLSI M39. The usable exposure (a) and the
 tetracycline reading (d) lie in different columns and denominators, so nothing links: 0 of 12
 established US surveillance systems join the two. The asymmetry is the point: the exposure that carries
 the intervention's benefit is legible at a population denominator, while the phenotype that would carry
-its externality is legible at none --- a map of \emph{distributive observability}, one side of the
+its externality is legible at none --- a map of distributive observability, one side of the
 ledger measurable and the other not.}
 \label{fig3}
 \end{figure}
@@ -702,8 +798,9 @@ ledger measurable and the other not.}
 A defined PubMed search (2015--2026; queries and a frozen result
 snapshot in the repository) identified 361 doxy-PEP papers, of which 13
 (3.6\%) mention a bystander staphylococcal organism and only 2 measure
-tetracycline-resistant \emph{S. aureus} against a doxy-PEP exposure contrast. The bystander
-is therefore rarely mentioned and, when mentioned, rarely measured
+tetracycline-resistant \emph{S. aureus} against a doxy-PEP exposure
+contrast. The bystander is therefore rarely mentioned and, when
+mentioned, rarely measured
 against exposure. This is not evidence of neglect by any author; it is
 consistent with a research system whose attention remains concentrated
 where its existing instruments already point. The literature's attention
@@ -726,13 +823,19 @@ aureus} tetracycline phenotype share a denominator (Stream C), with the
 same asymmetry extending into what the literature makes observable at all (Table~\ref{table1}).
 
 \begin{table}[!ht]
-\begin{adjustwidth}{-2.25in}{0in}
 \centering
-\caption{{\bf Observability of the intervention and potential downstream externality across evidence systems.}}
+\small
+\caption{\textbf{Distributive observability across the intervention--externality ledger.}
+Measurement properties needed to estimate the intervention and its potential
+downstream consequence are jointly available in the exposed trial population
+but not in any corresponding population-level evidence system. Each row is
+supported by Streams A--C; the asymmetry concerns estimability, not evidence
+that a population-level externality has occurred.}
 \label{table1}
-\begin{tabular}{|p{1.6in}|p{2.5in}|p{2.7in}|}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\textwidth}{|p{0.26\textwidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
 \hline
-\textbf{Measurement property} & \textbf{Upstream trial / exposed population} & \textbf{Downstream population externality} \\ \thickhline
+Measurement property & Upstream trial / exposed population & Downstream population externality \\ \thickhline
 Population at risk identified & Yes --- enrolled/exposed participants & No population linked to both exposure and phenotype \\ \hline
 Exposure ascertained & Yes --- individual doxy-PEP assignment/use & Population-scale proxy only; no individual linkage \\ \hline
 Relevant resistance phenotype measured & Yes --- incident doxycycline-resistant \emph{S. aureus} & Absent at a population denominator \\ \hline
@@ -740,10 +843,8 @@ Denominator defined & Yes --- randomised participant denominator & No common exp
 Temporal contrast available & Yes --- longitudinal time-to-event analysis & No linked longitudinal population series \\ \hline
 Measurement responsibility assigned & Yes --- trial protocol/investigators & No \emph{S. aureus}-specific monitoring mandate \\ \hline
 Existing instrument can estimate the question & Yes --- trial resolved individual-level incidence & No --- 0 of 12 deployed systems link exposure and phenotype \\ \hline
-\end{tabular}
-\begin{flushleft} Every cell is licensed by a stream analysis in the Results, not by assertion; the decomposition is reported categorically rather than as any composite score.
-\end{flushleft}
-\end{adjustwidth}
+\end{tabularx}
+\renewcommand{\arraystretch}{1}
 \end{table}
 
 Every cell is licensed by an analysis above, not by assertion, and we
@@ -753,9 +854,9 @@ topology: intervention benefit and the individual-level resistance
 signal are scientifically legible within the exposed population, while a
 corresponding population externality is not estimable within the
 deployed downstream architecture. We call this difference in scientific
-visibility \emph{distributive observability} --- \emph{who remains
+visibility distributive observability --- who remains
 represented by the evidence system, and with what inferential
-resolution, once the scientific question moves downstream}. It does not
+resolution, once the scientific question moves downstream. It does not
 establish that a population harm has occurred. It establishes that, were
 such a harm occurring, the deployed evidence architecture could estimate
 the intervention side of the benefit--externality ledger far more
@@ -790,13 +891,13 @@ load-bearing observation still belongs to the trial team, not to us: the
 surveillance they call for is surveillance the evidence base they helped
 launch is not built to provide.
 
-This is \emph{measurement inheritance}. An analysis --- or a guideline,
+This is measurement inheritance. An analysis --- or a guideline,
 or a surveillance system --- carries in its sampling frame, cadence,
 coding, denominator, and unit the organism and question it was built
 for. The doxy-PEP apparatus was built to measure gonococcal efficacy;
 applied to a bystander commensal it inherits a denominator the
 intervention itself moves, a phenotype label that spans two mechanisms,
-and a surveillance architecture standardised around the methicillin axis
+and a surveillance architecture standardized around the methicillin axis
 while the tetracycline unit falls orthogonally through it. The
 downstream gap is not an oversight closable by a better analysis of the
 trial's data --- that analysis has now been done, and it is significant;
@@ -804,17 +905,17 @@ it is a property of the guidance and surveillance instruments, built
 around a different organism and a different question.
 
 Measurement inheritance is built from familiar parts but reducible to
-none of them. \emph{Construct validity} asks whether a measure
-represents its intended construct; \emph{estimand mismatch}, whether the
-quantity estimated matches the question posed \cite{montoya2025estimand}; \emph{ascertainment and
-surveillance bias}, who or what is systematically observed \cite{tancredi2024surveillance};
-\emph{metric-substitution} problems of the Goodhart and McNamara type,
-what happens when an available metric stands in for the thing of interest \cite{treem2023visibility}. These concepts generally diagnose mismatch within a measurement, analysis, or evaluation stage. Measurement inheritance instead concerns how such mismatches propagate \emph{across stages} of an evidence-production chain: the question changes as responsibility passes
+none of them. Construct validity asks whether a measure
+represents its intended construct; estimand mismatch, whether the
+quantity estimated matches the question posed \cite{montoya2025estimand}; ascertainment and
+surveillance bias, who or what is systematically observed \cite{tancredi2024surveillance};
+metric-substitution problems of the Goodhart and McNamara type,
+what happens when an available metric stands in for the thing of interest \cite{treem2023visibility}. These concepts generally diagnose mismatch within a measurement, analysis, or evaluation stage. Measurement inheritance instead concerns how such mismatches propagate across stages of an evidence-production chain: the question changes as responsibility passes
 downstream, but the downstream system retains the unit, coding,
 denominator, cadence, or linkage inherited from the upstream question
 --- so the very features that made the measure valid upstream render it
 blind downstream. The contribution is not to name any constituent bias
-but to show that they can be \emph{coupled across a chain}, and to
+but to show that they can be coupled across a chain, and to
 convert that observation into a per-source, falsifiable detectability
 standard another meta-researcher could apply to a different intervention
 and its bystander.
@@ -822,7 +923,7 @@ and its bystander.
 \subsection*{Distributive observability}
 
 That coupling has a distributive consequence, and it is a
-\emph{measurement} asymmetry before it is a moral one. The
+measurement asymmetry before it is a moral one. The
 intervention's benefit and its potential downstream cost accrue to different populations, and only one is observed. The benefit is measured
 in an identified exposed population --- exposure ascertained,
 denominator defined, phenotype measured, a longitudinal causal contrast
@@ -873,8 +974,8 @@ no \emph{S. aureus}-tetracycline dataset of clustering, transmission, or
 population phenotype exists to reason from. That reliance is an instance
 of measurement inheritance, not an exception to it: we are forced onto
 the only part of the organism any system was built to see, which is the
-lower bound of what can presently be known. Colonisation is also not
-infection, and the colonisation--infection link is itself unmeasured
+lower bound of what can presently be known. Colonization is also not
+infection, and the colonization--infection link is itself unmeasured
 here --- one more thing the apparatus does not see.
 
 \subsection*{What instrument would answer the question}
@@ -901,7 +1002,7 @@ system can now determine. The trial's own randomised analysis of
 incident doxycycline-resistant \emph{S. aureus} is statistically
 significant (HR 3.89), and we accept it rather than dispute it; the
 earlier per-carrier reconstruction we used to argue the interim
-understated the change is retired in its favour. We claim that the
+understated the change is retired in its favor. We claim that the
 guidance and surveillance built around doxy-PEP are not instrumented to
 follow that signal to the population level where the clinical stake
 lies, and that the interim's reassuring framing was an artifact of
@@ -935,7 +1036,7 @@ surveillance that exists the population question cannot be run at all.
 
 We make the construct operational so that it can be applied beyond this
 case. Treat the answerability of a scientific question as requiring a
-\emph{measurement vector} with dimensions
+measurement vector with dimensions
 
 \[M = \{\,U,\ E,\ P,\ D,\ T,\ L,\ R\,\}\]
 
@@ -943,16 +1044,16 @@ where \(U\) is the unit or population, \(E\) the exposure, \(P\) the
 phenotype or outcome, \(D\) the denominator, \(T\) the temporal
 structure or cadence, \(L\) the linkage or granularity at which \(E\)
 and \(P\) are joined, and \(R\) the locus of measurement responsibility
---- who is charged with observing \(P\). \textbf{Measurement
-inheritance} occurs when a downstream evidence system retains dimensions
-appropriate to the \emph{upstream} question but not those required by
-the \emph{downstream} estimand --- so the question is unanswerable by
+--- who is charged with observing \(P\). Measurement
+inheritance occurs when a downstream evidence system retains dimensions
+appropriate to the upstream question but not those required by
+the downstream estimand --- so the question is unanswerable by
 that system not for want of data but for want of an inherited dimension.
 A distributive corollary follows when the intervention's benefit and its
 potential downstream harm accrue to different populations, \(B \neq H\):
 the beneficiary population \(B\) remains represented by the inherited
 \(\{U,E,P,D,L\}\), while the population \(H\) that would bear an
-externalised consequence is represented by none of them jointly; estimating an effect on $H$ would require an estimand defined on the affected rather than the treated population \cite{montoya2025affected}. We call that condition \textbf{distributive observability} --- a property of the
+externalised consequence is represented by none of them jointly; estimating an effect on $H$ would require an estimand defined on the affected rather than the treated population \cite{montoya2025affected}. We call that condition distributive observability --- a property of the
 measurement system, not an ethical premise added to it. The three streams instantiate the schema directly, as Fig~\ref{fig1} renders stage by stage: the trial and its reporting inherited a cross-sectional carriage framing ($P$, $T$) where incident resistance (time-to-event $T$; participant $U$) was the quantity that mattered; guidance inherited efficacy evidence and counselling where an assigned measurement obligation for $P$ was needed; and surveillance inherited the methicillin axis ($P$) and population denominators ($D$) that never meet the tetracycline phenotype at a common linkage ($L$).
 
 
@@ -965,7 +1066,7 @@ coordinates were inherited and which were not.
 
 The study is a documentary and quasi-computational audit of whether the
 doxy-PEP evidence base can detect the bystander signal, assembled in
-three streams collected and analysed in sequence: the clinical trials
+three streams collected and analyzed in sequence: the clinical trials
 (Stream A), the governmental guidance built on them (Stream B), and the
 population surveillance meant to monitor them (Stream C). Each stream is
 scored against one yardstick --- the within-exposed effect it could
@@ -984,7 +1085,7 @@ locator; the builder fails on a missing locator rather than emitting a
 null. The unit of analysis is \emph{S. aureus}; MSSA and MRSA are coded
 as subsets, not as the endpoint (methicillin status is downstream of the
 empirical prescribing decision, the Introduction). Resistance
-observations are coded one per \emph{reported instance} (not per
+observations are coded one per reported instance (not per
 underlying result), recording the phenotype measured versus the
 phenotype as labeled, the mechanism-discrimination method, the
 numerator/denominator, the denominator basis (all-swabbed, carriers,
@@ -996,8 +1097,8 @@ it), \texttt{guideline}, or \texttt{secondary\_synthesis}. Where a
 trial's per-timepoint denominators are absent from the public record
 (DOXYVAC's MRSA carriage; the main-trial paper is not in the corpus), no
 observation is fabricated --- the gap is recorded and the source flagged
-for acquisition. A cross-trial heterogeneity summary tabulates the axis, assay,
-and denominator each trial used. Guidelines were double-coded (blind
+for acquisition. A cross-trial heterogeneity summary tabulates the axis,
+assay, and denominator each trial used. Guidelines were double-coded (blind
 second coder; 92\% agreement) with Cohen's κ per field. All 40+ source
 files are SHA-256--pinned (\texttt{data/raw/**/CHECKSUMS.md}); the CROI
 abstract's source and hash are recorded in
@@ -1006,24 +1107,24 @@ transcription itself is a third-party work and is not redistributed).
 
 \subsection*{Stream A --- the trials}
 
-\textbf{Detectability.} For each primary-trial \emph{S. aureus} arm
+Detectability. For each primary-trial \emph{S. aureus} arm
 comparison --- first-party published data only;
 \texttt{conference\_abstract}, guideline, and secondary sources are
 excluded so the power analysis rests on peer-reviewed denominators ---
 we compute, from the arm sizes and observed control rate alone, the
-exact-Fisher power to detect an effect fixed \emph{a priori} from a
+exact-Fisher power to detect an effect fixed a priori from a
 source external to the trials, and the minimum detectable relative risk
 at 80\% power. The benchmark is the \emph{S. aureus}-matched
 \(RR = 2.25\) (Soge et al.: tetracycline-resistant \emph{S. aureus}
-colonisation, 18\% versus 8\% in doxy-PEP users versus non-users); a
+colonization, 18\% versus 8\% in doxy-PEP users versus non-users); a
 cross-organism gonococcal \(RR = 1.42\) is carried as a flagged
 secondary. Fixing the effect externally is what makes this a
-\textbf{design-based sensitivity analysis}, not observed power; per-arm
+design-based sensitivity analysis, not observed power; per-arm
 counts are single- to low-double-digit, so the exact test is used
 throughout, the Fisher rejection region enumerated once per pair of arm
 sizes.
 
-\textbf{Duration and sample accrual.} To quantify what the trials' early
+Duration and sample accrual. To quantify what the trials' early
 termination cost the bystander endpoint we extend the same frame:
 preserving each comparison's arm ratio and control rate, we solve for
 the sample that would reach 80\% power against the matched benchmark and
@@ -1040,10 +1141,10 @@ duration, recording the early efficacy stop as the reason the realised
 denominator is what it is rather than as a counterfactual about a longer
 trial.
 
-\textbf{Selection.} The interim publications reported no
+Selection. The interim publications reported no
 participant-level test of selection, so an earlier version of this
 analysis reconstructed one from aggregate counts --- recovering
-susceptible carriage as colonisation prevalence minus the all-swabbed
+susceptible carriage as colonization prevalence minus the all-swabbed
 resistance rate, and testing the predicted depletion and per-carrier
 increase directionally. The final DoxyPEP analysis has since performed
 the appropriate participant-level test itself: among participants free
@@ -1056,20 +1157,20 @@ as an exhibit of how the same endpoint was conveyed across venues before
 the incidence estimand resolved it. We fit no shape to the short
 arm-split series.
 
-\textbf{Clustering.} That MRSA behaves as a clustered, network
+Clustering. That MRSA behaves as a clustered, network
 phenomenon rather than a quantity a cross-sectional proportion can
 settle is instrumented separately and kept MRSA-scoped, since MRSA is a
 subset and not the analytic unit. We first estimate the empirical
-overdispersion of MRSA colonisation prevalence across the independent
+overdispersion of MRSA colonization prevalence across the independent
 MSM cohorts assembled by a systematic review \cite{dejong2025} --- the
 same review whose outbreak sources define the Stream B denominator
 (Materials and methods) --- as a logit-normal binomial random-effects
 model fitted by marginal maximum likelihood (Gauss--Hermite quadrature),
 reporting the between-cohort dispersion on the logit scale with a
 profile-likelihood interval and treating it as a deliberately
-\emph{conservative external sensitivity anchor} for the scale of
+conservative external sensitivity anchor for the scale of
 heterogeneity (not an estimate of the trial's between-visit variance),
-since the ten colonisation cohorts (of eighteen studies screened, the
+since the ten colonization cohorts (of eighteen studies screened, the
 ten reporting usable prevalence) cannot partition genuine clustering
 from the methodological heterogeneity it also absorbs. Against that
 dispersion we ask, by simulation at a trial's actual per-visit
@@ -1091,11 +1192,11 @@ as such, not ours.
 
 \subsection*{Stream B --- the guidance}
 
-\textbf{Denominator.} The Stream B denominator is purposive rather than
+Denominator. The Stream B denominator is purposive rather than
 a convenience set of whatever guidance was on hand, and its selection
 rule is inherited from the paper's own clustering evidence: the US
 jurisdictions with documented CA-MRSA/USA300 transmission or elevated
-clustered colonisation in MSM, as defined by de Jong's systematic review
+clustered colonization in MSM, as defined by de Jong's systematic review
 and the primary outbreak literature it cites
 \cite{dejong2025, diep2008} --- the same source that supplies the
 clustering dispersion of Materials and methods. The jurisdictions where
@@ -1105,14 +1206,14 @@ public-health guidance only (state, county, municipal); clinic and
 provider-organisation documents are excluded on the stated ground that
 they carry neither surveillance authority nor monitoring policy,
 retained with that reason rather than dropped silently. Each outbreak
-jurisdiction is classed as \emph{matched} (guidance located and coded),
-a \emph{gap} (no governmental guidance locatable --- itself a finding,
+jurisdiction is classed as matched (guidance located and coded),
+a gap (no governmental guidance locatable --- itself a finding,
 resolved to located-and-coded or confirmed-none before the sample
 closes), or, for on-disk jurisdictions outside the outbreak set,
 retained separately under a high-exposure rather than
 documented-outbreak rationale.
 
-\textbf{Coding.} Each document is coded from full text, not search
+Coding. Each document is coded from full text, not search
 snippets --- establishing that a document does not monitor the organism
 requires reading it --- one document per record, every finding carrying
 a locator. The schema captures a within-artifact asymmetry: whether the
@@ -1121,18 +1222,18 @@ syphilis) and orders host-toxicity labs, set against whether it names,
 counsels, or measures \emph{S. aureus}. Bystander treatment is graded
 silent, generic microbiome/resistance, or organism-named; \emph{S.
 aureus} monitoring as required, suggested, silent, or explicitly none,
-the last requiring a verbatim quote. Coding is done \textbf{blind to the
-expected outcome} --- the expectation that no document exceeds patient
+the last requiring a verbatim quote. Coding is done blind to the
+expected outcome --- the expectation that no document exceeds patient
 counselling is exactly where confirmation would let an edge case slip
---- with any departure flagged rather than normalised. A blinded second
+--- with any departure flagged rather than normalized. A blinded second
 coder double-codes with per-field Cohen's κ.
 
-\textbf{Independence.} Because the headline counts jurisdictions that
+Independence. Because the headline counts jurisdictions that
 decline to monitor, we separate independent assessments from echoes. A
 document that defers to CDC --- reproducing its guidance without local
 policy --- inherits CDC's non-monitoring and is a dependent observation,
 coded and reported apart from independent declines. The same test is
-then applied \emph{within} the outbreak-matched set, from document
+then applied within the outbreak-matched set, from document
 content --- structure, section order, verbatim or near-verbatim shared
 passages, and stated derivation (``adapted from''): documents adapted
 from a shared template or from one another are grouped as one lineage,
@@ -1141,7 +1242,7 @@ not inflated by replication.
 
 \subsection*{Stream C --- the surveillance}
 
-Stream C asks the linkage question directly: does any \emph{deployed} US
+Stream C asks the linkage question directly: does any deployed US
 public-health surveillance system link doxy-PEP exposure to \emph{S.
 aureus} tetracycline/doxycycline resistance at a common population
 denominator? We enumerate a closed universe of established systems
@@ -1152,13 +1253,13 @@ discipline as Stream B, excluding commercial or research datasets and
 provider directories with a stated reason --- and code each on three
 capabilities: exposure-side capture, phenotype-side capture (of the
 \emph{S. aureus} tetracycline unit, not the MRSA subset), and the join.
-The result is reported \emph{decomposed} --- how many systems capture
+The result is reported decomposed --- how many systems capture
 exposure only, phenotype only, both-but-unlinked, or link the two ---
 and the geographic resolution at which each side exists is recorded,
 since a resolution mismatch can foreclose the join even in principle. As
 in Streams A and B, MRSA/methicillin systems are coded as a flagged
 wrong-unit near-miss, not the unit, and every claim is bounded to
-\emph{deployed} systems: a system that could detect the signal is
+deployed systems: a system that could detect the signal is
 specified affirmatively, so the gap reads as an un-built instrument
 rather than an unmeasurable phenomenon.
 
@@ -1166,10 +1267,10 @@ A supporting analysis asks whether, even at a common population
 denominator, the exposed subgroup is dense enough to move a population
 rate. The dilution fraction is \(f =
 \phi\,(\text{male-PrEP rate}/10^5)\,\text{uptake}\,\kappa\),
-population-independent because it tracks exposure \emph{density}, not
+population-independent because it tracks exposure density, not
 headcount; the minimum detectable change in a proportion near \(R_0\)
 (two-sided α = 0.05, 80\% power) inverts to \(RR_\text{needed} = 1 +
-\text{MDE}/(f R_0)\). Parameters are bounded to \emph{favour} detection
+\text{MDE}/(f R_0)\). Parameters are bounded to favor detection
 so a failed gate is robust: uptake ∈ \{20, 35, 55\}\%, κ ∈ \{0.2, 0.5,
 1, 3, 5\} (κ \textless{} 1 is the realistic region --- the exposed are
 under-represented in a population isolate stream), \(R_0\) ∈ \{5, 10,
@@ -1193,10 +1294,10 @@ Analysis decisions that could go either way are logged with dates in
 
 \paragraph*{S1 Text.}
 \label{S1_Text}
-{\bf Supplementary Stream A analyses and Stream C dilution analyses.} Deeper trial re-analyses that
+Supplementary Stream A analyses and Stream C dilution analyses. Deeper trial re-analyses that
 establish the cross-sectional carriage endpoint (not load-bearing for the individual-level result):
 the DoxyPEP and DOXYVAC carriage trajectories (non-monotone, arm-crossing); the between-cohort
-MRSA-colonisation dispersion used as an external heterogeneity anchor; the resulting inflation of a
+MRSA-colonization dispersion used as an external heterogeneity anchor; the resulting inflation of a
 naive cross-sectional trend test; the non-identifiability of outbreak shape; the interim power and
 duration multiples; and a cross-organism example of mechanism-blind measurement. It also contains the
 Stream C dilution feasibility analyses: Figure A (state level), Figure B (metro level), and Figure C
