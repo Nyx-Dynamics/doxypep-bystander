@@ -12,12 +12,25 @@ Dear Editors,
 I submit **"Measurement inheritance: following a doxy-PEP bystander-resistance signal from
 trial to surveillance"** for consideration as a research article.
 
-This manuscript was previously assessed by PLOS Biology (PBIOLOGY-D-26-02526) and declined
-before review on grounds of scope — the breadth of conceptual advance sought for that journal's
-general readership — with the editor noting explicitly that the decision "does not represent a
-criticism of the quality of your work." I believe the study is a natural fit for PLOS ONE, whose
-publication criteria turn on technical soundness and on conclusions supported by the data rather
-than on a judgment of general-interest novelty, and I address those criteria directly below.
+**Prior submission history, and why PLOS ONE.** This manuscript was previously submitted to
+PLOS Biology (PBIOLOGY-D-26-02526) and declined without external review. The editorial decision
+rested entirely on fit-of-scope for that journal's general-biology readership, not on the
+science. The editor wrote that the study did not provide "the degree of conceptual advance that
+PLOS Biology seeks to publish," and that "even if reviewers were to certify the manuscript as
+technically correct, we consider that the work does not represent the type of advance that PLOS
+Biology seeks to publish" — an assessment, in his words, "based on considerations such as the
+degree of advance provided and the breadth of potential interest of the research question to our
+broad readership." He added explicitly that the decision "does not represent a criticism of the
+quality of your work, nor are we questioning its value to others working in this area."
+
+I am therefore submitting to PLOS ONE because its publication criteria are exactly the axis on
+which the work was *not* found wanting. PLOS ONE evaluates whether a study is technically sound,
+methodologically rigorous, and reports conclusions supported by the data — not whether it clears
+a threshold of general-interest conceptual advance for a broad readership. The reasons PLOS
+Biology cited for decline (breadth of interest, degree of advance) are not PLOS ONE criteria; the
+qualities PLOS Biology affirmed (technical correctness, value to researchers in the field) are.
+The manuscript is unchanged in substance from the version PLOS Biology reviewed for scope, save
+for format adjustments to PLOS ONE style, and I address the PLOS ONE criteria directly below.
 
 **What the paper does.** Doxycycline post-exposure prophylaxis (doxy-PEP), built and measured
 for gonococcal efficacy, also selects tetracycline resistance in the commensal *Staphylococcus
