@@ -11,7 +11,7 @@ Populated against `JAC_IFA.rtf` (verified). ✅ done · ⚠️ needs author acti
 - ⚠️ Corresponding-author **telephone/fax**: placeholder in title page — insert real number before submission.
 
 ## Style (verified)
-- ✅ British spelling; **methicillin** (not meticillin).
+- ⚠️ **Spelling: JAC mandates British spelling, but the text was converted to US spelling at author request.** Reconcile before submitting to JAC (revert to British, or confirm the target journal accepts US spelling). **methicillin** (not meticillin) retained.
 - ✅ MICs in **mg/L**.
 - ✅ *Staphylococcus aureus* italic, abbreviated to *S. aureus* after first use.
 - ✅ *tet*(K)/*tet*(M) gene nomenclature.

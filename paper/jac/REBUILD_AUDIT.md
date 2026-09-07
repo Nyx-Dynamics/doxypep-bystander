@@ -122,8 +122,13 @@ All trace to the validated manuscript / repository `outputs/`:
 
 ## 6. Terminology and style changes (no meaning change)
 
-- US → British spelling: colonization→colonisation, characterize→characterise,
-  labeled→labelled, behavior→behaviour, favor→favour, etc.
+- Spelling: the rebuild was first written in British spelling (JAC house style),
+  then **converted to US spelling at author request** (2026-09-07):
+  colonisation→colonization, randomised→randomized, organisation→organization,
+  favour→favor, counselling→counseling, summaris*→summariz*, artefact→artifact,
+  analysed→analyzed. Note: this **deviates from JAC's British-spelling rule** —
+  see the submission checklist. "analyses" (noun) and "orthogonal(ly)" are
+  identical in both and were left unchanged.
 - "µg/mL" → "mg/L" (JAC MIC rule).
 - *tet*(K)/*tet*(M) set in italic-gene style; "methicillin" retained (JAC keeps
   methicillin, not meticillin).

@@ -34,8 +34,8 @@ A multi-stream evidence audit}
 
 \noindent All supplementary material is relocated from the validated analysis and
 regenerates from the public repository (\texttt{make all}; \texttt{outputs/}),
-archived with a citable DOI. British spelling and \textit{JAC} nomenclature
-conventions are used throughout; MICs are expressed in mg/L.
+archived with a citable DOI. US spelling is used (at author request); \textit{JAC}
+nomenclature conventions are otherwise followed and MICs are expressed in mg/L.
 
 % ===================================================================
 \section*{S1. The measurement-inheritance schema}
@@ -67,9 +67,9 @@ unit/resolution'' = present but inherited from the upstream question; ``absent''
 Dimension & Stream A (trial) & Stream B (guidance) & Stream C (surveillance)\\
 \midrule
 $U$ unit & Participant \sa{} & Not specified for \sa{} & MRSA subset (wrong unit)\\
-$E$ exposure & Randomised doxy-PEP & Prescribing context & PrEP proxy only\\
+$E$ exposure & Randomized doxy-PEP & Prescribing context & PrEP proxy only\\
 $P$ phenotype & Incident doxy-R (present) & Not measured (absent) & Methicillin axis (wrong unit)\\
-$D$ denominator & Randomised participants & None for \sa{} & Population, but methicillin\\
+$D$ denominator & Randomized participants & None for \sa{} & Population, but methicillin\\
 $T$ cadence & Time-to-event & None & Cross-sectional/facility\\
 $L$ linkage & Individual & None assigned & No common $E$--$P$ denominator (absent)\\
 $R$ responsibility & Trial investigators & Unassigned (absent) & Unassigned for tetracycline \sa{}\\
@@ -102,7 +102,7 @@ arm; the realised denominator reflects the early efficacy stop
 (\path{outputs/duration_result.md}). No duration counterfactual is inferred from
 the two arm-split visits.
 \item \textbf{Clustering dispersion.} Between-cohort dispersion of MRSA
-colonisation across independent MSM cohorts was estimated by a logit-normal
+colonization across independent MSM cohorts was estimated by a logit-normal
 binomial random-effects model (Gauss--Hermite quadrature) as a conservative
 external heterogeneity anchor (\path{outputs/dejong_sigma_result.md}).
 \item \textbf{Trend-test degradation.} At the trials' per-visit denominators, a
@@ -130,7 +130,7 @@ originated here.
 documented community-associated MRSA/USA300 transmission in men who have sex with
 men, defined by de Jong's systematic review and the outbreak literature it cites
 --- the same source supplying the Stream A clustering dispersion. Governmental
-public-health guidance only was assessed; clinic and provider-organisation
+public-health guidance only was assessed; clinic and provider-organization
 documents were excluded because they carry neither surveillance authority nor
 monitoring policy.
 
@@ -179,7 +179,7 @@ system-by-system matrix with geographic resolution is in the repository.
 population-independent because it tracks exposure density, not headcount. The
 minimum detectable change in a proportion near baseline $R_0$ (two-sided
 $\alpha=0.05$, 80\% power) inverts to
-$\mathrm{RR_{needed}}=1+\mathrm{MDE}/(f R_0)$. Parameters were bounded to favour
+$\mathrm{RR_{needed}}=1+\mathrm{MDE}/(f R_0)$. Parameters were bounded to favor
 detection, so a failed gate is robust: uptake $\in\{20,35,55\}\%$;
 $\kappa\in\{0.2,0.5,1,3,5\}$ ($\kappa<1$ is the realistic region, as the exposed
 are under-represented in a population isolate stream); $R_0\in\{5,10,13\}\%$;
