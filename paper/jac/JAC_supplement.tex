@@ -113,10 +113,14 @@ time (\path{outputs/coverage_null_result.md}).
 outbreak-wave models fitted to the MRSA carriage series by maximum likelihood are
 not distinguishable by AIC or parametric-bootstrap likelihood-ratio tests
 (\path{outputs/three_outbreak_fit_result.md}).
-\item \textbf{Cross-organism, mechanism-blind example.} In a military
-antimalarial--doxycycline cohort, overall resistance did not differ by exposure
-while \emph{tet}(M) genes were significantly more common among the exposed --- a
-single breakpoint concealing a mechanism shift.
+\item \textbf{Mechanism-blind measurement in \sa{} (now in the main text).} In a
+military antimalarial--doxycycline cohort of 168 personnel, overall
+tetracycline-class resistance in \emph{S. aureus} did not differ by doxycycline
+exposure while \emph{tet}(M) genes were significantly more common among the
+exposed (p=0.031) --- a single breakpoint concealing a mechanism shift. This
+cohort is \emph{S. aureus}-specific (not cross-organism); it is promoted to the
+main-text phenotype-unit argument (Mende \textit{et al.}, \textit{Diagn Microbiol
+Infect Dis} 2016;86:211--220).
 \end{itemize}
 
 The one positive within-arm trend statistic in this material is a published-figure
@@ -237,7 +241,33 @@ whose attention remains concentrated where its existing instruments already poin
 and is not evidence of neglect by any author.
 
 % ===================================================================
-\section*{S6. Reproducibility}
+\section*{S6. Distributive observability}
+
+The three streams share a measurement asymmetry that is a property of the
+evidence architecture before it is a moral claim. The intervention's benefit and
+the trial's resistance signal are identifiable within an exposed population:
+exposure ascertained, denominator defined, phenotype measured, a longitudinal
+causal contrast available. The population that would inherit a downstream
+resistance consequence has none of these jointly --- no assigned measurement
+mandate (Stream B) and no deployed system in which doxy-PEP exposure and the
+\sa{} tetracycline phenotype share a denominator (Stream C). We call this
+difference in scientific visibility \emph{distributive observability}: which
+population remains represented by the evidence system, and at what inferential
+resolution, once the question moves downstream from the treated to the affected
+population. It does not establish that a population harm has occurred; it
+establishes that, were one occurring, the deployed architecture could estimate the
+intervention side of the benefit--externality ledger far more completely than the
+externality side. An externality no instrument can price is not thereby small ---
+it is unweighable, and an architecture that prices only one side of the ledger
+cannot show that benefit outweighs external cost. The construct is built from
+familiar parts (estimand mismatch; ascertainment and surveillance bias;
+metric substitution of the Goodhart type) but concerns their coupling across an
+evidence-production chain, and generalises to any intervention whose benefits
+concentrate in an observed recipient population while its consequences diffuse
+beyond it.
+
+% ===================================================================
+\section*{S7. Reproducibility}
 
 All analysis is Python 3.11 (pandas, statsmodels, scipy, matplotlib); no
 proprietary dependencies. Raw data are immutable; all cleaning is in code; every
