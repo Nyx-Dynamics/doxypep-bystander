@@ -36,8 +36,8 @@
 
 % ---------- TITLE PAGE ----------
 \begin{center}
-{\Large\bfseries Can current surveillance follow doxy-PEP-associated \Sa{}
-resistance? A multi-stream evidence audit}\\[1.2em]
+{\Large\bfseries Guidance and surveillance capability for bystander \Sa{}
+tetracycline resistance under doxy-PEP: a three-stream evidence audit}\\[1.2em]
 \end{center}
 
 \noindent Adrian C. \textsc{Demidont}\textsuperscript{1,2}*\\[0.6em]
@@ -73,8 +73,8 @@ risk it could detect, benchmarked to an empirical colonization estimate.
 
 \noindent\textbf{Results.} The final randomized DoxyPEP analysis reported a
 3.89-fold higher hazard of incident doxycycline-resistant \sa{} under doxy-PEP
-(95\% CI 1.42--10.68; 68/393 versus 5/163), with no effect on colonization
-clearance. Yet 0 of 6 outbreak-matched governmental guidelines (0 of 10 coded)
+(95\% CI 1.42--10.68; 68 of 393 versus 5 of 163 incident events), with no effect
+on colonization clearance. Yet 0 of 6 outbreak-matched governmental guidelines (0 of 10 coded)
 required \sa{} monitoring, and 0 of 12 established US surveillance systems linked
 doxy-PEP exposure to an \sa{} tetracycline phenotype at a common population
 denominator. Under realistic exposure density and isolate volumes, an ordinary
@@ -98,16 +98,27 @@ into guidance at every level, from the World Health Organization through nationa
 and municipal health departments.\cite{luetkemeyer2023,cdc2024doxypep} Every dose
 is selective pressure, and not only on the organisms it targets. \Sa{} is the
 consequential bystander: it colonizes the anatomical sites these trials swabbed
-and carries mobile tetracycline resistance determinants.\cite{grossman2016}
-Doxycycline is one of a limited number of oral options for outpatient skin and
-soft-tissue infection, a choice often made empirically before any methicillin
-result returns,\cite{stevens2014,liu2011} so tetracycline susceptibility can
-matter clinically before methicillin status is known.
+and carries mobile tetracycline resistance determinants.\cite{grossman2016} For
+two decades, community MRSA in these networks has been documented not as
+steady-state carriage but as clustered, outbreak-pattern transmission---the
+USA300 lineage moving through sexual networks in San Francisco, Tokyo and
+Chicago\cite{diep2008,dejong2025}; the organism colonizing these networks is the
+same one carried on skin community-wide, so resistance selected within the
+network could, if transmitted, extend beyond it. Tetracycline-resistant USA300
+was in fact documented in an MSM-predominant community health population two
+decades ago, although by the doxycycline-sparing \emph{tet}(K) mechanism, with
+those isolates remaining doxycycline-susceptible.\cite{han2007} Doxycycline is
+one of a limited number of oral options for outpatient skin and soft-tissue
+infection, a choice often made empirically before any methicillin result
+returns,\cite{stevens2014,liu2011} so tetracycline susceptibility can matter
+clinically before methicillin status is known.
 
 Clinicians who prescribe doxy-PEP have registered the concern directly: in a
 survey of Italian STI-clinic dermatologists, 91.7\% named methicillin-resistant
 \sa{} (MRSA) selection as a worry, tied with gonococcal resistance as the
-highest-rated.\cite{dona2026} The trial literature has now answered a version of
+highest-rated,\cite{dona2026} and a systematic review of 1840 healthcare
+professionals across four countries likewise placed antimicrobial resistance
+among the leading concerns about doxy-PEP.\cite{spence2026} The trial literature has now answered a version of
 it. In the final DoxyPEP analysis, among participants free of
 doxycycline-resistant \sa{} at baseline, doxy-PEP carried a 3.89-fold higher
 hazard of incident doxycycline-resistant \sa{} (95\% CI 1.42--10.68; 68/393
@@ -149,7 +160,26 @@ risk (RR) it could detect. The empirical benchmark is Soge \textit{et
 al.}\cite{soge2025} (tetracycline-resistant \sa{} colonization, 18\% versus 8\%
 in doxy-PEP users with $>$3 doses/month versus non-users; RR~$\approx$~2.25); a
 cross-organism gonococcal RR~$\approx$~1.42 is carried as a flagged, more
-conservative secondary.
+conservative secondary. Because the randomized trial reports a within-exposed
+hazard ratio of 3.89, well above this band, the detectability verdict below is
+invariant to which anchor is used: the relative risk a population system would
+need to see (RR~14--64, Results) exceeds both the cross-sectional benchmark and
+the trial's own hazard ratio.
+
+\subsection*{Sources and coding}
+The author identified, retrieved and screened all source documents for
+eligibility; each eligible document was then coded from full text against a
+prespecified schema, every value carrying a page, section or table locator. For
+the guidance corpus (Stream B), two independent machine (large language model)
+passes coded each document under separate blinded prompts, and disagreements were
+resolved by the author against the source. Per-field agreement is reported as raw
+concordance, which measures the reproducibility of the coding protocol rather
+than independent human adjudication; a Cohen's $\kappa$ is given for context only,
+with the caveat that the two passes share a model lineage and are therefore not
+fully independent (Limitations). The surveillance enumeration (Stream C) was
+coded by a single pass; its inclusion and exclusion list, with a stated reason
+per system, is given in the Supplementary data and reflects systems as deployed
+as of August 2026. All coding prompts and outputs are in the public repository.
 
 \subsection*{Stream A---trials}
 For each primary-trial \sa{} arm comparison (first-party published data only), we
@@ -175,9 +205,9 @@ We took governmental public-health guidance only (clinic and
 provider-organization documents excluded, with reasons). Each document was coded
 from full text, one record per document, every finding carrying a locator, for
 whether it requires, suggests or omits \sa{} monitoring and whether it names,
-counsels on or measures the organism. A blinded second coder double-coded, with
-per-field Cohen's $\kappa$. An independence check separated genuinely independent
-declines from documents that defer to, or are adapted from, one another.
+counsels on or measures the organism (coding provenance above). An independence
+check separated genuinely independent declines from documents that defer to, or
+are adapted from, one another.
 
 \subsection*{Stream C---surveillance}
 We enumerated a closed universe of established US governmental surveillance
@@ -188,24 +218,28 @@ phenotype-side capture (of the \sa{} tetracycline unit, not the MRSA subset) and
 the join, recording the geographic resolution of each side. A supporting analysis
 asked whether, even at a common denominator, the exposed subgroup is dense enough
 to move a population rate. The dilution fraction is
-$f=\phi\,(\text{male-PrEP rate}/10^{5})\,\text{uptake}\,\kappa$,
-population-independent because it tracks exposure density, not headcount, and the
-minimum detectable change in a proportion near baseline $R_0$ inverts to
-$\mathrm{RR_{needed}}=1+\mathrm{MDE}/(f R_0)$. Parameters were bounded to favor
-detection (so a failed gate is robust); full grids and the metropolitan
-break-even are in the Supplementary data.
+$f=\phi\,(\text{male-PrEP rate}/10^{5})\,\text{uptake}\,d\,\kappa$, where $d$ is
+the share of users taking $>$3 doses/month (the subgroup carrying the benchmark
+effect) and $\kappa$ the isolate-enrichment factor; $f$ is population-independent
+because it tracks exposure density, not headcount, and the minimum detectable
+change in a proportion near baseline $R_0$ inverts to
+$\mathrm{RR_{needed}}=1+\mathrm{MDE}/(f R_0)$. Parameters were not uniformly
+generous: isolate volume was set generously high (favoring detection), while the
+realistic under-sampling ($\kappa=0.5$) and dose-threshold ($d=0.5$) factors bound
+against it. Both ranges and the resulting $\mathrm{RR_{needed}}$ are reported;
+full grids and the metropolitan break-even are in the Supplementary data.
 
 % ---------- RESULTS ----------
 \section*{Results}
 
-\subsection*{Stream A: the trials resolved the signal but reported it unstably}
+\subsection*{Stream A: trial measurement and reporting of the \sa{} endpoint}
 When the analysis matched the question, the signal appeared. The final DoxyPEP
 analysis ran the participant-level test the interim had not---time to first
 detection of doxycycline-resistant \sa{} by arm, standard-of-care censored at
 crossover, by Cox proportional hazards---and returned HR 3.89 (95\% CI
 1.42--10.68; $P=0.0044$), with colonization clearance unchanged (HR
-1.01).\cite{luetkemeyer2025} The 2023 interim, by contrast, read a cross-sectional
-resistance fraction as reassurance and was underpowered for any externally
+1.01).\cite{luetkemeyer2025} The 2023 interim, by contrast, was presented as reassuring
+on a cross-sectional resistance fraction and was underpowered for any externally
 specified effect (0 of 4 comparisons powered; minimum detectable RR 3.8--5.1
 against the benchmark 1.42--2.25). The hazard ratio is not comparable to that
 cross-sectional minimum: the estimand, not the sample size alone, became adequate
@@ -224,8 +258,8 @@ under further contrasts (Table~\ref{tab:propagation}): the resistant numerator
 changes from 5 to 16 to 28 and the denominator basis shifts from colonized
 carriers to all-swabbed, while the percentage travels more reliably than the
 denominator, contrast and terminology needed to interpret it. The individual-level
-data that could reconcile these first-party reports are not
-released.\cite{luetkemeyer2023} Even the intensively surveilled gonococcus was
+data that could reconcile these first-party reports are not publicly
+available.\cite{luetkemeyer2023} Even the intensively surveilled gonococcus was
 phenotyped in fewer than one diagnosis in five (resistance testing unavailable for
 83\%, 212/256).\cite{luetkemeyer2023croi}
 
@@ -254,12 +288,21 @@ NEJM appendix\cite{luetkemeyer2023} & 5/31 = 16\% & Month-12 doxy-PEP arm; resis
 CROI abstract\cite{luetkemeyer2023croi} & 16/137 = 12\% & Doxy-PEP arm; all-swabbed denominator & Different numerator/denominator basis\\
 CDC guideline\cite{cdc2024doxypep} & 28/222 = 13\%; summarized 5\%$\rightarrow$13\% & Doxy-PEP arm; guideline frame & Percentage retained, provenance less transparent\\
 JAMA Insights\cite{mayer2023} & 5\% versus 4\% & Doxy-PEP versus control; ``infected with'' & Between-arm percentage only; counts/timepoint dropped\\
-JAMA Synopsis\cite{flores2025} & 5\%$\rightarrow$16\% & Within arm, among \sa{}-isolated & Carrier-conditioned percentage; raw counts omitted\\
+JAMA Synopsis\cite{flores2025} & 5\%$\rightarrow$16\% & Within arm, among \sa{}-isolated & Carrier-conditioned within-arm percentage (baseline to month 12)\\
+Lancet ID final\cite{luetkemeyer2025} & HR 3.89 (1.42--10.68); 68 of 393 vs 5 of 163 & Participant-level time-to-event; baseline-negative, as-randomised & Not cited by any coded guidance, including two revised after its March 2025 online publication\\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\subsection*{Stream B: guidance names the risk but instruments nothing}
+The estimand shift did not propagate downstream: no guidance document in the
+corpus cites the final time-to-event analysis or any hazard ratio, and the two
+documents revised after its online publication in March 2025---WHO (2026) and San
+Francisco (May 2026)---retained a cross-sectional or generic frame. Non-citation
+is telling here because this corpus demonstrably transmits numbers when it has
+them: CDC carried the cross-sectional 5\%$\rightarrow$13\% figures and WHO cites
+Soge's colonization estimate.\cite{soge2025}
+
+\subsection*{Stream B: \sa{} monitoring requirements in governmental guidance}
 The governmental guidance shows a consistent within-document asymmetry: the
 efficacy question received a graded, systematic evidence review, while the
 AMR-harm question---explicitly including resistant-pathogen development---received
@@ -272,12 +315,12 @@ from San Francisco and one (Massachusetts) from an external template. Nor is it
 for want of naming the organism---three of the six name \sa{} specifically, two
 invoke only a generic ``microbiome'' risk and one is silent; even where named,
 none measure it. Across the full coded corpus (10 documents: CDC, WHO and eight
-US jurisdictions) the result is identical: 0 instrument the bystander. Inter-coder
-agreement was 92\%; the single field with meaningful disagreement ($\kappa=0.58$)
-is reported as such. Providers are nonetheless required to counsel patients about
+US jurisdictions) the result is identical: 0 instrument the bystander. Raw
+agreement between the two coding passes was 92\%; the single field with meaningful
+disagreement ($\kappa=0.58$, context only) is reported unrounded. Providers are nonetheless required to counsel patients about
 resistance in commensal organisms---a harm no system measures.
 
-\subsection*{Stream C: no deployed system links exposure to the phenotype}
+\subsection*{Stream C: surveillance capability and exposure--phenotype linkage}
 Following the signal requires one system to carry, at a common population
 denominator, both who is exposed to doxy-PEP and what tetracycline phenotype \sa{}
 carries. Across the closed universe of twelve established US systems, none does
@@ -309,9 +352,17 @@ effect (Figure~\ref{fig:detect})---and detection appears only in a best-case cel
 that compounds four simultaneously implausible assumptions (RR~$\approx$~1.93, and
 failing on any one assumption alone). The metropolitan break-even requires a
 male-PrEP density 2.1--33 times the densest US geography, or roughly 325\% of
-adult males on PrEP under realistic isolate volumes. The only configuration that
-restores sensitivity is to sample \sa{} directly from doxy-PEP-exposed persons,
-which converts surveillance into a sentinel cohort.
+adult males on PrEP under realistic isolate volumes. Detectability is itself
+assumption-dependent, in a way that is part of the finding: under the most
+optimistic panel-power treatment (every geography-year isolate independent) the
+grid-median $\mathrm{RR_{needed}}$ falls to about 2.9 and 25 of 135 parameter
+cells become nominally detectable---but only by relaxing the realistic
+under-sampling and dose-threshold assumptions, and the realistic cell still
+requires RR~14--64. The verdict thus turns on parameters no deployed system
+reports---exposure density, isolate enrichment and dosing frequency---which is the
+measurement gap in miniature. The only configuration that restores sensitivity is
+to sample \sa{} directly from doxy-PEP-exposed persons, which converts
+surveillance into a sentinel cohort.
 
 \begin{figure}[t]
 \centering
@@ -346,7 +397,7 @@ at 1.42 to 2.25; the trial hazard ratio 3.89 sits above the band, surveillance
 detectability thresholds of about 14 to 64 sit far to the right, and guidance has
 no threshold.
 
-\subsection*{The literature mirrors the instrumentation}
+\subsection*{Literature coverage of the bystander organism}
 A defined PubMed search (2015--2026) identified 361 doxy-PEP papers, of which 13
 (3.6\%) mention a bystander staphylococcal organism and only 2 measure
 tetracycline-resistant \sa{} against a doxy-PEP exposure contrast. The bystander
@@ -386,37 +437,55 @@ the \sa{} tetracycline phenotype at a common denominator (0/12).
 
 The sharper reading is that the trial's own measurement system evolved to meet
 its internal question while the implementation system did not. The 2023 interim
-read a cross-sectional fraction as reassurance; the 2024 guideline appended a call
+was presented as reassuring; the 2024 guideline appended a call
 for monitoring; the 2025 final analysis asked the estimand the others had not and
 returned HR 3.89. Three years, one underlying phenotype, an evolving
 estimand\cite{montoya2025estimand}---and, at the end, a demonstrated signal handed
 to systems built to measure something else.
 
-\subsection*{The phenotype axis is the wrong one for the clinical question}
+\subsection*{Tetracycline resistance mechanisms and the phenotype unit}
 Staphylococcal surveillance is standardized around methicillin at every tier,
 yet the treatment-relevant axis here is tetracycline susceptibility, used
 empirically before methicillin status is known. The two are not
 interchangeable, and neither is the molecular basis of tetracycline resistance:
 \emph{tet}(K) efflux leaves doxycycline largely usable, whereas \emph{tet}(M)
 ribosomal protection can compromise it, and the trial resolved incident
-doxycycline resistance without resolving which.\cite{liu2011,grossman2016} A
-surveillance variable can remain valid for the question it was designed to answer
-while being insufficient for the one now imposed on it. We do not forecast which
+doxycycline resistance without resolving which.\cite{liu2011,grossman2016} The
+distinction is not academic. In a national surveillance population of 823 invasive
+USA300 isolates, 72 (9\%) were tetracycline-resistant, yet 69 were
+doxycycline-susceptible and carried \emph{tet}(K) while only 3 were
+doxycycline-resistant and carried \emph{tet}(M)\cite{mcdougal2010}: a single
+tetracycline breakpoint reports one number for two clinically opposite
+situations. The mechanisms also differ in mobility---\emph{tet}(M) is
+characteristically carried on Tn916-like conjugative transposons whose host range
+includes \emph{S. aureus} and which transfer across strain boundaries by
+cell-to-cell contact,\cite{roberts2011} while the \emph{tet}(K) efflux determinant
+is typically plasmid-borne\cite{han2007,mcdougal2010}---so a clonally indexed
+system can track a lineage faithfully and still miss a determinant moving between
+lineages. An exposure cohort shows the same blindness directly: among 168
+military personnel, doxycycline antimalarial prophylaxis was not associated with
+overall tetracycline-class resistance in \emph{S. aureus}, yet \emph{tet}(M) genes
+were significantly more common in the exposed (p=0.031)\cite{mende2016}---the
+aggregate phenotype null while the determinant distribution moved under exposure
+(a military, antimalarial-dosed cohort, not doxy-PEP). A surveillance variable can
+remain valid for the question it was designed to answer while being insufficient
+for the one now imposed on it. We do not forecast which
 mechanism is spreading; the point is that the inherited variable cannot say.
 
-\subsection*{What instrument would answer the question}
+\subsection*{Instrument requirements for population monitoring}
 Following the signal to the population requires an instrument the deployed
 architecture does not provide: sentinel sampling of \sa{} from doxy-PEP-exposed
 individuals, which raises the exposed fraction by construction and fixes the
-denominator; resistance reported per carrier and by mechanism (\emph{tet}(M)
-versus \emph{tet}(K)) rather than as a pooled tetracycline-class rate; dosing
-frequency rather than prescription status; a feed carrying \sa{} tetracycline
+denominator; sampling that includes the oropharyngeal and peri-anal sites, since
+nares-only screening under-detects colonization by about 20\% in this
+population\cite{kyaw2012}; resistance reported per carrier and by mechanism
+(\emph{tet}(M) versus \emph{tet}(K)) rather than as a pooled tetracycline-class
+rate; dosing frequency rather than prescription status; a feed carrying \sa{} tetracycline
 susceptibility at a population denominator, most directly by adding it to the
 platform that already tracks invasive MRSA and joining it to exposure on
-geography; and release of the individual-level trial data. None is exotic; none
+geography; and access to individual-level trial data. None is exotic; none
 is in place at scale.
 
-\subsection*{Measurement inheritance}
 These failures share a structure. A guideline or a surveillance system carries in
 its sampling frame, cadence, coding, denominator and unit the organism and
 question it was built for. The doxy-PEP apparatus was built to measure gonococcal
@@ -436,15 +505,14 @@ closable by a better analysis of the trial's data---that analysis has been done,
 and it is significant---but is a property of the guidance and surveillance
 instruments.
 
-The coupling has a distributive consequence, and it is a measurement asymmetry
-before it is a moral one. The benefit is measured in an identified exposed
-population, while any resistance externality would fall on the outpatient with a
-skin infection and, at the sharp end, the dialysis, surgical or oncology patient
-for whom an oral anti-staphylococcal agent is no convenience---none party to the
-prescribing decision or counted by any deployed
-system.\cite{montoya2025affected} The evidence architecture permits one side of
-the ledger to be estimated far more completely than the other; a negative
-externality no instrument can price is not thereby small, only unweighable.
+Doxy-PEP's benefit accrues to the recipient; the tetracycline selection cost
+falls on people outside the prescribing decision---the outpatient with a skin
+infection and, at the sharp end, dialysis, surgical and oncology patients for whom
+an oral anti-staphylococcal agent is no convenience. A negative externality that
+no deployed instrument can price is not thereby small; it is unweighable. The
+wider distributive argument---that the two sides are observed on unequal terms, a
+property we term \emph{distributive observability}---is developed in the
+Supplementary data (S6).\cite{montoya2025affected}
 
 \subsection*{Limitations}
 We make no population-level causal claim and no transmission claim: whether the
@@ -457,8 +525,12 @@ the evidence for how \sa{} clusters and moves through these networks exists only
 for its MRSA subset, so where our clustering analysis relies on MRSA we mark it as
 such---an instance of the inherited limitation, not an exception to it. Finally,
 the trial reaches only a roughly twelve-month horizon; persistence, dose--response
-and mechanism remain open. Consistent with a falsification standard set in
-advance, the inheritance claim fails if a doxy-PEP guideline comes to require
+and mechanism remain open. Our coding carries two acknowledged asymmetries: the
+guidance corpus was double-coded by two machine passes that share a model lineage
+(reported as raw concordance, not independent human adjudication), while the
+surveillance enumeration was coded by a single pass. Consistent with a
+falsification standard set in advance, the inheritance claim fails if a doxy-PEP
+guideline comes to require
 \sa{} monitoring, or if a deployed system links doxy-PEP exposure to an \sa{}
 tetracycline phenotype at a common population denominator.
 
