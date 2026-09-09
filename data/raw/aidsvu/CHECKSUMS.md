@@ -32,3 +32,5 @@ conclusions rest on these files. SHA-256 pins the exact exposure inputs.
 | `AIDSVu_State_PrEP_2023_20260525.xlsx` | 23070 | `360dc8961e62db8ee5150d4be7d588993e6da1598c3550b1636c97df65901c52` |
 | `AIDSVu_State_PrEP_2024_20260525.xlsx` | 23147 | `cbc20496f92032532bffe1f1941f62776dfad686c36e43beb576ea0c0f742476` |
 | `AIDSVu_State_PrEP_2025_20260525.xlsx` | 23164 | `505170599b037c74088ff04b742d052d9fa6b57552af82ae1effd52ae5d4cd91` |
+
+8286ded1ec1985fa012b4d9e1933f764b55c297cd847d7f7ad77208c900946a1  AIDSVu_State_Prev_2024-20260806.xlsx  (state PLWH prevalence, release 20260806)
