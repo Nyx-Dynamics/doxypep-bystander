@@ -79,7 +79,7 @@ required \sa{} monitoring, and 0 of 12 established US surveillance systems linke
 doxy-PEP exposure to an \sa{} tetracycline phenotype at a common population
 denominator. Under realistic exposure density and isolate volumes, an ordinary
 population system would need an implausible within-exposed effect
-(RR~$\approx$~14--64) to move a rate.
+(RR~$\approx$~6--28) to move a rate.
 
 \noindent\textbf{Conclusions.} The upstream trial generated information the
 downstream architecture is not built to receive. Following the signal requires
@@ -163,7 +163,7 @@ cross-organism gonococcal RR~$\approx$~1.42 is carried as a flagged, more
 conservative secondary. Because the randomized trial reports a within-exposed
 hazard ratio of 3.89, well above this band, the detectability verdict below is
 invariant to which anchor is used: the relative risk a population system would
-need to see (RR~14--64, Results) exceeds both the cross-sectional benchmark and
+need to see (RR~6--28, Results) exceeds both the cross-sectional benchmark and
 the trial's own hazard ratio.
 
 \subsection*{Sources and coding}
@@ -217,10 +217,13 @@ phenotype, and coded each on three capabilities: exposure-side capture,
 phenotype-side capture (of the \sa{} tetracycline unit, not the MRSA subset) and
 the join, recording the geographic resolution of each side. A supporting analysis
 asked whether, even at a common denominator, the exposed subgroup is dense enough
-to move a population rate. The dilution fraction is
-$f=\phi\,(\text{male-PrEP rate}/10^{5})\,\text{uptake}\,d\,\kappa$, where $d$ is
-the share of users taking $>$3 doses/month (the subgroup carrying the benchmark
-effect) and $\kappa$ the isolate-enrichment factor; $f$ is population-independent
+to move a population rate. The exposed population is indexed on the combined PrEP
+and people-living-with-HIV male count (primary specification; the trial enrolled
+both, AIDSVu 2024 state PrEP and prevalence), so the dilution fraction is
+$f=\phi\,((\text{male-PrEP}+\text{male-PLWH})\ \text{density}/10^{5})\,\text{uptake}\,d\,\kappa$,
+where $d$ is the share of users taking $>$3 doses/month (the subgroup carrying the
+benchmark effect) and $\kappa$ the isolate-enrichment factor; $f$ is
+population-independent
 because it tracks exposure density, not headcount, and the minimum detectable
 change in a proportion near baseline $R_0$ inverts to
 $\mathrm{RR_{needed}}=1+\mathrm{MDE}/(f R_0)$. Parameters were not uniformly
@@ -345,24 +348,24 @@ susceptibility to ABCs/EIP, which already holds the denominator---but none is
 deployed.
 
 Nor could an ordinary population system recover the missing side by collecting
-more isolates. Under realistic exposure density and isolate volumes the
-within-exposed effect required to move a population rate runs to
-RR~$\approx$~14--64 across the design-effect range---far above any plausible
-effect (Figure~\ref{fig:detect})---and detection appears only in a best-case cell
-that compounds four simultaneously implausible assumptions (RR~$\approx$~1.93, and
-failing on any one assumption alone). The metropolitan break-even requires a
-male-PrEP density 2.1--33 times the densest US geography, or roughly 325\% of
-adult males on PrEP under realistic isolate volumes. Detectability is itself
-assumption-dependent, in a way that is part of the finding: under the most
-optimistic panel-power treatment (every geography-year isolate independent) the
-grid-median $\mathrm{RR_{needed}}$ falls to about 2.9 and 25 of 135 parameter
-cells become nominally detectable---but only by relaxing the realistic
-under-sampling and dose-threshold assumptions, and the realistic cell still
-requires RR~14--64. The verdict thus turns on parameters no deployed system
+more isolates. Indexing the exposed population on the combined PrEP and
+people-living-with-HIV male count---the primary specification, because the trial
+enrolled both (Materials and methods)---the realistic-cell within-exposed effect
+required to move a population rate runs to RR~$\approx$~6--28 across the
+design-effect range; the more restrictive PrEP-only indexing shown in
+Figure~\ref{fig:detect} gives RR~$\approx$~14--64, which overstates infeasibility.
+Either way it is far above any plausible effect. Detection appears in a single
+cell of the entire grid, where every generous assumption is maxed at once (55\%
+uptake, $5\times$ enrichment, 13\% baseline, $100\,000$ isolates/geography-year
+and optimistic panel independence): there $\mathrm{RR_{needed}}$ falls to 1.03,
+and under single-comparison inference even the most favourable cell stays above
+the yardstick (1.79). The verdict thus turns on parameters no deployed system
 reports---exposure density, isolate enrichment and dosing frequency---which is the
-measurement gap in miniature. The only configuration that restores sensitivity is
-to sample \sa{} directly from doxy-PEP-exposed persons, which converts
-surveillance into a sentinel cohort.
+measurement gap in miniature: the metropolitan best cell needs $1.8\times$ the
+combined male exposure density of the densest US geography, and realistic cells
+hundreds of times it. The only configuration that restores sensitivity is to
+sample \sa{} directly from doxy-PEP-exposed persons, which converts surveillance
+into a sentinel cohort.
 
 \begin{figure}[t]
 \centering
@@ -388,8 +391,10 @@ denominator nowhere, so no column links both rows.
 streams against the plausible benchmark band (RR 1.42--2.25). The trial's
 resolved effect (HR 3.89) clears the band; guidance requires no \sa{} measurement
 so no detection threshold exists; and deployed surveillance would need
-RR~$\approx$~14--64 to move a population rate. The signal is above the line while
-the systems built to follow it are not.}
+RR~$\approx$~14--64 to move a population rate (PrEP-only indexing shown; the
+combined PrEP+PLWH primary tightens this to RR~$\approx$~6--28, still far right of
+the band). The signal is above the line while the systems built to follow it are
+not.}
 \label{fig:detect}
 \end{figure}
 \noindent Alt text: A logarithmic relative-risk axis with a shaded benchmark band
@@ -418,7 +423,7 @@ Stream & Question & Result\\
 \midrule
 A. Trials & Was the bystander signal resolved? & Yes---HR 3.89 (1.42--10.68), incident doxy-R \sa{}\\
 B. Guidance & Is \sa{} monitoring required? & No---0/6 outbreak-matched; 0/10 coded\\
-C. Surveillance & Is exposure linked to phenotype? & No---0/12 systems; RR$_{\text{needed}}\approx$14--64 to detect\\
+C. Surveillance & Is exposure linked to phenotype? & No---0/12 systems; RR$_{\text{needed}}\approx$6--28 to detect\\
 \bottomrule
 \end{tabularx}
 \end{table}

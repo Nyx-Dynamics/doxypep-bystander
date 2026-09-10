@@ -175,26 +175,78 @@ methicillin axis; the facility cumulative antibiogram is the only routine
 tetracycline reading and carries no population denominator (CLSI M39 mandates the
 MRSA/MSSA split and makes tetracycline a selectively suppressible supplemental
 agent); the National Antimicrobial Resistance Monitoring System excludes \sa{}.
-Tetracycline-resistant \sa{} is nationally notifiable nowhere. The full
-system-by-system matrix with geographic resolution is in the repository.
+Tetracycline-resistant \sa{} is nationally notifiable nowhere. Surveillance
+capability was assessed as of August 2026; Stream C was coded by a single pass
+(unlike the double-coded Stream B), an asymmetry noted in the main-text
+Limitations. The full inclusion/exclusion list with a reason per system is in
+Table~\ref{tab:streamc}.
 
-\textbf{Dilution model.} The exposed-subgroup dilution fraction is
-\[f=\phi\,(\text{male-PrEP rate}/10^{5})\,\text{uptake}\,\kappa,\]
-population-independent because it tracks exposure density, not headcount. The
-minimum detectable change in a proportion near baseline $R_0$ (two-sided
-$\alpha=0.05$, 80\% power) inverts to
-$\mathrm{RR_{needed}}=1+\mathrm{MDE}/(f R_0)$. Parameters were bounded to favor
-detection, so a failed gate is robust: uptake $\in\{20,35,55\}\%$;
-$\kappa\in\{0.2,0.5,1,3,5\}$ ($\kappa<1$ is the realistic region, as the exposed
-are under-represented in a population isolate stream); $R_0\in\{5,10,13\}\%$;
-isolate volume $N\in\{1\,000,\,10\,000,\,100\,000\}$ per geography-year ($100\,000$
-exceeds any real US stream). Under the realistic cell,
-$\mathrm{RR_{needed}}\approx14$--$64$ across the design-effect range; detection
-appears only in a best-case cell (RR~$\approx$~1.93) that compounds four
-simultaneously implausible assumptions and fails on any one alone. The metropolitan
-break-even uses Washington, D.C. (2\,694 per 100\,000 adult males) as the observed
-density ceiling and requires 2.1--33 times that density, or roughly 325\% of adult
-males on PrEP under realistic isolate volumes (Figures~A--C).
+\begin{table}[h]
+\centering
+\caption{Stream C closed-universe enumeration: twelve included US governmental
+surveillance systems and three excluded, each with a stated reason. No included
+system captures both doxy-PEP exposure and the \sa{} tetracycline phenotype at a
+common population denominator (0/12 join).}
+\label{tab:streamc}
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.30\textwidth}>{\raggedright\arraybackslash}X@{}}
+\toprule
+System & Capability / reason\\
+\midrule
+\multicolumn{2}{@{}l}{\emph{Included (12)}}\\
+AIDSVu & Exposure only, PrEP proxy at population denominator; no phenotype\\
+CDC NCHHSTP AtlasPlus & Exposure only, PrEP proxy at population denominator; no phenotype\\
+NHSN Antimicrobial Use Option & Inpatient antimicrobial use, no population denominator; not doxy-PEP\\
+State PDMPs & Do not capture doxy-PEP dispensing as such; no phenotype\\
+Metro STD/HIV sentinel surveillance & Sentinel exposure, no population denominator; no \sa{} phenotype\\
+NARMS & Excludes \sa{} altogether\\
+GISP / eGISP & Gonococcal isolates only (wrong organism)\\
+ABCs / EIP invasive \sa{} & Population-based, but methicillin (MRSA/invasive) --- wrong phenotype unit\\
+NHSN AR Option / MRSA LabID & MRSA events; facility, no population denominator\\
+AR Lab Network (ARLN) & Isolate referral; no exposure link, no population denominator\\
+NNDSS & Tetracycline-resistant \sa{} is not notifiable\\
+Hospital cumulative antibiograms & Only routine tetracycline reading, but non-standardised and no population denominator\\
+\addlinespace
+\multicolumn{2}{@{}l}{\emph{Excluded (3)}}\\
+CDC Find Doxy PEP directory & A provider/location directory, not surveillance\\
+Commercial AST networks (ATLAS, BD, PINC AI, IQVIA) & Commercial convenience datasets; no population denominator\\
+Doxy-PEP RCTs and cohorts (DoxyPEP, DOXYVAC, Soge) & One-off research studies, not deployed surveillance\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\textbf{Dilution model.} The exposed doxy-PEP population is indexed on the
+combined PrEP and PLWH male count, because the trial enrolled both (primary
+specification: every male person living with HIV counted as exposed, AIDSVu 2024
+state PrEP and prevalence; male PLWH is a prevalence stock, and state prevalence
+carries no transmission-category split, which is why the whole male-PLWH count is
+used rather than a fractional MSM estimate). The exposed-subgroup dilution
+fraction is
+\[f=\phi\,\frac{(\text{male-PrEP}+\text{male-PLWH})\ \text{density}}{10^{5}}\ \text{uptake}\ d\ \kappa,\]
+where $d$ is the share of users taking $>$3 doses/month (the subgroup carrying the
+benchmark effect); $f$ is population-independent because it tracks exposure
+density, not headcount. The minimum detectable change in a proportion near
+baseline $R_0$ (two-sided $\alpha=0.05$, 80\% power) inverts to
+$\mathrm{RR_{needed}}=1+\mathrm{MDE}/(f R_0)$. Parameters are not uniformly
+generous: isolate volume $N\in\{1\,000,\,10\,000,\,100\,000\}$ per geography-year
+is set generously high (favouring detection; $100\,000$ exceeds any real US
+stream), while realistic under-sampling ($\kappa=0.5$; grid
+$\kappa\in\{0.2,0.5,1,3,5\}$) and the dose factor ($d=0.5$) bound against it;
+uptake $\in\{20,35,55\}\%$ and $R_0\in\{5,10,13\}\%$. Under the combined-denominator
+primary, the realistic cell requires $\mathrm{RR_{needed}}\approx6$--$28$ across
+the design-effect range --- far above any plausible effect. Detection appears in
+only one cell of the entire grid, where every generous assumption is maxed at once
+(55\% uptake, $5\times$ enrichment, 13\% baseline, $100\,000$
+isolates/geography-year and optimistic panel independence): there
+$\mathrm{RR_{needed}}$ falls to 1.03; under single-comparison inference even the
+most favourable cell stays above the yardstick (1.79). The metropolitan best cell
+needs $1.8\times$ the combined male exposure density of the densest US geography
+(Washington, D.C., 6\,406 per 100\,000 adult males in 2024), and realistic cells
+hundreds of times it. All values regenerate from
+\texttt{outputs/feasibility\_plwh\_result.md}. Figures~A--C display the more
+restrictive PrEP-only indexing (RR~$\approx$~14--64), which overstates
+infeasibility relative to the combined-denominator primary and is retained as a
+bound pending figure regeneration.
 
 \begin{figure}[h]
 \centering
