@@ -288,13 +288,9 @@ The three rates are of a similar order, but the resistant *numerator* itself dif
 uniformly stated, and the two CROI presentations of the same analysis disagree (16 versus
 28). Part of the spread is a denominator-basis artefact; part is a genuine count difference
 between venues; the public record does not distinguish them
-[@luetkemeyer2023; @luetkemeyer2023croi; @cdc2024doxypep]. We do not suggest impropriety —
-only that choosing the correct value would require the individual-level data, and the third
-feature is that those data are withheld. The
-trial's data-sharing statement answers "Will the data collected for your study be made
-available to others?" with a single word, "No," every subsequent field left blank
-[@luetkemeyer2023]. The one dataset that could reconcile the trial's own discordant
-numbers is the one dataset not released.
+[@luetkemeyer2023; @luetkemeyer2023croi; @cdc2024doxypep]. Choosing the correct value would
+require the individual-level data, and the third feature is that individual-level data that
+could reconcile these reports are not publicly available [@luetkemeyer2023].
 
 Nor is the bystander the only under-measured organism here: even the intensively surveilled
 gonococcus was phenotyped in fewer than one diagnosis in five — phenotypic resistance testing
