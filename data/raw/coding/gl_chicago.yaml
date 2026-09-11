@@ -4,19 +4,24 @@ jurisdiction_level: city
 issuing_body: "Chicago Department of Public Health, Bureau of Syndemic Infectious Disease, STI Specialty Clinics"
 document_title: "Clinical Protocol for Providing Doxycycline as STI Postexposure Prophylaxis at CDPH STI Specialty Clinics"
 document_type: clinical_protocol
-version: "eff. 2023-10-15 (7-page PDF in hand; handoff cites a 15-page/4-signature version)"
+version: "eff. 2023-10-15, Version 1.0 (15-page/4-signature policy PDF reviewed 2026-09-11; same protocol content as the 7-page render)"
 effective_date: "2023-10-15"
 source_file: guideline_chicago_cdph_protocol_2023.pdf
 coder: claude-firstpass
 code_date: "2026-08-19"
 
 bystander_treatment: silent
-bystander_treatment_locator: "whole document (7 pp)"
+bystander_treatment_locator: "whole document"
 bystander_treatment_note: >-
-  All 7 pages reviewed: no mention of antimicrobial resistance, S. aureus, or MRSA
-  anywhere — not in patient counselling (§V), not as a knowledge gap, not even for
-  gonorrhea. NB: the handoff exemplar cites a 15-page version with four approver
-  signatures; this PDF is 7 pp — likely a different/earlier version. Flag for AC.
+  No mention of antimicrobial resistance, S. aureus, or MRSA anywhere — not in
+  patient counselling (§V), not as a knowledge gap, not even for gonorrhea.
+  VERSION AMBIGUITY RESOLVED 2026-09-11: the 15-page/4-signature policy PDF
+  (SID-STI Specialty Clinics-Doxy-PEP Clinical Protocol-10152023, Version 1.0,
+  approvers Black/Kern/Tabidze/Abarca-Compton) was reviewed in full and carries
+  the same protocol content as the 7-page render — §V counselling covers only
+  host toxicity (LFT/CMP/CBC, side effects, storage) and behavioural/condom/
+  vaccine prevention; tetracyclines appear once as an eligibility exclusion (acne),
+  not resistance. Classification unchanged: silent / category (d).
 
 s_aureus_named: false
 s_aureus_location: absent
