@@ -100,6 +100,32 @@ def load_pnr_file(path: Path | str) -> pd.DataFrame:
     return out.reset_index(drop=True)
 
 
+def load_prevalence_file(path: Path | str) -> pd.DataFrame:
+    """Load one AIDSVu_State_Prev_YYYY_*.xlsx (People Living with HIV) into a
+    tidy frame. Same header layout and negative-sentinel suppression as PrEP.
+    ``Male Cases`` is the male PLWH prevalence count (a stock)."""
+    path = Path(path)
+    raw = _read_raw(path)
+    out = pd.DataFrame({
+        "state": raw["State"].map(_clean_text),
+        "state_abbrev": raw["State Abbreviation"].map(_clean_text),
+        "year": _year_from_name(path),
+        "plwh_cases": _suppress_negatives(raw["State Cases"]),
+        "plwh_rate": _suppress_negatives(raw["State Rate"]),
+        "male_plwh_cases": _suppress_negatives(raw["Male Cases"]),
+        "male_plwh_rate": _suppress_negatives(raw["Male Rate"]),
+    })
+    return out.reset_index(drop=True)
+
+
+def load_prevalence(raw_dir: Path | str) -> pd.DataFrame | None:
+    """Load and stack every state prevalence file under ``raw_dir`` (or None)."""
+    files = sorted(Path(raw_dir).glob("AIDSVu_State_Prev_*.xlsx"))
+    if not files:
+        return None
+    return pd.concat([load_prevalence_file(p) for p in files], ignore_index=True)
+
+
 def load_aidsvu(raw_dir: Path | str) -> pd.DataFrame:
     """Load and merge every state PrEP and PnR file under ``raw_dir``.
 

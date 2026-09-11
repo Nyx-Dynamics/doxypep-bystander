@@ -1200,3 +1200,16 @@ manuscript, and provenance/hashes for every external input.
   paper/references.bib) and `make docx` (citeproc + plos.csl, numbered refs baked, figures
   embedded). Both regenerable; gitignored like the PDF. PLoS accepts LaTeX+.bib or .docx;
   medRxiv takes the PDF.
+
+## 2026-09-09 — Coding provenance correction (append-only; no prior entry modified)
+
+The two logged coding passes (`claude-firstpass`, `claude-independent-2nd-pass`)
+were the machine coding passes over already-selected documents. Author
+identification, retrieval, and eligibility screening of all source documents
+preceded them. That screening step was not logged at the time because decision
+logging began when the machine coding passes began. No reconstruction of the
+timing or sequence of the author's screening pass is claimed — no timestamped
+record of it exists. This entry aligns the log with the Methods coding-provenance
+paragraph (two independent machine passes; per-field agreement reported as raw
+concordance, not independent human adjudication; shared model lineage disclosed as
+a limitation).
