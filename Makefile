@@ -11,7 +11,8 @@ all: test feasibility guidelines trials literature
 	$(PY) -m src.analysis.summary_figure
 	$(PY) -m src.analysis.linkage_figure
 	$(PY) -m src.analysis.architecture_figure
-	@echo "Stream C (feasibility) + Stream B (guidelines) + Stream A (trials) + literature-gap regenerated."
+	$(PY) -m src.feasibility.plots_plwh
+	@echo "Stream C (feasibility incl. combined PrEP+PLWH) + Stream B (guidelines) + Stream A (trials) + literature-gap regenerated."
 
 test:
 	$(PY) -m pytest -q
@@ -26,6 +27,7 @@ feasibility:
 	$(PY) -m src.analysis.streamc_linkage
 	$(PY) -m src.feasibility.dilution
 	$(PY) -m src.feasibility.dilution_metro
+	$(PY) -m src.feasibility.dilution_plwh
 
 # Stream B — guideline coding + gate
 guidelines:
@@ -132,8 +134,8 @@ DEPOSIT_PATHS = README.md CITATION.cff LICENSE-CODE LICENSE-TEXT THIRD_PARTY_DAT
   REPRODUCIBILITY.md REPRODUCTION_LOG.md Makefile pytest.ini requirements.txt requirements-lock.txt \
   CODEBOOK.md CODEBOOK_streamA.md METHODS_streamB.md ECOLOGICAL_PREREGISTRATION_DRAFT_NOT_REGISTERED.md DECISIONS.md \
   src tests scripts outputs \
-  paper/manuscript.pdf paper/manuscript.tex paper/supplementary.tex paper/supplementary.pdf \
-  paper/references.bib paper/plos2015.bst paper/preamble.tex paper/plos.csl \
+  paper/jac \
+  paper/manuscript.tex paper/references.bib paper/plos2015.bst paper/preamble.tex paper/plos.csl \
   data/processed data/raw/coding data/raw/literature data/raw/literature_search \
   data/raw/aidsvu/SOURCES.md data/raw/aidsvu/CHECKSUMS.md \
   data/raw/papers/SOURCES.md data/raw/papers/CHECKSUMS.md \
@@ -144,6 +146,7 @@ deposit:
 	@rm -f CHECKSUMS.sha256
 	@COPYFILE_DISABLE=1 find $(DEPOSIT_PATHS) -type f \
 	  ! -name '._*' ! -name '.DS_Store' ! -name '*.pyc' ! -path '*/__pycache__/*' \
+	  ! -name '*.aux' ! -name '*.log' ! -name '*.bbl' ! -name '*.blg' ! -name '*.out' ! -name '*.toc' ! -name '.gitignore' \
 	  | LC_ALL=C sort | xargs shasum -a 256 > CHECKSUMS.sha256
 	@COPYFILE_DISABLE=1 tar --no-mac-metadata --no-xattrs --exclude='__pycache__' --exclude='*.pyc' \
 	  --exclude='._*' --exclude='.DS_Store' \
@@ -161,10 +164,12 @@ deposit-zip:
 	@rm -f CHECKSUMS.sha256
 	@COPYFILE_DISABLE=1 find $(DEPOSIT_PATHS) -type f \
 	  ! -name '._*' ! -name '.DS_Store' ! -name '*.pyc' ! -path '*/__pycache__/*' \
+	  ! -name '*.aux' ! -name '*.log' ! -name '*.bbl' ! -name '*.blg' ! -name '*.out' ! -name '*.toc' ! -name '.gitignore' \
 	  | LC_ALL=C sort | xargs shasum -a 256 > CHECKSUMS.sha256
 	@rm -f submission/doxy_zenodo_final.zip
 	@COPYFILE_DISABLE=1 zip -X -r -9 -q submission/doxy_zenodo_final.zip $(DEPOSIT_PATHS) CHECKSUMS.sha256 \
-	  -x '*/__pycache__/*' '*.pyc' '*.DS_Store' '*/._*'
+	  -x '*/__pycache__/*' '*.pyc' '*.DS_Store' '*/._*' \
+	     '*.aux' '*.log' '*.bbl' '*.blg' '*.out' '*.toc' '*/.gitignore'
 	@shasum -a 256 submission/doxy_zenodo_final.zip > submission/doxy_zenodo_final.zip.sha256
 	@echo "wrote submission/doxy_zenodo_final.zip ($$(du -h submission/doxy_zenodo_final.zip | cut -f1); $$(unzip -Z1 submission/doxy_zenodo_final.zip | grep -c .) entries)"
 	@echo "external checksum beside archive (NOT inside): submission/doxy_zenodo_final.zip.sha256"

@@ -4,9 +4,12 @@
 whether the systems built around doxycycline post-exposure prophylaxis (doxy-PEP) can
 *follow* a bystander antimicrobial-resistance signal the pivotal trial has now detected.
 
-PI: Adrian C. Demidont, DO — Nyx Dynamics, LLC (Fairfield, CT) and Nyx Institute for
-Computational Medicine (Philadelphia, PA). ORCID 0000-0002-9216-8569.
+PI: Adrian C. Demidont, DO — Nyx Dynamics, LLC (Fairfield, CT). ORCID 0000-0002-9216-8569.
 Public data only; **no participant-level trial data** are used.
+
+**Archived:** Zenodo [doi:10.5281/zenodo.22725070](https://doi.org/10.5281/zenodo.22725070)
+(v2.0.0 — adds the combined PrEP+PLWH Stream C analysis and the JAC manuscript package;
+supersedes v1.0.0, doi:10.5281/zenodo.22051031).
 
 ## The paper
 
@@ -29,9 +32,10 @@ question that fact raises, across three streams against one yardstick:
 
 The upstream instrument generated information the downstream systems are not built to
 receive — a structural gap we call **measurement inheritance**. The paper makes **no
-population-level causal claim**. Manuscript: `paper/manuscript.tex` — the canonical,
-hand-maintained PLoS Biology (Meta-Research) LaTeX source (built PDF `paper/manuscript.pdf`;
-supplement `paper/supplementary.tex`). `paper/manuscript.md` is a superseded earlier draft.
+population-level causal claim**. Manuscript: the current submission is the **Journal of
+Antimicrobial Chemotherapy** Original Article in `paper/jac/`
+(`JAC_manuscript_v3.tex`/`.pdf`, supplement `JAC_supplement_v3.tex`/`.pdf`, `references.bib`,
+`figures/`); the earlier PLoS LaTeX source is retained in `paper/manuscript.tex`.
 
 ## Provenance: how this project began (and why the original design was not run)
 
@@ -40,9 +44,11 @@ population-level doxy-PEP uptake was associated with rising tetracycline-resista
 *S. aureus*. A Phase-0 feasibility gate was run **before** any outcome data were touched, and
 it **failed**: because the dilution fraction tracks exposure *density* not headcount, the
 exposed subgroup is too dilute to move a population rate at any geographic grain with a
-population denominator (median required within-exposed RR ≈ 14; the metro version needs
-male-PrEP density many times the densest US geography — see
-`outputs/feasibility_result.md`, `outputs/feasibility_metro_result.md`). The ecological
+population denominator (under the primary combined PrEP+PLWH exposed denominator the
+realistic-cell required within-exposed RR ≈ 6–28, and the more restrictive PrEP-only indexing
+gives ≈ 14–64; the metro version needs exposure density about twice the densest US geography —
+see `outputs/feasibility_plwh_result.md`, `outputs/feasibility_result.md`,
+`outputs/feasibility_metro_result.md`). The ecological
 design was therefore **not executed**, and the preregistration **remained a draft**
 (`ECOLOGICAL_PREREGISTRATION_DRAFT_NOT_REGISTERED.md`) — there is **no timestamped OSF registration**. That negative
 feasibility result is itself Stream C evidence, and it motivated the present

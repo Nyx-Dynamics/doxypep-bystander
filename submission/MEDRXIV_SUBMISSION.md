@@ -93,7 +93,7 @@ Investigation, Writing – original draft, Writing – review & editing, Visuali
 **Data availability statement**
 All data are public and all analysis code is openly available at
 https://github.com/Nyx-Dynamics/doxypep-bystander (release v1.0.0), archived at Zenodo
-(DOI 10.5281/zenodo.22051031); every figure and table regenerates via `make all`. No
+(DOI 10.5281/zenodo.22725070); every figure and table regenerates via `make all`. No
 participant-level trial data were used. Third-party inputs (publisher/guideline PDFs,
 conference transcriptions, and the IQVIA-sourced AIDSVu datasets) are not redistributed;
 their provenance and SHA-256 hashes travel with the repository.

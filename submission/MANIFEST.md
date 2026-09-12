@@ -68,7 +68,7 @@ writes `submission/CHECKSUMS.sha256`.
 
 ## Before submission (author to complete)
 - [x] GitHub URL (github.com/Nyx-Dynamics/doxypep-bystander) + Zenodo DOI
-      (10.5281/zenodo.22051031) wired into the manuscript availability statement.
+      (10.5281/zenodo.22725070) wired into the manuscript availability statement.
 - [ ] **BLOCKER for a PUBLIC push:** 66 copyrighted publisher PDFs (57 MB) are in git
       history. Scrub with `git filter-repo` before pushing public (or keep the repo private).
       See DECISIONS.md 2026-08-21 (push-readiness).

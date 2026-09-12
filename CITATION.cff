@@ -14,14 +14,21 @@ authors:
   - family-names: Demidont
     given-names: Adrian C.
     orcid: "https://orcid.org/0000-0002-9216-8569"
-    affiliation: "Nyx Dynamics, LLC, Fairfield, CT, USA; and Nyx Institute for Computational Medicine, Philadelphia, PA, USA"
+    affiliation: "Nyx Dynamics, LLC, Fairfield, CT, USA"
     email: acdemidont@nyxdynamics.org
-version: "1.0.0"
-date-released: "2026-08-23"
+version: "2.0.0"
+date-released: "2026-09-12"
 license: MIT
 license-url: "https://github.com/Nyx-Dynamics/doxypep-bystander/blob/main/LICENSE-CODE"
 repository-code: "https://github.com/Nyx-Dynamics/doxypep-bystander"
-doi: "10.5281/zenodo.22051031"
+doi: "10.5281/zenodo.22725070"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22725070"
+    description: "This version (v2.0.0): adds the combined PrEP+PLWH Stream C analysis and the JAC manuscript package"
+  - type: doi
+    value: "10.5281/zenodo.22051031"
+    description: "Previous version (v1.0.0)"
 keywords:
   - doxycycline post-exposure prophylaxis
   - antimicrobial resistance

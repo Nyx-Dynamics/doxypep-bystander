@@ -924,7 +924,7 @@ the 100%-of-males physical ceiling.](../outputs/figures/feasibility_metro_breake
 **Data and code availability.** All data are public (AIDSVu; published trials,
 guidelines, and the CROI abstract) and all analysis code is openly available in the
 project repository (<https://github.com/Nyx-Dynamics/doxypep-bystander>), archived at
-Zenodo (<https://doi.org/10.5281/zenodo.22051031>), which regenerates every figure and table via `make all`. Every coded source
+Zenodo (<https://doi.org/10.5281/zenodo.22725070>), which regenerates every figure and table via `make all`. Every coded source
 is SHA-256–pinned. No restricted-access data were used.
 
 **Conflicts of interest.** A.C.D. reports former employment at Gilead Sciences

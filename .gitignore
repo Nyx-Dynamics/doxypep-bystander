@@ -49,3 +49,6 @@ data/raw/papers/croi2023_molina_doxyvac_slides.md
 data/raw/aidsvu/*.xlsx
 # rendered submission letters (regenerable from the .md via pandoc)
 submission/*.pdf
+
+# old Zenodo deposit snapshot (not part of the repo history)
+data/zenodo_v1/

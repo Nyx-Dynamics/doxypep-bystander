@@ -1213,3 +1213,16 @@ record of it exists. This entry aligns the log with the Methods coding-provenanc
 paragraph (two independent machine passes; per-field agreement reported as raw
 concordance, not independent human adjudication; shared model lineage disclosed as
 a limitation).
+
+## 2026-09-12 — Zenodo v2.0.0 (new version) + combined PrEP+PLWH Stream C
+
+Minted a new Zenodo version (doi:10.5281/zenodo.22725070) superseding v1.0.0
+(doi:10.5281/zenodo.22051031). The new deposit adds: the combined PrEP+PLWH
+Stream C dilution analysis (src/feasibility/dilution_plwh.py, plots_plwh.py;
+src/loaders/aidsvu.py load_prevalence; outputs/feasibility_plwh_result.md;
+regenerated Stream C figures on the combined denominator), the AIDSVu State
+Prevalence 2024 input (hashed in data/raw/aidsvu/CHECKSUMS.md, not redistributed),
+and the Journal of Antimicrobial Chemotherapy manuscript package (paper/jac/).
+Makefile: `make all` now regenerates the combined-denominator analysis and figures;
+DEPOSIT_PATHS points at paper/jac; deposit recipes exclude LaTeX build artifacts.
+CITATION.cff bumped to 2.0.0; PA affiliation dropped; both DOIs recorded.
