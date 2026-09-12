@@ -15,6 +15,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage[margin=1in]{geometry}
+\usepackage{caption}
 \usepackage{url}\urlstyle{tt}
 \usepackage{parskip}
 \graphicspath{{figures/}}
@@ -34,8 +35,8 @@ resistance under doxy-PEP: a three-stream evidence audit}
 
 \noindent All supplementary material is relocated from the validated analysis and
 regenerates from the public repository (\texttt{make all}; \texttt{outputs/}),
-archived with a citable DOI. US spelling is used (at author request); \textit{JAC}
-nomenclature conventions are otherwise followed and MICs are expressed in mg/L.
+archived with a citable DOI. \textit{JAC} nomenclature conventions are followed
+and MICs are expressed in mg/L.
 
 % ===================================================================
 \section*{S1. The measurement-inheritance schema}
@@ -67,9 +68,9 @@ unit/resolution'' = present but inherited from the upstream question; ``absent''
 Dimension & Stream A (trial) & Stream B (guidance) & Stream C (surveillance)\\
 \midrule
 $U$ unit & Participant \sa{} & Not specified for \sa{} & MRSA subset (wrong unit)\\
-$E$ exposure & Randomized doxy-PEP & Prescribing context & PrEP proxy only\\
+$E$ exposure & Randomised doxy-PEP & Prescribing context & PrEP proxy only\\
 $P$ phenotype & Incident doxy-R (present) & Not measured (absent) & Methicillin axis (wrong unit)\\
-$D$ denominator & Randomized participants & None for \sa{} & Population, but methicillin\\
+$D$ denominator & Randomised participants & None for \sa{} & Population, but methicillin\\
 $T$ cadence & Time-to-event & None & Cross-sectional/facility\\
 $L$ linkage & Individual & None assigned & No common $E$--$P$ denominator (absent)\\
 $R$ responsibility & Trial investigators & Unassigned (absent) & Unassigned for tetracycline \sa{}\\
@@ -102,7 +103,7 @@ arm; the realised denominator reflects the early efficacy stop
 (\path{outputs/duration_result.md}). No duration counterfactual is inferred from
 the two arm-split visits.
 \item \textbf{Clustering dispersion.} Between-cohort dispersion of MRSA
-colonization across independent MSM cohorts was estimated by a logit-normal
+colonisation across independent MSM cohorts was estimated by a logit-normal
 binomial random-effects model (Gauss--Hermite quadrature) as a conservative
 external heterogeneity anchor (\path{outputs/dejong_sigma_result.md}).
 \item \textbf{Trend-test degradation.} At the trials' per-visit denominators, a
@@ -134,7 +135,7 @@ originated here.
 documented community-associated MRSA/USA300 transmission in men who have sex with
 men, defined by de Jong's systematic review and the outbreak literature it cites
 --- the same source supplying the Stream A clustering dispersion. Governmental
-public-health guidance only was assessed; clinic and provider-organization
+public-health guidance only was assessed; clinic and provider-organisation
 documents were excluded because they carry neither surveillance authority nor
 monitoring policy.
 
@@ -144,9 +145,17 @@ in-category monitoring (gonorrhoea, chlamydia, syphilis) and host-toxicity labs;
 and whether it names, counsels on, or measures \sa{}. Bystander treatment was
 graded silent / generic-microbiome / organism-named; \sa{} monitoring as required
 / suggested / silent / explicitly-none (the last requiring a verbatim quote).
-Coding was blind to the expected outcome. A blinded second coder double-coded with
-per-field Cohen's $\kappa$; agreement was 92\% and the single field with
-meaningful disagreement ($\kappa=0.58$) is reported unrounded.
+Coding was blind to the expected outcome. The author identified, retrieved and
+screened all source documents for eligibility from full text before any coding
+pass; a first LLM pass coded all 10 documents against the prespecified schema, and
+a second, blinded LLM pass (a chat interface rather than the command-line agent,
+same model family) independently re-coded a 5-document subsample (25 field-codings,
+chosen to span all \sa{}-location categories), with disagreements resolved by the
+author against the source. Per-field agreement is reported as raw concordance:
+92\% (23/25), and the single field with meaningful disagreement (bystander
+treatment; $\kappa=0.58$, context only) is reported unrounded. Because the two
+passes share a model family their errors are not independent (main-text
+Limitations).
 
 \textbf{Result.} Of the six documented-outbreak jurisdictions --- San Francisco,
 Chicago, New York City, Boston (Massachusetts), Los Angeles County and San Diego
@@ -163,10 +172,10 @@ separately. The full per-document coding table with locators is in the repositor
 % ===================================================================
 \section*{S4. Stream C --- surveillance enumeration and dilution model}
 
-\textbf{Enumeration.} A closed universe of twelve established US governmental
-systems (federal, state or metropolitan) that could plausibly capture, at a
-population denominator, either doxy-PEP/doxycycline exposure or \sa{} AMR phenotype
-was coded on three capabilities: exposure capture, phenotype capture (of the \sa{}
+\textbf{Enumeration.} A prespecified set of 12 established US surveillance and
+data systems (federal, state or metropolitan) plausibly capable of capturing, at
+the required level, either doxy-PEP/doxycycline exposure or \sa{} AMR phenotype was
+coded on three capabilities: exposure capture, phenotype capture (of the \sa{}
 tetracycline unit, not the MRSA subset) and the join. Two capture exposure at a
 population denominator (AIDSVu; CDC AtlasPlus) as a PrEP proxy; zero capture \sa{}
 tetracycline resistance at a population denominator. The population-based \sa{}
@@ -183,10 +192,10 @@ Table~\ref{tab:streamc}.
 
 \begin{table}[h]
 \centering
-\caption{Stream C closed-universe enumeration: twelve included US governmental
-surveillance systems and three excluded, each with a stated reason. No included
-system captures both doxy-PEP exposure and the \sa{} tetracycline phenotype at a
-common population denominator (0/12 join).}
+\caption{Stream C enumeration: 12 included US surveillance and data systems and
+three excluded, each with a stated reason. No included system captures both
+doxy-PEP exposure and the \sa{} tetracycline phenotype at a common population
+denominator (0/12 join).}
 \label{tab:streamc}
 \small
 \begin{tabularx}{\textwidth}{@{}p{0.30\textwidth}>{\raggedright\arraybackslash}X@{}}
@@ -240,9 +249,9 @@ only one cell of the entire grid, where every generous assumption is maxed at on
 isolates/geography-year and optimistic panel independence): there
 $\mathrm{RR_{needed}}$ falls to 1.03; under single-comparison inference even the
 most favourable cell stays above the yardstick (1.79). The metropolitan best cell
-needs $1.8\times$ the combined male exposure density of the densest US geography
-(Washington, D.C., 6\,406 per 100\,000 adult males in 2024), and realistic cells
-hundreds of times it. All values regenerate from
+needs about twice ($\approx$2$\times$) the combined male exposure density of the
+densest US geography (Washington, D.C., 6\,406 per 100\,000 adult males in 2024),
+and realistic cells hundreds of times it. All values regenerate from
 \texttt{outputs/feasibility\_plwh\_result.md}, and Figures~A--C show the combined
 PrEP+PLWH denominator (the primary specification); the more restrictive PrEP-only
 indexing gives RR~$\approx$~14--64.
@@ -267,9 +276,9 @@ detectable shift, as multiples of the densest US geography's combined PrEP+PLWH
 density (Washington, D.C., 6\,406/100\,000 adult males, 2024). $1\times$ is
 already the national maximum; the best cell needs $\approx$2$\times$ it.}
 \end{figure}
-\noindent Alt text: A chart showing required male-PrEP density in multiples of the
-densest US metropolitan geography, with all requirements above the one-times
-national maximum.
+\noindent Alt text: A chart showing required combined PrEP+PLWH exposure density in
+multiples of the densest US metropolitan geography, with all requirements above the
+one-times national maximum.
 
 \begin{figure}[h]
 \centering
@@ -280,9 +289,10 @@ isolates per geography-year, by enrichment $\kappa$. Every curve sits above
 D.C.'s observed combined density (6.4\%) and, under realistic isolate volumes,
 above the 100\%-of-males physical ceiling.}
 \end{figure}
-\noindent Alt text: Break-even curves of the share of all adult males on PrEP
-required for detection against isolate volume, all lying above both the observed
-2.7\% and the 100\% physical ceiling.
+\noindent Alt text: Break-even curves of the share of all adult males under
+combined PrEP+PLWH exposure required for detection against isolate volume, all
+lying above both the observed combined density (6.4\%) and the 100\% physical
+ceiling.
 
 % ===================================================================
 \section*{S5. Literature attention structure}

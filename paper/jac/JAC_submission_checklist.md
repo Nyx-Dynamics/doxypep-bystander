@@ -1,43 +1,39 @@
-# JAC_submission_checklist.md
+# JAC_submission_checklist.md (current state — v3 / release v2.0.0)
 
-Populated against `JAC_IFA.rtf` (verified). ✅ done · ⚠️ needs author action · ⏳ pending official template.
+Verified against `JAC_manuscript.tex` / `JAC_supplement.tex` (canonical = v3).
+✅ done · ⚠️ author action.
 
 ## Article type and structure
-- ✅ Article type: **Original Article** (published under "Original research").
-- ✅ Structured **Synopsis** with headings Background/Objectives/Methods/Results/Conclusions, ≤250 words.
-- ✅ Required sections present in order: Synopsis, Introduction, Materials and methods, Results, Discussion, Acknowledgements, Funding, Transparency declarations, References.
-- ✅ Main text ≤ **3500 words** (2702; see word-count report).
-- ✅ Title page: title, author + full affiliations, corresponding-author contact, **running title**.
-- ⚠️ Corresponding-author **telephone/fax**: placeholder in title page — insert real number before submission.
+- ✅ **Original Article**; structured **Synopsis** (Background/Objectives/Methods/Results/Conclusions).
+- ✅ Required sections in order: Synopsis, Introduction, Materials and methods, Results, Discussion, Acknowledgements, Funding, Transparency declarations, References.
+- ✅ Main text **3412 words** (≤3500; `make jac-wordcount`); synopsis **234** (≤250).
+- ✅ Title page: locked title, single affiliation (Nyx Dynamics, LLC, Fairfield, CT), running title, corresponding-author telephone **+1-215-901-2366** and full ORCID 0000-0002-9216-8569 (no placeholders).
 
-## Style (verified)
-- ⚠️ **Spelling: JAC mandates British spelling, but the text was converted to US spelling at author request.** Reconcile before submitting to JAC (revert to British, or confirm the target journal accepts US spelling). **methicillin** (not meticillin) retained.
-- ✅ MICs in **mg/L**.
-- ✅ *Staphylococcus aureus* italic, abbreviated to *S. aureus* after first use.
-- ✅ *tet*(K)/*tet*(M) gene nomenclature.
-- ✅ References: sequential **superscript** numerals, placed after punctuation; numbered reference list (`vancouver.bst`).
-- ✅ Past tense for study results; present tense for established knowledge.
-- ⚠️ Double-spaced, **continuous line numbers, no page numbers**: satisfied in portable source (`lineno`, `\pagestyle{empty}`); re-confirm when migrated to official template.
+## Style
+- ✅ **British spelling** throughout; **methicillin** (not meticillin); MICs in mg/L.
+- ✅ *Staphylococcus aureus* italic, abbreviated *S. aureus* after first use; *tet*(K)/*tet*(M) gene style.
+- ✅ Sequential superscript references (vancouver.bst); numbered reference list with no internal audit annotations.
+- ✅ Past tense for this study's results; present tense for established knowledge.
 
 ## Figures and tables
-- ✅ Used sparingly: 2 main figures + 2 main tables; feasibility figures relocated to Supplement.
-- ✅ **Alt text** provided directly under each figure legend, preceded by "Alt text:".
-- ⚠️ Figure sizing to **88 mm / 180 mm** and font specs: source figures are the validated PNGs; confirm/redraw to JAC dimensions at production (content must not change — see figure_rules).
-- ✅ Tables cell-based, Arabic numerals, descriptive headings.
+- ✅ Used sparingly: 2 main figures + 2 main tables; feasibility figures in the Supplement.
+- ✅ **Alt text** directly under each figure legend. Fig 2 caption states the trial HR is a magnitude reference, not interchangeable with the surveillance RR threshold.
+- ⚠️ Figures sized to 88 mm / 180 mm at production (content unchanged).
 
 ## Policies and declarations
-- ✅ **Funding** section (unfunded stated).
-- ✅ **Transparency declarations** section present, before References; concise, no financial detail.
-- ✅ **LLM use** disclosed in Acknowledgements **and** cover letter (JAC requirement); no AI author.
-- ✅ **Ethics:** no human-subjects/individual-level data (public data only) — stated in Methods; no approval required.
-- ✅ **Data availability:** public data + open code + citable DOI; supplementary data **cited** in the main article.
-- ✅ Cover letter states: original/unpublished, not under consideration elsewhere, **not previously submitted to JAC**.
-- ✅ Not a clinical trial (no trial registration required for this audit).
+- ✅ **Funding** section (unfunded). **Transparency declarations** before References; former Gilead employment (divested 2024) disclosed; no other conflicts.
+- ✅ **LLM use** disclosed in Acknowledgements and the cover letter.
+- ✅ **Ethics:** public data only, no human subjects — stated in Methods.
+- ✅ **Data/code availability:** public repository + Zenodo **doi:10.5281/zenodo.22725070**; supplementary data cited in the main article; every coded source SHA-256-pinned.
+- ✅ Cover letter: original/unpublished, not under consideration elsewhere, not previously submitted to JAC; title and affiliation match the manuscript.
+
+## Final numerical results (verified present, unchanged)
+- ✅ HR **3.89** (1.42–10.68; 68/393 vs 5/163), attributed to the trial.
+- ✅ Guidance **0/6** outbreak-matched, **0/10** coded; surveillance **0/12**.
+- ✅ Primary detectability **RR ≈ 6–28** (combined PrEP+PLWH); PrEP-only sensitivity **RR ≈ 14–64**.
+- ✅ Reliability disclosed as a subsample (5 of 10 documents, 25 field-codings, 92% [23/25]).
+- ✅ No population-level causal claim; no MRSA/*S. aureus* conflation; colonisation ≠ infection.
 
 ## Pending / template
-- ⏳ **TEMPLATE_PENDING:** migrate `JAC_manuscript.tex` / `JAC_supplement.tex` into the official JAC/OUP LaTeX template once obtained.
-- ⚠️ Open-access vs subscription decision is made **after acceptance** (no charge if subscription selected) — not part of submission files; excluded from cover letter per instruction.
-
-## Compile status
-- ✅ `JAC_manuscript.tex` compiles, 0 undefined references.
-- ✅ `JAC_supplement.tex` compiles, 0 undefined references, all figures resolve.
+- ⚠️ **TEMPLATE_PENDING:** migrate into the official JAC/OUP LaTeX class when obtained.
+- Both `.tex` compile clean (0 undefined references); build with `make jac`.

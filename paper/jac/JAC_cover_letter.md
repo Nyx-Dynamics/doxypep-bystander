@@ -1,6 +1,5 @@
 Adrian C. Demidont, DO
 Nyx Dynamics, LLC, Fairfield, Connecticut, USA
-Nyx Institute for Computational Medicine, Philadelphia, Pennsylvania, USA
 ORCID 0000-0002-9216-8569 · acdemidont@nyxdynamics.org
 
 To the Editor-in-Chief
@@ -8,9 +7,9 @@ Journal of Antimicrobial Chemotherapy
 
 Dear Editor-in-Chief,
 
-I submit **"Can current surveillance follow doxy-PEP-associated *Staphylococcus
-aureus* resistance? A multi-stream evidence audit"** for consideration as an
-Original Article.
+I submit **"Guidance and surveillance capability for bystander *Staphylococcus
+aureus* tetracycline resistance under doxy-PEP: a three-stream evidence audit"**
+for consideration as an Original Article.
 
 **Why JAC.** Doxycycline post-exposure prophylaxis (doxy-PEP) is being deployed at
 population scale to prevent bacterial STIs, applying sustained tetracycline
@@ -38,7 +37,7 @@ is an evidentiary-adequacy and surveillance-design result.
 **Rigour and reproducibility.** The analysis uses only public data; every coded
 source carries a locator and is SHA-256-pinned; analysis decisions were date-logged
 before results were known; and every figure and table regenerates by a single
-command from a public repository archived with a citable DOI. Supplementary data
+command from a public repository archived at Zenodo (doi:10.5281/zenodo.22725070). Supplementary data
 (cited in the main article) hold the full coding protocols, system matrix, and
 dilution derivation.
 

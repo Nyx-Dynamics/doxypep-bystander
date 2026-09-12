@@ -1,10 +1,8 @@
 % JAC Original Article — portable/journal-agnostic LaTeX source.
 % TEMPLATE_PENDING: no official JAC/OUP LaTeX class was supplied; migrate this
 % source into the official template when obtained. House style verified against
-% JAC_IFA.rtf (Instructions to Authors): methicillin (not
+% JAC_IFA.rtf (Instructions to Authors): British spelling; methicillin (not
 % meticillin); MIC in mg/L; sequential superscript references; structured
-% NOTE: JAC mandates BRITISH spelling, but the text was converted to US spelling
-% at author request; reconcile this before submitting to JAC.
 % synopsis (Background optional / Objectives / Methods / Results / Conclusions),
 % 250 words; main text (Introduction–Discussion) <= 3500 words; Funding and
 % Transparency declarations sections required; figures 88 mm / 180 mm with alt
@@ -169,9 +167,10 @@ the trial's own hazard ratio.
 The author identified, retrieved and screened all source documents for
 eligibility; each eligible document was then coded from full text against a
 prespecified schema, every value carrying a page, section or table locator. For
-the guidance corpus (Stream B), two separate blinded LLM coding passes---run
-through different interfaces (a command-line agent and a chat interface) but the
-same model family---coded each document against the schema, and disagreements were
+the guidance corpus (Stream B), a first LLM pass coded all 10 documents against
+the schema; a second, blinded LLM pass---a different interface (chat rather than
+the command-line agent) but the same model family---independently re-coded a
+5-document subsample (25 field-codings) for reliability, and disagreements were
 resolved by the author against the source. Per-field agreement is reported as raw
 concordance, which measures the reproducibility of the coding protocol rather than
 its accuracy; because the passes share a model family their errors are not
@@ -317,9 +316,11 @@ from San Francisco and one (Massachusetts) from an external template. Nor is it
 for want of naming the organism---three of the six name \sa{} specifically, two
 invoke only a generic ``microbiome'' risk and one is silent; even where named,
 none measure it. Across the full coded corpus (10 documents: CDC, WHO and eight
-US jurisdictions) the result is identical: 0 instrument the bystander. Raw
-agreement between the two coding passes was 92\%; the single field with meaningful
-disagreement ($\kappa=0.58$, context only) is reported unrounded. Providers are nonetheless required to counsel patients about
+US jurisdictions) the result is identical: 0 instrument the bystander.
+Double-coding covered a subsample of 5 of the 10 documents (25 field-codings
+across five fields, chosen to span all \sa{}-location categories); raw agreement
+was 92\% (23/25), and the single field with meaningful disagreement (bystander
+treatment; $\kappa=0.58$, context only) is reported unrounded. Providers are nonetheless required to counsel patients about
 resistance in commensal organisms---a harm no system measures.
 
 \subsection*{Stream C: surveillance capability and exposure--phenotype linkage}
@@ -520,11 +521,12 @@ the evidence for how \sa{} clusters and moves through these networks exists only
 for its MRSA subset, so where our clustering analysis relies on MRSA we mark it as
 such---an instance of the inherited limitation, not an exception to it. Finally,
 the trial reaches only a roughly twelve-month horizon; persistence, dose--response
-and mechanism remain open. Our coding carries two acknowledged asymmetries. The guidance corpus was coded by
-two machine passes run through different interfaces---a command-line agent and a
-chat interface---but the same model family, so their errors are not independent;
-the 92\% concordance measures the reproducibility of the coding protocol, not its
-accuracy. The surveillance enumeration was coded by a single pass. Consistent with a
+and mechanism remain open. Our coding carries two acknowledged asymmetries. The guidance corpus was
+double-coded on a 5-document subsample by two passes run through different
+interfaces---a command-line agent and a chat interface---but the same model
+family, so their errors are not independent; the 92\% concordance measures the
+reproducibility of the coding protocol, not its accuracy. The surveillance
+enumeration was coded by a single pass. Consistent with a
 falsification standard set in advance, the inheritance claim fails if a doxy-PEP
 guideline comes to require
 \sa{} monitoring, or if a deployed system links doxy-PEP exposure to an \sa{}

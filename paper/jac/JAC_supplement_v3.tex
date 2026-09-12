@@ -147,12 +147,15 @@ graded silent / generic-microbiome / organism-named; \sa{} monitoring as require
 / suggested / silent / explicitly-none (the last requiring a verbatim quote).
 Coding was blind to the expected outcome. The author identified, retrieved and
 screened all source documents for eligibility from full text before any coding
-pass; two separate blinded LLM coding passes then coded each document under
-separate prompts against the prespecified schema, with disagreements resolved by
-the author against the source. Per-field agreement is reported as raw concordance:
-agreement was 92\%, and the single field with meaningful disagreement
-($\kappa=0.58$, context only) is reported unrounded. Because the passes share a
-model family their errors are not independent (main-text Limitations).
+pass; a first LLM pass coded all 10 documents against the prespecified schema, and
+a second, blinded LLM pass (a chat interface rather than the command-line agent,
+same model family) independently re-coded a 5-document subsample (25 field-codings,
+chosen to span all \sa{}-location categories), with disagreements resolved by the
+author against the source. Per-field agreement is reported as raw concordance:
+92\% (23/25), and the single field with meaningful disagreement (bystander
+treatment; $\kappa=0.58$, context only) is reported unrounded. Because the two
+passes share a model family their errors are not independent (main-text
+Limitations).
 
 \textbf{Result.} Of the six documented-outbreak jurisdictions --- San Francisco,
 Chicago, New York City, Boston (Massachusetts), Los Angeles County and San Diego

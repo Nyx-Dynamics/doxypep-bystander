@@ -17,7 +17,6 @@ surveillance backbone), **clinical_effect** (trials/positions/effects),
 ### Missing trials / primary evidence — top
 | Paper | Journal | DOI |
 |---|---|---|
-| Luetkemeyer — DoxyPEP **final results + OLE** | Lancet Infect Dis 2025 | 10.1016/S1473-3099(25)00085-4 |
 | Stewart — **dPEP-KE** (doxy prophylaxis in women, Kenya) | N Engl J Med 2023 | 10.1056/NEJMoa2304007 |
 | Molina — **IPERGAY** post-exposure doxycycline | Lancet Infect Dis 2018 | (in set; confirm) |
 | Gestels — doxy-PEP could select **cross-resistance** | Int J STD AIDS 2023 | 10.1177/09564624231190108 |

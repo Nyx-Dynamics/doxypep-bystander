@@ -4,7 +4,7 @@
 
 PY := python3
 
-.PHONY: all test loader feasibility guidelines trials reliability literature pdf tex texpdf supp docx bundle deposit deposit-zip clean
+.PHONY: all test loader feasibility guidelines trials reliability literature pdf tex texpdf supp docx jac jac-main jac-supp jac-wordcount bundle deposit deposit-zip clean
 
 all: test feasibility guidelines trials literature
 	$(PY) -m src.analysis.streamc_linkage
@@ -100,6 +100,31 @@ docx:
 	  -o paper/manuscript.docx
 	@echo "wrote paper/manuscript.docx (editable; PLoS numbered refs baked in, figures embedded)"
 
+# --- JAC manuscript (current submission) ------------------------------------- #
+# The current manuscript is the Journal of Antimicrobial Chemotherapy Original
+# Article in paper/jac/ (canonical: JAC_manuscript.tex / JAC_supplement.tex, kept
+# byte-identical to the *_v3 sources). These compile the JAC release explicitly;
+# `make pdf`/`texpdf` still build the retained historical PLoS manuscript.
+jac: jac-main jac-supp
+
+jac-main:
+	cd paper/jac && pdflatex -interaction=nonstopmode -halt-on-error JAC_manuscript.tex >/dev/null
+	cd paper/jac && bibtex JAC_manuscript >/dev/null
+	cd paper/jac && pdflatex -interaction=nonstopmode -halt-on-error JAC_manuscript.tex >/dev/null
+	cd paper/jac && pdflatex -interaction=nonstopmode -halt-on-error JAC_manuscript.tex >/dev/null
+	@rm -f paper/jac/JAC_manuscript.aux paper/jac/JAC_manuscript.bbl paper/jac/JAC_manuscript.blg paper/jac/JAC_manuscript.out paper/jac/JAC_manuscript.log
+	@echo "wrote paper/jac/JAC_manuscript.pdf (current JAC Original Article)"
+
+jac-supp:
+	cd paper/jac && pdflatex -interaction=nonstopmode -halt-on-error JAC_supplement.tex >/dev/null
+	cd paper/jac && pdflatex -interaction=nonstopmode -halt-on-error JAC_supplement.tex >/dev/null
+	@rm -f paper/jac/JAC_supplement.aux paper/jac/JAC_supplement.out paper/jac/JAC_supplement.log
+	@echo "wrote paper/jac/JAC_supplement.pdf (current JAC Supplementary data)"
+
+# Reproducible JAC main-text word count (Introduction–Discussion) + synopsis.
+jac-wordcount:
+	$(PY) scripts/jac_wordcount.py
+
 # --- Deposit archives -------------------------------------------------------- #
 # Two artifacts:
 #   bundle  -> journal submission package (manuscript + submission-facing aids)
@@ -131,7 +156,7 @@ bundle:
 # provenance travelling via SOURCES.md + CHECKSUMS.md. AIDSVu is retrieved+verified by
 # scripts/verify_aidsvu.py before `make all` (download AIDSVu first). See THIRD_PARTY_DATA.md.
 DEPOSIT_PATHS = README.md CITATION.cff LICENSE-CODE LICENSE-TEXT THIRD_PARTY_DATA.md \
-  REPRODUCIBILITY.md REPRODUCTION_LOG.md Makefile pytest.ini requirements.txt requirements-lock.txt \
+  REPRODUCIBILITY.md REPRODUCTION_LOG.md REPRODUCTION_LOG_v1.0.0.md Makefile pytest.ini requirements.txt requirements-lock.txt \
   CODEBOOK.md CODEBOOK_streamA.md METHODS_streamB.md ECOLOGICAL_PREREGISTRATION_DRAFT_NOT_REGISTERED.md DECISIONS.md \
   src tests scripts outputs \
   paper/jac \

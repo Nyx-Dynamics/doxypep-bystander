@@ -8,18 +8,27 @@ participant-level trial data are used or required.
 - Python 3.11+ (validated on CPython 3.12.12; also exercised under 3.13).
 - `pip install -r requirements-lock.txt` for the exact validated versions
   (`requirements.txt` keeps broad bounds for normal use).
-- `make pdf` builds the canonical LaTeX source (`paper/manuscript.tex`) and needs a TeX Live
-  **pdflatex** + **bibtex** on the PATH (`plos2015.bst` ships in `paper/`). `make docx` still uses **pandoc**.
+- **`make jac`** compiles the current JAC manuscript and Supplementary data
+  (`paper/jac/JAC_manuscript.tex`, `JAC_supplement.tex`) and needs TeX Live **pdflatex** +
+  **bibtex** on the PATH. `make pdf` still builds the retained historical PLoS source
+  (`paper/manuscript.tex`, `plos2015.bst`); `make docx` uses **pandoc**.
 
 ## One command
 
 ```
 python3 scripts/verify_aidsvu.py  # verify manually-downloaded AIDSVu inputs (not redistributed)
-make all                          # runs the full pytest suite, then regenerates outputs/figures
-make pdf                           # builds paper/manuscript.pdf from paper/manuscript.tex (pdflatex + bibtex + plos2015.bst)
+make all                          # runs the full pytest suite, then regenerates validated outputs/figures
+make jac                          # compiles the current JAC manuscript + Supplementary data (pdflatex + bibtex)
+make pdf                          # historical PLoS manuscript (retained), from paper/manuscript.tex
 ```
 
-The AIDSVu State PrEP/PnR datasets are **not** redistributed (IQVIA-sourced; see
+`make all` regenerates the validated analysis outputs and data-derived figures (including the
+combined PrEP+PLWH Figures A–C). `make jac` compiles the manuscript; editorial summary tables
+(the reporting-propagation and headline-audit tables) are hand-maintained summaries of
+validated outputs, not programmatically regenerated. Release **v2.0.0** is archived at Zenodo
+**doi:10.5281/zenodo.22725070** (supersedes v1.0.0, doi:10.5281/zenodo.22051031).
+
+The AIDSVu State PrEP/PnR/Prevalence datasets are **not** redistributed (IQVIA-sourced; see
 `THIRD_PARTY_DATA.md`). `scripts/verify_aidsvu.py` records their source portal, retrieval date,
 and per-file SHA-256, and verifies the files you place in `data/raw/aidsvu/`. `make all`
 requires them present and verified.

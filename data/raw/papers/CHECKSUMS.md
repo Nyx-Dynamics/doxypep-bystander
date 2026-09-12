@@ -29,7 +29,7 @@ files flagged **[coded-source]** below — re-hash before trusting a re-download
 | `kong2023_jac_harms_taxonomy.pdf` | 213532 | `c78487fb7525f93fce060c60bb2a9b6bde882b643fb045667734080abb67d54a` |  |
 | `luetkemeyer2023_nejm_doxypep.pdf` | 769778 | `08d458a2c1a06ee3971fe9d057b845fb4b20ac78070826122748951bc017ccce` | **[coded-source]** |
 | `luetkemeyer2023_nejm_appendix.pdf` | 280195 | `c4188cc6d3903f5febb45de120470b213d8a5cb1755472d7285200f72896fd1b` | **[coded-source]** (Tables 1-2; endpoint switch) |
-| `luetkemeyer2023_nejm_data_sharing.pdf` | 70506 | `036ba172de9a853d4e394d0137791efa4bf18ff0c30831db0af9401402f7188a` | **[coded-source]** (data_availability = No) |
+| `luetkemeyer2023_nejm_data_sharing.pdf` | 70506 | `036ba172de9a853d4e394d0137791efa4bf18ff0c30831db0af9401402f7188a` | NEJM data-sharing statement page (source document) |
 | `luetkemeyer2023_nejm_protocol.pdf` | 2452331 | `aef0a15510cde734ab77d0e98fd521eac0bc12d60ed2f689265e130d571cc0b7` | **[coded-source]** (pre-specified tetracycline endpoint) |
 | `luetkemeyer2025_lancetid_doxypep_final.pdf` | 670976 | `864141181566136b1a27c26145774d752d081c0fac2260b45abb9fdcb61fc7cf` | **[coded-source]** (FINAL + OLE; randomised doxy-R *S. aureus* HR 3.89) |
 | `mende2016_dmid_malaria_doxy_saureus_null.pdf` | 406328 | `cbd198661cb9a1d96cd893c4cb8cc6a426e2af64a1dc9bcf247f92a38f227d21` | comparator (null; tetM P=.031) |

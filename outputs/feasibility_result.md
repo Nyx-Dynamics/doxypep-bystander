@@ -1,3 +1,11 @@
+> **SUPERSEDED for the primary specification.** This file reports the PrEP-only
+> indexing on AIDSVu 2022. The manuscript's primary specification is the combined
+> PrEP+PLWH denominator on AIDSVu 2024 — see `outputs/feasibility_plwh_result.md`
+> (which also documents, in its G01 note, that the earlier prose figure 1.93 was a
+> stale, non-reproducible value now removed). The PrEP-only result is retained
+> because it is reported in the manuscript as the more restrictive indexing
+> (RR ≈ 14–64).
+
 # Phase 0 feasibility result — state-level dilution
 
 **Verdict: FAIL — pivot to metro-level.**

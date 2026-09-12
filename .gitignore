@@ -52,3 +52,6 @@ submission/*.pdf
 
 # old Zenodo deposit snapshot (not part of the repo history)
 data/zenodo_v1/
+
+# handoff notes moved in (not part of the repo)
+data/zenodo_v2/
