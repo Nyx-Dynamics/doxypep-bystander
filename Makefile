@@ -175,9 +175,10 @@ deposit:
 	@COPYFILE_DISABLE=1 find $(DEPOSIT_PATHS) -type f \
 	  ! -name '._*' ! -name '.DS_Store' ! -name '*.pyc' ! -path '*/__pycache__/*' \
 	  ! -name '*.aux' ! -name '*.log' ! -name '*.bbl' ! -name '*.blg' ! -name '*.out' ! -name '*.toc' ! -name '.gitignore' \
+	  ! -path '*/UK_data/*' \
 	  | LC_ALL=C sort | xargs shasum -a 256 > CHECKSUMS.sha256
 	@COPYFILE_DISABLE=1 tar --no-mac-metadata --no-xattrs --exclude='__pycache__' --exclude='*.pyc' \
-	  --exclude='._*' --exclude='.DS_Store' \
+	  --exclude='._*' --exclude='.DS_Store' --exclude='*/UK_data/*' \
 	  -czf submission/doxy_zenodo_final.tz $(DEPOSIT_PATHS) CHECKSUMS.sha256
 	@shasum -a 256 submission/doxy_zenodo_final.tz \
 	  > submission/doxy_zenodo_final.tz.sha256
@@ -193,11 +194,12 @@ deposit-zip:
 	@COPYFILE_DISABLE=1 find $(DEPOSIT_PATHS) -type f \
 	  ! -name '._*' ! -name '.DS_Store' ! -name '*.pyc' ! -path '*/__pycache__/*' \
 	  ! -name '*.aux' ! -name '*.log' ! -name '*.bbl' ! -name '*.blg' ! -name '*.out' ! -name '*.toc' ! -name '.gitignore' \
+	  ! -path '*/UK_data/*' \
 	  | LC_ALL=C sort | xargs shasum -a 256 > CHECKSUMS.sha256
 	@rm -f submission/doxy_zenodo_final.zip
 	@COPYFILE_DISABLE=1 zip -X -r -9 -q submission/doxy_zenodo_final.zip $(DEPOSIT_PATHS) CHECKSUMS.sha256 \
 	  -x '*/__pycache__/*' '*.pyc' '*.DS_Store' '*/._*' \
-	     '*.aux' '*.log' '*.bbl' '*.blg' '*.out' '*.toc' '*/.gitignore'
+	     '*.aux' '*.log' '*.bbl' '*.blg' '*.out' '*.toc' '*/.gitignore' '*/UK_data/*'
 	@shasum -a 256 submission/doxy_zenodo_final.zip > submission/doxy_zenodo_final.zip.sha256
 	@echo "wrote submission/doxy_zenodo_final.zip ($$(du -h submission/doxy_zenodo_final.zip | cut -f1); $$(unzip -Z1 submission/doxy_zenodo_final.zip | grep -c .) entries)"
 	@echo "external checksum beside archive (NOT inside): submission/doxy_zenodo_final.zip.sha256"
