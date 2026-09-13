@@ -122,7 +122,12 @@ exposure while \emph{tet}(M) genes were significantly more common among the
 exposed (p=0.031) --- a single breakpoint concealing a mechanism shift. This
 cohort is \emph{S. aureus}-specific (not cross-organism); it is promoted to the
 main-text phenotype-unit argument (Mende \textit{et al.}, \textit{Diagn Microbiol
-Infect Dis} 2016;86:211--220).
+Infect Dis} 2016;86:211--220). The two determinants also differ in mobility:
+\emph{tet}(M) is carried on conjugative transposons that cross strain boundaries,
+whereas \emph{tet}(K) is typically plasmid-borne (Roberts and Mullany, \textit{FEMS
+Microbiol Rev} 2011;35:856--871; Han \textit{et al.}, \textit{J Clin Microbiol}
+2007;45:1350--1352), so the single breakpoint that merges the two phenotypes also
+merges two different dissemination routes.
 \end{itemize}
 
 The one positive within-arm trend statistic in this material is a published-figure
@@ -232,7 +237,7 @@ state PrEP and prevalence; male PLWH is a prevalence stock, and state prevalence
 carries no transmission-category split, which is why the whole male-PLWH count is
 used rather than a fractional MSM estimate). The exposed-subgroup dilution
 fraction is
-\[f=\phi\,\frac{(\text{male-PrEP}+\text{male-PLWH})\ \text{density}}{10^{5}}\ \text{uptake}\ d\ \kappa,\]
+\[f=\frac{(\text{male-PrEP}+\text{male-PLWH})\ \text{density}}{10^{5}}\ \text{uptake}\ d\ \kappa,\]
 where $d$ is the share of users taking $>$3 doses/month (the subgroup carrying the
 benchmark effect); $f$ is population-independent because it tracks exposure
 density, not headcount. The minimum detectable change in a proportion near
@@ -249,13 +254,42 @@ only one cell of the entire grid, where every generous assumption is maxed at on
 (55\% uptake, $5\times$ enrichment, 13\% baseline, $100\,000$
 isolates/geography-year and optimistic panel independence): there
 $\mathrm{RR_{needed}}$ falls to 1.03; under single-comparison inference even the
-most favourable cell stays above the yardstick (1.79). The metropolitan best cell
-needs about twice ($\approx$2$\times$) the combined male exposure density of the
-densest US geography (Washington, D.C., 6\,406 per 100\,000 adult males in 2024),
-and realistic cells hundreds of times it. All values regenerate from
+most favourable cell needs $\mathrm{RR_{needed}}$ 1.79. Against the more
+conservative cross-organism benchmark (RR 1.42), the best metropolitan cell needs
+about twice ($\approx$2$\times$) the combined male exposure density of the densest
+US geography (Washington, D.C., 6\,406 per 100\,000 adult males in 2024), and
+realistic cells hundreds of times it. All values regenerate from
 \texttt{outputs/feasibility\_plwh\_result.md}, and Figures~A--C show the combined
 PrEP+PLWH denominator (the primary specification); the more restrictive PrEP-only
 indexing gives RR~$\approx$~14--64.
+
+\textbf{Dose-threshold sensitivity.} The dose-above-threshold share $d$ (the
+fraction of users taking $>$3 doses/month, the subgroup carrying the benchmark
+effect) enters $f$ linearly, so $\mathrm{RR_{needed}}-1$ scales as $1/d$; $d=1$ is
+the limiting case in which \emph{every} user exceeds three doses/month. The
+realistic-cell verdict holds across the plausible range and degrades only at that
+bound, where the realistic lower bound (3.65) dips just below the trial's hazard
+ratio (3.89) while still exceeding the cross-sectional benchmark band
+(Table~\ref{tab:dose}). Values regenerate via
+\texttt{dilution\_plwh.dose\_sensitivity}.
+
+\begin{table}[h]
+\centering
+\caption{Dose-threshold sensitivity of $\mathrm{RR_{needed}}$ (combined PrEP+PLWH,
+2024). Realistic cell: $\kappa=0.5$, uptake 35\%, $R_0=10\%$, smallest $N$. Best
+cell: every generous assumption maxed. $d=0.5$ is the primary specification.}
+\label{tab:dose}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+$d$ & realistic (DEFF 1) & realistic (DEFF 25) & best cell (single-comp) & best cell (DEFF 1)\\
+\midrule
+0.50 & 6.31 & 27.5 & 1.79 & 1.03\\
+0.75 & 4.54 & 18.7 & 1.52 & 1.02\\
+1.00 & 3.65 & 14.3 & 1.39 & 1.01\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \begin{figure}[h]
 \centering
@@ -263,19 +297,22 @@ indexing gives RR~$\approx$~14--64.
 \caption*{\textbf{Figure A. State level.} Within-exposed RR required for a
 detectable state-level shift in tetracycline non-susceptibility, over doxy-PEP
 uptake $\times$ isolate enrichment (combined PrEP+PLWH exposed, best state,
-$R_0=10\%$, $N=100\,000$/state-year, 2024). Every cell exceeds the optimistic
-benchmark RR~=~1.42 (minimum $\approx$1.9).}
+$R_0=10\%$, $N=100\,000$/state-year, 2024). Every cell exceeds the more
+conservative cross-organism benchmark (RR~1.42; minimum $\approx$1.9); the
+\sa{}-matched benchmark is 2.25.}
 \end{figure}
 \noindent Alt text: A heatmap grid of doxy-PEP uptake against isolate enrichment
-in which every cell shows a required relative risk above 1.42.
+in which every cell shows a required relative risk above the cross-organism
+benchmark of 1.42.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.82\textwidth,keepaspectratio]{feasibility_metro.png}
 \caption*{\textbf{Figure B. Metro level.} Exposure density required for a
 detectable shift, as multiples of the densest US geography's combined PrEP+PLWH
-density (Washington, D.C., 6\,406/100\,000 adult males, 2024). $1\times$ is
-already the national maximum; the best cell needs $\approx$2$\times$ it.}
+density (Washington, D.C., 6\,406/100\,000 adult males, 2024), against the
+cross-organism benchmark (RR 1.42). $1\times$ is already the national maximum;
+the best cell needs $\approx$2$\times$ it.}
 \end{figure}
 \noindent Alt text: A chart showing required combined PrEP+PLWH exposure density in
 multiples of the densest US metropolitan geography, with all requirements above the
@@ -292,8 +329,8 @@ above the 100\%-of-males physical ceiling.}
 \end{figure}
 \noindent Alt text: Break-even curves of the share of all adult males under
 combined PrEP+PLWH exposure required for detection against isolate volume, all
-lying above both the observed combined density (6.4\%) and the 100\% physical
-ceiling.
+lying above the observed combined density (6.4\%), and above the 100\% physical
+ceiling under realistic isolate volumes.
 
 % ===================================================================
 \section*{S5. Literature attention structure}

@@ -1,11 +1,3 @@
-> **SUPERSEDED for the primary specification.** This file reports the PrEP-only
-> indexing on AIDSVu 2022. The manuscript's primary specification is the combined
-> PrEP+PLWH denominator on AIDSVu 2024 — see `outputs/feasibility_plwh_result.md`
-> (which also documents, in its G01 note, that the earlier prose figure 1.93 was a
-> stale, non-reproducible value now removed). The PrEP-only result is retained
-> because it is reported in the manuscript as the more restrictive indexing
-> (RR ≈ 14–64).
-
 # Phase 0 feasibility result — state-level dilution
 
 **Verdict: FAIL — pivot to metro-level.**
@@ -19,7 +11,7 @@ Whether a *state-level* ecological design could detect doxy-PEP's association
 with tetracycline-resistant *S. aureus*, given how thin the exposed subgroup is
 inside a whole state's isolate stream. The induced state-level shift is
 `dR = f * R0 * (RR - 1)`; the required within-exposed effect is
-`RR_needed = 1 + MDE / (f * R0)`. Soge's optimistic within-exposed effect is
+`RR_needed = 1 + MDE / (f * R0)`. The conservative cross-organism benchmark is
 RR = 1.42.
 
 ## Result
@@ -41,7 +33,7 @@ toward the metro pivot:
   per year)
 - induced state-level shift dR = **0.0948 pp**,
   MDE = **0.421 pp**
-- **RR_needed = 2.87** vs Soge's 1.42 — even here,
+- **RR_needed = 2.87** vs the benchmark 1.42 — even here,
   above the ceiling.
 
 **Realistic cell** (proportional sampling kappa=1, uptake 35%,
@@ -49,10 +41,10 @@ R0 10%, N = 1,000/state-year):
 
 - induced dR = **0.0046 pp**, MDE = **3.76 pp**
 - **RR_needed = 341** — roughly 240x
-  Soge's optimistic effect.
+  the cross-organism benchmark.
 
 **Across all 135 grid cells** the single-comparison median RR_needed is
-**53** (~38x Soge). But that median is a
+**53** (~38x the benchmark). But that median is a
 single-two-proportion figure and must not be the headline — see the panel-power
 correction next, which supersedes it.
 
@@ -80,7 +72,7 @@ Panel power moves detectability up, materially:
   (kappa=0.5), central R0, dose-adjusted exposure, and the smallest
   isolate volume require RR_needed **13.6** at optimistic
   DEFF=1, rising to **64.1** at DEFF=25 — well above
-  Soge's 1.42 across the entire design-effect range.
+  the benchmark 1.42 across the entire design-effect range.
 
 **Restated Stream C claim.** Under a controlled panel, the signal is undetectable
 *under realistic surveillance conditions* (realistic under-sampling of the
@@ -92,7 +84,7 @@ This model already incorporates the two Phase-A refinements that make kappa=1 an
 binary exposure untenable: **kappa<1** (the exposed are under-represented in a
 population isolate stream, so kappa=0.5 not 1) and a
 **dose-distribution adjustment** (only the >3-doses/month subgroup, ~50%
-of users, carries Soge's RR 1.42; scaling for it un-does the binary "on doxy-PEP"
+of users, carries the cross-organism RR 1.42; scaling for it un-does the binary "on doxy-PEP"
 coding the paper criticises). Both widen the margin above 1.42.
 
 ## Decision
@@ -111,5 +103,5 @@ and metro isolate volumes before any outcome data is acquired.
 ## Artifacts
 
 - sensitivity table: `outputs/tables/feasibility_sensitivity.csv`
-- sensitivity figure: `outputs/figures/feasibility_dilution.png`
+- sensitivity figure: `outputs/figures/feasibility_dilution_preponly.png`
 - panel-power sweep: `outputs/tables/feasibility_panel_power.csv`

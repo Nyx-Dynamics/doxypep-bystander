@@ -41,8 +41,9 @@ denominator.
 ## Coding and reliability
 
 Ten governmental documents are coded (`data/raw/coding/gl_*.yaml`), each value carrying a
-page/section locator. Coding was **double-coded** — a blind independent second pass on a 20%
-sample (`data/raw/coding/reliability/second_pass.json`); **92% agreement**, Cohen's κ per
+page/section locator. Coding was **double-coded** — a blind independent second pass on a
+5-of-10-document subsample (25 field-codings)
+(`data/raw/coding/reliability/second_pass.json`); **92% agreement (23/25)**, Cohen's κ per
 field, and the two edge-case disagreements were adjudicated by the PI into binding CODEBOOK
 rules (`outputs/reliability_result.md`, `CODEBOOK.md`). The coding is PI-verified.
 

@@ -67,9 +67,12 @@ def run(root: Path | str = None):
     ax.set_ylim(-0.16, 1.13)
     ax.axis("off")
     fig.tight_layout()
-    out = root / "outputs/figures/streamc_linkage.png"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(out, dpi=150, bbox_inches="tight")
+    # Fig 1 is shipped from paper/jac/figures/; write both so `make all` keeps the
+    # shipped copy in sync with the analysis (mirrors plots_plwh's dual destination).
+    for d in ("outputs/figures", "paper/jac/figures"):
+        out = root / d / "streamc_linkage.png"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(out, dpi=300, bbox_inches="tight")
     plt.close(fig)
     return out
 

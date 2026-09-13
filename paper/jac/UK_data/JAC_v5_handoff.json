@@ -1,0 +1,291 @@
+{
+  "handoff": {
+    "id": "doxypep-bystander-jac-v5",
+    "created": "2026-09-12",
+    "author": "AC Demidont (Nyx Dynamics)",
+    "prepared_by": "chat session; NOT independently verified against the working tree",
+    "repo": "https://github.com/Nyx-Dynamics/doxypep-bystander",
+    "zenodo_current": "10.5281/zenodo.22725070",
+    "target_journal": "Journal of Antimicrobial Chemotherapy (Original Article)",
+    "canonical_manuscript": "paper/jac/JAC_manuscript.tex",
+    "canonical_supplement": "paper/jac/JAC_supplement.tex",
+    "current_version": "v4",
+    "target_version": "v5",
+    "objective": "Close the pre-submission repair list without altering the scientific spine. Outcome: a v5 manuscript + synchronized repo that a JAC referee can click through without finding drift."
+  },
+
+  "ground_rules": [
+    "Do NOT change the Stream B corpus. It stays at 10 coded documents including WHO. Do not drop WHO. Do not add UKHSA.",
+    "Do NOT change the Stream C system set. It stays at 12 prespecified US systems. UKHSA/SGSS/GRASP are England and out of frame by the corpus rule; they enter as prose only.",
+    "Do NOT re-run or re-code any YAML corpus. No recoding this cycle.",
+    "Do NOT mint a new Zenodo version without explicit instruction from AC. Flag if you believe one is warranted and say why.",
+    "Main text (Introduction through Discussion) must stay at or under 3500 words. Synopsis at or under 250 words. Every addition must be paid for by a cut; report the running count after each text edit.",
+    "British spelling; 'methicillin' not 'meticillin'; MIC in mg/L; sequential superscript references.",
+    "If any task below contradicts what you find in the working tree, STOP that task and log it in open_questions rather than guessing. Several premises here were reported by a reviewer and are not verified."
+  ],
+
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "Remove or implement phi in the dilution equation",
+      "priority": "blocker",
+      "type": "code+manuscript",
+      "problem": "The manuscript equation reads f = phi * ((male-PrEP + male-PLWH) density / 1e5) * uptake * d * kappa. The executable combined-denominator model reportedly contains no phi term.",
+      "files": ["paper/jac/JAC_manuscript.tex", "paper/jac/JAC_supplement.tex", "src/feasibility/dilution_plwh.py", "src/feasibility/dilution.py"],
+      "action": "Read the executable model first and determine what the code actually computes. If there is no phi, delete it from the manuscript and supplement equations. If there IS an intended parameter (e.g. an MSM fraction applied to PLWH), name it in the manuscript exactly as the code names it, and define it in the sentence following the equation.",
+      "acceptance": "The rendered equation in manuscript and supplement is a literal transcription of the implemented function. A reader can map every symbol to a named variable in source.",
+      "verified": false
+    },
+    {
+      "id": "T2",
+      "title": "Fix the RR_SOGE = 1.42 mislabel",
+      "priority": "blocker",
+      "type": "code+figures+tests",
+      "problem": "A code path defines RR_SOGE = 1.42 and treats it as the Soge comparator. Soge's S. aureus cross-sectional contrast is 18% vs 8%, RR ~2.25. The 1.42 value is the gonococcal cross-organism secondary benchmark.",
+      "files": ["src/**", "tests/**", "outputs/**"],
+      "action": "Grep the whole tree for 1.42 and for SOGE. Replace the ambiguous constant with two explicitly named constants (e.g. RR_SAUREUS_PRIMARY = 2.25 and RR_GONOCOCCAL_SECONDARY = 1.42). Update every call site, detection flag, plot annotation and test. This does not change the algebraic RR_needed; it changes which threshold is declared detectable against which benchmark, so re-check every boolean detect_* column.",
+      "acceptance": "No occurrence of the string 'Soge' adjacent to 1.42 anywhere in src, tests, outputs or figures. Full pytest suite green. Any changed detectability flag is reported in the run log with before/after.",
+      "verified": false
+    },
+    {
+      "id": "T3",
+      "title": "Add dose-threshold (d) sensitivity and soften the invariance claim",
+      "priority": "blocker",
+      "type": "code+manuscript",
+      "problem": "The primary model fixes d = 0.5 (share of users taking >3 doses/month). Because RR_needed - 1 scales as 1/d, the realistic lower bound of ~6.31 falls to ~3.66 at d = 1.0, which is BELOW the trial HR of 3.89. The Detectability yardstick subsection currently asserts the verdict is invariant and that RR_needed exceeds the trial's own hazard ratio. That assertion does not survive d = 1.0.",
+      "files": ["src/feasibility/dilution_plwh.py", "paper/jac/JAC_manuscript.tex", "paper/jac/JAC_supplement.tex", "outputs/"],
+      "action": "Compute the grid at d in {0.50, 0.75, 1.00}; emit a supplement table. Then rewrite the invariance sentence in the Detectability yardstick subsection so it states the envelope rather than an unqualified invariance. Two defences belong in the same sentence or the one after: (a) HR and RR are different estimands, already noted in the Figure 2 caption; (b) d = 1.0 means every user exceeds three doses per month, a limiting case rather than a realistic one. Target framing: the verdict holds across the realistic range and degrades only at an unattainable bound.",
+      "acceptance": "Supplement carries the d-sensitivity table. Main text no longer claims unqualified invariance. Net word change reported.",
+      "verified": false
+    },
+    {
+      "id": "T4",
+      "title": "Regenerate Supplementary Figure A",
+      "priority": "blocker",
+      "type": "figures",
+      "problem": "The supplementary heatmap carries a visible 'Soge optimistic RR = 1.42' label.",
+      "depends_on": ["T2"],
+      "action": "Regenerate after T2 lands. Verify by reading the rendered image, not just the source.",
+      "acceptance": "No stale comparator label in any figure shipped with the submission.",
+      "verified": false
+    },
+    {
+      "id": "T5",
+      "title": "Name the comparator in the metro break-even result",
+      "priority": "blocker",
+      "type": "manuscript",
+      "problem": "The main text states the most favourable metropolitan cell needs about twice the combined male exposure density of the densest US geography. That figure is computed against 1.42 and is not comparator-independent; under 2.25 the density requirement falls.",
+      "depends_on": ["T2"],
+      "action": "Either state the comparator explicitly in the sentence ('against the more stringent cross-organism benchmark of 1.42') or report both values. Do not present it as comparator-free.",
+      "acceptance": "A referee reading the sentence can tell which benchmark produced the number.",
+      "verified": false
+    },
+    {
+      "id": "T6",
+      "title": "Insert the UKHSA material (three placements)",
+      "priority": "high",
+      "type": "manuscript",
+      "source": "UK Health Security Agency. Monitoring and evaluation plan of doxycycline post-exposure prophylaxis (doxyPEP). Published 30 April 2026; applies to England. https://www.gov.uk/government/publications/doxypep-monitoring-and-evaluation/monitoring-and-evaluation-plan-of-doxycycline-post-exposure-prophylaxis-doxypep",
+      "bibtex_key": "ukhsa2026",
+      "placements": [
+        {
+          "where": "Introduction, immediately after the sentence noting the trial authors' call for public-health surveillance of AMR in S. aureus and other commensals",
+          "draft": "One national programme has since taken up that call: England's doxy-PEP monitoring plan proposes tetracycline-resistance surveillance in bystander pathogens including \\sa{}.\\cite{ukhsa2026}",
+          "approx_words": 22
+        },
+        {
+          "where": "Discussion, appended to the 'Instrument requirements for population monitoring' subsection",
+          "draft": "England's national doxy-PEP monitoring plan is an instructive out-of-frame case: it postdates our audit and falls outside a US corpus, but it proposes precisely the phenotype half we find nowhere---tetracycline resistance in bystander pathogens including \\sa{}---using routine laboratory AMR surveillance.\\cite{ukhsa2026} Its specimens are taken mainly from hospitalised patients with more severe infection; it records neither doxy-PEP use nor sexual orientation; and its exposure contrast is consequently a male-to-female resistance ratio within an 18--45 age band, an STI-surveillance conditioning set carried onto an organism that does not respect it. The same programme already runs exposure-linked sentinel AMR surveillance---GRASP, which records doxy-PEP use in the preceding three months---restricted to the gonococcus. The sentinel instrument exists; inheritance points it at the in-category organism.",
+          "approx_words": 130
+        },
+        {
+          "where": "Limitations, falsification sentence",
+          "action": "Change the falsification clause to 'if a deployed system comes to link...' and optionally append a five-word note that a proposed England programme does not meet this standard.",
+          "approx_words": 5
+        }
+      ],
+      "constraints": [
+        "Do NOT count GRASP or SGSS as Stream C systems or near-misses. Different country, and GRASP is a different organism. They are design precedent in prose only.",
+        "The plan states no rationale for the 18-45 band. Keep the inheritance claim structural (the band is an STI-surveillance convention) not motivational (they chose it because of STI framing).",
+        "Do not write that England has solved or attempted to solve the US gap, and do not frame the plan as independent validation of the paper."
+      ],
+      "acceptance": "Three placements present, one new reference, net word change reported and paid for by T7.",
+      "verified": true
+    },
+    {
+      "id": "T7",
+      "title": "Compress the tetracycline mechanism subsection to pay for T6",
+      "priority": "high",
+      "type": "manuscript",
+      "budget": "recover approximately 95-120 words",
+      "files": ["paper/jac/JAC_manuscript.tex", "paper/jac/JAC_supplement.tex"],
+      "action": "In the Discussion subsection 'Tetracycline resistance mechanisms and the phenotype unit': keep the methicillin/tetracycline orthogonality, keep the McDougal 823/72/69/3 numbers (load-bearing), keep the one-line Mende finding. Cut 'The distinction is not academic.' Move the determinant-mobility parenthetical (tet(M) on conjugative transposons; tet(K) plasmid-borne) to the supplement. Tighten Mende to a single clause. Rationale: JAC readers do not need efflux versus ribosomal protection explained at length; the main text needs only the consequence, that a doxycycline breakpoint does not identify which determinant was selected.",
+      "acceptance": "Net main-text word count after T6 + T7 is at or below the pre-edit count. Report the number.",
+      "verified": true
+    },
+    {
+      "id": "T8",
+      "title": "Add a Scope paragraph at the end of Materials and methods",
+      "priority": "medium",
+      "type": "manuscript",
+      "approx_words": 45,
+      "action": "State that the guidance corpus and surveillance enumeration were restricted by design, that Stream C is prespecified US systems, and that the resulting counts describe US architecture and are not a global census. This is the cheap half of the reviewer's 'make it US-specific' recommendation; take it INSTEAD of rescoping the corpus.",
+      "acceptance": "One short paragraph. WHO remains in Stream B.",
+      "verified": true
+    },
+    {
+      "id": "T9",
+      "title": "Add Ethics subsection as first Methods subsection",
+      "priority": "medium",
+      "type": "manuscript",
+      "action": "Per JAC instructions. Text: this study analysed publicly available guidance, surveillance documentation and aggregate published data, did not involve individual-level human participant data, and therefore did not require institutional review board approval. Remove any now-redundant duplicate of this statement from the Design subsection.",
+      "acceptance": "Ethics heading present and first; no duplicated sentence.",
+      "verified": true
+    },
+    {
+      "id": "T10",
+      "title": "Add the Zenodo deposit as a formal reference",
+      "priority": "medium",
+      "type": "manuscript+bib",
+      "action": "Add a software/data citation for doi:10.5281/zenodo.22725070 to references.bib and cite it in Transparency declarations rather than carrying it only as a bare URL.",
+      "acceptance": "Deposit appears in the reference list with DOI and resource type.",
+      "verified": true
+    },
+    {
+      "id": "T11",
+      "title": "Update the stale README",
+      "priority": "high",
+      "type": "repo",
+      "files": ["README.md"],
+      "problem": "README still names paper/manuscript.tex as the canonical hand-maintained PLoS Biology (Meta-Research) source, and documents 'make pdf' as building paper/manuscript.pdf. The Makefile makes paper/jac/JAC_manuscript.tex canonical; the PLoS build is retained historical. The manuscript's Transparency declarations point JAC referees at this repository by URL, so a referee currently lands on a compendium that says it is for a different journal in a different field.",
+      "action": "Rewrite 'The paper' and 'Reproducibility' sections to name the JAC source as canonical and document the jac make targets. Mark the PLoS build explicitly as retained historical.",
+      "acceptance": "No reference to PLoS Biology as canonical anywhere in README.",
+      "verified": true
+    },
+    {
+      "id": "T12",
+      "title": "Establish one authoritative writer for three_streams",
+      "priority": "high",
+      "type": "code",
+      "problem": "src/analysis/summary_figure.py still generates the older PrEP-only Stream C range; src/feasibility/plots_plwh.py generates the combined PrEP+PLWH figure. Makefile ordering means the newer writer wins, so 'make all' output is currently correct but the arrangement is fragile.",
+      "action": "Retire the older writer from the production path, or have it call the combined model. Do not leave two scripts owning the same scientific output.",
+      "acceptance": "Exactly one script writes three_streams.png. A deliberate reordering of the Makefile cannot change the figure's content.",
+      "verified": false
+    },
+    {
+      "id": "T13",
+      "title": "Synchronize stale repo documentation",
+      "priority": "medium",
+      "type": "repo",
+      "items": [
+        "METHODS_streamB.md reportedly still says '20% sample'; the reliability analysis uses 5 of 10 documents (50%).",
+        "Documents still identifying v3 as canonical should name v4/v5.",
+        "REPRODUCTION_LOG.md and CLAUDE.md should agree on current manuscript version, canonical archive, corresponding commit."
+      ],
+      "action": "Grep for '20%', 'v3', 'PLoS', 'manuscript.tex' across all markdown and reconcile.",
+      "acceptance": "All user-facing docs agree on canonical manuscript, version and archive.",
+      "verified": false
+    },
+    {
+      "id": "T14",
+      "title": "Add tests for the combined PrEP+PLWH primary model",
+      "priority": "medium",
+      "type": "tests",
+      "cases": [
+        "msm_frac = 0 reproduces the PrEP-only result for the same year",
+        "including PLWH increases f",
+        "including PLWH lowers RR_needed",
+        "frozen primary lower-bound value reproduced",
+        "upper realistic design-effect value reproduced",
+        "the production figure receives combined-model values",
+        "no production output contains an obsolete Soge 1.42 label"
+      ],
+      "acceptance": "New tests pass; suite remains green with no skips.",
+      "verified": false
+    },
+    {
+      "id": "T15",
+      "title": "Figure hygiene",
+      "priority": "medium",
+      "type": "figures",
+      "items": [
+        "Label the two points in Figure 2 in the plot itself as observed trial HR and modelled RR detectability threshold, so the estimand difference does not rely on the caption.",
+        "Supplement Figure C alt text reportedly overstates the plotted result by saying all values exceed both observed density and the physical ceiling; verify against the actual data and correct to match.",
+        "Export vector (PDF/EPS/SVG) where JAC accepts it, otherwise 300 dpi at final column dimensions (88 mm or 180 mm). Check label legibility at 88 mm.",
+        "Verify every figure still has alt text under its legend per JAC house style."
+      ],
+      "verified": false
+    },
+    {
+      "id": "T16",
+      "title": "Reframe the panel calculation language",
+      "priority": "low",
+      "type": "manuscript",
+      "action": "Where the effective-sample-size calculation (N_eff = G x T x N / DEFF) is described, use 'simplified detectability bound' or 'bounding calculation' rather than language implying a formal prospective power analysis for a specific national surveillance design. Identification would also depend on geographic and temporal exposure heterogeneity, secular trends, serial correlation, testing practice and misclassification.",
+      "acceptance": "No sentence implies a formal power analysis.",
+      "verified": false
+    },
+    {
+      "id": "T17",
+      "title": "Trim residual rhetorical vocabulary",
+      "priority": "low",
+      "type": "manuscript",
+      "action": "Use 'vacuous join' and 'codified seam' sparingly or replace with plain description ('no compatible linkage was identified'; 'exposure and phenotype are not observed at a shared denominator'). Keep 'measurement inheritance' as the single conceptual label. Leave 'distributive observability' alone; it already lives in Supplement S6 and is referenced once in main text.",
+      "acceptance": "Terminology reduced without loss of the inheritance synthesis.",
+      "verified": false
+    },
+    {
+      "id": "T18",
+      "title": "Final word count and build",
+      "priority": "blocker",
+      "type": "build",
+      "action": "Run the JAC word count target. Confirm main text <= 3500 and synopsis <= 250. Build the JAC PDF and supplement. Run the full test suite. Produce a short run log listing: final word counts, tests passed, figures regenerated, and every detectability flag that changed as a result of T2.",
+      "acceptance": "Clean build, green suite, counts under limit, run log written to outputs/.",
+      "verified": true
+    }
+  ],
+
+  "do_not_do": [
+    "Do not drop WHO from Stream B. Settled; the apex-to-local narrowing finding and the strongest near-exception both depend on it, and dropping a unit mid-cycle to tidy the frame reads as denominator-shopping.",
+    "Do not rescope the corpus to US-only. Stream C is already prespecified US and the only non-US Stream B unit is WHO, so the rescope reduces to dropping WHO. Take the Scope paragraph (T8) instead.",
+    "Do not add a European or English dilution arm. No f is computable without English exposure denominators at the needed resolution; that is paper two, not v5.",
+    "Do not add UKHSA, SGSS, GRASP or BASHH to any coded corpus. BASHH is a professional society and excluded under the same rule as IUSTI.",
+    "Do not rewrite the Conclusions paragraph. The reviewer's proposed replacement is longer and flabbier than what is there.",
+    "Do not move 'distributive observability' to the supplement. It is already there."
+  ],
+
+  "open_questions": [
+    {
+      "id": "Q1",
+      "question": "Does v4 contain scientific changes relative to v3, or only packaging and header labels?",
+      "why": "A reviewer asserted v4 is scientifically identical to v3 and built a 'no new Zenodo release needed' recommendation on that premise. AC has said v4 carries non-cosmetic changes. The conclusion may still be right but the premise is wrong, so decide it from the diff.",
+      "action": "Diff v3 against v4 and report what actually changed. Do not mint anything."
+    },
+    {
+      "id": "Q2",
+      "question": "What is the true main-text word count under the JAC counting rule?",
+      "why": "A reviewer reported ~3412 words; an independent count of the uploaded v4 gave ~3500. The difference is exactly the headroom the UKHSA material needs.",
+      "action": "Establish the count rule the jac-wordcount target uses, state it explicitly in the run log, and budget from that number."
+    },
+    {
+      "id": "Q3",
+      "question": "Does 'make jac' regenerate analysis or only compile?",
+      "action": "Document whichever it is. If compile-only is intentional, say so in README; otherwise add a production target that regenerates before compiling."
+    },
+    {
+      "id": "Q4",
+      "question": "Should the d-sensitivity result appear in the main text as well as the supplement?",
+      "why": "It touches the headline detectability claim, so burying it entirely may look evasive; but main-text space is the binding constraint.",
+      "action": "Implement supplement + one main-text clause; flag for AC if the clause cannot be paid for."
+    }
+  ],
+
+  "reporting": {
+    "on_completion": "Write outputs/HANDOFF_RUN_LOG.md containing: task id, status (done / blocked / declined), what changed, files touched, and for any blocked task the specific thing in the working tree that contradicted this spec.",
+    "escalate_immediately_if": [
+      "A ground rule appears to conflict with something already committed.",
+      "T2 changes a detectability flag in a way that alters a main-text claim.",
+      "The word budget cannot absorb T3 + T6 even after T7."
+    ]
+  }
+}

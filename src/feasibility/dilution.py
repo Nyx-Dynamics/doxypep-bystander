@@ -4,7 +4,7 @@ The question (the feasibility gate; see DECISIONS.md): before acquiring
 any outcome data, what fraction of a state's *S. aureus* isolates could
 plausibly originate from doxy-PEP-exposed people, and what within-exposed effect
 would be needed to move the *state-level* tetracycline non-susceptibility rate
-detectably? If that required effect exceeds what Soge observed (RR 1.42), a
+detectably? If that required effect exceeds the conservative cross-organism benchmark (RR 1.42), a
 state-level ecological design cannot detect this and the project pivots to
 metro-level. Either way the result is written up.
 
@@ -18,7 +18,7 @@ resistance rate by RR, the induced shift in the *observed state rate* is
 
 where
     R0 = baseline tetracycline non-susceptibility rate in S. aureus,
-    RR = within-exposed relative risk from doxy-PEP (Soge: 1.42, optimistic),
+    RR = within-exposed relative risk (cross-organism benchmark 1.42; matched 2.25),
     f  = fraction of the state's S. aureus isolates coming from the exposed.
 
 The dilution fraction is
@@ -66,7 +66,14 @@ from src.loaders.aidsvu import load_aidsvu
 # --------------------------------------------------------------------------- #
 # documented parameters (sources in DECISIONS.md)                              #
 # --------------------------------------------------------------------------- #
-RR_SOGE = 1.42            # Soge et al., >3 doses/month, tetR (optimistic ceiling)
+# Benchmark within-exposed effects (Soge et al., >3 doses/month). 1.42 is Soge's
+# GONOCOCCAL tetR figure (a cross-organism import); the S. aureus-MATCHED benchmark
+# is 2.25 (tetR S. aureus colonisation 18% vs 8%). The superseded state/metro gates
+# below score against the more conservative cross-organism 1.42; the FAIL verdict is
+# robust to either (both sit far below the realistic RR_needed). See detectability.py.
+RR_SAUREUS = 2.25
+RR_GONOCOCCAL = 1.42
+RR_SOGE = RR_GONOCOCCAL    # backward-compat alias = the gate's conservative benchmark
 UPTAKE_BOUND = (0.20, 0.55)
 R0_BASELINE = 0.10        # central baseline S. aureus tetR; sensitivity below
 R0_GRID = (0.05, 0.10, 0.13)   # 0.13 = doxy-PEP-eligible-population tetR observed
@@ -77,7 +84,7 @@ R0_GRID = (0.05, 0.10, 0.13)   # 0.13 = doxy-PEP-eligible-population tetR observ
 KAPPA_GRID = (0.2, 0.5, 1.0, 3.0, 5.0)
 REALISTIC_KAPPA = 0.5     # moderate under-sampling; the realistic-cell kappa
 UPTAKE_GRID = (0.20, 0.35, 0.55)
-# Share of doxy-PEP users taking >3 doses/month -- the subgroup carrying Soge's
+# Share of doxy-PEP users taking >3 doses/month -- the subgroup carrying the
 # benchmarkable RR 1.42 (any use was ~null, RR 1.14). Median use is 3 (IQR 2-6),
 # so ~half sit above the threshold. Scaling effective exposure by this un-does the
 # binary "on doxy-PEP" coding the paper criticises. See DECISIONS.md (Phase A).
@@ -260,7 +267,7 @@ class Gate:
 
 def evaluate_gate(table: pd.DataFrame) -> Gate:
     """State-level passes only if some plausible cell is detectable AND the
-    required RR does not exceed Soge's optimistic 1.42. The most favourable
+    required RR does not exceed the conservative cross-organism benchmark 1.42. The most favourable
     cell is the one with the smallest RR_needed."""
     best = table.loc[table["RR_needed"].idxmin()]
     n_detectable = int(table["detectable"].sum())
@@ -307,7 +314,7 @@ def _plot_surface(df, year, out_png):
                     color="white", fontsize=10)
     ax.set_title("RR within exposed needed for a detectable state-level shift\n"
                  f"(best state, R0={r0:.0%}, N={n:,}/state-yr, {year})\n"
-                 f"Soge optimistic RR = {RR_SOGE} — every cell exceeds it")
+                 f"cross-organism benchmark RR = {RR_SOGE} — every cell exceeds it")
     fig.colorbar(im, ax=ax, label="RR_needed (log scale)")
     fig.tight_layout()
     out_png.parent.mkdir(parents=True, exist_ok=True)
@@ -342,7 +349,7 @@ Whether a *state-level* ecological design could detect doxy-PEP's association
 with tetracycline-resistant *S. aureus*, given how thin the exposed subgroup is
 inside a whole state's isolate stream. The induced state-level shift is
 `dR = f * R0 * (RR - 1)`; the required within-exposed effect is
-`RR_needed = 1 + MDE / (f * R0)`. Soge's optimistic within-exposed effect is
+`RR_needed = 1 + MDE / (f * R0)`. The conservative cross-organism benchmark is
 RR = {RR_SOGE}.
 
 ## Result
@@ -364,7 +371,7 @@ toward the metro pivot:
   per year)
 - induced state-level shift dR = **{best['induced_dR_pp']:.4f} pp**,
   MDE = **{best['MDE_pp']:.3f} pp**
-- **RR_needed = {gate.best_case_rr_needed:.2f}** vs Soge's {RR_SOGE} — even here,
+- **RR_needed = {gate.best_case_rr_needed:.2f}** vs the benchmark {RR_SOGE} — even here,
   above the ceiling.
 
 **Realistic cell** (proportional sampling kappa=1, uptake {real['uptake']:.0%},
@@ -372,10 +379,10 @@ R0 {real['r0']:.0%}, N = {int(real['N_isolates']):,}/state-year):
 
 - induced dR = **{real['induced_dR_pp']:.4f} pp**, MDE = **{real['MDE_pp']:.2f} pp**
 - **RR_needed = {real['RR_needed']:.0f}** — roughly {real['RR_needed']/RR_SOGE:.0f}x
-  Soge's optimistic effect.
+  the cross-organism benchmark.
 
 **Across all {gate.n_cells} grid cells** the single-comparison median RR_needed is
-**{median_rr:.0f}** (~{median_rr/RR_SOGE:.0f}x Soge). But that median is a
+**{median_rr:.0f}** (~{median_rr/RR_SOGE:.0f}x the benchmark). But that median is a
 single-two-proportion figure and must not be the headline — see the panel-power
 correction next, which supersedes it.
 
@@ -403,7 +410,7 @@ Panel power moves detectability up, materially:
   (kappa={REALISTIC_KAPPA:g}), central R0, dose-adjusted exposure, and the smallest
   isolate volume require RR_needed **{p1['realistic_RR_needed']:.1f}** at optimistic
   DEFF=1, rising to **{p25['realistic_RR_needed']:.1f}** at DEFF=25 — well above
-  Soge's {RR_SOGE} across the entire design-effect range.
+  the benchmark {RR_SOGE} across the entire design-effect range.
 
 **Restated Stream C claim.** Under a controlled panel, the signal is undetectable
 *under realistic surveillance conditions* (realistic under-sampling of the
@@ -415,7 +422,7 @@ This model already incorporates the two Phase-A refinements that make kappa=1 an
 binary exposure untenable: **kappa<1** (the exposed are under-represented in a
 population isolate stream, so kappa={REALISTIC_KAPPA:g} not 1) and a
 **dose-distribution adjustment** (only the >3-doses/month subgroup, ~{DOSE_ABOVE_THRESHOLD:.0%}
-of users, carries Soge's RR 1.42; scaling for it un-does the binary "on doxy-PEP"
+of users, carries the cross-organism RR 1.42; scaling for it un-does the binary "on doxy-PEP"
 coding the paper criticises). Both widen the margin above {RR_SOGE}.
 
 ## Decision
@@ -449,7 +456,9 @@ def run(root: Path | str = None, year: int = 2022) -> Gate:
 
     tab_rel = "outputs/tables/feasibility_sensitivity.csv"
     panel_rel = "outputs/tables/feasibility_panel_power.csv"
-    fig_rel = "outputs/figures/feasibility_dilution.png"
+    # Superseded PrEP-only figure; the shipped feasibility_dilution.png (combined
+    # PrEP+PLWH) is written solely by src/feasibility/plots_plwh.py.
+    fig_rel = "outputs/figures/feasibility_dilution_preponly.png"
     (root / "outputs" / "tables").mkdir(parents=True, exist_ok=True)
     table.to_csv(root / tab_rel, index=False)
     panel.to_csv(root / panel_rel, index=False)
@@ -462,6 +471,6 @@ if __name__ == "__main__":
     g = run()
     print(f"Phase 0 gate: {g.verdict()}")
     print(f"best-case RR_needed = {g.best_case_rr_needed:.1f} "
-          f"(Soge optimistic {RR_SOGE})")
+          f"(cross-organism benchmark {RR_SOGE})")
     print(f"detectable cells (single-comparison): {g.n_detectable}/{g.n_cells}")
     print("wrote outputs/feasibility_result.md (incl. panel-power correction)")

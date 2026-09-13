@@ -28,7 +28,7 @@ def _save(fig, name, root):
     for d in DEST:
         p = root / d / name
         p.parent.mkdir(parents=True, exist_ok=True)
-        fig.savefig(p, dpi=150)
+        fig.savefig(p, dpi=300)
 
 
 def _combined_density_dc(prep, prev):
@@ -81,10 +81,14 @@ def run(root: Path | str = None):
             solid_capstyle="round", zorder=3)
     ax.plot([HR_SAUREUS_FINAL], [2], marker="o", ms=11, color=SIGNAL,
             markeredgecolor="white", markeredgewidth=1.2, zorder=5)
+    ax.annotate("observed trial HR", xy=(HR_SAUREUS_FINAL, 2),
+                xytext=(HR_SAUREUS_FINAL * 1.25, 2.28), fontsize=8, color=SIGNAL)
     ax.annotate("", xy=(XMAX, 1), xytext=(DET.RR_SAUREUS * 1.1, 1),
                 arrowprops=dict(arrowstyle="-|>", color="#7a7a7a", lw=1.8))
     ax.plot([c_lo, c_hi], [0, 0], lw=7, color=THRESH, solid_capstyle="round", zorder=3)
     ax.plot([c_hi], [0], marker="D", ms=7, color=THRESH, zorder=4)
+    ax.annotate("modelled RR detectability threshold", xy=(c_lo, 0),
+                xytext=(c_lo * 0.98, 0.42), fontsize=8, color=THRESH)
     ax.set_xscale("log"); ax.set_xlim(1, XMAX); ax.set_ylim(-0.6, 2.7)
     ax.set_yticks([2, 1, 0])
     ax.set_yticklabels(["Stream A\n(trials)", "Stream B\n(guidelines)",
@@ -115,7 +119,8 @@ def run(root: Path | str = None):
             ax.text(j, i, f"{Z[i, j]:.1f}", ha="center", va="center", color="white", fontsize=10)
     ax.set_title("RR within exposed needed for a detectable state-level shift\n"
                  f"combined PrEP+PLWH exposed, best state, R0={r0:.0%}, N={n:,} ({YEAR})\n"
-                 f"Soge optimistic RR = {D.RR_SOGE}")
+                 f"cross-organism benchmark RR = {DET.RR_GC}; "
+                 f"S. aureus-matched RR = {DET.RR_SAUREUS}")
     fig.colorbar(im, ax=ax, label="RR_needed (log)")
     fig.tight_layout(); _save(fig, "feasibility_dilution.png", root); plt.close(fig)
 
