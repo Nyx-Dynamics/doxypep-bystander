@@ -232,7 +232,7 @@ dilute to move a population rate (the dilution leg, below).
 
 **Dilution leg (supporting, corrected):** `dilution.py`/`dilution_metro.py` sweep a
 parameter grid of favourable assumptions (uptake × enrichment × baseline × isolate
-volume); **0 of 135** cells (not the stale "0/81") reach detection at Soge's optimistic
+volume); **0 of 135** cells (not the stale "0/81") reach detection at the cross-organism benchmark
 RR 1.42, and the metro case requires male-PrEP density far above the densest US geography.
 This is a distinct claim from linkage — it says that *if* a linked population-denominator
 system existed, the exposed subgroup would still be too dilute — and is reported as

@@ -34,8 +34,10 @@ The upstream instrument generated information the downstream systems are not bui
 receive — a structural gap we call **measurement inheritance**. The paper makes **no
 population-level causal claim**. Manuscript: the current submission is the **Journal of
 Antimicrobial Chemotherapy** Original Article in `paper/jac/`
-(`JAC_manuscript_v3.tex`/`.pdf`, supplement `JAC_supplement_v3.tex`/`.pdf`, `references.bib`,
-`figures/`); the earlier PLoS LaTeX source is retained in `paper/manuscript.tex`.
+(canonical `JAC_manuscript.tex`/`.pdf`, supplement `JAC_supplement.tex`/`.pdf`,
+`references.bib`, `figures/`; the `*_v4.*` sources are byte-identical release
+snapshots). The earlier PLoS LaTeX source is retained, historical only, in
+`paper/manuscript.tex`.
 
 ## Provenance: how this project began (and why the original design was not run)
 
@@ -63,7 +65,8 @@ inputs, below):
 pip install -r requirements-lock.txt   # exact validated versions
 python3 scripts/verify_aidsvu.py       # download AIDSVu inputs manually, then verify (see below)
 make all                               # test-gated: full pytest suite, then regenerate outputs
-make pdf                                # build paper/manuscript.pdf from paper/manuscript.tex (pdflatex + bibtex)
+make jac                                # build the current JAC manuscript + supplement (paper/jac/, pdflatex + bibtex)
+make pdf                                # historical only: build the retained PLoS paper/manuscript.pdf
 ```
 
 See `REPRODUCIBILITY.md` for the environment and expected runtime, `DECISIONS.md` for the

@@ -7,12 +7,15 @@ PY := python3
 .PHONY: all test loader feasibility guidelines trials reliability literature pdf tex texpdf supp docx jac jac-main jac-supp jac-wordcount bundle deposit deposit-zip clean
 
 all: test feasibility guidelines trials literature
-	$(PY) -m src.analysis.streamc_linkage
-	$(PY) -m src.analysis.summary_figure
 	$(PY) -m src.analysis.linkage_figure
-	$(PY) -m src.analysis.architecture_figure
 	$(PY) -m src.feasibility.plots_plwh
 	@echo "Stream C (feasibility incl. combined PrEP+PLWH) + Stream B (guidelines) + Stream A (trials) + literature-gap regenerated."
+# NOTE: streamc_linkage runs once, via the `feasibility` prerequisite (not repeated here).
+# linkage_figure writes the shipped Fig 1 (streamc_linkage.png); plots_plwh writes the
+# combined PrEP+PLWH Fig 2 + supplement figures and MUST be the last figure step so it is
+# the sole writer of the shipped PNG names. architecture_figure (measurement_inheritance.png)
+# is not part of the JAC package and is intentionally NOT run here; invoke it directly if
+# the historical PLoS schematic is ever needed.
 
 test:
 	$(PY) -m pytest -q
@@ -58,9 +61,9 @@ trials:
 literature:
 	$(PY) -m src.analysis.literature_search $(ARGS)
 
-# Manuscript PDF. The canonical source is the hand-maintained PLoS LaTeX (paper/manuscript.tex),
-# NOT the superseded Markdown; `make pdf` therefore builds it via `texpdf` (pdflatex + bibtex).
-# (The old pandoc-from-Markdown recipe is retired; `make docx` still uses the Markdown.)
+# Manuscript PDF (HISTORICAL PLoS build; the current submission is JAC — see `make jac`).
+# Builds the retained hand-maintained PLoS LaTeX (paper/manuscript.tex) via `texpdf`
+# (pdflatex + bibtex). (The old pandoc-from-Markdown recipe is retired; `make docx` still uses the Markdown.)
 pdf: texpdf
 
 # paper/manuscript.tex is the HAND-MAINTAINED canonical submission source (2026-08-22):
@@ -102,9 +105,9 @@ docx:
 
 # --- JAC manuscript (current submission) ------------------------------------- #
 # The current manuscript is the Journal of Antimicrobial Chemotherapy Original
-# Article in paper/jac/ (canonical: JAC_manuscript.tex / JAC_supplement.tex, kept
-# byte-identical to the *_v3 sources). These compile the JAC release explicitly;
-# `make pdf`/`texpdf` still build the retained historical PLoS manuscript.
+# Article in paper/jac/ (canonical: JAC_manuscript.tex / JAC_supplement.tex; the
+# *_v4 sources are byte-identical release snapshots). These compile the JAC release
+# explicitly; `make pdf`/`texpdf` build only the retained historical PLoS manuscript.
 jac: jac-main jac-supp
 
 jac-main:

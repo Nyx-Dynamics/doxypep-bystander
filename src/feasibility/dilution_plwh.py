@@ -84,6 +84,33 @@ def best_cell_rr(prep_df, prev_df, year, msm_frac):
     return float(best)
 
 
+def dose_sensitivity(prep_df, prev_df, year=2024, msm_frac=1.00,
+                     dose_grid=(0.50, 0.75, 1.00)):
+    """RR_needed for the realistic cell (panel DEFF 1 and 25) and the disowned best
+    cell (single-comparison and panel DEFF 1) across the dose-above-threshold share
+    d. f is linear in d, so RR_needed-1 scales as 1/d; d=1.0 is the limiting case in
+    which every user exceeds three doses/month. Reproduces the supplement d-table."""
+    # f at the module-default dose (D.DOSE_ABOVE_THRESHOLD); scale by d/default.
+    f_real = _best_f(prep_df, prev_df, year, 0.35, D.REALISTIC_KAPPA, msm_frac)[0]
+    # best cell over the grid maxes uptake/kappa/R0/N; recover its f and R0
+    best_f = 0.0
+    for uptake in D.UPTAKE_GRID:
+        for kappa in D.KAPPA_GRID:
+            best_f = max(best_f, _best_f(prep_df, prev_df, year, uptake, kappa, msm_frac)[0])
+    rows = []
+    for d in dose_grid:
+        s = d / D.DOSE_ABOVE_THRESHOLD
+        fr, fb = f_real * s, best_f * s
+        rows.append({
+            "d": d,
+            "realistic_panel_deff1": D.rr_needed(D.panel_mde(D.R0_BASELINE, min(D.N_GRID), deff=1.0), fr, D.R0_BASELINE),
+            "realistic_panel_deff25": D.rr_needed(D.panel_mde(D.R0_BASELINE, min(D.N_GRID), deff=25.0), fr, D.R0_BASELINE),
+            "best_single_comp": D.rr_needed(D.mde_proportion(max(D.R0_GRID), max(D.N_GRID)), fb, max(D.R0_GRID)),
+            "best_panel_deff1": D.rr_needed(D.panel_mde(max(D.R0_GRID), max(D.N_GRID), deff=1.0), fb, max(D.R0_GRID)),
+        })
+    return pd.DataFrame(rows)
+
+
 def run(root: Path | str = None):
     root = Path(root) if root else Path(__file__).resolve().parents[2]
     prep = load_aidsvu(root / "data" / "raw" / "aidsvu")
@@ -109,7 +136,7 @@ def run(root: Path | str = None):
         bc = best_cell_rr(prep, prev, 2024, mf)
         print(f"{mf:>9.2f} {r['f']:>10.2e} {r['rr_single']:>10.1f} "
               f"{r['rr_panel_deff1']:>11.2f} {bc:>12.2f}")
-    print(f"\nSoge yardstick RR = {D.RR_SOGE}; realistic-cell verdict clears it iff RR > {D.RR_SOGE}.")
+    print(f"\nCross-organism benchmark RR = {D.RR_SOGE}; realistic-cell verdict clears it iff RR > {D.RR_SOGE}.")
 
 
 if __name__ == "__main__":

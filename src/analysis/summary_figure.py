@@ -98,9 +98,12 @@ def run(root: Path | str = None):
         ax.spines[s].set_visible(False)
     fig.tight_layout()
 
-    out = root / "outputs/figures/three_streams.png"
+    # Superseded PrEP-only three-streams figure. The shipped three_streams.png is
+    # written solely by src/feasibility/plots_plwh.py (combined PrEP+PLWH); this
+    # legacy name is retained only so a direct run does not overwrite the shipped one.
+    out = root / "outputs/figures/three_streams_legacy.png"
     out.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(out, dpi=150)
+    fig.savefig(out, dpi=300)
     plt.close(fig)
     return n, out
 

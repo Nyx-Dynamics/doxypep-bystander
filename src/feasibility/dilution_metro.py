@@ -70,7 +70,7 @@ def required_male_prep_rate(r0, n, uptake, kappa, rr=RR_SOGE,
     ``male_fraction`` is exposed as a parameter so the robustness sweep can vary
     it; it defaults to the module constant used everywhere else. The dose-above-
     threshold factor (Phase A item 3) enters the denominator: only the
-    >3-doses/month subgroup carries Soge's RR 1.42, so a higher density is needed.
+    >3-doses/month subgroup carries the cross-organism RR 1.42, so a higher density is needed.
     """
     f_req = required_f(r0, n, rr)
     return f_req * 1e5 / (male_fraction * uptake * kappa * DOSE_ABOVE_THRESHOLD)
@@ -392,8 +392,11 @@ def run(root: Path | str = None, year: int = 2022) -> MetroGate:
     tab_rel = "outputs/tables/feasibility_metro.csv"
     rob_rel = "outputs/tables/feasibility_metro_robustness.csv"
     be_rel = "outputs/tables/feasibility_metro_breakeven.csv"
-    fig_rel = "outputs/figures/feasibility_metro.png"
-    be_fig_rel = "outputs/figures/feasibility_metro_breakeven.png"
+    # Superseded PrEP-only figures; the shipped feasibility_metro.png and
+    # feasibility_metro_breakeven.png (combined PrEP+PLWH) are written solely by
+    # src/feasibility/plots_plwh.py.
+    fig_rel = "outputs/figures/feasibility_metro_preponly.png"
+    be_fig_rel = "outputs/figures/feasibility_metro_breakeven_preponly.png"
     (root / "outputs" / "tables").mkdir(parents=True, exist_ok=True)
     table.to_csv(root / tab_rel, index=False)
     robustness.to_csv(root / rob_rel, index=False)

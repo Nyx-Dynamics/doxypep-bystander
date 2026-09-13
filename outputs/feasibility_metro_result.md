@@ -1,11 +1,3 @@
-> **SUPERSEDED for the primary specification.** This file reports the PrEP-only
-> indexing on AIDSVu 2022. The manuscript's primary specification is the combined
-> PrEP+PLWH denominator on AIDSVu 2024 — see `outputs/feasibility_plwh_result.md`
-> (which also documents, in its G01 note, that the earlier prose figure 1.93 was a
-> stale, non-reproducible value now removed). The PrEP-only result is retained
-> because it is reported in the manuscript as the more restrictive indexing
-> (RR ≈ 14–64).
-
 # Phase 0 feasibility result — metro-level dilution (the pivot)
 
 **Verdict: FAIL — even the densest US geography falls short (targeted clinic sampling required, which is no longer ecological).**
@@ -74,7 +66,7 @@ result:
   cell that ever opens is a compound of implausibilities, and its high enrichment
   is targeted clinic sampling — a cohort design, not the ecological one under test.
 
-- **Break-even, in proxy-free units** (outputs/tables/feasibility_metro_breakeven.csv, figure `outputs/figures/feasibility_metro_breakeven.png`). The male
+- **Break-even, in proxy-free units** (outputs/tables/feasibility_metro_breakeven.csv, figure `outputs/figures/feasibility_metro_breakeven_preponly.png`). The male
   PrEP coverage that would be *required* to make the signal detectable, as a share
   of **all adult males**:
   - realistic surveillance (N=1,000/yr, proportional
@@ -106,7 +98,7 @@ primary quantitative test. Two legitimate paths forward, to choose deliberately:
 ## Artifacts
 
 - required-density table: `outputs/tables/feasibility_metro.csv`
-- required-density figure: `outputs/figures/feasibility_metro.png`
+- required-density figure: `outputs/figures/feasibility_metro_preponly.png`
 - assumption-robustness sweep: `outputs/tables/feasibility_metro_robustness.csv`
 - break-even frontier table: `outputs/tables/feasibility_metro_breakeven.csv`
-- break-even figure: `outputs/figures/feasibility_metro_breakeven.png`
+- break-even figure: `outputs/figures/feasibility_metro_breakeven_preponly.png`
