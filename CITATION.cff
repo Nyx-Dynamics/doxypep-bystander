@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this research compendium, please cite it as below."
-title: "Measurement inheritance: following a doxy-PEP bystander-resistance signal from trial to surveillance — research compendium"
+title: "Guidance and surveillance capability for bystander Staphylococcus aureus tetracycline resistance under doxy-PEP: a three-stream evidence audit — research compendium"
 abstract: >-
   Complete computational research compendium (code, coded data, and manuscript) supporting
   the measurement-inheritance analysis of doxy-PEP and bystander tetracycline-resistant
@@ -16,19 +16,25 @@ authors:
     orcid: "https://orcid.org/0000-0002-9216-8569"
     affiliation: "Nyx Dynamics, LLC, Fairfield, CT, USA"
     email: acdemidont@nyxdynamics.org
-version: "2.0.0"
-date-released: "2026-09-12"
+version: "2.1"
+date-released: "2026-09-14"
 license: MIT
 license-url: "https://github.com/Nyx-Dynamics/doxypep-bystander/blob/main/LICENSE-CODE"
 repository-code: "https://github.com/Nyx-Dynamics/doxypep-bystander"
-doi: "10.5281/zenodo.22725070"
+doi: "10.5281/zenodo.22747669"
 identifiers:
   - type: doi
+    value: "10.5281/zenodo.22747669"
+    description: "This version (v2.1): US-centric refocus, UKHSA external comparator, JAC v6 manuscript"
+  - type: doi
+    value: "10.5281/zenodo.22051030"
+    description: "Concept DOI (all versions; always resolves to the latest)"
+  - type: doi
     value: "10.5281/zenodo.22725070"
-    description: "This version (v2.0.0): adds the combined PrEP+PLWH Stream C analysis and the JAC manuscript package"
+    description: "Previous version (v2.0.0)"
   - type: doi
     value: "10.5281/zenodo.22051031"
-    description: "Previous version (v1.0.0)"
+    description: "Original version (v1.0.0)"
 keywords:
   - doxycycline post-exposure prophylaxis
   - antimicrobial resistance
