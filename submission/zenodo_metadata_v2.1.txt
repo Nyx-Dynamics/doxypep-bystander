@@ -1,7 +1,7 @@
-ZENODO METADATA — new version (v2.1.0)
+ZENODO METADATA — new version (v2.1)
 Version DOI: <MINT ON PUBLISH>  |  supersedes v2.0.0 (10.5281/zenodo.22725070); v1.0.0 (10.5281/zenodo.22051031)
-Upload file: submission/doxy_zenodo_final.zip  (4.6 MB, 187 entries; built from merged main, UK_data + third-party inputs excluded)
-SHA-256: 19c765547f7975037eb209f03308ee716e4ca8dce8ddfefa0393f5a061745f83
+Upload file: submission/doxy_zenodo_final.zip  (6.4 MB, 195 entries; built from v6 main, includes JAC v6 manuscript/supplement; UK_data + third-party inputs excluded)
+SHA-256: ebd71b581874bc5b8a42d485f6294c7dc76b262a450fc167379f4db78471c4d2
 
 --------------------------------------------------------------------------------
 RESOURCE TYPE
@@ -14,10 +14,10 @@ AUTHORS / CREATORS
 Demidont, Adrian C. — Nyx Dynamics, LLC, Fairfield, CT, USA — ORCID 0000-0002-9216-8569
 
 PUBLICATION DATE
-2026-09-13
+2026-09-14
 
 VERSION
-2.1.0
+2.1
 
 LANGUAGE
 English
@@ -29,7 +29,7 @@ MIT (software). Note: content-specific licensing — software (src/, tests/, scr
 DESCRIPTION / ABSTRACT
 Reproducible research compendium (code, coded source data, manuscript, and validated outputs) for a three-stream evidence audit of doxycycline post-exposure prophylaxis (doxy-PEP) and bystander tetracycline-resistant Staphylococcus aureus. The pivotal DoxyPEP trial's final analysis reported a significant increase in incident doxycycline-resistant S. aureus under exposure (HR 3.89, 95% CI 1.42-10.68), and its authors called for surveillance of it. The compendium asks whether the guidance and surveillance deployed around doxy-PEP could follow that signal. The audit is explicitly scoped to the United States: no governmental guideline requires S. aureus monitoring (0 of 6 outbreak-matched jurisdictions; 0 of 10 coded, the World Health Organization included only as the international apex reference), and none of 12 established US surveillance and data systems links doxy-PEP exposure to an S. aureus tetracycline phenotype at a common population denominator (0 of 12). Under the primary combined PrEP+PLWH exposed denominator (AIDSVu 2024), an ordinary population system would need an implausible within-exposed effect to move a population rate (RR approximately 6-28; approximately 14-64 under the more restrictive PrEP-only indexing). England's 2026 UK Health Security Agency doxy-PEP monitoring-and-evaluation plan is discussed as an external comparator that names the same bystander-resistance objective, illustrating the additional surveillance structure the US lacks. The upstream instrument generated information the downstream systems are not built to receive - a gap we term measurement inheritance. No population-level causal claim is made; contains no participant-level trial data. Every figure and table regenerates by a single command and all coded sources are SHA-256-pinned.
 
-This version (v2.1.0) refocuses the manuscript as an explicitly US surveillance audit and adds England's 2026 UKHSA doxy-PEP monitoring-and-evaluation plan as external supporting evidence (prose only; not added to the coded corpus, which retains the World Health Organization as the international apex reference). It corrects a benchmark-labelling error in the superseded feasibility code (Soge's S. aureus-matched relative risk is 2.25 from 18% vs 8%; the value 1.42 is the cross-organism gonococcal figure), consolidates figure generation to a single authoritative writer per shipped figure, adds a dose-threshold sensitivity analysis and combined-model tests, and hardens `make all` reproducibility. No frozen scientific result changed. It supersedes v2.0.0.
+This version (v2.1) refocuses the manuscript as an explicitly US surveillance audit and adds England's 2026 UKHSA doxy-PEP monitoring-and-evaluation plan as external supporting evidence (prose only; not added to the coded corpus, which retains the World Health Organization as the international apex reference). It corrects a benchmark-labelling error in the superseded feasibility code (Soge's S. aureus-matched relative risk is 2.25 from 18% vs 8%; the value 1.42 is the cross-organism gonococcal figure), consolidates figure generation to a single authoritative writer per shipped figure, adds a dose-threshold sensitivity analysis and combined-model tests, and hardens `make all` reproducibility. No frozen scientific result changed. It supersedes v2.0.0.
 
 --------------------------------------------------------------------------------
 KEYWORDS
@@ -52,8 +52,8 @@ AUTHOR CHECKLIST BEFORE PUBLISH
 1. [DONE] Deposit archive rebuilt on merged main (make deposit-zip); SHA-256 filled in above.
    Verified excludes UK_data, the UKHSA PDF, AIDSVu XLSX, and all publisher/guideline PDFs.
 2. On the existing Zenodo record (concept 10.5281/zenodo.22725070), choose "New version",
-   upload doxy_zenodo_final.zip, apply the fields above, and Publish to mint the v2.1.0 DOI.
-3. After minting, update CITATION.cff (version 2.1.0, date-released 2026-09-13, new version DOI
+   upload doxy_zenodo_final.zip, apply the fields above, and Publish to mint the v2.1 DOI.
+3. After minting, update CITATION.cff (version 2.1, date-released 2026-09-14, new version DOI
    as the top-level doi and identifiers entry) and REPRODUCTION_LOG.md, then commit.
 4. Confirm the deposit excludes the AIDSVu XLSX and all publisher/guideline PDFs (incl. the
    UKHSA PDF) — provenance travels via SOURCES.md + CHECKSUMS.md per THIRD_PARTY_DATA.md.
