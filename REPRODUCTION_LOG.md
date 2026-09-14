@@ -1,11 +1,11 @@
-# Reproduction log — v2.0.0 (JAC release)
+# Reproduction log — v2.1 (JAC v6 release)
 
 Current release. The v1.0.0 (PLOS-era) log is preserved as
 `REPRODUCTION_LOG_v1.0.0.md`.
 
-- **Release version:** v2.0.0
-- **Zenodo DOI:** 10.5281/zenodo.22725070 (supersedes v1.0.0, 10.5281/zenodo.22051031)
-- **Date of regeneration:** 2026-09-12
+- **Release version:** v2.1 (JAC v6 manuscript: US-centric refocus + UKHSA comparator + two-audit prose pass over v2.0.0; analysis code, coded data and validated outputs unchanged)
+- **Zenodo DOI:** 10.5281/zenodo.22747669 (concept, all versions: 10.5281/zenodo.22051030; supersedes v2.0.0 10.5281/zenodo.22725070 and v1.0.0 10.5281/zenodo.22051031)
+- **Date of regeneration:** 2026-09-14
 - **Branch:** `main` (release commit is the child of `3d315f3` that adds this log; see `git log`)
 - **Environment:** CPython **3.12.12**, macOS; `pip install -r requirements-lock.txt`
 
